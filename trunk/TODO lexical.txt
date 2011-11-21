@@ -1,0 +1,16 @@
+Verb + preposition
+Some verbs require a preposition as a helper after them.
+However not all prepositions are valid and not all verbs require them.
+eg: "sojourn" requires a preposition - "ants are sojourning the tree" is incorrect, needs a preposition of place or time
+
+
+Nouns, personal pronouns and gender
+A personal pronoun's gender must agree with its anticedent.
+Nouns must define their gender.
+eg: "the chapter invests his plumb skin" - is incorrect - "his" must be "its" if a personal pronoun is used
+
+
+Add conjunctions
+Categories into equal (and), subordinate, comparative, etc
+Use to add another noun clause: NounClause, VerbClause, NounClause, Conjunction, NounClause
+This allows for a cheap and quick increase in combinations

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Copyright 2011 Murray Grant
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<dictionary schemaVersion="1" language="en-au" name="Default 200">
+  <noun singular="waterway"	plural="waterways"/>
+  <noun singular="grain"	plural="grains"/>
+  <noun singular="sunlamp"	plural="sunlamps"/>
+  <noun singular="recliner"	plural="recliners"/>
+  <noun singular="brawler"	plural="brawlers"/>
+  <noun singular="ray"	plural="rays"/>
+  <noun singular="idea"	plural="ideas"/>
+  <noun singular="handyman"	plural="handymen"/>
+  <noun singular="cam"	plural="cams"/>
+  <noun singular="tuna"	plural="tuna"/>
+  <noun singular="biscuit"	plural="biscuits"/>
+  <noun singular="limo"	plural="limos"/>
+  <noun singular="scissor"	plural="scissors"/>
+  <noun singular="decade"	plural="decades"/>
+  <noun singular="pear"	plural="pears"/>
+  <noun singular="database"	plural="databases"/>
+  <noun singular="fight"	plural="fights"/>
+  <noun singular="whittler"	plural="whittlers"/>
+  <noun singular="wishbone"	plural="wishbones"/>
+  <noun singular="drip"	plural="drips"/>
+  <noun singular="sequence"	plural="sequences"/>
+  <noun singular="networks"	plural="networks"/>
+  <noun singular="rupture"	plural="ruptures"/>
+  <noun singular="summonse"	plural="summonses"/>
+  <noun singular="panorama"	plural="panoramas"/>
+  <noun singular="couple"	plural="couples"/>
+  <noun singular="cage"	plural="cages"/>
+  <noun singular="dollar"	plural="dollars"/>
+  <noun plural="grog"/>
+  <noun singular="nutmeat"/>
+  <noun singular="champion" plural="champions"/>
+  <noun singular="statesman" plural="statesmen"/>
+  <noun singular="text" plural="texts"/>
+  <noun singular="pulpit" plural="pulpits"/>
+  <noun singular="watchman" plural="watchmen"/>
+  <noun singular="carriage" plural="carriages"/>
+  <noun singular="skin" plural="skins"/>
+  <noun singular="rumba"/>
+  <noun singular="snowdrop" plural="snowdrops"/>
+  <noun singular="anatomy" plural="anatomies"/>
+  <noun singular="ratio" plural="ratios"/>
+  <noun singular="invoice" plural="invoices"/>
+  <noun singular="incline" plural="inclines"/>
+  <noun singular="telex" plural="telexes"/>
+  <noun plural="scum" />
+  <noun singular="solstice" plural="solstices"/>
+  <noun singular="toothpick" plural="toothpicks"/>
+  <noun singular="puck" plural="pucks"/>
+  <noun singular="bale" plural="bales"/>
+  <noun singular="swag" plural="swags"/>
+  <noun singular="trickster" plural="tricksters"/>
+  <noun singular="clay"/>
+  <noun singular="nudist" plural="nudists"/>
+  <noun singular="dresser" plural="dressers"/>
+  <noun singular="carport" plural="carports"/>
+  <noun singular="meat"/>
+  <noun singular="wound" plural="wounds"/>
+  <noun singular="piece of jewelry" plural="jewelry"/>
+  <noun singular="birdbath" plural="birdbaths"/>
+  <noun singular="adjective" plural="adjectives"/>
+  <noun singular="tic" plural="tic"/>
+  <noun singular="catchment" plural="catchment"/>
+  <noun singular="opal" plural="opals"/>
+  <noun singular="tape" plural="tapes"/>
+  <noun singular="whale" plural="whales"/>
+  <noun singular="crusade" plural="crusades"/>
+  <noun singular="renegade" plural="renegades"/>
+  <noun singular="linchpin" plural="linchpins"/>
+  <noun singular="teabag" plural="teabags"/>
+  <noun plural="headgear"/>
+  <noun singular="layer" plural="layers"/>
+  <noun singular="motto" plural="mottos"/>
+  <noun singular="camp" plural="camps"/>
+  <noun singular="tarmac" plural="tarmacs"/>
+  <noun singular="ballet" plural="ballet"/>
+  <noun singular="exam" plural="exam"/>
+  <noun singular="takeoff" plural="takeoffs"/>
+  <noun singular="guess" plural="guesses"/>
+  <noun singular="kitchen" plural="kitchens"/>
+  <noun plural="torque"/>
+  <noun singular="vestment" plural="vestments"/>
+  <noun singular="district" plural="districts"/>
+  <noun singular="fillet" plural="fillets"/>
+  <noun singular="bottle" plural="bottles"/>
+  <noun singular="tweet" plural="tweets"/>
+  <noun singular="shrew" plural="shrews"/>
+  <noun singular="payload" plural="payloads"/>
+  <noun singular="performer" plural="performers"/>
+  <noun singular="frensy" plural="frensies"/>
+  <noun singular="relation" plural="relations"/>
+  <noun singular="glider" plural="gliders"/>
+  <noun singular="irony" plural="ironies"/>
+  <noun singular="olive" plural="olives"/>
+  <noun singular="oath" plural="oaths"/>
+  <noun singular="recipe" plural="recipes"/>
+  <noun plural="pliers"/>
+  <noun singular="azalea" plural="azaleas"/>
+  <noun singular="slump" plural="slumps"/>
+  <noun singular="cue" plural="cues"/>
+  <noun singular="empire" plural="empires"/>
+  <noun singular="swab" plural="swabs"/>
+  <noun singular="cowling" plural="cowlings"/>
+  <noun singular="floodgate" plural="floodgates"/>
+  <noun singular="blender" plural="blenders"/>
+  <noun singular="toxin" plural="toxins"/>
+  <noun singular="trainer" plural="trainers"/>
+  <noun singular="pen" plural="pens"/>
+  <noun singular="honeybee" plural="honeybees"/>
+  <noun singular="burden" plural="burdens"/>
+  <noun singular="stranger" plural="strangers"/>
+  <noun singular="barbarian" plural="barbarians"/>
+  <noun singular="errand" plural="errands"/>
+  <noun singular="toad" plural="toads"/>
+  <noun singular="muck" plural="muck"/>
+  <noun singular="fraction" plural="fractions"/>
+  <noun singular="galaxy" plural="galaxies"/>
+  <noun singular="plea" plural="pleas"/>
+  <noun singular="welder" plural="welders"/>
+  <noun singular="sardine" plural="sardines"/>
+  <noun singular="editor" plural="editors"/>
+  <noun singular="icon" plural="icons"/>
+  <noun singular="sunblock" plural="sunblocks"/>
+  <noun singular="attacker" plural="attackers"/>
+  <noun singular="wearer" plural="wearers"/>
+  <noun singular="exposure" plural="exposures"/>
+  <noun singular="blackbird" plural="blackbirds"/>
+  <noun singular="satchel" plural="satchels"/>
+  <noun singular="vacation" plural="vacations"/>
+  <noun singular="ion" plural="ions"/>
+  <noun singular="chimera" plural="chimeras"/>
+  <noun singular="tabloid" plural="tabloids"/>
+  <noun singular="frock" plural="frocks"/>
+  <noun singular="hostel" plural="hostels"/>
+  <noun singular="shovel" plural="shovels"/>
+  <noun singular="mediator" plural="mediators"/>
+  <noun singular="excerpt" plural="excerpts"/>
+  <noun singular="tweezer" plural="tweezers"/>
+  <noun singular="marathon" plural="marathons"/>
+  <noun singular="sauna" plural="saunas"/>
+  <noun singular="middleman" plural="middlemen"/>
+  <noun singular="playoff" plural="playoffs"/>
+  <noun singular="quatrain" plural="quatrains"/>
+  <noun singular="radius" plural="radii"/>
+  <noun singular="minute" plural="minutes"/>
+  <noun singular="victor" plural="victors"/>
+  <noun singular="belt" plural="belts"/>
+  <noun singular="filament" plural="filament"/>
+  <noun singular="tab" plural="tabs"/>
+  <noun singular="schedule" plural="schedules"/>
+  <noun singular="system" plural="systems"/>
+  <noun singular="bud" plural="buds"/>
+  <noun singular="damsel" plural="damsels"/>
+  <noun singular="workweek" plural="workweeks"/>
+  <noun singular="foyer" plural="foyers"/>
+  <noun singular="bingo"/>
+  <noun singular="fowl" plural="fowls"/>
+  <noun singular="catnip"/>
+  <noun singular="butter" plural="butter"/>
+  <noun singular="gaggle" plural="gaggles"/>
+  <noun singular="workout" plural="workouts"/>
+  <noun singular="flask" plural="flasks"/>
+  <noun singular="warrant" plural="warrants"/>
+  <noun singular="week" plural="weeks"/>
+  <noun singular="forest" plural="forests"/>
+  <noun singular="flour" plural="flours"/>
+  <noun singular="phrase" plural="phrases"/>
+  <noun singular="syndicate" plural="syndicates"/>
+  <noun singular="percentage" plural="percentages"/>
+  <noun singular="destiny" plural="destinies"/>
+  <noun singular="shaft" plural="shafts"/>
+  <noun singular="trickle" plural="trickles"/>
+  <noun singular="entrance" plural="entrances"/>
+  <noun singular="dorm" plural="dorms"/>
+  <noun singular="meadow" plural="meadows"/>
+  <noun singular="juncture" plural="junctures"/>
+  <noun singular="starch"/>
+  <noun singular="present" plural="presents"/>
+  <noun singular="ploy" plural="ploies"/>
+  <noun singular="orchid" plural="orchids"/>
+  <noun singular="lawsuit" plural="lawsuits"/>
+  <noun singular="vigil" plural="vigils"/>
+  <noun singular="brandy"/>
+  <noun singular="place" plural="places"/>
+  <noun singular="box" plural="boxes"/>
+  <noun singular="aquanaut" plural="aquanauts"/>
+  <noun singular="ioniser" plural="ioniser"/>
+  <noun singular="infant" plural="infants"/>
+  <noun singular="crest" plural="crests"/>
+  <noun singular="buster" plural="busters"/>
+  <noun singular="subtitle" plural="subtitles"/>
+  <noun singular="legume" plural="legumes"/>
+  <noun singular="sand"/>
+  <noun singular="debugger" plural="debuggers"/>
+  <noun singular="citation" plural="citations"/>
+  <noun singular="flock" plural="flocks"/>
+  <noun singular="emulator" plural="emulators"/>
+  <noun singular="chapter" plural="chapters"/>
+  <noun singular="elector" plural="electors"/>
+  <noun singular="rattrap" plural="rattraps"/>
+  <noun singular="pea" plural="peas"/>
+  <noun singular="aspect" plural="aspects"/>
+  <noun singular="pileup" plural="pileups"/>
+  <noun singular="foresail" plural="foresails"/>
+  <noun singular="feeler" plural="feelers"/>
+  <noun singular="journey" plural="journies"/>
+  <noun singular="sounding" plural="soundings"/>
+  <noun singular="tuba" plural="tubas"/>
+  <noun singular="crate" plural="crates"/>
+  <noun singular="blowout" plural="blowouts"/>
+  <noun singular="blip" plural="blips"/>
+  <noun singular="zinc" />
+  <noun singular="moped" plural="mopeds"/>
+  <noun singular="racetrack" plural="racetracks"/>
+  <noun singular="quary" plural="quarries"/>
+  <noun singular="rapid" plural="rapids"/>
+  <noun singular="constant" plural="constants"/>
+  <noun singular="megaphone" plural="megaphones"/>
+  <noun singular="spiral" plural="spirals"/>
+  <noun singular="pork"/>
+  <noun singular="constume" plural="costumes"/>
+  <noun singular="optometry"/>
+  <noun singular="pier" plural="piers"/>
+  <noun singular="cinder" plural="cinders"/>
+  <noun plural="taxes"/>
+  <noun singular="linseed" plural="linseeds"/>
+  <noun singular="bunch" plural="bunches"/>
+  <noun singular="room" plural="rooms"/>
+  <noun singular="foot" plural="feet"/>
+  <noun singular="net" plural="nets"/>
+  <noun singular="lapel" plural="lapels"/>
+  <noun singular="pathogen" plural="pathogens"/>
+  <noun singular="operation" plural="operations"/>
+  <noun singular="twinge" plural="twinges"/>
+  <noun singular="nest" plural="nests"/>
+  <noun singular="shopper" plural="shoppers"/>
+  <noun singular="smelter" plural="smelters"/>
+  <noun singular="root" plural="roots"/>
+  <noun singular="prawn" plural="prawns"/>
+  <noun singular="branch" plural="branches"/>
+  <noun singular="lowland" plural="lowlands"/>
+  <noun singular="cod" plural="cods"/>
+  <noun singular="petrol"/>
+  <noun singular="boiler" plural="boilers"/>
+  <noun singular="sapphire" plural="sapphires"/>
+  <noun singular="prude" plural="purdes"/>
+  <noun singular="bakery" plural="bakeries"/>
+  <noun singular="lyre" plural="lyres"/>
+  <noun singular="macaroon" plural="macaroons"/>
+  <noun singular="miller" plural="millers"/>
+  <noun singular="core" plural="cores"/>
+  <noun singular="prototype" plural="prototypes"/>
+  <noun singular="pancake" plural="pancakes"/>
+  <noun singular="humanoid" plural="humanoids"/>
+  <noun singular="street" plural="streets"/>
+  <noun singular="glycerol"/>
+  <noun singular="germ" plural="germs"/>
+  <noun singular="folio" plural="folios"/>
+  <noun singular="budget" plural="budgets"/>
+  <noun singular="narrator" plural="narrators"/>
+  <noun singular="dossier" plural="dossiers"/>
+  <noun singular="razor" plural="razors"/>
+  <noun singular="nymph" plural="nymphs"/>
+  <noun singular="commander" plural="commanders"/>
+  <noun singular="queen" plural="queens"/>
+  <noun singular="gnome" plural="gnomes"/>
+  <noun singular="horn" plural="horns"/>
+  <noun singular="circlet" plural="circlets"/>
+  <noun singular="station" plural="stations"/>
+  <noun singular="cost" plural="costs"/>
+  <noun singular="hamster" plural="hamsters"/>
+  <noun singular="provider" plural="providers"/>
+  <noun singular="stuff"/>
+  <noun singular="chedder"/>
+  <noun singular="weather"/>
+  <noun singular="ear" plural="ears"/>
+  <noun singular="wiretap" plural="wiretaps"/>
+  <noun singular="landmass" plural="landmasses"/>
+  <noun singular="idol" plural="idols"/>
+  <noun singular="parrot" plural="parrots"/>
+  <noun singular="pike" plural="pikes"/>
+  <noun singular="scalp" plural="scalps"/>
+  <noun singular="crutch" plural="crutches"/>
+  <noun singular="walkout" plural="walkouts"/>
+  <noun singular="gimp" plural="gimps"/>
+  <noun singular="detergent"/>
+  <noun singular="temple" plural="temples"/>
+  <noun singular="blueprint" plural="blueprints"/>
+  <noun singular="lunch" plural="lunches"/>
+  <noun singular="mattock" plural="mattocks"/>
+  <noun singular="hydrant" plural="hydrants"/>
+  <noun singular="injury" plural="injuries"/>
+  <noun singular="menfolk"/>
+  <noun singular="bonfire" plural="bonfires"/>
+  <noun singular="board" plural="boards"/>
+  <noun singular="cosmology"/>
+  <noun singular="railing" plural="railings"/>
+  <noun singular="proforma" plural="proformas"/>
+  <noun singular="detail" plural="details"/>
+  <noun singular="petella" plural="petellas"/>
+  <noun singular="hoax" plural="hoaxes"/>
+  <noun singular="platter" plural="platters"/>
+  <noun singular="broker" plural="brokers"/>
+  <noun singular="musketeer" plural="musketeers"/>
+  <noun singular="garnish" plural="garnishes"/>
+  <noun singular="hayloft" plural="haylofts"/>
+  <noun singular="failure" plural="failures"/>
+  <noun singular="dapple" plural="dapples"/>
+  <noun singular="madhouse" plural="madhouses"/>
+  <noun singular="omen" plural="omens"/>
+  <noun singular="ego" plural="egos"/>
+  <noun singular="catcher" plural="catchers"/>
+  <noun singular="secret" plural="secrets"/>
+  <noun singular="thrower" plural="throwers"/>
+  <noun singular="attendant" plural="attendants"/>
+  <noun singular="pirate" plural="pirates"/>
+</dictionary>

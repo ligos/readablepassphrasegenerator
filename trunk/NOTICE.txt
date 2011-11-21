@@ -1,0 +1,17 @@
+Readable Passphrase Generator
+Copyright 2011 Murray Grant
+http://readablepassphrase.codeplex.com
+
+This product includes software developed by Murray Grant
+in his own personal time without reference to any
+commercial software he may have worked on.
+
+
+Plugin for KeePass Password Safe by Dominik Reichl
+http://keepass.info/index.html
+
+Uses the .NET Framework Copyright Microsoft Corporation
+http://www.microsoft.com/net
+
+Dictionary Based on SCOWL Word List by by Kevin Atkinson
+http://wordlist.sourceforge.net/

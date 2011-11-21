@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Copyright 2011 Murray Grant
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<dictionary schemaVersion="1" language="en-au" name="Default 200">
+  <adjective value="downsized"/>
+  <adjective value="scuffed" />
+  <adjective value="cadged" />
+  <adjective value="embattled" />
+  <adjective value="milky" />
+  <adjective value="dim" />
+  <adjective value="neuter" />
+  <adjective value="drooping" />
+  <adjective value="double" />
+  <adjective value="heated" />
+  <adjective value="zealous" />
+  <adjective value="starboard" />
+  <adjective value="yesterday"/>
+  <adjective value="smarter"/>
+  <adjective value="obtruding"/>
+  <adjective value="fit"/>
+  <adjective value="numbed"/>
+  <adjective value="premature"/>
+  <adjective value="lucid"/>
+  <adjective value="waggish"/>
+  <adjective value="invited"/>
+  <adjective value="stunted"/>
+  <adjective value="menacing"/>
+  <adjective value="unblocked"/>
+  <adjective value="tinniest"/>
+  <adjective value="retinal"/>
+  <adjective value="drugged"/>
+  <adjective value="sublime"/>
+  <adjective value="snuggling"/>
+  <adjective value="velvet"/>
+  <adjective value="reserved"/>
+  <adjective value="hitched"/>
+  <adjective value="forlorn"/>
+  <adjective value="plumb"/>
+  <adjective value="human"/>
+  <adjective value="swish"/>
+  <adjective value="edible"/>
+  <adjective value="fourth"/>
+  <adjective value="new"/>
+  <adjective value="recent"/>
+  <adjective value="feisty"/>
+  <adjective value="ocular"/>
+  <adjective value="fleeting"/>
+  <adjective value="rigid"/>
+  <adjective value="cheesy"/>
+  <adjective value="crummy"/>
+  <adjective value="flaky"/>
+  <adjective value="plaid"/>
+  <adjective value="slouchy"/>
+  <adjective value="huge"/>
+  <adjective value="synthetic"/>
+  <adjective value="overgrown"/>
+  <adjective value="purple"/>
+  <adjective value="onshore"/>
+  <adjective value="sporty"/>
+  <adjective value="abrupt"/>
+  <adjective value="wheezy"/>
+  <adjective value="manly"/>
+  <adjective value="cranky"/>
+  <adjective value="foul"/>
+  <adjective value="vellum"/>
+  <adjective value="squeaky"/>
+  <adjective value="lazy"/>
+  <adjective value="temporary"/>
+  <adjective value="ethnic"/>
+  <adjective value="intricate"/>
+  <adjective value="underpaid"/>
+  <adjective value="vegan"/>
+  <adjective value="impartial"/>
+  <adjective value="creaky"/>
+  <adjective value="motly"/>
+  <adjective value="cellular"/>
+  <adjective value="piercing"/>
+  <adjective value="dizzy"/>
+  <adjective value="floating"/>
+  <adjective value="dustless"/>
+  <adjective value="depressed"/>
+  <adjective value="deceitful"/>
+  <adjective value="top"/>
+  <adjective value="analogue"/>
+  <adjective value="bleak"/>
+  <adjective value="essential"/>
+  <adjective value="hanging"/>
+  <adjective value="dandy"/>
+  <adjective value="unfeeling"/>
+  <adjective value="lovely"/>
+  <adjective value="sturdy"/>
+  <adjective value="frantic"/>
+  <adjective value="rash"/>
+  <adjective value="luxuriant"/>
+  <adjective value="arctic"/>
+  <adjective value="bad"/>
+  <adjective value="chrome"/>
+  <adjective value="platinum"/>
+  <adjective value="overrun"/>
+  <adjective value="corrupt"/>
+  <adjective value="darkened"/>
+  <adjective value="underfoot"/>
+  <adjective value="sassy"/>
+  <adjective value="droll"/>
+  <adjective value="solo"/>
+  <adjective value="hotshot"/>
+  <adjective value="upland"/>
+  <adjective value="intrinsic"/>
+  <adjective value="mindful"/>
+  <adjective value="jaundiced"/>
+  <adjective value="elaborate"/>
+  <adjective value="fifth"/>
+  <adjective value="dwarf"/>
+  <adjective value="gruesome"/>
+  <adjective value="hinged"/>
+  <adjective value="insensed"/>
+  <adjective value="still"/>
+  <adjective value="quirky"/>
+  <adjective value="noble"/>
+  <adjective value="sixteenth"/>
+  <adjective value="federal"/>
+  <adjective value="entwined"/>
+  <adjective value="rearward"/>
+  <adjective value="right"/>
+  <adjective value="mute"/>
+  <adjective value="trill"/>
+  <adjective value="smug"/>
+  <adjective value="haughty"/>
+  <adjective value="vengeful"/>
+  <adjective value="pale"/>
+  <adjective value="unworthy"/>
+  <adjective value="burlesque"/>
+  <adjective value="thirteenth"/>
+  <adjective value="literate"/>
+  <adjective value="elongated"/>
+  <adjective value="roomful of"/>
+  <adjective value="brackish"/>
+  <adjective value="mild"/>
+  <adjective value="botanical"/>
+  <adjective value="bombastic"/>
+  <adjective value="airborn"/>
+  <adjective value="crinkly"/>
+  <adjective value="crisp"/>
+  <adjective value="dotty"/>
+  <adjective value="northerly"/>
+  <adjective value="zestful"/>
+  <adjective value="trite"/>
+  <adjective value="grim"/>
+  <adjective value="tough"/>
+  <adjective value="front"/>
+  <adjective value="indolent"/>
+  <adjective value="comforting"/>
+  <adjective value="pushy"/>
+  <adjective value="awestruck"/>
+  <adjective value="east"/>
+  <adjective value="forked"/>
+  <adjective value="debased"/>
+  <adjective value="sandstone"/>
+</dictionary>

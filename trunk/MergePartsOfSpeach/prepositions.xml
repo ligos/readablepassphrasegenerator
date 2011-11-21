@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Copyright 2011 Murray Grant
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<dictionary schemaVersion="1" language="en-au" name="Default 200">
+  <preposition value="about"/>
+  <preposition value="above"/>
+  <preposition value="across from"/>
+  <preposition value="according to"/>
+  <preposition value="after"/>
+  <preposition value="ahead of"/>
+  <preposition value="against"/>
+  <preposition value="alongside"/>
+  <preposition value="amidst"/>
+  <preposition value="amoung"/>
+  <preposition value="apart from"/>
+  <preposition value="around"/>
+  <preposition value="as per"/>
+  <preposition value="as far as"/>
+  <preposition value="as well as"/>
+  <preposition value="aside from"/>
+  <preposition value="because of"/>
+  <preposition value="before"/>
+  <preposition value="behind"/>
+  <preposition value="below"/>
+  <preposition value="beside"/>
+  <preposition value="between"/>
+  <preposition value="beyond"/>
+  <preposition value="but"/>
+  <preposition value="by"/>
+  <preposition value="by means of"/>
+  <preposition value="close to"/>
+  <preposition value="except"/>
+  <preposition value="except for"/>
+  <preposition value="far from"/>
+  <preposition value="followed by"/>
+  <preposition value="from"/>
+  <preposition value="given"/>
+  <preposition value="in"/>
+  <preposition value="in addition to"/>
+  <preposition value="in front of"/>
+  <preposition value="in place of"/>
+  <preposition value="in spite of"/>
+  <preposition value="inside"/>
+  <preposition value="into"/>
+  <preposition value="left of"/>
+  <preposition value="near"/>
+  <preposition value="next to"/>
+  <preposition value="on"/>
+  <preposition value="on account of"/>
+  <preposition value="on behalf of"/>
+  <preposition value="on top of"/>
+  <preposition value="onto"/>
+  <preposition value="out"/>
+  <preposition value="out of"/>
+  <preposition value="outside"/>
+  <preposition value="past"/>
+  <preposition value="plus"/>
+  <preposition value="prior to"/>
+  <preposition value="right of"/>
+  <preposition value="sans"/>
+  <preposition value="since"/>
+  <preposition value="thanks to"/>
+  <preposition value="towards"/>
+  <preposition value="toward"/>
+  <preposition value="under"/>
+  <preposition value="until"/>
+  <preposition value="upon"/>
+  <preposition value="via"/>
+  <preposition value="with"/>
+  <preposition value="within"/>
+  <preposition value="without"/>
+</dictionary>

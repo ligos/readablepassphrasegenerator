@@ -1,0 +1,47 @@
+the small ant is sitting near a tall tree under a branch
+
+[article] [adjective] noun
+- the small ant
+- a small ant
+- the small ants
+- a small ants - indefinite article doesn't work with plural
+- small ants - requires plural verb
+- ants
+- an ant  - watch for when a becomes an
+- the ant
+- ant - no article doesn't work unless its a proper noun
+- 
+
+
+article := <definite> | <indefinite> | <none> | <demonstrative>
+  - <definite> accepts all numbers
+  - <indefinite> requires singular noun
+  - <none> requires proper or plural noun
+  - <demonstrative> = 'this' / 'that' for singular | 'these' / 'those' for plural
+
+
+adjective := <adjective>
+noun := <singular> | <plural> 
+  - (affects article use)
+
+tense-helper verb [adverb]
+- sat - what form is this??? almost an aorist sort of thing
+- will sit
+- is sitting
+- was sitting
+- were sitting  - for plural noun
+- will be sitting
+can also just use iam (singular & plural)
+- is / are
+- was / were
+- will be
+(number depends on nominative noun)
+
+preposition [article] [adjective] noun
+- under a branch
+- under the branch
+- under the brown branch
+- under the branches
+- under branches - nope
+- under a brown branch
+- under the brown branches
