@@ -62,9 +62,12 @@ namespace MurrayGrant.ReadablePassphrase.Random
             int range = maxValue - minValue;
             if (range == 1)     // Trivial case.
                 return minValue;
+            
+            // Determine how many bits are required for the range requested.
             int bitsRequired = (int)Math.Ceiling(Math.Log(range, 2) + 1);
             int bitmask = (1 << bitsRequired) - 1;
 
+            // Loop until we get a number within the range.
             int result = -1;
             while (result < 0 || result > range - 1)
             {

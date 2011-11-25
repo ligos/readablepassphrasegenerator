@@ -49,7 +49,9 @@ namespace Test
             //TestCoinFlip(SeededRandom());
             //TestNextInt32(SeededRandom(), 4);
             //TestNextInt32(SeededRandom(), 15);
-            //TestNextInt32(SeededRandom(), 100);
+            //TestNextInt32(SeededRandom(), 50);
+            //TestNextInt32(SeededRandom(), 64);
+            //TestNextInt32(SeededRandom(), 256);
             //TestNextInt32(SeededRandom(), 1296);
 
             Console.WriteLine();
@@ -141,8 +143,8 @@ namespace Test
             }
             sw.Stop();
             Console.WriteLine("1000000 coin flips in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
-            Console.WriteLine("True: " + countTrue);
-            Console.WriteLine("False: " + countFalse);
+            Console.WriteLine("True, " + countTrue);
+            Console.WriteLine("False, " + countFalse);
             Console.WriteLine();
         }
 
@@ -154,15 +156,16 @@ namespace Test
 
             Console.WriteLine("Testing CryptoRandomStream.Next({0})...", max);
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            for (int i = 0; i < 1000000; i++)
+            int trials = max * 50000;
+            for (int i = 0; i < trials; i++)
             {
                 var choice = randomness.Next(max);
                 distributionTable[choice] = distributionTable[choice] + 1;
             }
             sw.Stop();
-            Console.WriteLine("1000000 choices in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("{0} choices in {1:N3}ms", trials, sw.Elapsed.TotalMilliseconds);
             for(int i = 0; i < max; i++)
-                Console.WriteLine("{0}: {1}", i, distributionTable[i]);
+                Console.WriteLine("{0}, {1}", i, distributionTable[i]);
             Console.WriteLine();
         }
 
