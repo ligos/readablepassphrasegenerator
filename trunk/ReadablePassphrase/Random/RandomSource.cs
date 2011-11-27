@@ -44,37 +44,35 @@ namespace MurrayGrant.ReadablePassphrase.Random
             return Next(falseWeight + trueWeight) >= trueWeight;
         }
 
+        // Implementation for Next() based on http://codereview.stackexchange.com/questions/6304/algorithm-to-convert-random-bytes-to-integers
         public int Next()
         {
-            return Next(0, Int32.MaxValue);
+            byte[] bytes = this.GetRandomBytes(4);
+            int i = BitConverter.ToInt32(bytes, 0);
+            return i & Int32.MaxValue;
         }
-        public int Next(int maxValue)
+        public int Next(int maxExlusive)
         {
-            return Next(0, maxValue);
+            if (maxExlusive <= 0) throw new ArgumentOutOfRangeException("maxExlusive", maxExlusive, "maxExlusive must be positive");
+
+            // Let k = (Int32.MaxValue + 1) % maxExcl
+            // Then we want to exclude the top k values in order to get a uniform distribution
+            // You can do the calculations using uints if you prefer to only have one %
+            int k = ((Int32.MaxValue % maxExlusive) + 1) % maxExlusive;
+            int result = this.Next();
+            while (result > Int32.MaxValue - k)
+                result = this.Next();
+            return result % maxExlusive;
         }
         public int Next(int minValue, int maxValue)
         {
             if (minValue < 0)
-                throw new ArgumentOutOfRangeException("minValue", minValue, "MinValue must be greater than or equal to zero.");
+                throw new ArgumentOutOfRangeException("minValue", minValue, "minValue must be non-negative");
             if (maxValue <= minValue)
-                throw new ArgumentOutOfRangeException("maxValue", maxValue, "MaxValue must be greater than minValue.");
+                throw new ArgumentOutOfRangeException("maxValue", maxValue, "maxValue must be greater than minValue");
 
-            int range = maxValue - minValue;
-            if (range == 1)     // Trivial case.
-                return minValue;
-            
-            // Determine how many bits are required for the range requested.
-            int bitsRequired = (int)Math.Ceiling(Math.Log(range, 2) + 1);
-            int bitmask = (1 << bitsRequired) - 1;
+            return minValue + this.Next(maxValue - minValue);
 
-            // Loop until we get a number within the range.
-            int result = -1;
-            while (result < 0 || result > range - 1)
-            {
-                var bytes = this.GetRandomBytes(4);
-                result = (Math.Abs(BitConverter.ToInt32(bytes, 0)) & bitmask) - 1;
-            }
-            return result + minValue;
         }
     }
 }
