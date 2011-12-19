@@ -495,4 +495,26 @@ limitations under the License.
   <noun singular="foghorn" plural="foghorns"/>
   <noun singular="bell" plural="bells"/>
   <noun singular="speedboat" plural="speedboats"/>
+  <noun singular="bobcat" plural="bobcats"/>
+  <noun singular="jalopy" plural="jalopies"/>
+  <noun singular="toe" plural="toes"/>
+  <noun singular="stanza" plural="stanzas"/>
+  <noun singular="kestrel" plural="kestrels"/>
+  <noun singular="moat" plural="moats"/>
+  <noun singular="conifer" plural="conifers"/>
+  <noun singular="reagent" plural="reagents"/>
+  <noun singular="hothead" plural="hotheads"/>
+  <noun singular="church" plural="churches"/>
+  <noun singular="suspender" plural="suspenders"/>
+  <noun singular="drinker" plural="drinkers"/>
+  <noun singular="anchor" plural="anchors"/>
+  <noun singular="shingle" plural="shingles"/>
+  <noun singular="dose" plural="doses"/>
+  <noun singular="kink" plural="kinks"/>
+  <noun singular="rim" plural="rims"/>
+  <noun singular="oddity" plural="oddities"/>
+  <noun singular="frappe" plural="frappes"/>
+  <noun singular="ratchet" plural="ratchets"/>
+  <noun plural="indoors"/>
+  <noun plural="violence"/>
 </dictionary>
