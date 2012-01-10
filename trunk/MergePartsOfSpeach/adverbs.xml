@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<dictionary schemaVersion="1" language="en-au" name="Default 200">
+<dictionary schemaVersion="1" language="en-au" name="Default">
   <adverb value="candidly"/>
   <adverb value="with amusement"/>
   <adverb value="warmly"/>
@@ -48,4 +48,9 @@ limitations under the License.
   <adverb value="intently"/>
   <adverb value="subtly"/>
   <adverb value="stackly"/>
+  <adverb value="guiltily"/>
+  <adverb value="capably"/>
+  <adverb value="blindly"/>
+  <adverb value="cynically"/>
+  <adverb value="arduously"/>
 </dictionary>

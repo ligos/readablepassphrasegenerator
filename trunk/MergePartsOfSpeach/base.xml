@@ -18,7 +18,7 @@ limitations under the License.
 <!--
 The Default 200 dictionary has a minmum of 200 verbs.
 -->
-<dictionary schemaVersion="1" language="en-au" name="Default 200">
+<dictionary schemaVersion="1" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />

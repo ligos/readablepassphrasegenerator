@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<dictionary schemaVersion="1" language="en-au" name="Default 200">
+<dictionary schemaVersion="1" language="en-au" name="Default">
   <adjective value="downsized"/>
   <adjective value="scuffed" />
   <adjective value="cadged" />
@@ -323,4 +323,57 @@ limitations under the License.
   <adjective value="flatbed"/>
   <adjective value="stellar"/>
   <adjective value="lanky"/>
+  <adjective value="sleek"/>
+  <adjective value="sensual"/>
+  <adjective value="cubic"/>
+  <adjective value="slovenly"/>
+  <adjective value="racism"/>
+  <adjective value="crass"/>
+  <adjective value="queer"/>
+  <adjective value="slick"/>
+  <adjective value="woozy"/>
+  <adjective value="isotropic"/>
+  <adjective value="classy"/>
+  <adjective value="fictional"/>
+  <adjective value="infinite"/>
+  <adjective value="adoptive"/>
+  <adjective value="superb"/>
+  <adjective value="aural"/>
+  <adjective value="overpriced"/>
+  <adjective value="glad"/>
+  <adjective value="tweed"/>
+  <adjective value="dulcet"/>
+  <adjective value="turnkey"/>
+  <adjective value="future"/>
+  <adjective value="jolly"/>
+  <adjective value="stale"/>
+  <adjective value="weak"/>
+  <adjective value="swampy"/>
+  <adjective value="loony"/>
+  <adjective value="compact"/>
+  <adjective value="umpteenth"/>
+  <adjective value="express"/>
+  <adjective value="waxy"/>
+  <adjective value="conjoined"/>
+  <adjective value="ambitious"/>
+  <adjective value="free"/>
+  <adjective value="clammy"/>
+  <adjective value="seedy"/>
+  <adjective value="talented"/>
+  <adjective value="thrifty"/>
+  <adjective value="beastly"/>
+  <adjective value="inept"/>
+  <adjective value="unsent"/>
+  <adjective value="brighter"/>
+  <adjective value="upstate"/>
+  <adjective value="lenient"/>
+  <adjective value="acute"/>
+  <adjective value="ferrous"/>
+  <adjective value="jumpy"/>
+  <adjective value="zesty"/>
+  <adjective value="trenchant"/>
+  <adjective value="temporal"/>
+  <adjective value="speedy"/>
+  <adjective value="priceless"/>
+  <adjective value="solemn"/>
 </dictionary>

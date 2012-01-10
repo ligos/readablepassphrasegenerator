@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<dictionary schemaVersion="1" language="en-au" name="Default 200">
+<dictionary schemaVersion="1" language="en-au" name="Default">
   <noun singular="waterway"	plural="waterways"/>
   <noun singular="grain"	plural="grains"/>
   <noun singular="sunlamp"	plural="sunlamps"/>
@@ -619,4 +619,89 @@ limitations under the License.
   <noun singular="stickpin" plural="stickpins"/>
   <noun singular="pit" plural="pits"/>
   <noun singular="woodchuck" plural="woodchucks"/>
+  <noun singular="drivel" plural="drivel"/>
+  <noun singular="knuckle" plural="knuckles"/>
+  <noun singular="caste" plural="castes"/>
+  <noun singular="puppy" plural="puppies"/>
+  <noun singular="buoy" plural="buoys"/>
+  <noun singular="sage" plural="sages"/>
+  <noun singular="haiku" plural="haikus"/>
+  <noun singular="plight" plural="plights"/>
+  <noun singular="aphorism" plural="aphorisms"/>
+  <noun singular="meteorite" plural="meteorites"/>
+  <noun singular="nit" plural="nits"/>
+  <noun singular="stilt" plural="stilts"/>
+  <noun singular="gum" plural="gums"/>
+  <noun singular="tutor" plural="tutors"/>
+  <noun singular="fiasco" plural="fiascos"/>
+  <noun singular="potato" plural="potatoes"/>
+  <noun singular="amoeba" plural="amoebas"/>
+  <noun singular="blaster" plural="blasters"/>
+  <noun singular="halter" plural="halters"/>
+  <noun singular="zero" plural="zeros"/>
+  <noun singular="corsage" plural="corsages"/>
+  <noun singular="nettle" plural="nettles"/>
+  <noun singular="protege" plural="proteges"/>
+  <noun singular="huckster" plural="hucksters"/>
+  <noun singular="catfish" plural="catfish"/>
+  <noun singular="ganglion" plural="ganglions"/>
+  <noun singular="encoder" plural="encoders"/>
+  <noun singular="galley" plural="galleys"/>
+  <noun singular="hammock" plural="hammocks"/>
+  <noun singular="swamp" plural="swamps"/>
+  <noun singular="quilt" plural="quilts"/>
+  <noun singular="champagne"/>
+  <noun singular="vaccine" plural="vaccines"/>
+  <noun singular="jumpsuit" plural="jumpsuits"/>
+  <noun singular="aardvark" plural="aardvarks"/>
+  <noun singular="fish" plural="fish"/>
+  <noun singular="theory" plural="theories"/>
+  <noun singular="uniquest" plural="uniquests"/>
+  <noun singular="pamphlet" plural="pamphlets"/>
+  <noun singular="banknote" plural="banknotes"/>
+  <noun singular="cell" plural="cells"/>
+  <noun singular="breast" plural="breasts"/>
+  <noun singular="servo" plural="servos"/>
+  <noun singular="halibut" plural="halibuts"/>
+  <noun singular="closet" plural="closets"/>
+  <noun singular="pad" plural="pads"/>
+  <noun singular="coin" plural="coins"/>
+  <noun singular="seashell" plural="seashells"/>
+  <noun plural="phlegm"/>
+  <noun singular="tycoon" plural="tycoons"/>
+  <noun singular="polyglot" plural="polyglots"/>
+  <noun singular="blotch" plural="blotches"/>
+  <noun singular="plinth" plural="plinthes"/>
+  <noun singular="drama" plural="dramas"/>
+  <noun singular="harpist" plural="harpists"/>
+  <noun singular="raceway" plural="raceways"/>
+  <noun singular="icebox" plural="iceboxes"/>
+  <noun singular="snorkeler" plural="snorkelers"/>
+  <noun singular="vestry" plural="vestries"/>
+  <noun singular="mixer" plural="mixers"/>
+  <noun singular="lancet" plural="lancets"/>
+  <noun singular="nutmeg" plural="nutmegs"/>
+  <noun singular="bucket" plural="buckets"/>
+  <noun plural="greenery"/>
+  <noun singular="mummy" plural="mummies"/>
+  <noun singular="rose" plural="roses"/>
+  <noun singular="outcry" plural="outcries"/>
+  <noun singular="sortie" plural="sorties"/>
+  <noun singular="deaconess" plural="deaconesses"/>
+  <noun singular="cesspool" plural="cesspools"/>
+  <noun singular="stump" plural="stumps"/>
+  <noun singular="harem" plural="harems"/>
+  <noun singular="optimist" plural="optimists"/>
+  <noun singular="eggbeater" plural="eggbeaters"/>
+  <noun singular="pinhead" plural="pinheads"/>
+  <noun singular="denature" plural="denatures"/>
+  <noun singular="amnesiac" plural="amnesiacs"/>
+  <noun singular="antelope" plural="antelopes"/>
+  <noun singular="divisor" plural="divisors"/>
+  <noun singular="leaf" plural="leafs"/>
+  <noun singular="thyroid" plural="thyroids"/>
+  <noun singular="alarm" plural="alarms"/>
+  <noun singular="hyena" plural="hyenas"/>
+  <noun singular="moment" plural="moments"/>
+  <noun singular="fable" plural="fables"/>
 </dictionary>
