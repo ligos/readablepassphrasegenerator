@@ -57,7 +57,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KeePass, Version=2.1.7.36869, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
+    <Reference Include="KeePass, Version=2.1.8.18961, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <ExecutableExtension>.exe</ExecutableExtension>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
