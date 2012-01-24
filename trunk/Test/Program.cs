@@ -64,17 +64,26 @@ namespace Test
             Console.WriteLine();
             Console.WriteLine("Name: {0}", generator.Dictionary.Name);
             Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
+            Console.WriteLine("TOTAL:         {0:N0}", generator.Dictionary.Count);
             Console.WriteLine("Nouns:         {0:N0}", generator.Dictionary.OfType<Noun>().Count());
             Console.WriteLine("Verbs:         {0:N0}", generator.Dictionary.OfType<Verb>().Count());
             Console.WriteLine("Prepositions:  {0:N0}", generator.Dictionary.OfType<Preposition>().Count());
             Console.WriteLine("Adverbs:       {0:N0}", generator.Dictionary.OfType<Adverb>().Count());
             Console.WriteLine("Adjectives:    {0:N0}", generator.Dictionary.OfType<Adjective>().Count());
-            var duplicates = generator.Dictionary.GroupBy(w => w.DictionaryEntry).Where(g => g.Count() > 1);
-            if (duplicates.Any())
+
+            // Check for duplicates.
+            foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t)))
             {
-                Console.WriteLine("DUPLICATES FOUND:");
-                foreach (var g in duplicates)
-                    Console.WriteLine("    - " + g.Key);
+                var duplicates = generator.Dictionary
+                                        .Where(w => w.GetType() == t)
+                                        .GroupBy(w => w.DictionaryEntry)
+                                        .Where(g => g.Count() > 1);
+                if (duplicates.Any())
+                {
+                    Console.WriteLine("DUPLICATES for {0}:", t.Name);
+                    foreach (var g in duplicates)
+                        Console.WriteLine("    - " + g.Key);
+                }
             }
         }
 
