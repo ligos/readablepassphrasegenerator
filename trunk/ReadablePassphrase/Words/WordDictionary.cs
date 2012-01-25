@@ -31,6 +31,13 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public string Name { get; private set; }
 
         #region Load and Parse Methods
+        public void LoadFrom(IEnumerable<Word> words)
+        {
+            foreach (var w in words)
+            {
+                this.Add(w);
+            }
+        }
         public void LoadFrom(Stream s)
         {
             this.LoadFrom(XmlReader.Create(s));
