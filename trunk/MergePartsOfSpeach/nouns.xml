@@ -1023,4 +1023,43 @@ limitations under the License.
   <noun singular="ruse" plural="ruses"/>
   <noun singular="serial" plural="serials"/>
   <noun singular="slide" plural="slides"/>
+  <noun plural="nectar"/>
+  <noun singular="outline" plural="outlines"/>
+  <noun singular="boomerang" plural="boomerangs"/>
+  <noun singular="nut" plural="nuts"/>
+  <noun singular="nucleus" plural="nuclei"/>
+  <noun singular="tuner" plural="tuners"/>
+  <noun singular="pillory" plural="pillories"/>
+  <noun singular="wavelet" plural="wavelets"/>
+  <noun singular="swimmer" plural="swimmers"/>
+  <noun singular="ladle" plural="ladles"/>
+  <noun plural="evidence"/>
+  <noun singular="patio" plural="patios"/>
+  <noun singular="sinner" plural="sinners"/>
+  <noun singular="scribble" plural="scribbles"/>
+  <noun singular="passtime" plural="passtimes"/>
+  <noun singular="fetter" plural="fetters"/>
+  <noun singular="tangle" plural="tangles"/>
+  <noun singular="pooch" plural="pooches"/>
+  <noun singular="rustler" plural="rustlers"/>
+  <noun singular="fixer" plural="fixers"/>
+  <noun singular="disc" plural="discs"/>
+  <noun singular="tentacle" plural="tentacles"/>
+  <noun singular="axe" plural="axes"/>
+  <noun singular="headstone" plural="headstones"/>
+  <noun singular="condor" plural="condors"/>
+  <noun plural="cud"/>
+  <noun singular="twit" plural="twits"/>
+  <noun singular="trick" plural="tricks"/>
+  <noun singular="cleaver" plural="cleavers"/>
+  <noun singular="picnic" plural="picnics"/>
+  <noun singular="subsidy" plural="subsidies"/>
+  <noun singular="predator" plural="predators"/>
+  <noun singular="hue" plural="hues"/>
+  <noun singular="triplet" plural="triplets"/>
+  <noun singular="cabana" plural="cabanas"/>
+  <noun singular="exporter" plural="exporters"/>
+  <noun singular="export" plural="exports"/>
+  <noun singular="mind" plural="minds"/>
+  <noun singular="clump" plural="clumps"/>
 </dictionary>
