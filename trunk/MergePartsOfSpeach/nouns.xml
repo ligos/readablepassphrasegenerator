@@ -1034,11 +1034,9 @@ limitations under the License.
   <noun singular="swimmer" plural="swimmers"/>
   <noun singular="ladle" plural="ladles"/>
   <noun plural="evidence"/>
-  <noun singular="patio" plural="patios"/>
   <noun singular="sinner" plural="sinners"/>
   <noun singular="scribble" plural="scribbles"/>
   <noun singular="passtime" plural="passtimes"/>
-  <noun singular="fetter" plural="fetters"/>
   <noun singular="tangle" plural="tangles"/>
   <noun singular="pooch" plural="pooches"/>
   <noun singular="rustler" plural="rustlers"/>
@@ -1062,4 +1060,11 @@ limitations under the License.
   <noun singular="export" plural="exports"/>
   <noun singular="mind" plural="minds"/>
   <noun singular="clump" plural="clumps"/>
+  <noun singular="pub" plural="pubs"/>
+  <noun singular="emission" plural="emissions"/>
+  <noun singular="smoke" plural="smoke"/>
+  <noun singular="skywriter" plural="skywriters"/>
+  <noun singular="floor" plural="floors"/>
+  <noun singular="township" plural="townships"/>
+  <noun singular="actuator" plural="actuators"/>
 </dictionary>
