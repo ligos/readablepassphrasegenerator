@@ -66,7 +66,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             else if (useDefaultDictionary == true)
                 return this.LoadFrom();
             else
-                throw new InvalidDictionaryLoaderArgumentException("Neither 'url' or 'file' parameters were specified. If you with to look for and load a deafult dictionary.xml file in the current directory, specify 'useDefaultDictionary=true'.");
+                throw new InvalidDictionaryLoaderArgumentException("Neither 'url' or 'file' parameters were specified. If you with to look for and load a defult dictionary.xml file in the current directory, specify 'useDefaultDictionary=true'.");
         }
 
         /// <summary>
