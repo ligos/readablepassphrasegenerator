@@ -89,6 +89,12 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 loaderT = typeof(ExplicitXmlDictionaryLoader);
             else
                 throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
+            
+            // If the internal dictionary loader is being used and no other arguments are specified, tell it to use the default dictionary.
+            if (loaderT == typeof(ExplicitXmlDictionaryLoader) && String.IsNullOrEmpty(loaderArguments.Trim()))
+                loaderArguments = "useDefaultDictionary=true";
+
+            // And load our dictionary!
             using (var loader = (IDictionaryLoader)Activator.CreateInstance(loaderT))
             {
                 generator.LoadDictionary(loader, loaderArguments);
