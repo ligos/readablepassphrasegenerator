@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase.Words;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.WordTemplate
 {

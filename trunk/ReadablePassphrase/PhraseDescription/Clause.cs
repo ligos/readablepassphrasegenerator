@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
@@ -32,7 +33,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         /// <summary>
         /// Counts the total unique combinations possible for this clause based on dictionary word counts and the clause's configuration.
         /// </summary>
-        public abstract double CountCombinations(Words.WordDictionary dictionary);
+        public abstract double CountCombinations(WordDictionary dictionary);
 
         public String ToTextString()
         {

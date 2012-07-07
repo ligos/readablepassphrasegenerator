@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\ReadablePassphrase.dll</HintPath>
     </Reference>
+    <Reference Include="ReadablePassphrase.Words, Version=0.7.0.0, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ReadablePassphrase.Words.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

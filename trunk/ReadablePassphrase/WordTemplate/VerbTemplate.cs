@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase.Words;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.WordTemplate
 {
@@ -36,16 +37,5 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
             var word = words.ChooseWord<Verb>(randomness, alreadyChosen, w => w.HasForm(this.Tense, this.SubjectIsPlural));
             return new WordAndString(word, word.GetForm(this.Tense, this.SubjectIsPlural));
         }
-    }
-
-    public enum VerbTense
-    {
-        Present,
-        Past,
-        Future,
-        Continuous,
-        ContinuousPast,
-        Perfect,
-        Subjunctive
     }
 }

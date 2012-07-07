@@ -20,6 +20,7 @@ using System.Text;
 using System.Xml;
 using System.Security;
 using MurrayGrant.ReadablePassphrase.Words;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.WordTemplate;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
 using MurrayGrant.ReadablePassphrase.Random;
@@ -38,138 +39,123 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region Constructor
         /// <summary>
-        /// Initialises the object with the default random source (based on <c>RNGCryptoServiceProvider</c>).
+        /// Initialises the object with the default random source (based on <c>RNGCryptoServiceProvider</c>) and dictionary (internal XML dictionary).
         /// </summary>
         public ReadablePassphraseGenerator() 
+            : this(new CryptoRandomSource())
         { 
-            this._Randomness = new CryptoRandomSource();
-            this.Dictionary = new WordDictionary();
         }
         /// <summary>
         /// Initialises the object with the given random source.
         /// </summary>
         public ReadablePassphraseGenerator(RandomSourceBase randomness) 
-        { 
+        {
             this._Randomness = randomness;
-            this.Dictionary = new WordDictionary();
+            this.Dictionary = new EmptyDictionary();          // Default empty dictionary,
         }
         #endregion
 
         #region LoadDictionary()
         /// <summary>
-        /// Loads the default dictionary.
+        /// Loads a dictionary using the <c>IDictionaryLoader</c> and the given arguments.
         /// </summary>
+        /// <param name="loader">The IDictionaryLoader to load the dictionary with.</param>
+        /// <param name="arguments">The arguments to pass to the IDictionaryLoader, parsed like a database connection string.</param>
         /// <remarks>
-        /// This will attempt to load 'dictionary.xml, .xml.gz and .gz' from
-        /// the folder of the exe (<c>Assembly.GetEntryAssembly()</c>) or the current directory (<c>Environment.CurrentDirectory</c>).
+        /// The arguments are parsed like a database connection string.
+        /// An array of semicolon separated key value pairs are expected. 
+        /// Whitespace is trimmed. Keys are case-insensitive.
+        /// '=' and ';' are not valid characters. If you need to pass them as arguments, use the <c>IDictionary</c> overload.
+        /// The meaning of arguments is determined by the <c>IDictionaryLoader</c>
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// Eg: url=http://server.com/file; iscompressed=true; 
         /// </remarks>
-        public void LoadDictionary()
+        public void LoadDictionary(IDictionaryLoader loader, string arguments)
         {
-            // Check dictionary.xml, dictionary.xml.gz, dictionary.gz in entrypoint and current working directory.
-            var filenames = new string[] { "dictionary.xml", "dictionary.xml.gz", "dictionary.gz" };
-            var allLocationsToCheck = filenames.Select(f => Path.Combine(System.Reflection.Assembly.GetEntryAssembly().Location, f))
-                .Concat(filenames.Select(f => Path.Combine(Environment.CurrentDirectory, f)))
-                .ToArray();
-
-            foreach (var fileAndPath in allLocationsToCheck)
-            {
-                if (TryLoadDictionaryFromPath(fileAndPath))
-                    return;
-            }
-
-            throw new InvalidOperationException("Unable to load default dictionary. Tried the following locations: " + String.Join(", ", allLocationsToCheck));
+            this.LoadDictionary(loader, this.ParseArgumentString(arguments));
         }
-        private bool TryLoadDictionaryFromPath(string fileAndPath)
+        /// <summary>
+        /// Loads a dictionary using the <c>IDictionaryLoader</c> and the given arguments.
+        /// </summary>
+        /// <param name="loader">The IDictionaryLoader to load the dictionary with.</param>
+        /// <param name="arguments">The arguments to pass to the IDictionaryLoader.</param>
+        public void LoadDictionary(IDictionaryLoader loader, IDictionary<string, string> arguments)
         {
-            if (!File.Exists(fileAndPath))
-                return false;
-            using (var stream = new FileStream(fileAndPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            this.Dictionary = loader.Load(arguments);
+        }
+
+        /// <summary>
+        /// Attempts to load a dictionary using the <c>IDictionaryLoader</c> and the given arguments.
+        /// </summary>
+        /// <param name="loader">The IDictionaryLoader to load the dictionary with.</param>
+        /// <param name="arguments">The arguments to pass to the IDictionaryLoader.</param>
+        /// <param name="error">The error which occured while loading the dictionary (if any).</param>
+        /// <returns>True if the dictionary loaded successfully, false otherwise (and sets the <c>error</c> out parameter to the error).</returns>
+        /// <remarks>
+        /// See <c>LoadDictionary</c> for details of how <c>arguments</c> is parsed.
+        /// </remarks>
+        public bool TryLoadDictionary(IDictionaryLoader loader, string arguments, out Exception error)
+        {
+            try
             {
-                LoadDictionary(stream);
+                this.Dictionary = loader.Load(this.ParseArgumentString(arguments));
+                error = null;
                 return true;
             }
-        }
-        /// <summary>
-        /// Loads a dictionary from the specified path.
-        /// </summary>
-        /// <remarks>
-        /// The file can be plaintext or gzipped.
-        /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
-        /// </remarks>
-        public void LoadDictionary(string pathToExternalFile)
-        {
-            if (!String.IsNullOrEmpty(pathToExternalFile))
-                this.LoadDictionary(new FileInfo(pathToExternalFile));
-            else
-                this.LoadDictionary();
-        }
-        /// <summary>
-        /// Loads a dictionary from the specified file.
-        /// </summary>
-        /// <remarks>
-        /// The file can be plaintext or gzipped.
-        /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
-        /// </remarks>
-        public void LoadDictionary(FileInfo externalFile)
-        {
-            using (var s = externalFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
-                LoadDictionary(s);
-        }
-        /// <summary>
-        /// Loads a dictionary from the specified stream.
-        /// </summary>
-        /// <remarks>
-        /// The file can be plaintext or gzipped.
-        /// The stream must have <c>CanSeek</c> = true.
-        /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
-        /// </remarks>
-        public void LoadDictionary(Stream s)
-        {
-            this.Dictionary = new Words.WordDictionary();
-            if (!s.CanSeek)
-                throw new ArgumentException("Cannot read dictionary from stream which does not support seeking. Use the LoadDictionary(Stream, bool) overload to manually specify compression.", "s");
-
-            // Check to see if the file is compressed or plain text.
-            var buf = new byte[2];
-            s.Read(buf, 0, buf.Length);
-            s.Position = 0;
-
-            if (buf[0] == 0x1f && buf[1] == 0x8b)
+            catch (Exception ex)
             {
-                // Found Gzip magic number, decompress before loading.
-                var unzipStream = new System.IO.Compression.GZipStream(s, System.IO.Compression.CompressionMode.Decompress);
-                this.Dictionary.LoadFrom(unzipStream);
-            }
-            else
-            {
-                // Not gziped, assume plaintext.
-                this.Dictionary.LoadFrom(s);
+                error = ex;
+                this.Dictionary = new EmptyDictionary();
+                return false;
             }
         }
 
         /// <summary>
-        /// Loads a dictionary from the specified stream. Use this overload to manually specify if the dictionary is compressed.
+        /// Attempts to load a dictionary using the <c>IDictionaryLoader</c> and the given arguments.
         /// </summary>
-        /// <param name="s">The stream</param>
-        /// <param name="isCompressed">If true, the stream must be compressed, if false it must be uncompressed.</param>
-        public void LoadDictionary(Stream s, bool isCompressed)
+        /// <param name="loader">The IDictionaryLoader to load the dictionary with.</param>
+        /// <param name="arguments">The arguments to pass to the IDictionaryLoader.</param>
+        /// <param name="error">The error which occured while loading the dictionary (if any).</param>
+        /// <returns>True if the dictionary loaded successfully, false otherwise (and sets the <c>error</c> out parameter to the error).</returns>
+        public bool TryLoadDictionary(IDictionaryLoader loader, IDictionary<string, string> arguments, out Exception error)
         {
-            this.Dictionary = new Words.WordDictionary();
+            try
+            {
+                this.Dictionary = loader.Load(arguments);
+                error = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex;
+                this.Dictionary = new EmptyDictionary();
+                return false;
+            }
+        }
 
-            if (isCompressed)
-            {
-                var unzipStream = new System.IO.Compression.GZipStream(s, System.IO.Compression.CompressionMode.Decompress);
-                this.Dictionary.LoadFrom(unzipStream);
-            }
-            else
-            {
-                this.Dictionary.LoadFrom(s);
-            }
+        private IDictionary<string, string> ParseArgumentString(string arguments)
+        {
+            return arguments.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(kvp => kvp.Split(new[] { '=' }))
+                .Select(pair =>
+                    {
+                        if (pair.Length >= 2)
+                            return new KeyValuePair<string, string>((pair[0] ?? "").Trim(), (pair[1] ?? "").Trim());
+                        else if (pair.Length == 1)
+                            return new KeyValuePair<string, string>((pair[0] ?? "").Trim(), "");
+                        else if (pair.Length == 0)
+                            return new KeyValuePair<string, string>("", "");
+                        else
+                            throw new ApplicationException("Unexpected number of items when splitting argument string.");
+                    })
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
+
+        public void SetDictionary(WordDictionary dict)
+        {
+            if (dict == null)
+                throw new ArgumentNullException("dict");
+            this.Dictionary = dict;
         }
         #endregion
 

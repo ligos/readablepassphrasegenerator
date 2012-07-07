@@ -17,22 +17,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using MurrayGrant.ReadablePassphrase.Words;
 
-namespace MurrayGrant.ReadablePassphrase.Words
+namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
-    public class Article : Word
+    public sealed class MaterialisedNoun : Noun
     {
-        public string Definite { get; private set; }
-        public string Indefinite { get; private set; }
-        public string IndefiniteBeforeVowel { get; private set; }
+        private string _Singular;
+        private string _Plural;
 
-        public override string DictionaryEntry { get { return Definite; } }
+        public override string Singular { get { return _Singular; } }
+        public override string Plural { get { return _Plural; } }
 
-        internal Article(XmlReader reader)
+        private MaterialisedNoun() { }
+        public MaterialisedNoun(string singular, string plural)
         {
-            Definite = reader.GetAttribute("definite");
-            Indefinite = reader.GetAttribute("indefinite");
-            IndefiniteBeforeVowel = reader.GetAttribute("indefiniteBeforeVowel");
+            _Singular = singular;
+            _Plural = plural;
         }
+
     }
 }

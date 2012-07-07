@@ -16,19 +16,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml;
 
-namespace MurrayGrant.ReadablePassphrase.Words
+namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
-    public class Preposition : Word
+    /// <summary>
+    /// Thrown if an <c>IDictionaryLoader</c> cannot load the dictionary.
+    /// </summary>
+    [Serializable]
+    public class UnableToLoadDictionaryException : Exception
     {
-        public string Value { get; private set; }
-
-        public override string DictionaryEntry { get { return Value; } }
-
-        internal Preposition(XmlReader reader)
-        {
-            Value = reader.GetAttribute("value");
-        }
+        public UnableToLoadDictionaryException() { }
+        public UnableToLoadDictionaryException(string message) : base(message) { }
+        public UnableToLoadDictionaryException(string message, Exception inner) : base(message, inner) { }
+        protected UnableToLoadDictionaryException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
     }
 }

@@ -20,17 +20,11 @@ using System.Xml;
 
 namespace MurrayGrant.ReadablePassphrase.Words
 {
-    public class Demonstrative : Word
+    public abstract class PersonalPronoun : Word
     {
-        public string Singular { get; private set; }
-        public string Plural { get; private set; }
+        public abstract string Singular { get; }
+        public abstract string Plural { get; }
 
         public override string DictionaryEntry { get { return Singular; } }
-
-        internal Demonstrative(XmlReader reader)
-        {
-            Singular = reader.GetAttribute("singular");
-            Plural = reader.GetAttribute("plural");
-        }
     }
 }

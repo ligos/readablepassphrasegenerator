@@ -79,6 +79,10 @@
       <Project>{EE49DD2F-8815-4090-8F78-06851D77CE3B}</Project>
       <Name>KeePassReadablePassphrase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
+      <Project>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</Project>
+      <Name>ReadablePassphrase.Words</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj">
       <Project>{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}</Project>
       <Name>ReadablePassphrase</Name>

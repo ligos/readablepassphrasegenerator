@@ -17,17 +17,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using MurrayGrant.ReadablePassphrase.Words;
 
-namespace MurrayGrant.ReadablePassphrase.Words
+namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
-    public class Adjective : Word
+    public sealed class MaterialisedAdverb : Adverb
     {
-        public string Value { get; private set; }
-        public override string DictionaryEntry { get { return Value; } }
+        private string _Value;
+        public override string Value { get { return _Value; } }
 
-        internal Adjective(XmlReader reader)
+        private MaterialisedAdverb() { }
+        public MaterialisedAdverb(string value)
         {
-            Value = reader.GetAttribute("value");
+            _Value = value;
         }
     }
 }

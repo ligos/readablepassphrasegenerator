@@ -17,27 +17,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using MurrayGrant.ReadablePassphrase.WordTemplate;
 
 namespace MurrayGrant.ReadablePassphrase.Words
 {
-    public class Verb : Word
+    public abstract class Verb : Word
     {
-        public string PresentSingular { get; private set; }
-        public string PastSingular { get; private set; }
-        public string PastContinuousSingular { get; private set; }
-        public string FutureSingular { get; private set; }
-        public string ContinuousSingular { get; private set; }
-        public string PerfectSingular { get; private set; }
-        public string SubjunctiveSingular { get; private set; }
+        public abstract string PresentSingular { get; }
+        public abstract string PastSingular { get; }
+        public abstract string PastContinuousSingular { get; }
+        public abstract string FutureSingular { get; }
+        public abstract string ContinuousSingular { get; }
+        public abstract string PerfectSingular { get; }
+        public abstract string SubjunctiveSingular { get; }
 
-        public string PresentPlural { get; private set; }
-        public string PastPlural { get; private set; }
-        public string PastContinuousPlural { get; private set; }
-        public string FuturePlural { get; private set; }
-        public string ContinuousPlural { get; private set; }
-        public string PerfectPlural { get; private set; }
-        public string SubjunctivePlural { get; private set; }
+        public abstract string PresentPlural { get; }
+        public abstract string PastPlural { get; }
+        public abstract string PastContinuousPlural { get; }
+        public abstract string FuturePlural { get; }
+        public abstract string ContinuousPlural { get; }
+        public abstract string PerfectPlural { get; }
+        public abstract string SubjunctivePlural { get; }
+
+        public override string DictionaryEntry { get { return this.PresentPlural; } }       // This is most likely to detect duplicates in english.
+
 
         public bool HasForm(VerbTense tense, bool isPlural)
         {
@@ -74,28 +76,18 @@ namespace MurrayGrant.ReadablePassphrase.Words
             else if (tense == VerbTense.Subjunctive && isPlural)
                 return this.SubjunctivePlural;
             else
-                throw new ApplicationException(String.Format("Unexpected case of tense and isPlural.", tense, isPlural));
+                throw new ApplicationException(String.Format("Unexpected case of tense ({0}) and isPlural ({1}).", tense, isPlural));
         }
+    }
 
-        public override string DictionaryEntry { get { return this.PresentPlural; } }       // This is most likely to detect duplicates.
-
-        internal Verb(XmlReader reader)
-        {
-            PresentSingular = reader.GetAttribute("presentSingular");
-            PastSingular = reader.GetAttribute("pastSingular");
-            PastContinuousSingular = reader.GetAttribute("pastContinuousSingular");
-            FutureSingular = reader.GetAttribute("futureSingular");
-            ContinuousSingular = reader.GetAttribute("continuousSingular");
-            PerfectSingular = reader.GetAttribute("perfectSingular");
-            SubjunctiveSingular = reader.GetAttribute("subjunctiveSingular");
-
-            PresentPlural = reader.GetAttribute("presentPlural");
-            PastPlural = reader.GetAttribute("pastPlural");
-            PastContinuousPlural = reader.GetAttribute("pastContinuousPlural");
-            FuturePlural = reader.GetAttribute("presentSingular");
-            ContinuousPlural = reader.GetAttribute("continuousPlural");
-            PerfectPlural = reader.GetAttribute("futurePlural");
-            SubjunctivePlural = reader.GetAttribute("subjunctivePlural");
-        }
+    public enum VerbTense
+    {
+        Present,
+        Past,
+        Future,
+        Continuous,
+        ContinuousPast,
+        Perfect,
+        Subjunctive
     }
 }

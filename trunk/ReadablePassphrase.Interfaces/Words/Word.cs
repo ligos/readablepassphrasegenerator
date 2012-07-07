@@ -39,7 +39,7 @@ namespace MurrayGrant.ReadablePassphrase.Words
 
             return ((Word)obj).DictionaryEntry.ToLower() == this.DictionaryEntry.ToLower();
         }
-        public bool Equals(Word obj)
+        public virtual bool Equals(Word obj)
         {
             if (obj == null)
                 return false;

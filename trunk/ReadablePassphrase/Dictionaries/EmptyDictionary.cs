@@ -16,18 +16,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MurrayGrant.ReadablePassphrase.Words;
 
-namespace MurrayGrant.ReadablePassphrase.Words
+namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
-    [Serializable]
-    public class DictionaryParseException : Exception
+    /// <summary>
+    /// A dictionary with never has words in it.
+    /// </summary>
+    public sealed class EmptyDictionary : WordDictionary
     {
-        public DictionaryParseException() { }
-        public DictionaryParseException(string message) : base(message) { }
-        public DictionaryParseException(string message, Exception inner) : base(message, inner) { }
-        protected DictionaryParseException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context)
-            : base(info, context) { }
+        public override string LanguageCode { get { return ""; } }
+        public override string Name { get { return "Empty Dictionary"; } }
+
+        public EmptyDictionary() : base() { }
     }
 }

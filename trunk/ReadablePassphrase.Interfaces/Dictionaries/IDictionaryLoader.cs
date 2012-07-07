@@ -16,18 +16,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MurrayGrant.ReadablePassphrase.Words;
-using MurrayGrant.ReadablePassphrase.Dictionaries;
 
-namespace MurrayGrant.ReadablePassphrase.WordTemplate
+namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
-    public class AdverbTemplate : Template
+    public interface IDictionaryLoader : IDisposable
     {
-        public override bool IncludeInAlreadyUsedList { get { return true; } }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
-        {
-            var word = words.ChooseWord<Adverb>(randomness, alreadyChosen);
-            return new WordAndString(word, word.Value);
-        }
+        WordDictionary Load(IDictionary<string, string> arguments);
     }
 }

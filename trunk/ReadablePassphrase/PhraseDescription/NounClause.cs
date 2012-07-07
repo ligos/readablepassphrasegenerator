@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase.WordTemplate;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
@@ -102,7 +103,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             return result;
         }
 
-        public override double CountCombinations(Words.WordDictionary dictionary)
+        public override double CountCombinations(WordDictionary dictionary)
         {
             double result = 1;
 

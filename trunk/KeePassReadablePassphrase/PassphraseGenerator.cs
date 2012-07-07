@@ -23,6 +23,7 @@ using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.PasswordGenerator;
 using KeePassLib.Security;
 using MurrayGrant.ReadablePassphrase;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace KeePassReadablePassphrase
 {
@@ -103,15 +104,18 @@ namespace KeePassReadablePassphrase
 
         public static void LoadDictionary(Config conf, MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator)
         {
+            var loader = new ExplicitXmlDictionaryLoader();
             if (conf.UseCustomDictionary && !String.IsNullOrEmpty(conf.PathOfCustomDictionary) && System.IO.File.Exists(conf.PathOfCustomDictionary))
             {
-                generator.LoadDictionary(conf.PathOfCustomDictionary);
+                var dict = loader.LoadFrom(conf.PathOfCustomDictionary);
+                generator.SetDictionary(dict);
             }
             else
             {
                 using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(DictionaryResourceName))
                 {
-                    generator.LoadDictionary(s);
+                    var dict = loader.LoadFrom(s);
+                    generator.SetDictionary(dict);
                 }
             }
         }

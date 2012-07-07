@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
+using MurrayGrant.ReadablePassphrase.Words;
 using MurrayGrant.ReadablePassphrase.WordTemplate;
 
 namespace MurrayGrant.ReadablePassphrase.Generator
@@ -27,7 +29,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static int count = 1;
         static PhraseStrength strength = PhraseStrength.Normal;
         static bool includeSpaces = true;
-        static string customDictionaryPath = "";
+        static string loaderDll = "";
+        static string loaderType = "";
+        static string loaderArguments = "";
         static string customPhrasePath = "";
         static bool quiet = false;
         static IEnumerable<Clause> phraseDescription = new Clause[] { };            
@@ -70,10 +74,25 @@ namespace MurrayGrant.ReadablePassphrase.Generator
 
             // Must load dictionary before trying to generate.
             var dictSw = System.Diagnostics.Stopwatch.StartNew();
-            if (!String.IsNullOrEmpty(customDictionaryPath))
-                generator.LoadDictionary(customDictionaryPath);
+            System.Reflection.Assembly loaderAsm = null;
+            if (!String.IsNullOrEmpty(loaderDll))
+                loaderAsm = System.Reflection.Assembly.LoadFrom(loaderDll);
+            Type loaderT;
+            if (!String.IsNullOrEmpty(loaderType) && loaderAsm != null)
+                loaderT = loaderAsm.GetTypes().FirstOrDefault(t => t.FullName.IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
+            else if (!String.IsNullOrEmpty(loaderType) && loaderAsm == null)
+                loaderT = AppDomain.CurrentDomain.GetAssemblies()
+                            .Where(a => a.FullName.IndexOf("ReadablePassphrase", StringComparison.CurrentCultureIgnoreCase) >= 0)
+                            .SelectMany(a => a.GetTypes())
+                            .FirstOrDefault(t => t.FullName.IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
+            else if (String.IsNullOrEmpty(loaderType) && loaderAsm == null)
+                loaderT = typeof(ExplicitXmlDictionaryLoader);
             else
-                generator.LoadDictionary();
+                throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
+            using (var loader = (IDictionaryLoader)Activator.CreateInstance(loaderT))
+            {
+                generator.LoadDictionary(loader, loaderArguments);
+            }
             dictSw.Stop();
 
             // Summarise actions and combinations / entropy.
@@ -150,12 +169,33 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 }
                 else if (arg == "d" || arg == "dict")
                 {
-                    customDictionaryPath = args[i + 1];
+                    var customDictionaryPath = args[i + 1];
+                    loaderArguments = "file=" + customDictionaryPath;
                     if (!System.IO.File.Exists(customDictionaryPath))
                     {
-                        Console.WriteLine("Unable to find file '{0}' for 'dict' option.", args[i + 1]);
+                        Console.WriteLine("Unable to find file '{0}' for 'dict' option.", customDictionaryPath);
                         return false;
                     }
+                    i++;
+                }
+                else if (arg == "l" || arg == "loaderdll")
+                {
+                    loaderDll = args[i + 1];
+                    if (!System.IO.File.Exists(loaderDll))
+                    {
+                        Console.WriteLine("Unable to find file '{0}' for 'loaderdll' option.", loaderDll);
+                        return false;
+                    }
+                    i++;
+                }
+                else if (arg == "t" || arg == "loadertype")
+                {
+                    loaderType = args[i + 1];
+                    i++;
+                }
+                else if (arg == "a" || arg == "loaderargs")
+                {
+                    loaderArguments = args[i + 1];
                     i++;
                 }
                 else if (arg == "p" || arg == "phrase")
@@ -205,7 +245,10 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: normal)");
             Console.WriteLine("                xxx = [normal|strong|insane|custom]");
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
-            Console.WriteLine("  -d --dict path        Specifies a custom dictionary");
+            Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
+            Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");
+            Console.WriteLine("  -a --loaderargs str   Specifies arguments for custom loader");
+            Console.WriteLine("  -d --dict str         Specifies a custom dictionary file");
             Console.WriteLine("  -p --phrase path      Specifies a custom phrase file ");
             Console.WriteLine("                Must use -strength custom ");
             Console.WriteLine("  -q --quiet            Does not display any status messages (default: show) ");

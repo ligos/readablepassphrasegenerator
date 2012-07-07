@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.Words;
 using MurrayGrant.ReadablePassphrase.Random;
 
@@ -27,7 +28,9 @@ namespace Test
         static void Main(string[] args)
         {
             var generator = new ReadablePassphraseGenerator(GetRandomness());
-            generator.LoadDictionary();
+            var loader = new ExplicitXmlDictionaryLoader();
+            var dict = loader.LoadFrom();
+            generator.SetDictionary(dict);
 
             GenerateSamples(PhraseStrength.Strong, generator);
             DictionaryCheck(generator);
@@ -53,6 +56,9 @@ namespace Test
             //TestNextInt32(SeededRandom(), 64);
             //TestNextInt32(SeededRandom(), 256);
             //TestNextInt32(SeededRandom(), 1296);
+
+            // Test load an alternate dictionary loader.
+
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");

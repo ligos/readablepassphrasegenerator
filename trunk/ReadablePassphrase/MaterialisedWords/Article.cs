@@ -16,18 +16,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using MurrayGrant.ReadablePassphrase.Words;
-using MurrayGrant.ReadablePassphrase.Dictionaries;
 
-namespace MurrayGrant.ReadablePassphrase.WordTemplate
+namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
-    public class AdverbTemplate : Template
+    public sealed class MaterialisedArticle : Article
     {
-        public override bool IncludeInAlreadyUsedList { get { return true; } }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
+        private string _Definite;
+        private string _Indefinite;
+        private string _IndefiniteBeforeVowel;
+
+        public override string Definite { get { return _Definite; } }
+        public override string Indefinite { get { return _Indefinite; } }
+        public override string IndefiniteBeforeVowel { get { return _IndefiniteBeforeVowel; } }
+
+        private MaterialisedArticle() { }
+        public MaterialisedArticle(string definite, string indefinite, string indefiniteBeforeVowel)
         {
-            var word = words.ChooseWord<Adverb>(randomness, alreadyChosen);
-            return new WordAndString(word, word.Value);
+            _Definite = definite;
+            _Indefinite = indefinite;
+            _IndefiniteBeforeVowel = indefiniteBeforeVowel;
         }
     }
 }

@@ -17,23 +17,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using MurrayGrant.ReadablePassphrase.Words;
 
-namespace MurrayGrant.ReadablePassphrase.Words
+namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
-    public class Noun : Word
+    public sealed class MaterialisedPersonalPronoun : PersonalPronoun
     {
-        public string Singular { get; private set; }
-        public string Plural { get; private set; }
-        public bool HasSingular { get { return !String.IsNullOrEmpty(this.Singular); } }
-        public bool HasPlural { get { return !String.IsNullOrEmpty(this.Plural); } }
+        private string _Singular;
+        private string _Plural;
 
-        public override string DictionaryEntry { get { return this.HasSingular ? this.Singular : this.Plural; } }
+        public override string Singular { get { return _Singular; } }
+        public override string Plural { get { return _Plural; } }
 
-        internal Noun(XmlReader reader)
+        private MaterialisedPersonalPronoun() { }
+        public MaterialisedPersonalPronoun(string singular, string plural)
         {
-            Singular = reader.GetAttribute("singular");
-            Plural = reader.GetAttribute("plural");
+            _Singular = singular;
+            _Plural = plural;
         }
-
     }
 }

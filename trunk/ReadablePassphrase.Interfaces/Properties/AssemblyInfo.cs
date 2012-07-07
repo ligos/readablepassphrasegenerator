@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Readable Passphrase")]
+[assembly: AssemblyTitle("Readable Passphrase Interfaces")]
 [assembly: AssemblyDescription("Generates gramatically correct passphrases")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Murray Grant")]
