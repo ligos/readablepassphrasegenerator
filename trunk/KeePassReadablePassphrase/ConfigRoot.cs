@@ -109,11 +109,37 @@ namespace KeePassReadablePassphrase
         private void chkCustomDictionary_CheckedChanged(object sender, EventArgs e)
         {
             // If true, enable the textbox and browse button.
+            this.btnBrowse.Enabled = this.chkCustomDictionary.Checked;
+            this.txtDictionaryPath.Enabled = this.chkCustomDictionary.Checked;
+            this.lnkDictionaryHelp.Visible = this.chkCustomDictionary.Checked;
 
+            var conf = this.FormToConfigObject();
+            if (conf != null)
+            {
+                // TODO: error handling.
+                PassphraseGenerator.LoadDictionary(conf, this._Generator);
+                this.UpdateCombinations(conf);
+                this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
+            }
+            if (this.chkCustomDictionary.Checked && System.IO.File.Exists(this.txtDictionaryPath.Text))
+                this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.txtDictionaryPath.Text));
+            else
+                this.lblStatus.Text = "Using default dictionary.";
         }
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-
+            if (this.ofdCustomDictionary.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                this.txtDictionaryPath.Text = this.ofdCustomDictionary.FileName;
+                var conf = this.FormToConfigObject();
+                if (conf != null)
+                {
+                    // TODO: error handling.
+                    PassphraseGenerator.LoadDictionary(conf, this._Generator);
+                    this.UpdateCombinations(conf);
+                    this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
+                }
+            }
         }
         private void btnDictionarySizeDetail_Click(object sender, EventArgs e)
         {

@@ -131,14 +131,13 @@
             // chkCustomDictionary
             // 
             this.chkCustomDictionary.AutoSize = true;
-            this.chkCustomDictionary.Enabled = false;
             this.chkCustomDictionary.Location = new System.Drawing.Point(12, 153);
             this.chkCustomDictionary.Name = "chkCustomDictionary";
             this.chkCustomDictionary.Size = new System.Drawing.Size(145, 17);
             this.chkCustomDictionary.TabIndex = 4;
             this.chkCustomDictionary.Text = "Use Your Own Dictionary";
-            this.toolTip1.SetToolTip(this.chkCustomDictionary, "If ticked, you select your own dictionary.\r\nIf unticked, an internal dictionary o" +
-        "f {0} words is used.");
+            this.toolTip1.SetToolTip(this.chkCustomDictionary, "If ticked, you select your own dictionary.\r\nIf unticked, an internal dictionary i" +
+        "s used.");
             this.chkCustomDictionary.UseVisualStyleBackColor = true;
             this.chkCustomDictionary.CheckedChanged += new System.EventHandler(this.chkCustomDictionary_CheckedChanged);
             // 
