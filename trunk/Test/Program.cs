@@ -27,10 +27,13 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
             var generator = new ReadablePassphraseGenerator(GetRandomness());
             var loader = new ExplicitXmlDictionaryLoader();
             var dict = loader.LoadFrom();
             generator.SetDictionary(dict);
+            sw.Stop();
+            Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds); 
 
             GenerateSamples(PhraseStrength.Strong, generator);
             DictionaryCheck(generator);
@@ -78,11 +81,11 @@ namespace Test
             Console.WriteLine("Adjectives:    {0:N0}", generator.Dictionary.OfType<Adjective>().Count());
 
             // Check for duplicates.
-            foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t)))
+            foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t) && t != typeof(Word)))
             {
                 var duplicates = generator.Dictionary
-                                        .Where(w => w.GetType() == t)
-                                        .GroupBy(w => w.DictionaryEntry)
+                                        .Where(w => t.IsAssignableFrom(w.GetType()))
+                                        .GroupBy(w => w.DictionaryEntry, StringComparer.OrdinalIgnoreCase)
                                         .Where(g => g.Count() > 1);
                 if (duplicates.Any())
                 {
