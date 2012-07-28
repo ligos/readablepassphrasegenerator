@@ -22,9 +22,10 @@ namespace MurrayGrant.ReadablePassphrase.Words
     /// <summary>
     /// Represents each word in a dictionary.
     /// </summary>
-    public abstract class Word : IEquatable<Word>
+    public abstract class Word : IEquatable<Word>, IComparable<Word>
     {
         public abstract string DictionaryEntry { get; }
+        public abstract Type OfType { get; }
 
         public override string ToString()
         {
@@ -36,18 +37,22 @@ namespace MurrayGrant.ReadablePassphrase.Words
                 return false;
             if (!(obj is Word))
                 return false;
-
-            return ((Word)obj).DictionaryEntry.ToLower() == this.DictionaryEntry.ToLower();
+            return Equals((Word)obj);
         }
         public virtual bool Equals(Word obj)
         {
             if (obj == null)
                 return false;
-            return obj.DictionaryEntry.ToLower() == this.DictionaryEntry.ToLower();
+            return String.Equals(obj.DictionaryEntry, this.DictionaryEntry, StringComparison.OrdinalIgnoreCase);
         }
         public override int GetHashCode()
         {
-            return this.DictionaryEntry.GetHashCode() ^ this.GetType().GetHashCode();
+            return StringComparer.OrdinalIgnoreCase.GetHashCode(this.DictionaryEntry) ^ this.GetType().GetHashCode();
+        }
+
+        public int CompareTo(Word other)
+        {
+            return StringComparer.OrdinalIgnoreCase.Compare(this.DictionaryEntry, other.DictionaryEntry);
         }
     }
 }

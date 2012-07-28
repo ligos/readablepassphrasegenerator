@@ -39,6 +39,7 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string SubjunctivePlural { get; }
 
         public override string DictionaryEntry { get { return this.PresentPlural; } }       // This is most likely to detect duplicates in english.
+        public sealed override Type OfType { get { return typeof(Verb); } }
 
 
         public bool HasForm(VerbTense tense, bool isPlural)

@@ -39,10 +39,10 @@ namespace Test
             DictionaryCheck(generator);
             CombinationCount(generator);
 
-            BenchmarkGeneration(generator, PhraseStrength.Normal, 100);
-            BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 100);
-            BenchmarkGeneration(generator, PhraseStrength.Strong, 100);
-            BenchmarkGeneration(generator, PhraseStrength.Insane, 100);
+            BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
+            BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
+            BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
+            BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
 
             //TestConfigForm(generator);
 

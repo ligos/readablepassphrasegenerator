@@ -25,5 +25,6 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string Value { get; }
 
         public override string DictionaryEntry { get { return Value; } }
+        public sealed override Type OfType { get { return typeof(Preposition); } }
     }
 }

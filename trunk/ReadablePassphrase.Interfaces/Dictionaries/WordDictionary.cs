@@ -31,11 +31,41 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public abstract string LanguageCode { get; }
         public abstract string Name { get; }
 
-        public virtual Article TheArticle { get { return this.OfType<Article>().Single(); } }
+        public virtual Article TheArticle { get { return this.GetWordAtIndex<Article>(0); } }
+
+        protected Dictionary<Type, List<Word>> WordsByType { get; private set; }
+        /// <summary>
+        /// Dictionary loaders should call this to initialise a dictionary of word type (part of speach) -> ordered list of words.
+        /// Gives an order of magnitude performance benefit over linear lookups.
+        /// </summary>
+        public void InitWordsByTypeLookup()
+        {
+            var result = this.GroupBy(w => w.OfType)
+                            .ToDictionary(ws => ws.Key, ws => ws.OrderBy(w => w).ToList());
+            // Make sure all the different parts of speach are in the dictionary (even if they have empty lists).
+            var allWordTypes = new[] { typeof(Adjective), typeof(Adverb), typeof(Article), typeof(Demonstrative), typeof(Noun), typeof(PersonalPronoun), typeof(Preposition), typeof(Verb) };
+            foreach (var t in allWordTypes)
+            {
+                if (!result.ContainsKey(t))
+                    result.Add(t, new List<Word>());
+            }
+            WordsByType = result;
+        }
+
+        public T GetWordAtIndex<T>(int idx) where T : Word
+        {
+            if (WordsByType != null)
+                return (T)WordsByType[typeof(T)][idx];
+            else
+                return (T)this.OfType<T>().ElementAt(idx);
+        }
 
         public int CountOf<T>()
         {
-            return this.OfType<T>().Count();
+            if (WordsByType != null)
+                return WordsByType[typeof(T)].Count;
+            else 
+                return this.OfType<T>().Count();
         }
 
         public WordDictionary() : base() { }

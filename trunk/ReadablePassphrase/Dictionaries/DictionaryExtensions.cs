@@ -22,7 +22,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             do
             {
                 var idx = randomness.Next(count);
-                result = dict.OfType<T>().ElementAt(idx);
+                result = dict.GetWordAtIndex<T>(idx);
 
                 attempts++;
                 if (attempts >= maxAttempts)

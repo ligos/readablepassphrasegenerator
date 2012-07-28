@@ -82,7 +82,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             // Check dictionary.xml, dictionary.xml.gz, dictionary.gz in entrypoint and current working directory.
             var filenames = new string[] { "dictionary.xml", "dictionary.xml.gz", "dictionary.gz" };
-            var allLocationsToCheck = filenames.Select(f => Path.Combine(System.Reflection.Assembly.GetEntryAssembly().Location, f))
+            var allLocationsToCheck = filenames.Select(f => Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), f))
                 .Concat(filenames.Select(f => Path.Combine(Environment.CurrentDirectory, f)))
                 .ToArray();
 
@@ -242,6 +242,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 if (reader.NodeType == XmlNodeType.Element)
                     this.ParseElement(reader);
             }
+            _Dict.InitWordsByTypeLookup();
             return _Dict;
         }
 
