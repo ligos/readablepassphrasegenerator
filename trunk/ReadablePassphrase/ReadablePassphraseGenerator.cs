@@ -341,35 +341,31 @@ namespace MurrayGrant.ReadablePassphrase
 
             // Link NounClauses to VerbClauses.
             // TODO: support more than one verb?? Or zero verbs?
-            int verbIdx = phraseList.FindIndex(p => p.GetType() == typeof(VerbClause));
-            ((VerbClause)phraseList[verbIdx]).Subject = (NounClause)phraseList[verbIdx - 1];
-            ((VerbClause)phraseList[verbIdx]).Object = (NounClause)phraseList[verbIdx + 1];
-            
-
-            // Note which noun clause is nominative and accusative.
             foreach (var verb in phraseList.OfType<VerbClause>())
             {
+                int verbIdx = phraseList.IndexOf(verb);
+                verb.Subject = (NounClause)phraseList[verbIdx - 1];
+                verb.Object = (NounClause)phraseList[verbIdx + 1];
+
+                // Note which noun clause is nominative and accusative.
                 verb.Subject.IsSubject = true;
                 verb.Subject.Verb = verb;
                 verb.Object.IsObject = true;
-            }
 
+                // Turn the high level phrases into word templates.
 
-            // Turn the high level phrases into word templates.
-            foreach (var subject in phrases.OfType<NounClause>().Where(nc => nc.IsSubject))
-            {
                 // Generate the subject first because the verb clause plurality depends on it.
-                var subjectTemplate = subject.GetWordTemplate(_Randomness);
-                subject.Verb.SubjectIsPlural = subjectTemplate.OfType<NounTemplate>().Single().IsPlural;
+                var subjectTemplate = verb.Subject.GetWordTemplate(_Randomness);
+                verb.SubjectIsPlural = subjectTemplate.OfType<NounTemplate>().Single().IsPlural;
                 foreach (var t in subjectTemplate)
                     yield return t;
                 
                 // Now for the verb (which knows about its subject's plurality now).
-                foreach (var t in subject.Verb.GetWordTemplate(this._Randomness))
+                foreach (var t in verb.GetWordTemplate(this._Randomness))
                     yield return t;
 
                 // And finally the verb's object.
-                foreach (var t in subject.Verb.Object.GetWordTemplate(this._Randomness))
+                foreach (var t in verb.Object.GetWordTemplate(this._Randomness))
                     yield return t;
             }
         }
