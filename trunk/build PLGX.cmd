@@ -2,8 +2,6 @@ rmdir /s /q "ReadablePassphrase.build"
 mkdir "ReadablePassphrase.build"
 
 copy /y "KeePassReadablePassphrase\*.*"  "ReadablePassphrase.build"
-mkdir "ReadablePassphrase.build\properties"
-copy /y "KeePassReadablePassphrase\properties\*.*" "ReadablePassphrase.build\properties"
 copy /y LICENSE.txt ReadablePassphrase.build
 copy /y NOTICE.txt ReadablePassphrase.build
 
