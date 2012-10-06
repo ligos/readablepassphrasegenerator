@@ -318,6 +318,57 @@ namespace MurrayGrant.ReadablePassphrase
         }
         #endregion
 
+        #region GenerateAsUtf8Bytes()
+        /// <summary>
+        /// Generates a single phrase based on <c>PasswordStrength.Normal</c>.
+        /// </summary>
+        public byte[] GenerateAsUtf8Bytes()
+        {
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescriptionForNormal());
+        }
+        /// <summary>
+        /// Generates a single phrase based on the given phrase strength.
+        /// </summary>
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
+        {
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), true);
+        }
+        /// <summary>
+        /// Generates a single phrase based on the given phrase strength.
+        /// </summary>
+        /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, bool includeSpacesBetweenWords)
+        {
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+        }
+        /// <summary>
+        /// Generates a single phrase based on the given phrase description.
+        /// </summary>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription)
+        {
+            return GenerateAsUtf8Bytes(phraseDescription, true);
+        }
+        /// <summary>
+        /// Generates a single phrase based on the given phrase description.
+        /// </summary>
+        /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
+        {
+            if (phraseDescription == null)
+                throw new ArgumentNullException("phraseDescription");
+
+            var result = new GenerateInUtf8ByteArray();
+            this.GenerateInternal(phraseDescription, includeSpacesBetweenWords, result);
+            if (includeSpacesBetweenWords)
+                // A trailing space is always included when spaces are between words.
+                return result.Target.Take(result.Target.Length - 1).ToArray();
+            else
+                return result.Target;
+        }
+        #endregion
+
         #region Internal Generate Methods
         private void GenerateInternal(IEnumerable<Clause> phraseDescription, bool spacesBetweenWords, GenerateTarget result)
         {
@@ -444,6 +495,21 @@ namespace MurrayGrant.ReadablePassphrase
         public override void Append(char c)
         {
             this.Target.AppendChar(c);
+        }
+    }
+    internal class GenerateInUtf8ByteArray : GenerateTarget
+    {
+        private readonly Encoding Utf8 = new UTF8Encoding(false);
+        private readonly char[] TempChar = new char[1];
+        private readonly List<byte> _Target = new List<byte>();
+        public byte[] Target { get { return _Target.ToArray(); } }
+
+        public override object Result { get { return this.Target; } }
+        public override void Append(char c)
+        {
+            TempChar[0] = c;
+            _Target.AddRange(Utf8.GetBytes(TempChar));
+            TempChar[0] = '\0';
         }
     }
     #endregion

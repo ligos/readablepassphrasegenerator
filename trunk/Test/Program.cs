@@ -41,6 +41,7 @@ namespace Test
 
             BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
             BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
+            BenchmarkUtf8Generation(generator, PhraseStrength.Normal, 1000);
             BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
             BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
 
@@ -142,9 +143,19 @@ namespace Test
             }
             sw.Stop();
             Console.WriteLine("  in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
-
         }
-
+        private static void BenchmarkUtf8Generation(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Benchmark of {0:N0} UTF8 phrases of strength {1}...", iterations, strength);
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            for (int i = 0; i < iterations; i++)
+            {
+                var bytes = generator.GenerateAsUtf8Bytes(strength);
+            }
+            sw.Stop();
+            Console.WriteLine("  in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
+        }
 
         private static void TestCoinFlip(RandomSourceBase randomness)
         {

@@ -81,19 +81,42 @@ namespace KeePassReadablePassphrase
             var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(new KeePassRandomSource(crsRandomSource));
             LoadDictionary(conf, generator);
 
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                return GenerateSecure(generator, conf);
+            else
+                return GenerateNotSoSecure(generator, conf);
+        }
+
+        private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
+        {
             // Using the secure version to keep the passphrase encrypted as much as possible.
             var passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
-            IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToGlobalAllocUnicode(passphrase);
+            IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(passphrase);
             try
             {
-                // Although the secure string ends up as a string for a short time, it will hopefully be garbage collected in the finally block.
-                return new ProtectedString(true, System.Runtime.InteropServices.Marshal.PtrToStringUni(ustr));
+                // Although the secure string ends up as a string for a short time, it will be zeroed in the finally block.
+                return new ProtectedString(true, System.Runtime.InteropServices.Marshal.PtrToStringBSTR(ustr));
             }
             finally
             {
-                System.Runtime.InteropServices.Marshal.ZeroFreeGlobalAllocUnicode(ustr);
-                GC.Collect(0);
+                System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(ustr);
             }
+        }
+        private ProtectedString GenerateNotSoSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
+        {
+            // This generates the passphrase as UTF8 in a byte[].
+            var passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+            try
+            {
+                return new ProtectedString(true, passphrase);
+            }
+            finally
+            {
+                // Using the byte[] is better than a String because we can deterministicly overwrite it here with zeros.
+                for (int i = 0; i < passphrase.Length; i++)
+                    passphrase[i] = 0;
+            }
+            
         }
 
         public void Dispose()
