@@ -1882,4 +1882,12 @@ limitations under the License.
         presentPlural="fart" pastPlural="farted" pastContinuousPlural="were farting" futurePlural="will fart" continuousPlural="are farting" perfectPlural="have farted" subjunctivePlural="might fart"/>
   <verb presentSingular="overprints" pastSingular="overprinted" pastContinuousSingular="was overprinting" futureSingular="will overprint" continuousSingular="is overprinting" perfectSingular="has overprinted" subjunctiveSingular="might overprint"
         presentPlural="overprint" pastPlural="overprinted" pastContinuousPlural="were overprinting" futurePlural="will overprint" continuousPlural="are overprinting" perfectPlural="have overprinted" subjunctivePlural="might overprint"/>
+  <verb presentSingular="doctors" pastSingular="doctored" pastContinuousSingular="was doctoring" futureSingular="will doctor" continuousSingular="is doctoring" perfectSingular="has doctored" subjunctiveSingular="might doctor"
+        presentPlural="doctor" pastPlural="doctored" pastContinuousPlural="were doctoring" futurePlural="will doctor" continuousPlural="are doctoring" perfectPlural="have doctored" subjunctivePlural="might doctor"/>
+  <verb presentSingular="forges" pastSingular="forged" pastContinuousSingular="was forging" futureSingular="will forge" continuousSingular="is forging" perfectSingular="has forged" subjunctiveSingular="might forge"
+        presentPlural="forge" pastPlural="forged" pastContinuousPlural="were forging" futurePlural="will forge" continuousPlural="are forging" perfectPlural="have forged" subjunctivePlural="might forge"/>
+  <verb presentSingular="disputes" pastSingular="disputed" pastContinuousSingular="was disputing" futureSingular="will dispute" continuousSingular="is disputing" perfectSingular="has disputed" subjunctiveSingular="might dispute"
+        presentPlural="dispute" pastPlural="disputed" pastContinuousPlural="were disputing" futurePlural="will dispute" continuousPlural="are disputing" perfectPlural="have disputed" subjunctivePlural="might dispute"/>
+  <verb presentSingular="powers" pastSingular="powered" pastContinuousSingular="was powering" futureSingular="will power" continuousSingular="is powering" perfectSingular="has powered" subjunctiveSingular="might power"
+        presentPlural="power" pastPlural="powered" pastContinuousPlural="were powering" futurePlural="will power" continuousPlural="are powering" perfectPlural="have powered" subjunctivePlural="might power"/>
 </dictionary>

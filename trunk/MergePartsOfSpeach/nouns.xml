@@ -1348,4 +1348,12 @@ limitations under the License.
   <noun singular="previewer" plural="previewers"/>
   <noun singular="guardroom" plural="guardrooms"/>
   <noun singular="helix" plural="helixes"/>
+  <noun singular="reaper" plural="reapers"/>
+  <noun singular="doctor" plural="doctors"/>
+  <noun singular="forge" plural="forges"/>
+  <noun singular="halogen" plural="halogens"/>
+  <noun singular="speller" plural="spellers"/>
+  <noun singular="ammeter" plural="ammeters"/>
+  <noun singular="dispute" plural="disputes"/>
+  <noun plural="power"/>
 </dictionary>
