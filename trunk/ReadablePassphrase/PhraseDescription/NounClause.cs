@@ -54,6 +54,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public bool IsObject { get; set; }
         public VerbClause Verb { get; set; }
 
+        public override void InitialiseRelationships(IEnumerable<Clause> phrase)
+        {
+            // The verb does all this at the moment, but perhaps that shouldn't be the case.
+        }
+
         public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness)
         {
             var result = new List<Template>();

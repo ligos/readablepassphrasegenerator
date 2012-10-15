@@ -390,21 +390,14 @@ namespace MurrayGrant.ReadablePassphrase
             // Apply gramatical rules of various kinds.
             var phraseList = phrases.ToList();      // NOTE: Anything more complicated and this will need a tree, possibly a trie.
 
-            // Link NounClauses to VerbClauses.
+            // Turn the high level phrases into word templates.
+
             // TODO: support more than one verb?? Or zero verbs?
+            // Link NounClauses to VerbClauses.
+            foreach (var clause in phraseList)
+                clause.InitialiseRelationships(phraseList);
             foreach (var verb in phraseList.OfType<VerbClause>())
             {
-                int verbIdx = phraseList.IndexOf(verb);
-                verb.Subject = (NounClause)phraseList[verbIdx - 1];
-                verb.Object = (NounClause)phraseList[verbIdx + 1];
-
-                // Note which noun clause is nominative and accusative.
-                verb.Subject.IsSubject = true;
-                verb.Subject.Verb = verb;
-                verb.Object.IsObject = true;
-
-                // Turn the high level phrases into word templates.
-
                 // Generate the subject first because the verb clause plurality depends on it.
                 var subjectTemplate = verb.Subject.GetWordTemplate(_Randomness);
                 verb.SubjectIsPlural = subjectTemplate.OfType<NounTemplate>().Single().IsPlural;

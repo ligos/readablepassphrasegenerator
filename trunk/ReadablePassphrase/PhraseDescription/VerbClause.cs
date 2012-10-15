@@ -68,6 +68,22 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                     };      
         }
 
+        public override void InitialiseRelationships(IEnumerable<Clause> clause)
+        {
+            // Find the noun before and after this verb.
+            var beforeMe = clause.TakeWhile(x => x != this).Reverse();
+            var afterMe = clause.SkipWhile(x => x != this).Take(Int32.MaxValue);
+
+            // Link to this verb.
+            this.Subject = (NounClause)beforeMe.First(x => x is NounClause);
+            this.Object = (NounClause)afterMe.First(x => x is NounClause);
+
+            // Note which noun clause is nominative and accusative.
+            this.Subject.IsSubject = true;
+            this.Subject.Verb = this;
+            this.Object.IsObject = true;
+        }
+
         public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness)
         {
             var result = new List<Template>();

@@ -26,6 +26,16 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
     public abstract class Clause
     {
         /// <summary>
+        /// True if this clause is present in the final result.
+        /// </summary>
+        public virtual bool IsPresent { get; protected set; }
+
+        /// <summary>
+        /// Relates each clause to others in the overall phrase.
+        /// </summary>
+        public abstract void InitialiseRelationships(IEnumerable<Clause> phrase);
+
+        /// <summary>
         /// Builds a template of words for this clause. A template has 1:1 correspondance with actual words, but has not yet chosen them from the dictionary.
         /// </summary>
         public abstract IEnumerable<WordTemplate.Template> GetWordTemplate(Random.RandomSourceBase randomness);
