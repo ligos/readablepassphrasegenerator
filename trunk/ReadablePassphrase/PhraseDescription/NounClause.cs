@@ -59,7 +59,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // The verb does all this at the moment, but perhaps that shouldn't be the case.
         }
 
-        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness)
+        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness, IEnumerable<WordTemplate.Template> currentTemplate)
         {
             var result = new List<Template>();
 

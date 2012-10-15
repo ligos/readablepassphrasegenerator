@@ -392,24 +392,27 @@ namespace MurrayGrant.ReadablePassphrase
 
             // Turn the high level phrases into word templates.
 
-            // TODO: support more than one verb?? Or zero verbs?
             // Link NounClauses to VerbClauses.
             foreach (var clause in phraseList)
                 clause.InitialiseRelationships(phraseList);
             foreach (var verb in phraseList.OfType<VerbClause>())
             {
+                var thisPhraseTemplate = new List<Template>();
+
                 // Generate the subject first because the verb clause plurality depends on it.
-                var subjectTemplate = verb.Subject.GetWordTemplate(_Randomness);
-                verb.SubjectIsPlural = subjectTemplate.OfType<NounTemplate>().Single().IsPlural;
-                foreach (var t in subjectTemplate)
-                    yield return t;
+                var subjectTemplate = verb.Subject.GetWordTemplate(_Randomness, thisPhraseTemplate).ToList();
+                thisPhraseTemplate.AddRange(subjectTemplate);
                 
                 // Now for the verb (which knows about its subject's plurality now).
-                foreach (var t in verb.GetWordTemplate(this._Randomness))
-                    yield return t;
+                var verbTemplate = verb.GetWordTemplate(this._Randomness, thisPhraseTemplate).ToList();
+                thisPhraseTemplate.AddRange(verbTemplate);
 
                 // And finally the verb's object.
-                foreach (var t in verb.Object.GetWordTemplate(this._Randomness))
+                var objectTemplate = verb.Object.GetWordTemplate(this._Randomness, thisPhraseTemplate).ToList();
+                thisPhraseTemplate.AddRange(objectTemplate);
+
+                // Yield the whole phrase.
+                foreach (var t in thisPhraseTemplate)
                     yield return t;
             }
         }

@@ -70,6 +70,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void InitialiseRelationships(IEnumerable<Clause> clause)
         {
+            // TODO: support more than one verb?? Or zero verbs?
             // Find the noun before and after this verb.
             var beforeMe = clause.TakeWhile(x => x != this).Reverse();
             var afterMe = clause.SkipWhile(x => x != this).Take(Int32.MaxValue);
@@ -84,9 +85,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             this.Object.IsObject = true;
         }
 
-        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness)
+        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness, IEnumerable<WordTemplate.Template> currentTemplate)
         {
             var result = new List<Template>();
+            var subjectIsPlural = currentTemplate.OfType<NounTemplate>().Single().IsPlural;
 
             // TODO: handle cases where probabilities are zero.
 
@@ -94,7 +96,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             this.BuildTable();
             int choice = randomness.Next(this.DistributionMax);
             var tense = this.LookupTenseFromChoice(choice);
-            result.Add(new VerbTemplate(tense, this.SubjectIsPlural));
+            result.Add(new VerbTemplate(tense, subjectIsPlural));
 
             // Include adverb?
             bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
