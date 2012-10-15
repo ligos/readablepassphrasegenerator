@@ -85,10 +85,9 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             this.Object.IsObject = true;
         }
 
-        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness, IEnumerable<WordTemplate.Template> currentTemplate)
+        public override bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate)
         {
-            var result = new List<Template>();
-            var subjectIsPlural = currentTemplate.OfType<NounTemplate>().Single().IsPlural;
+            var subjectIsPlural = currentTemplate.OfType<NounTemplate>().First().IsPlural;
 
             // TODO: handle cases where probabilities are zero.
 
@@ -96,14 +95,14 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             this.BuildTable();
             int choice = randomness.Next(this.DistributionMax);
             var tense = this.LookupTenseFromChoice(choice);
-            result.Add(new VerbTemplate(tense, subjectIsPlural));
+            currentTemplate.Add(new VerbTemplate(tense, subjectIsPlural));
 
             // Include adverb?
             bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
             if (includeAdverb)
-                result.Add(new AdverbTemplate());
+                currentTemplate.Add(new AdverbTemplate());
 
-            return result;
+            return true;
         }
 
         private void BuildTable()

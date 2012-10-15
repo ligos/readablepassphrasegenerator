@@ -37,8 +37,9 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         /// <summary>
         /// Builds a template of words for this clause. A template has 1:1 correspondance with actual words, but has not yet chosen them from the dictionary.
+        /// Returns true when all templates added, false if more still need to be added.
         /// </summary>
-        public abstract IEnumerable<WordTemplate.Template> GetWordTemplate(Random.RandomSourceBase randomness, IEnumerable<WordTemplate.Template> currentTemplate);
+        public abstract bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate);
 
         /// <summary>
         /// Counts the total unique combinations possible for this clause based on dictionary word counts and the clause's configuration.

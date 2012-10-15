@@ -398,20 +398,23 @@ namespace MurrayGrant.ReadablePassphrase
             foreach (var verb in phraseList.OfType<VerbClause>())
             {
                 var thisPhraseTemplate = new List<Template>();
+                var toProcess = new Clause[] { verb.Subject, verb, verb.Object };       // Give the processing a logical order: subject, verb, object.
+                var completedClauses = new HashSet<Clause>();       // Clauses are added here as they are completed.
 
-                // Generate the subject first because the verb clause plurality depends on it.
-                var subjectTemplate = verb.Subject.GetWordTemplate(_Randomness, thisPhraseTemplate).ToList();
-                thisPhraseTemplate.AddRange(subjectTemplate);
+                // Keep generating templates until all clauses are processed.
+                while (toProcess.Except(completedClauses).Any())
+                {
+                    // Process in specified order.
+                    foreach (var clause in toProcess)
+                    {
+                        // Add the template to our accumulator.
+                        if (clause.AddWordTemplate(_Randomness, thisPhraseTemplate))
+                            // When signaled completion, add the clause to the completed list.
+                            completedClauses.Add(clause);
+                    }
+                }
                 
-                // Now for the verb (which knows about its subject's plurality now).
-                var verbTemplate = verb.GetWordTemplate(this._Randomness, thisPhraseTemplate).ToList();
-                thisPhraseTemplate.AddRange(verbTemplate);
-
-                // And finally the verb's object.
-                var objectTemplate = verb.Object.GetWordTemplate(this._Randomness, thisPhraseTemplate).ToList();
-                thisPhraseTemplate.AddRange(objectTemplate);
-
-                // Yield the whole phrase.
+                // Yield the whole phrase at the end.
                 foreach (var t in thisPhraseTemplate)
                     yield return t;
             }

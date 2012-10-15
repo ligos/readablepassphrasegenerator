@@ -59,14 +59,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // The verb does all this at the moment, but perhaps that shouldn't be the case.
         }
 
-        public override IEnumerable<Template> GetWordTemplate(Random.RandomSourceBase randomness, IEnumerable<WordTemplate.Template> currentTemplate)
+        public override bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate)
         {
-            var result = new List<Template>();
-
             // Include a preposition?
             bool includePreposition = randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
             if (includePreposition)
-                result.Add(new PrepositionTemplate());
+                currentTemplate.Add(new PrepositionTemplate());
 
             // Will this noun be plural?
             bool isPlural = randomness.WeightedCoinFlip(PluralityFactor, SingularityFactor);
@@ -77,13 +75,13 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 // Singular accepts: Definite, Indefinite, Demonstrative, PersonalPronoun.
                 int choice = randomness.Next(DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor + PersonalPronounFactor);
                 if (choice < DefiniteArticleFactor)
-                    result.Add(new ArticleTemplate(true));
+                    currentTemplate.Add(new ArticleTemplate(true));
                 else if (choice >= DefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor)
-                    result.Add(new ArticleTemplate(false));
+                    currentTemplate.Add(new ArticleTemplate(false));
                 else if (choice >= DefiniteArticleFactor + IndefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor)
-                    result.Add(new DemonstrativeTemplate(isPlural));
+                    currentTemplate.Add(new DemonstrativeTemplate(isPlural));
                 else
-                    result.Add(new PersonalPronounTemplate(isPlural));
+                    currentTemplate.Add(new PersonalPronounTemplate(isPlural));
             }
             else
             {
@@ -92,20 +90,22 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 if (choice < NoArticleFactor)
                 { } // NoOp.
                 else if (choice >= NoArticleFactor && choice < NoArticleFactor + DefiniteArticleFactor)
-                    result.Add(new ArticleTemplate(true));
+                    currentTemplate.Add(new ArticleTemplate(true));
                 else if (choice >= NoArticleFactor + DefiniteArticleFactor && choice < NoArticleFactor + DefiniteArticleFactor + DemonstractiveFactor)
-                    result.Add(new DemonstrativeTemplate(isPlural));
+                    currentTemplate.Add(new DemonstrativeTemplate(isPlural));
                 else
-                    result.Add(new PersonalPronounTemplate(isPlural));
+                    currentTemplate.Add(new PersonalPronounTemplate(isPlural));
             }
 
             // Add an adjective?
             bool includeAdjective = randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
             if (includeAdjective)
-                result.Add(new AdjectiveTemplate());
+                currentTemplate.Add(new AdjectiveTemplate());
 
-            result.Add(new NounTemplate(isPlural));
-            return result;
+            // Finally add the noun!
+            currentTemplate.Add(new NounTemplate(isPlural));
+            
+            return true;
         }
 
         public override double CountCombinations(WordDictionary dictionary)
