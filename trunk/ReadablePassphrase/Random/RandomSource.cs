@@ -41,7 +41,7 @@ namespace MurrayGrant.ReadablePassphrase.Random
                 return false;
             if (falseWeight == 0)
                 return true;
-            return Next(falseWeight + trueWeight) >= trueWeight;
+            return Next(falseWeight + trueWeight) <= trueWeight;
         }
 
         // Implementation for Next() based on http://codereview.stackexchange.com/questions/6304/algorithm-to-convert-random-bytes-to-integers
