@@ -45,6 +45,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("NoAdverb", "Adverb")]
         public int NoAdverbFactor { get; set; }
 
+        [TagInConfiguration("Interrogative", "Interrogative")]
+        public int InterrogativeFactor { get; set; }
+        [TagInConfiguration("NoInterrogative", "Interrogative")]
+        public int NoInterrogativeFactor { get; set; }
+
+
         private List<RangeToTense> DistributionTable;
         private int DistributionMax;
 
@@ -78,29 +84,36 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // Link to this verb.
             this.Subject = (NounClause)beforeMe.First(x => x is NounClause);
             this.Object = (NounClause)afterMe.First(x => x is NounClause);
-
-            // Note which noun clause is nominative and accusative.
-            this.Subject.IsSubject = true;
-            this.Subject.Verb = this;
-            this.Object.IsObject = true;
         }
 
         public override bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate)
         {
             var subjectIsPlural = currentTemplate.OfType<NounTemplate>().First().IsPlural;
+            var verbFormToBePlural = subjectIsPlural;
 
             // TODO: handle cases where probabilities are zero.
+
+            bool makeInterogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
+            if (makeInterogative)
+                // Insert an interrogative template
+                currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 
             // Select a verb tense form.
             this.BuildTable();
             int choice = randomness.Next(this.DistributionMax);
-            var tense = this.LookupTenseFromChoice(choice);
-            currentTemplate.Add(new VerbTemplate(tense, subjectIsPlural));
+            var tense = VerbTense.Present;
+            if (!makeInterogative)
+                // The the verb form becomes present plural whenever an interrogative is used.
+                tense = this.LookupTenseFromChoice(choice);
+            if (makeInterogative)
+                verbFormToBePlural = true;
+            currentTemplate.Add(new VerbTemplate(tense, verbFormToBePlural));
 
             // Include adverb?
             bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
             if (includeAdverb)
                 currentTemplate.Add(new AdverbTemplate());
+
 
             return true;
         }
@@ -171,11 +184,18 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             factor = 0;
             foreach (var t in this._TenseData.Where(t => t.Property() > 0))
                 factor += 1;
+            // Interrogatives are handled as another tense form, because they restrict verb forms to present singular.
+            if (this.InterrogativeFactor > 0)
+                factor += 1;
             if (factor > 0)     // This handles the case where no tense is selected (although this really makes no sense).
                 result *= factor;
 
+            
             // And the verbs themselves. (This assumes a verb will always be added).
             result *= dictionary.CountOf<Words.Verb>();
+            // The count of interrogative forms.
+            if (this.InterrogativeFactor > 0)
+                result *= dictionary.CountOf<Interrogative>();
 
             return result;
         }

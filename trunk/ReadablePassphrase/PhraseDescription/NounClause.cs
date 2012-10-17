@@ -50,10 +50,6 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("NoPreposition", "Preposition")]
         public int NoPrepositionFactor { get; set; }
 
-        public bool IsSubject { get; set; }
-        public bool IsObject { get; set; }
-        public VerbClause Verb { get; set; }
-
         public override void InitialiseRelationships(IEnumerable<Clause> phrase)
         {
             // The verb does all this at the moment, but perhaps that shouldn't be the case.

@@ -28,6 +28,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("adjective", ParseAdjective),
                 new KeyValuePair<string, Action<XmlReader>>("adverb", ParseAdverb),
                 new KeyValuePair<string, Action<XmlReader>>("verb", ParseVerb),
+                new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -311,6 +312,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                         reader.GetAttribute("subjunctivePlural")
                         )
                      );
+        }
+        private void ParseInterrogative(XmlReader reader)
+        {
+            _Dict.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
         }
         #region Dispose
         private bool _IsDisposed = false;

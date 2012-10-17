@@ -28,4 +28,10 @@ The Default 200 dictionary has a minmum of 200 verbs.
   <personalPronoun singular="his" plural="his" />
   <personalPronoun singular="her" plural="her" />
   <personalPronoun singular="its" plural="its" />
+  <interrogative singular="why does" plural="why do" />
+  <interrogative singular="who does" plural="how do" />
+  <interrogative singular="when does" plural="when did" />
+  <interrogative singular="can" plural="can" />
+  <interrogative singular="will" plural="will" />
+  <interrogative singular="should" plural="should" />
 </dictionary>
