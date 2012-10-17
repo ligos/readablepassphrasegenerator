@@ -20,6 +20,7 @@ using MurrayGrant.ReadablePassphrase;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.Words;
 using MurrayGrant.ReadablePassphrase.Random;
+using MurrayGrant.ReadablePassphrase.PhraseDescription;
 
 namespace Test
 {
@@ -45,6 +46,21 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
             BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
 
+            GenerateCustomSamples(new Clause[]
+                {
+                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        InterrogativeFactor = 1, NoInterrogativeFactor = 0},
+                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                }
+                , generator, 100);
             //TestConfigForm(generator);
 
             // Longer benchmarks.
@@ -107,6 +123,17 @@ namespace Test
             }
 
         }
+        private static void GenerateCustomSamples(IEnumerable<MurrayGrant.ReadablePassphrase.PhraseDescription.Clause> clause, ReadablePassphraseGenerator generator, int count)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Custom samples:");
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(generator.Generate(clause));
+            }
+
+        }
+
         private static void CombinationCount(ReadablePassphraseGenerator generator)
         {
             Console.WriteLine();
