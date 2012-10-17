@@ -48,13 +48,13 @@ namespace Test
 
             GenerateCustomSamples(new Clause[]
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                     new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
                                         NoAdverbFactor = 1, AdverbFactor = 0,
-                                        InterrogativeFactor = 1, NoInterrogativeFactor = 0},
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 0},
                     new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,

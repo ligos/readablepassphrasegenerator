@@ -125,7 +125,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
             foreach(var x in this._TenseData)
 			{
-                result.Add(new RangeToTense(new Range(accumulator, accumulator + x.Property()), x.Tense));
+                result.Add(new RangeToTense(new Range(accumulator, accumulator + x.Property() - 1), x.Tense));
                 accumulator += x.Property();
             }
 
