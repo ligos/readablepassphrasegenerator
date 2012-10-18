@@ -27,6 +27,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     {
         public override string LanguageCode { get { return ""; } }
         public override string Name { get { return "Empty Dictionary"; } }
+        public override int Version { get { return 0; } }
 
         public EmptyDictionary() : base() { }
     }

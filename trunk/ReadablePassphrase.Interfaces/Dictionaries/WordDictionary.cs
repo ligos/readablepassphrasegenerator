@@ -30,6 +30,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     {
         public abstract string LanguageCode { get; }
         public abstract string Name { get; }
+        public abstract int Version { get; }
 
         public virtual Article TheArticle { get { return this.GetWordAtIndex<Article>(0); } }
 

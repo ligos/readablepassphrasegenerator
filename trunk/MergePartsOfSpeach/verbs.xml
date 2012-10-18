@@ -17,7 +17,8 @@ limitations under the License.
 
 <dictionary schemaVersion="1" language="en-au" name="Default">
   <verb presentSingular="concocts" pastSingular="concocted" pastContinuousSingular="was concocting" futureSingular="will concoct" continuousSingular="is concocting" perfectSingular="has concocted" subjunctiveSingular="might concoct"
-        presentPlural="concoct" pastPlural="concocted" pastContinuousPlural="were concocting" futurePlural="will concoct" continuousPlural="are concocting" perfectPlural="have concocted" subjunctivePlural="might concoct"/>
+        presentPlural="concoct" pastPlural="concocted" pastContinuousPlural="were concocting" futurePlural="will concoct" continuousPlural="are concocting" perfectPlural="have concocted" subjunctivePlural="might concoct"
+        transitive="true"/>
   <verb presentSingular="vacates" pastSingular="vacated" pastContinuousSingular="was vacating" futureSingular="will vacate" continuousSingular="is vacating" perfectSingular="has vacated" subjunctiveSingular="might vacate"
         presentPlural="vacate" pastPlural="vacated" pastContinuousPlural="were vacating" futurePlural="will vacate" continuousPlural="are vacating" perfectPlural="have vacated" subjunctivePlural="might vacate"/>
   <verb presentSingular="trumpets" pastSingular="trumpeted" pastContinuousSingular="was trumpeting" futureSingular="will trumpet" continuousSingular="is trumpeting" perfectSingular="has trumpeted" subjunctiveSingular=" might trumpet"
@@ -65,7 +66,8 @@ limitations under the License.
   <verb presentSingular="sings" pastSingular="sung" pastContinuousSingular="was singing" futureSingular="will sing" continuousSingular="is singing" perfectSingular="has sung" subjunctiveSingular="might sing"
         presentPlural="sing" pastPlural="sung" pastContinuousPlural="were singing" futurePlural="will sing" continuousPlural="are singing" perfectPlural="have sung" subjunctivePlural="might sing"/>
   <verb presentSingular="stars" pastSingular="stared" pastContinuousSingular="was staring" futureSingular="will star" continuousSingular="is staring" perfectSingular="has stared" subjunctiveSingular="might star"
-        presentPlural="star" pastPlural="stared" pastContinuousPlural="were staring" futurePlural="will star" continuousPlural="are staring" perfectPlural="have stared" subjunctivePlural="might star"/>
+        presentPlural="star" pastPlural="stared" pastContinuousPlural="were staring" futurePlural="will star" continuousPlural="are staring" perfectPlural="have stared" subjunctivePlural="might star"
+        transitive="false"/>
   <verb presentSingular="mitigates" pastSingular="mitigated" pastContinuousSingular="was mitigating" futureSingular="will mitigate" continuousSingular="is mitigating" perfectSingular="has mitigated" subjunctiveSingular="might mitigate"
         presentPlural="mitigate" pastPlural="mitigate" pastContinuousPlural="were mitigating" futurePlural="will mitigate" continuousPlural="are mitigating" perfectPlural="have mitigated" subjunctivePlural="might mitigate"/>
   <verb presentSingular="muddles" pastSingular="muddled" pastContinuousSingular="was muddling" futureSingular="will muddle" continuousSingular="is muddling" perfectSingular="has muddled" subjunctiveSingular="might muddle"

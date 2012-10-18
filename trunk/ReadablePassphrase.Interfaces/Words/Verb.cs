@@ -38,6 +38,8 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string PerfectPlural { get; }
         public abstract string SubjunctivePlural { get; }
 
+        public abstract bool IsTransitive { get; }
+
         public override string DictionaryEntry { get { return this.PresentPlural; } }       // This is most likely to detect duplicates in english.
         public sealed override Type OfType { get { return typeof(Verb); } }
 

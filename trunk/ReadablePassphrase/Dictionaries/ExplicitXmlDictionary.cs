@@ -27,17 +27,21 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     {
         private string _LanguageCode;
         private string _Name;
+        private int _Version;
 
         public override string LanguageCode { get { return _LanguageCode; } }
         public override string Name { get { return _Name; } }
+        public override int Version { get { return _Version; } }
 
         public ExplicitXmlWordDictionary() : base() { }
-        public ExplicitXmlWordDictionary(string name, string languageCode) : base() { SetNameAndLanguageCode(name, languageCode); }
+        public ExplicitXmlWordDictionary(string name, string languageCode) : base() { SetNameAndLanguageCodeAndVersion(name, languageCode, 1); }
+        public ExplicitXmlWordDictionary(string name, string languageCode, int version) : base() { SetNameAndLanguageCodeAndVersion(name, languageCode, version); }
 
-        public void SetNameAndLanguageCode(string name, string languageCode)
+        public void SetNameAndLanguageCodeAndVersion(string name, string languageCode, int version)
         {
             _Name = name;
             _LanguageCode = languageCode;
+            _Version = version;
         }
 
         protected internal void ExpandCapacityTo(int count)

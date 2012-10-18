@@ -258,10 +258,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseDictionaryRoot(XmlReader reader)
         {
             int version;
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 1)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 2)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
-            _Dict.SetNameAndLanguageCode(reader.GetAttribute("name"), reader.GetAttribute("language"));
+            _Dict.SetNameAndLanguageCodeAndVersion(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
         }
         private void ParseArticle(XmlReader reader)
         {
@@ -309,7 +309,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                         reader.GetAttribute("presentSingular"), 
                         reader.GetAttribute("continuousPlural"),
                         reader.GetAttribute("futurePlural"), 
-                        reader.GetAttribute("subjunctivePlural")
+                        reader.GetAttribute("subjunctivePlural"),
+
+                        // The 'transitive' attribute is new and optional, verbs are assumed to be transitive by default (as most are).
+                        String.IsNullOrEmpty(reader.GetAttribute("transitive")) ? true : Boolean.Parse(reader.GetAttribute("transitive"))
                         )
                      );
         }

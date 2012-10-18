@@ -40,6 +40,7 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
         private string _PerfectPlural;
         private string _SubjunctivePlural;
 
+        private bool _IsTransitive;
 
         public override string PresentSingular { get { return _PresentSingular; } }
         public override string PastSingular { get { return _PastSingular; } }
@@ -57,6 +58,7 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
         public override string PerfectPlural { get { return _PerfectPlural; } }
         public override string SubjunctivePlural { get { return _SubjunctivePlural; } }
 
+        public override bool IsTransitive { get { return _IsTransitive; } }
 
         private MaterialisedVerb() { }
         public MaterialisedVerb(IDictionary<string, string> forms)
@@ -78,7 +80,8 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
             _SubjunctivePlural = GetOrDefault(forms, "subjunctivePlural");
         }
         public MaterialisedVerb(string presentSingular, string pastSingular, string pastContinuousSingular, string futureSingular, string continuousSingular, string perfectSingular, string subjunctiveSingular,
-                                string presentPlural, string pastPlural, string pastContinuousPlural, string futurePlural, string continuousPlural, string perfectPlural, string subjunctivePlural)
+                                string presentPlural, string pastPlural, string pastContinuousPlural, string futurePlural, string continuousPlural, string perfectPlural, string subjunctivePlural,
+                                bool isTransitive)
         {
             _PresentSingular = presentSingular;
             _PastSingular = pastSingular;
@@ -95,6 +98,8 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
             _ContinuousPlural = continuousPlural;
             _PerfectPlural = perfectPlural;
             _SubjunctivePlural = subjunctivePlural;
+
+            _IsTransitive = isTransitive;
         }
 
         private U GetOrDefault<T, U>(IDictionary<T, U> dict, T key)

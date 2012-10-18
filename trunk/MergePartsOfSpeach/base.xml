@@ -16,9 +16,11 @@ limitations under the License.
 -->
 
 <!--
-The Default 200 dictionary has a minmum of 200 verbs.
+Schema version 2 adds:
+- An optional boolean 'transitive' attribute on verbs.
+- The 'interrogative' element.
 -->
-<dictionary schemaVersion="1" language="en-au" name="Default">
+<dictionary schemaVersion="2" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />
