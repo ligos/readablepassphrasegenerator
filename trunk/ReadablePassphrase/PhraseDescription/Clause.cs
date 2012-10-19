@@ -37,9 +37,13 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         /// <summary>
         /// Builds a template of words for this clause. A template has 1:1 correspondance with actual words, but has not yet chosen them from the dictionary.
-        /// Returns true when all templates added, false if more still need to be added.
         /// </summary>
-        public abstract bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate);
+        public abstract void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate);
+
+        /// <summary>
+        /// 2nd pass of building a template of words for this clause. 
+        /// </summary>
+        public abstract void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate);
 
         /// <summary>
         /// Counts the total unique combinations possible for this clause based on dictionary word counts and the clause's configuration.
@@ -166,7 +170,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                     new VerbClause() { PresentFactor = 10, PastFactor = 8, FutureFactor = 8, ContinuousFactor = 0, ContinuousPastFactor = 0, PerfectFactor = 0, SubjunctiveFactor = 0,
                                         NoAdverbFactor = 1, AdverbFactor = 0,
-                                        InterrogativeFactor = 1, NoInterrogativeFactor = 8},
+                                        InterrogativeFactor = 1, NoInterrogativeFactor = 8, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
                     new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -183,7 +188,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                     new VerbClause() { PresentFactor = 10, PastFactor = 10, FutureFactor = 10, ContinuousFactor = 5, ContinuousPastFactor = 5, PerfectFactor = 5, SubjunctiveFactor = 2,
                                         NoAdverbFactor = 1, AdverbFactor = 0,
-                                        InterrogativeFactor = 1, NoInterrogativeFactor = 8},
+                                        NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 4},
                     new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 6, AdjectiveFactor = 3,
@@ -200,7 +206,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                     new VerbClause() { PresentFactor = 10, PastFactor = 10, FutureFactor = 10, ContinuousFactor = 5, ContinuousPastFactor = 5, PerfectFactor = 5, SubjunctiveFactor = 5,
                                         NoAdverbFactor = 10, AdverbFactor = 3,
-                                        InterrogativeFactor = 1, NoInterrogativeFactor = 8},
+                                        NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 5},
                     new NounClause() { SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 6, AdjectiveFactor = 3,

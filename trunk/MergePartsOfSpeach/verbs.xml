@@ -17,8 +17,7 @@ limitations under the License.
 
 <dictionary schemaVersion="1" language="en-au" name="Default">
   <verb presentSingular="concocts" pastSingular="concocted" pastContinuousSingular="was concocting" futureSingular="will concoct" continuousSingular="is concocting" perfectSingular="has concocted" subjunctiveSingular="might concoct"
-        presentPlural="concoct" pastPlural="concocted" pastContinuousPlural="were concocting" futurePlural="will concoct" continuousPlural="are concocting" perfectPlural="have concocted" subjunctivePlural="might concoct"
-        transitive="true"/>
+        presentPlural="concoct" pastPlural="concocted" pastContinuousPlural="were concocting" futurePlural="will concoct" continuousPlural="are concocting" perfectPlural="have concocted" subjunctivePlural="might concoct"/>
   <verb presentSingular="vacates" pastSingular="vacated" pastContinuousSingular="was vacating" futureSingular="will vacate" continuousSingular="is vacating" perfectSingular="has vacated" subjunctiveSingular="might vacate"
         presentPlural="vacate" pastPlural="vacated" pastContinuousPlural="were vacating" futurePlural="will vacate" continuousPlural="are vacating" perfectPlural="have vacated" subjunctivePlural="might vacate"/>
   <verb presentSingular="trumpets" pastSingular="trumpeted" pastContinuousSingular="was trumpeting" futureSingular="will trumpet" continuousSingular="is trumpeting" perfectSingular="has trumpeted" subjunctiveSingular=" might trumpet"
@@ -34,7 +33,8 @@ limitations under the License.
   <verb presentSingular="sojourns in" pastSingular="sojourned" pastContinuousSingular="was sojourning" futureSingular="will sojourn" continuousSingular="is sojourning" perfectSingular="has sojourned" subjunctiveSingular="might sojourn"
         presentPlural="sojourn in" pastPlural="sojourned" pastContinuousPlural="were sojourning" futurePlural="will sojourn" continuousPlural="are sojourning" perfectPlural="have sojourned" subjunctivePlural="might sojourn"/>
   <verb presentSingular="mopes" pastSingular="moped" pastContinuousSingular="was moping" futureSingular="will mope" continuousSingular="is moping" perfectSingular="has moped" subjunctiveSingular="might mope"
-        presentPlural="mope" pastPlural="moped" pastContinuousPlural="were moping" futurePlural="will mope" continuousPlural="are moping" perfectPlural="have moped" subjunctivePlural="might mope"/>
+        presentPlural="mope" pastPlural="moped" pastContinuousPlural="were moping" futurePlural="will mope" continuousPlural="are moping" perfectPlural="have moped" subjunctivePlural="might mope"
+        transitive="false"/>
   <verb presentSingular="demolishes" pastSingular="demolished" pastContinuousSingular="was demolishing" futureSingular="will demolish" continuousSingular="is demolishing" perfectSingular="has demolished" subjunctiveSingular="might demolish"
         presentPlural="demolish" pastPlural="demolished" pastContinuousPlural="were demolishing" futurePlural="will demolish" continuousPlural="are demolishing" perfectPlural="have demolished" subjunctivePlural="might demolish"/>
   <verb presentSingular="edits" pastSingular="edited" pastContinuousSingular="was editing" futureSingular="will demolish" continuousSingular="is demolishing" perfectSingular="has demolished" subjunctiveSingular="might demolish"
@@ -52,7 +52,8 @@ limitations under the License.
   <verb presentSingular="engineers" pastSingular="engineered" pastContinuousSingular="was engineering" futureSingular="will engineer" continuousSingular="is engineering" perfectSingular="has engineered" subjunctiveSingular="might engineer"
         presentPlural="engineer" pastPlural="engineered" pastContinuousPlural="were engineering" futurePlural="will engineer" continuousPlural="are engineering" perfectPlural="have engineered" subjunctivePlural="might engineer"/>
   <verb presentSingular="gyrates" pastSingular="gyrated" pastContinuousSingular="was gyrating" futureSingular="will gyrate" continuousSingular="is gyrating" perfectSingular="has gyrated" subjunctiveSingular="might gyrate"
-        presentPlural="gyrate" pastPlural="gyrated" pastContinuousPlural="were gyrating" futurePlural="will gyrate" continuousPlural="are gyrating" perfectPlural="have gyrated" subjunctivePlural="might gyrate"/>
+        presentPlural="gyrate" pastPlural="gyrated" pastContinuousPlural="were gyrating" futurePlural="will gyrate" continuousPlural="are gyrating" perfectPlural="have gyrated" subjunctivePlural="might gyrate"
+        transitive="false"/>
   <verb presentSingular="manicures" pastSingular="manicured" pastContinuousSingular="was manicuring" futureSingular="will manicure" continuousSingular="is manicuring" perfectSingular="has manicured" subjunctiveSingular="might manicure"
         presentPlural="manicure" pastPlural="manicured" pastContinuousPlural="were manicuring" futurePlural="will manicure" continuousPlural="are manicuring" perfectPlural="have manicured" subjunctivePlural="might manicure"/>
   <verb presentSingular="slaps" pastSingular="slapped" pastContinuousSingular="was slapping" futureSingular="will slap" continuousSingular="is slapping" perfectSingular="has slapped" subjunctiveSingular="might slap"
@@ -64,7 +65,8 @@ limitations under the License.
   <verb presentSingular="collects" pastSingular="collected" pastContinuousSingular="was collecting" futureSingular="will collect" continuousSingular="is collecting" perfectSingular="has collected" subjunctiveSingular="might collect"
         presentPlural="collect" pastPlural="collected" pastContinuousPlural="were collecting" futurePlural="will collect" continuousPlural="are collecting" perfectPlural="have collected" subjunctivePlural="might collect"/>
   <verb presentSingular="sings" pastSingular="sung" pastContinuousSingular="was singing" futureSingular="will sing" continuousSingular="is singing" perfectSingular="has sung" subjunctiveSingular="might sing"
-        presentPlural="sing" pastPlural="sung" pastContinuousPlural="were singing" futurePlural="will sing" continuousPlural="are singing" perfectPlural="have sung" subjunctivePlural="might sing"/>
+        presentPlural="sing" pastPlural="sung" pastContinuousPlural="were singing" futurePlural="will sing" continuousPlural="are singing" perfectPlural="have sung" subjunctivePlural="might sing"
+        transitive="false"/>
   <verb presentSingular="stars" pastSingular="stared" pastContinuousSingular="was staring" futureSingular="will star" continuousSingular="is staring" perfectSingular="has stared" subjunctiveSingular="might star"
         presentPlural="star" pastPlural="stared" pastContinuousPlural="were staring" futurePlural="will star" continuousPlural="are staring" perfectPlural="have stared" subjunctivePlural="might star"
         transitive="false"/>
@@ -82,8 +84,9 @@ limitations under the License.
         presentPlural="thrash" pastPlural="thrashed" pastContinuousPlural="were thrashing" futurePlural="will thrash" continuousPlural="are thrashing" perfectPlural="have thrashed" subjunctivePlural="might thrash"/>
   <verb presentSingular="wheezes" pastSingular="wheezed" pastContinuousSingular="was wheezing" futureSingular="will wheeze" continuousSingular="is wheezing" perfectSingular="has wheezed" subjunctiveSingular="might wheeze"
         presentPlural="wheeze" pastPlural="wheezed" pastContinuousPlural="were wheezing" futurePlural="will wheeze" continuousPlural="are wheezing" perfectPlural="have wheezed" subjunctivePlural="might wheeze"/>
-  <verb presentSingular="wishs" pastSingular="wished" pastContinuousSingular="was wishing" futureSingular="will wish" continuousSingular="is wishing" perfectSingular="has wished" subjunctiveSingular="might wish"
-        presentPlural="wish" pastPlural="wished" pastContinuousPlural="were wishing" futurePlural="will wish" continuousPlural="are wishing" perfectPlural="have wished" subjunctivePlural="might wish"/>
+  <verb presentSingular="wishes" pastSingular="wished" pastContinuousSingular="was wishing" futureSingular="will wish" continuousSingular="is wishing" perfectSingular="has wished" subjunctiveSingular="might wish"
+        presentPlural="wish" pastPlural="wished" pastContinuousPlural="were wishing" futurePlural="will wish" continuousPlural="are wishing" perfectPlural="have wished" subjunctivePlural="might wish"
+        transitive="false"/>
   <verb presentSingular="touts" pastSingular="touted" pastContinuousSingular="was touting" futureSingular="will tout" continuousSingular="is touting" perfectSingular="has touted" subjunctiveSingular="might tout"
         presentPlural="tout" pastPlural="touted" pastContinuousPlural="were touting" futurePlural="will tout" continuousPlural="are touting" perfectPlural="have touted" subjunctivePlural="might tout"/>
   <verb presentSingular="carves" pastSingular="carved" pastContinuousSingular="was carving" futureSingular="will carve" continuousSingular="is carving" perfectSingular="has carved" subjunctiveSingular="might carve"
@@ -193,7 +196,8 @@ limitations under the License.
   <verb presentSingular="reposes" pastSingular="reposed" pastContinuousSingular="was reposing" futureSingular="will repose" continuousSingular="is reposing" perfectSingular="has reposed" subjunctiveSingular="might repose"
         presentPlural="repose" pastPlural="reposed" pastContinuousPlural="were reposing" futurePlural="will repose" continuousPlural="are reposing" perfectPlural="have reposed" subjunctivePlural="might repose"/>
   <verb presentSingular="winks" pastSingular="winked" pastContinuousSingular="was winking" futureSingular="will wink" continuousSingular="is winking" perfectSingular="has winked" subjunctiveSingular="might wink"
-        presentPlural="wink" pastPlural="winked" pastContinuousPlural="were winking" futurePlural="will wink" continuousPlural="are winking" perfectPlural="have winked" subjunctivePlural="might wink"/>
+        presentPlural="wink" pastPlural="winked" pastContinuousPlural="were winking" futurePlural="will wink" continuousPlural="are winking" perfectPlural="have winked" subjunctivePlural="might wink"
+        transitive="false"/>
   <verb presentSingular="tarries" pastSingular="tarried" pastContinuousSingular="was tarrying" futureSingular="will tarry" continuousSingular="is tarrying" perfectSingular="has tarried" subjunctiveSingular="might tarry"
         presentPlural="tarry" pastPlural="tarried" pastContinuousPlural="were tarrying" futurePlural="will tarry" continuousPlural="are tarrying" perfectPlural="have tarried" subjunctivePlural="might tarry"/>
   <verb presentSingular="clarifies" pastSingular="clarified" pastContinuousSingular="was clarifying" futureSingular="will clarify" continuousSingular="is clarifying" perfectSingular="has clarified" subjunctiveSingular="might clarify"

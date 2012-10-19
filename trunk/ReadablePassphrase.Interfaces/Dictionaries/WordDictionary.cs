@@ -68,6 +68,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             else 
                 return this.OfType<T>().Count();
         }
+        public int CountOf<T>(Func<T, bool> predicate)
+        {
+            return this.OfType<T>().Count(predicate);
+        }
 
         public WordDictionary() : base() { }
         public WordDictionary(IList<Word> words) : base(words) { }

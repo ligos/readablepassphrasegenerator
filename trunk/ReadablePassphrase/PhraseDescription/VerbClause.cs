@@ -50,6 +50,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("NoInterrogative", "Interrogative")]
         public int NoInterrogativeFactor { get; set; }
 
+        [TagInConfiguration("NoIntransitive", "Intransitive")]
+        public int NoIntransitiveFactor { get; set; }
+        [TagInConfiguration("IntransitiveByNoNoun", "Intransitive")]
+        public int IntransitiveByNoNounClauseFactor { get; set; }
+        [TagInConfiguration("IntransitiveByPreposition", "Intransitive")]
+        public int IntransitiveByPrepositionFactor { get; set; }
 
         private List<RangeToTense> DistributionTable;
         private int DistributionMax;
@@ -59,6 +65,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public NounClause Object { get; set; }
 
         private readonly IEnumerable<TenseData> _TenseData;
+        private bool _IsSecondCall = false;
+        private int _LastVerbTemplateIndex = -1;
 
         public VerbClause()
         {
@@ -86,36 +94,72 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             this.Object = (NounClause)afterMe.First(x => x is NounClause);
         }
 
-        public override bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate)
+        public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            this._LastVerbTemplateIndex = -1;
             var subjectIsPlural = currentTemplate.OfType<NounTemplate>().First().IsPlural;
             var verbFormToBePlural = subjectIsPlural;
 
             // TODO: handle cases where probabilities are zero.
 
-            bool makeInterogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
-            if (makeInterogative)
+            // Choose how to handle intransitive verbs.
+            int choice = randomness.Next(dictionary.CountOf<Verb>());     // Choose between transitive or not by the number of trans/intrans verbs in dictionary.
+            bool selectTransitive = choice < dictionary.CountOf<Verb>(v => v.IsTransitive);
+            bool removeAccusativeNoun = false;
+            bool addPreposition = false;
+            if (!selectTransitive)
+            {
+                // OK, so we chose an intransitive verb, how will we handle that?
+                choice = randomness.Next(NoIntransitiveFactor + IntransitiveByNoNounClauseFactor + IntransitiveByPrepositionFactor);
+                if (choice < NoIntransitiveFactor)
+                    // Actually, we won't choose the intransitive verb after all!
+                    selectTransitive = false;
+                else if (choice >= NoIntransitiveFactor && choice < IntransitiveByNoNounClauseFactor + IntransitiveByPrepositionFactor)
+                    // Remove the noun clause.
+                    removeAccusativeNoun = true;
+                else
+                    // Add a preposition.
+                    addPreposition = true;
+            }
+            
+
+            bool makeInterrogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
+            if (makeInterrogative)
                 // Insert an interrogative template
                 currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 
             // Select a verb tense form.
             this.BuildTable();
-            int choice = randomness.Next(this.DistributionMax);
+            choice = randomness.Next(this.DistributionMax);
             var tense = VerbTense.Present;
-            if (!makeInterogative)
+            if (!makeInterrogative)
                 // The the verb form becomes present plural whenever an interrogative is used.
                 tense = this.LookupTenseFromChoice(choice);
-            if (makeInterogative)
+            if (makeInterrogative)
                 verbFormToBePlural = true;
-            currentTemplate.Add(new VerbTemplate(tense, verbFormToBePlural));
+            currentTemplate.Add(new VerbTemplate(tense, verbFormToBePlural, selectTransitive));
 
             // Include adverb?
             bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
             if (includeAdverb)
                 currentTemplate.Add(new AdverbTemplate());
 
+            // Add a preposition to make the intransitive verb work?
+            if (addPreposition)
+                currentTemplate.Add(new PrepositionTemplate());
 
-            return true;
+            // Signal to the second pass we're going to remove the accusative noun clause.
+            if (removeAccusativeNoun)
+                _LastVerbTemplateIndex = currentTemplate.Count - 1;
+        }
+        public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // If we deal with intransitive by having no object, remove the object!
+            if (this._LastVerbTemplateIndex >= 0)
+            {
+                while (currentTemplate.Count > this._LastVerbTemplateIndex + 1)
+                    currentTemplate.RemoveAt(this._LastVerbTemplateIndex + 1);
+            }
         }
 
         private void BuildTable()
@@ -192,7 +236,18 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
             
             // And the verbs themselves. (This assumes a verb will always be added).
-            result *= dictionary.CountOf<Words.Verb>();
+            if (IntransitiveByPrepositionFactor == 0 && IntransitiveByNoNounClauseFactor == 0)
+                // Handling intransitive problems by only choosing from transitive verbs!
+                result *= dictionary.CountOf<Words.Verb>(v => v.IsTransitive);
+            else
+                result *= dictionary.CountOf<Words.Verb>();
+
+            // If we're handling intransitives by adding a preposition, count prepositions!
+            if (IntransitiveByPrepositionFactor > 0)
+                result *= dictionary.CountOf<Words.Preposition>()
+                            // But only increase by the fraction of verbs which are intransitive.
+                            * ((double)dictionary.CountOf<Words.Verb>() / (double)dictionary.CountOf<Words.Verb>(v => !v.IsTransitive));
+
             // The count of interrogative forms.
             if (this.InterrogativeFactor > 0)
                 result *= dictionary.CountOf<Interrogative>();

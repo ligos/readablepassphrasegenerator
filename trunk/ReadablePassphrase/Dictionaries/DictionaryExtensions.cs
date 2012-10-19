@@ -17,7 +17,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             var count = dict.CountOf<T>();
             T result;
             int attempts = 0;
-            const int maxAttempts = 100;
+            const int maxAttempts = 5;
 
             do
             {
@@ -26,11 +26,23 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
                 attempts++;
                 if (attempts >= maxAttempts)
-                    throw new ApplicationException(String.Format("Unable to choose a {1} at random after {0} attempts. This may indicate a very small dictionary or an impossible predicate (or the breakdown of statistical laws as we know them!).", maxAttempts, typeof(T).Name));
+                    // This way is much slower when lots of words match the predicate, but faster if few do.
+                    return ChooseWordAlternate<T>(dict, randomness, alreadyChosen, wordPredicate);
             } while (alreadyChosen.Contains(result) || !wordPredicate(result));
 
             return result;
         }
-
+        private static T ChooseWordAlternate<T>(this WordDictionary dict, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<T, bool> wordPredicate) where T : Word
+        {
+            var possibleWords = dict.OfType<T>().Where(w => wordPredicate(w) && !alreadyChosen.Contains(w));
+            var matchingWordCount = possibleWords.Count();
+            if (matchingWordCount == 0)
+                throw new ApplicationException(String.Format("Unable to choose a {0} at random. There are no words which match the specified predicate which are not already chosen.", typeof(T).Name));
+            var idx = randomness.Next(matchingWordCount);
+            var result = possibleWords.Skip(idx).FirstOrDefault();
+            if (result == null)
+                throw new ApplicationException(String.Format("Unable to choose a {0} at random.", typeof(T).Name));
+            return result;
+        }
     }
 }

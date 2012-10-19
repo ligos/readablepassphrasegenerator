@@ -55,11 +55,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // The verb does all this at the moment, but perhaps that shouldn't be the case.
         }
 
-        public override bool AddWordTemplate(Random.RandomSourceBase randomness, IList<WordTemplate.Template> currentTemplate)
+        public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
             // Include a preposition?
             bool includePreposition = randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
-            if (includePreposition)
+            if (includePreposition && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
                 currentTemplate.Add(new PrepositionTemplate());
 
             // Will this noun be plural?
@@ -100,9 +100,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
             // Finally add the noun!
             currentTemplate.Add(new NounTemplate(isPlural));
-            
-            return true;
         }
+        public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // No-op for noun clause.
+        }
+
 
         public override double CountCombinations(WordDictionary dictionary)
         {

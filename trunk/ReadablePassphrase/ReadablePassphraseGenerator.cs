@@ -399,20 +399,14 @@ namespace MurrayGrant.ReadablePassphrase
             {
                 var thisPhraseTemplate = new List<Template>();
                 var toProcess = new Clause[] { verb.Subject, verb, verb.Object };       // Give the processing a logical order: subject, verb, object.
-                var completedClauses = new HashSet<Clause>();       // Clauses are added here as they are completed.
 
-                // Keep generating templates until all clauses are processed.
-                while (toProcess.Except(completedClauses).Any())
-                {
-                    // Process in specified order.
-                    foreach (var clause in toProcess)
-                    {
-                        // Add the template to our accumulator.
-                        if (clause.AddWordTemplate(_Randomness, thisPhraseTemplate))
-                            // When signaled completion, add the clause to the completed list.
-                            completedClauses.Add(clause);
-                    }
-                }
+                // Process in specified order.
+                foreach (var clause in toProcess)
+                    clause.AddWordTemplate(_Randomness, this.Dictionary, thisPhraseTemplate);
+
+                // Process twice.
+                foreach (var clause in toProcess)
+                    clause.SecondPassOfWordTemplate(_Randomness, this.Dictionary, thisPhraseTemplate);
                 
                 // Yield the whole phrase at the end.
                 foreach (var t in thisPhraseTemplate)
