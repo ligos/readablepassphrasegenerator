@@ -104,7 +104,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
             // Choose how to handle intransitive verbs.
             int choice = randomness.Next(dictionary.CountOf<Verb>());     // Choose between transitive or not by the number of trans/intrans verbs in dictionary.
-            bool selectTransitive = choice < dictionary.CountOf<Verb>(v => v.IsTransitive);
+            bool selectTransitive = choice < dictionary.CountOfTransitiveVerbs();
             bool removeAccusativeNoun = false;
             bool addPreposition = false;
             if (!selectTransitive)

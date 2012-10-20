@@ -35,6 +35,9 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public virtual Article TheArticle { get { return this.GetWordAtIndex<Article>(0); } }
 
         protected Dictionary<Type, List<Word>> WordsByType { get; private set; }
+        protected int TransitiveVerbCount { get; private set; }
+        protected int IntransitiveVerbCount { get; private set; }
+
         /// <summary>
         /// Dictionary loaders should call this to initialise a dictionary of word type (part of speach) -> ordered list of words.
         /// Gives an order of magnitude performance benefit over linear lookups.
@@ -51,6 +54,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                     result.Add(t, new List<Word>());
             }
             WordsByType = result;
+            
+            // Count the number of transitive and intransitive verbs.
+            TransitiveVerbCount = result[typeof(Verb)].OfType<Verb>().Count(v => v.IsTransitive);
+            IntransitiveVerbCount = result[typeof(Verb)].Count - TransitiveVerbCount;
         }
 
         public T GetWordAtIndex<T>(int idx) where T : Word
@@ -72,6 +79,14 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             return this.OfType<T>().Count(predicate);
         }
+        public int CountOfTransitiveVerbs()
+        {
+            return TransitiveVerbCount;
+        }
+        public int CountOfIntransitiveVerbs()
+        {
+            return IntransitiveVerbCount;
+        }
 
         public WordDictionary() : base() { }
         public WordDictionary(IList<Word> words) : base(words) { }
@@ -90,3 +105,4 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
     }
 }
+

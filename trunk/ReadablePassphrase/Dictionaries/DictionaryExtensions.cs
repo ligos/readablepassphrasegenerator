@@ -34,14 +34,12 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         private static T ChooseWordAlternate<T>(this WordDictionary dict, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<T, bool> wordPredicate) where T : Word
         {
-            var possibleWords = dict.OfType<T>().Where(w => wordPredicate(w) && !alreadyChosen.Contains(w));
-            var matchingWordCount = possibleWords.Count();
+            var possibleWords = dict.OfType<T>().Where(w => wordPredicate(w) && !alreadyChosen.Contains(w)).ToList();
+            var matchingWordCount = possibleWords.Count;
             if (matchingWordCount == 0)
                 throw new ApplicationException(String.Format("Unable to choose a {0} at random. There are no words which match the specified predicate which are not already chosen.", typeof(T).Name));
             var idx = randomness.Next(matchingWordCount);
-            var result = possibleWords.Skip(idx).FirstOrDefault();
-            if (result == null)
-                throw new ApplicationException(String.Format("Unable to choose a {0} at random.", typeof(T).Name));
+            var result = possibleWords[idx];
             return result;
         }
     }
