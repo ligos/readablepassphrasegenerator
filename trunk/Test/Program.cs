@@ -46,22 +46,22 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
             BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
 
-            GenerateCustomSamples(new Clause[]
-                {
-                    new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
-                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
-                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
-                                        NoAdverbFactor = 1, AdverbFactor = 0,
-                                        NoInterrogativeFactor = 1, InterrogativeFactor = 0,
-                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
-                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
-                }
-                , generator, 100);
+            //GenerateCustomSamples(new Clause[]
+            //    {
+            //        new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
+            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
+            //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+            //                            NoAdverbFactor = 1, AdverbFactor = 0,
+            //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
+            //                            NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+            //        new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
+            //    }
+            //    , generator, 100);
             //TestConfigForm(generator);
 
             // Longer benchmarks.
@@ -91,12 +91,14 @@ namespace Test
             Console.WriteLine();
             Console.WriteLine("Name: {0}", generator.Dictionary.Name);
             Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
-            Console.WriteLine("TOTAL:         {0:N0}", generator.Dictionary.Count);
-            Console.WriteLine("Nouns:         {0:N0}", generator.Dictionary.OfType<Noun>().Count());
-            Console.WriteLine("Verbs:         {0:N0}", generator.Dictionary.OfType<Verb>().Count());
-            Console.WriteLine("Prepositions:  {0:N0}", generator.Dictionary.OfType<Preposition>().Count());
-            Console.WriteLine("Adverbs:       {0:N0}", generator.Dictionary.OfType<Adverb>().Count());
-            Console.WriteLine("Adjectives:    {0:N0}", generator.Dictionary.OfType<Adjective>().Count());
+            Console.WriteLine("TOTAL:           {0:N0}", generator.Dictionary.Count);
+            Console.WriteLine("Nouns:           {0:N0}", generator.Dictionary.OfType<Noun>().Count());
+            Console.WriteLine("Verbs (all):     {0:N0}", generator.Dictionary.OfType<Verb>().Count());
+            Console.WriteLine("Verbs (trans):   {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => w.IsTransitive));
+            Console.WriteLine("Verbs (intrans): {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => !w.IsTransitive));
+            Console.WriteLine("Prepositions:    {0:N0}", generator.Dictionary.OfType<Preposition>().Count());
+            Console.WriteLine("Adverbs:         {0:N0}", generator.Dictionary.OfType<Adverb>().Count());
+            Console.WriteLine("Adjectives:      {0:N0}", generator.Dictionary.OfType<Adjective>().Count());
 
             // Check for duplicates.
             foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t) && t != typeof(Word)))
