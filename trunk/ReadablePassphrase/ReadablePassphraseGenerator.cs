@@ -391,6 +391,7 @@ namespace MurrayGrant.ReadablePassphrase
             var phraseList = phrases.ToList();      // NOTE: Anything more complicated and this will need a tree, possibly a trie.
 
             // Turn the high level phrases into word templates.
+            var result = new List<Template>();
 
             // Link NounClauses to VerbClauses.
             foreach (var clause in phraseList)
@@ -408,10 +409,10 @@ namespace MurrayGrant.ReadablePassphrase
                 foreach (var clause in toProcess)
                     clause.SecondPassOfWordTemplate(_Randomness, this.Dictionary, thisPhraseTemplate);
                 
-                // Yield the whole phrase at the end.
-                foreach (var t in thisPhraseTemplate)
-                    yield return t;
+                // Accumulate the whole phrase at the end.
+                result.AddRange(thisPhraseTemplate);
             }
+            return result;
         }
         private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, bool spacesBetweenWords)
         {
