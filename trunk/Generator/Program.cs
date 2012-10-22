@@ -249,14 +249,14 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("Usage: PassphraseGenerator.exe [options]");
             Console.WriteLine("  -c --count nnn        Generates nnn phrases (default: 1)");
             Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: normal)");
-            Console.WriteLine("                xxx = [normal|strong|insane|custom]");
+            Console.WriteLine("                xxx =     [normal|strong|insane][equal] or 'custom'");
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
             Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
             Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");
             Console.WriteLine("  -a --loaderargs str   Specifies arguments for custom loader");
             Console.WriteLine("  -d --dict str         Specifies a custom dictionary file");
             Console.WriteLine("  -p --phrase path      Specifies a custom phrase file ");
-            Console.WriteLine("                Must use -strength custom ");
+            Console.WriteLine("                          Must use -strength custom ");
             Console.WriteLine("  -q --quiet            Does not display any status messages (default: show) ");
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.CodeplexHomepage);

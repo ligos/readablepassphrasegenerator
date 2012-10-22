@@ -14,8 +14,11 @@ namespace MurrayGrant.ReadablePassphrase
     public enum PhraseStrength
     {
         Normal,
+        NormalEqual,
         Strong,
+        StrongEqual,
         Insane,
+        InsaneEqual,
         Custom
     }
 }
