@@ -62,6 +62,7 @@ namespace Test
             //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
             //    }
             //    , generator, 100);
+            GenerateSamples(PhraseStrength.InsaneEqual, generator);
             //TestConfigForm(generator);
 
             // Longer benchmarks.
@@ -71,6 +72,7 @@ namespace Test
 
             // Random function distribution tests.
             //TestCoinFlip(SeededRandom());
+            //TestWeightedCoinFlip(SeededRandom(), 1, 1);
             //TestNextInt32(SeededRandom(), 4);
             //TestNextInt32(SeededRandom(), 15);
             //TestNextInt32(SeededRandom(), 50);
@@ -118,9 +120,13 @@ namespace Test
 
         private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator)
         {
+            GenerateSamples(strength, generator, 20);
+        }
+        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count)
+        {
             Console.WriteLine();
             Console.WriteLine("Samples:");
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(generator.Generate(strength));
             }
@@ -196,6 +202,26 @@ namespace Test
             for (int i = 0; i < 1000000; i++)
             {
                 if (randomness.CoinFlip())
+                    countTrue++;
+                else
+                    countFalse++;
+            }
+            sw.Stop();
+            Console.WriteLine("1000000 coin flips in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("True, " + countTrue);
+            Console.WriteLine("False, " + countFalse);
+            Console.WriteLine();
+        }
+
+        private static void TestWeightedCoinFlip(RandomSourceBase randomness, int trueWeight, int falseWeight)
+        {
+            int countTrue = 0, countFalse = 0;
+
+            Console.WriteLine("Testing CryptoRandomStream.WeightedCoinFlip()...");
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            for (int i = 0; i < 1000000; i++)
+            {
+                if (randomness.WeightedCoinFlip(trueWeight, falseWeight))
                     countTrue++;
                 else
                     countFalse++;

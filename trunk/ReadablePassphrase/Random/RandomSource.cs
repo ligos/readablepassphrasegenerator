@@ -37,11 +37,13 @@ namespace MurrayGrant.ReadablePassphrase.Random
         }
         public bool WeightedCoinFlip(int trueWeight, int falseWeight)
         {
-            if (trueWeight == 0)
+            if (trueWeight <= 0 && falseWeight <= 0)
+                throw new ArgumentException("Either true or false weighting must be positive.");
+            if (trueWeight <= 0)
                 return false;
-            if (falseWeight == 0)
+            if (falseWeight <= 0)
                 return true;
-            return Next(falseWeight + trueWeight) <= trueWeight;
+            return Next(falseWeight + trueWeight) < trueWeight;
         }
 
         // Implementation for Next() based on http://codereview.stackexchange.com/questions/6304/algorithm-to-convert-random-bytes-to-integers
