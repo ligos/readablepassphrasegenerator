@@ -128,6 +128,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 // Insert an interrogative template
                 currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 
+            // Include adverb?
+            bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
+            bool includeAdverbBeforeVerb = randomness.CoinFlip();
+            if (includeAdverb && includeAdverbBeforeVerb)
+                currentTemplate.Add(new AdverbTemplate());
+
             // Select a verb tense form.
             this.BuildTable();
             choice = randomness.Next(this.DistributionMax);
@@ -139,9 +145,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 verbFormToBePlural = true;
             currentTemplate.Add(new VerbTemplate(tense, verbFormToBePlural, selectTransitive));
 
-            // Include adverb?
-            bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
-            if (includeAdverb)
+            // Include adverb after the verb.
+            if (includeAdverb && !includeAdverbBeforeVerb)
                 currentTemplate.Add(new AdverbTemplate());
 
             // Add a preposition to make the intransitive verb work?
