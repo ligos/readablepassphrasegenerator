@@ -62,7 +62,7 @@ namespace Test
             //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
             //    }
             //    , generator, 100);
-            GenerateSamples(PhraseStrength.InsaneEqual, generator);
+            //GenerateSamples(PhraseStrength.InsaneEqual, generator);
             //TestConfigForm(generator);
 
             // Longer benchmarks.
