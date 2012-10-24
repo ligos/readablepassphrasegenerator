@@ -2202,4 +2202,25 @@ limitations under the License.
   <verb presentSingular="wanders" pastSingular="wandered" pastContinuousSingular="was wandering" futureSingular="will wander" continuousSingular="is wandering" perfectSingular="has wandered" subjunctiveSingular="might wander"
         presentPlural="wander" pastPlural="wandered" pastContinuousPlural="were wandering" futurePlural="will wander" continuousPlural="are wandering" perfectPlural="have wandered" subjunctivePlural="might wander"
         transitive="false"/>
+  <verb presentSingular="treats" pastSingular="treated" pastContinuousSingular="was treating" futureSingular="will treat" continuousSingular="is treating" perfectSingular="has treated" subjunctiveSingular="might treat"
+        presentPlural="treat" pastPlural="treated" pastContinuousPlural="were treating" futurePlural="will treat" continuousPlural="are treating" perfectPlural="have treated" subjunctivePlural="might treat"/>
+  <verb presentSingular="punches" pastSingular="punched" pastContinuousSingular="was punching" futureSingular="will punch" continuousSingular="is punching" perfectSingular="has punched" subjunctiveSingular="might punch"
+        presentPlural="punch" pastPlural="punched" pastContinuousPlural="were punching" futurePlural="will punch" continuousPlural="are punching" perfectPlural="have punched" subjunctivePlural="might punch"/>
+  <verb presentSingular="undoes" pastSingular="undid" pastContinuousSingular="was undoing" futureSingular="will undo" continuousSingular="is undoing" perfectSingular="has undone" subjunctiveSingular="might undo"
+        presentPlural="undo" pastPlural="undid" pastContinuousPlural="were undoing" futurePlural="will undo" continuousPlural="are undoing" perfectPlural="have undone" subjunctivePlural="might undo"/>
+  <verb presentSingular="plants" pastSingular="planted" pastContinuousSingular="was planting" futureSingular="will plant" continuousSingular="is planting" perfectSingular="has planted" subjunctiveSingular="might plant"
+        presentPlural="plant" pastPlural="planted" pastContinuousPlural="were planting" futurePlural="will plant" continuousPlural="are planting" perfectPlural="have planted" subjunctivePlural="might plant"/>
+  <verb presentSingular="wonders" pastSingular="wondered" pastContinuousSingular="was wondering" futureSingular="will wonder" continuousSingular="is wondering" perfectSingular="has wondered" subjunctiveSingular="might wonder"
+        presentPlural="wonder" pastPlural="wondered" pastContinuousPlural="were wondering" futurePlural="will wonder" continuousPlural="are wondering" perfectPlural="have wondered" subjunctivePlural="might wonder"
+        transitive="false"/>
+  <verb presentSingular="entombs" pastSingular="entombed" pastContinuousSingular="was entombing" futureSingular="will entomb" continuousSingular="is entombing" perfectSingular="has entombed" subjunctiveSingular="might entomb"
+        presentPlural="entomb" pastPlural="entombed" pastContinuousPlural="were entombing" futurePlural="will entomb" continuousPlural="are entombing" perfectPlural="have entombed" subjunctivePlural="might entomb"/>
+  <verb presentSingular="persuades" pastSingular="persuaded" pastContinuousSingular="was persuading" futureSingular="will persuade" continuousSingular="is persuading" perfectSingular="has persuaded" subjunctiveSingular="might persuade"
+        presentPlural="persuade" pastPlural="persuaded" pastContinuousPlural="were persuading" futurePlural="will persuade" continuousPlural="are persuading" perfectPlural="have persuaded" subjunctivePlural="might persuade"/>
+  <verb presentSingular="funnels" pastSingular="funnelled" pastContinuousSingular="was funnelling" futureSingular="will funnel" continuousSingular="is funnelling" perfectSingular="has funnelled" subjunctiveSingular="might funnel"
+        presentPlural="funnel" pastPlural="funnelled" pastContinuousPlural="were funnelling" futurePlural="will funnel" continuousPlural="are funnelling" perfectPlural="have funnelled" subjunctivePlural="might funnel"/>
+  <verb presentSingular="elects" pastSingular="elected" pastContinuousSingular="was electing" futureSingular="will elect" continuousSingular="is electing" perfectSingular="has elected" subjunctiveSingular="might elect"
+        presentPlural="elect" pastPlural="elected" pastContinuousPlural="were electing" futurePlural="will elect" continuousPlural="are electing" perfectPlural="have elected" subjunctivePlural="might elect"/>
+  <verb presentSingular="shunts" pastSingular="shunted" pastContinuousSingular="was shunting" futureSingular="will shunt" continuousSingular="is shunting" perfectSingular="has shunted" subjunctiveSingular="might shunt"
+        presentPlural="shunt" pastPlural="shunted" pastContinuousPlural="were shunting" futurePlural="will shunt" continuousPlural="are shunting" perfectPlural="have shunted" subjunctivePlural="might shunt"/>
 </dictionary>
