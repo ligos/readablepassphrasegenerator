@@ -223,6 +223,7 @@ namespace MurrayGrant.ReadablePassphrase
         #region GenerateAsSecure()
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on <c>PasswordStrength.Normal</c>.
+        /// This is the slowest and most secure method.
         /// </summary>
         public SecureString GenerateAsSecure()
         {
@@ -230,6 +231,7 @@ namespace MurrayGrant.ReadablePassphrase
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
+        /// This is the slowest and most secure method.
         /// </summary>
         public SecureString GenerateAsSecure(PhraseStrength strength)
         {
@@ -237,6 +239,7 @@ namespace MurrayGrant.ReadablePassphrase
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
+        /// This is the slowest and most secure method.
         /// </summary>
         public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription)
         {
@@ -244,6 +247,7 @@ namespace MurrayGrant.ReadablePassphrase
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
+        /// This is the slowest and most secure method.
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
@@ -253,6 +257,7 @@ namespace MurrayGrant.ReadablePassphrase
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
+        /// This is the slowest and most secure method.
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
@@ -273,21 +278,24 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region Generate()
         /// <summary>
-        /// Generates a single phrase based on <c>PasswordStrength.Normal</c>.
+        /// Generates a single phrase based on <c>PasswordStrength.Normal</c> in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
         /// </summary>
         public String Generate()
         {
             return Generate(Clause.CreatePhraseDescriptionForNormal());
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase strength.
+        /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
         /// </summary>
         public String Generate(PhraseStrength strength)
         {
             return Generate(Clause.CreatePhraseDescription(strength), true);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase strength.
+        /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
@@ -296,14 +304,16 @@ namespace MurrayGrant.ReadablePassphrase
             return Generate(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase description.
+        /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
         /// </summary>
         public String Generate(IEnumerable<Clause> phraseDescription)
         {
             return Generate(phraseDescription, true);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase description.
+        /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
@@ -320,21 +330,24 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region GenerateAsUtf8Bytes()
         /// <summary>
-        /// Generates a single phrase based on <c>PasswordStrength.Normal</c>.
+        /// Generates a single phrase based on <c>PasswordStrength.Normal</c> in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         public byte[] GenerateAsUtf8Bytes()
         {
             return GenerateAsUtf8Bytes(Clause.CreatePhraseDescriptionForNormal());
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase strength.
+        /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
         {
             return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), true);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase strength.
+        /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
@@ -343,14 +356,16 @@ namespace MurrayGrant.ReadablePassphrase
             return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase description.
+        /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription)
         {
             return GenerateAsUtf8Bytes(phraseDescription, true);
         }
         /// <summary>
-        /// Generates a single phrase based on the given phrase description.
+        /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
