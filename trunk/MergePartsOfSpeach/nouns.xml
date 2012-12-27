@@ -1499,19 +1499,40 @@ limitations under the License.
   <noun singular="descant" plural="descants"/>
   <noun singular="prognoses"/>
   <noun singular="exemption" plural="exemptions"/>
-  <noun singular="cipher" plural="ciphers"/>
   <noun plural="kinfold"/>
   <noun singular="arena" plural="arenas"/>
   <noun singular="felon" plural="felons"/>
-  <noun singular="terrace" plural="terraces"/>
   <noun singular="mama" plural="mamas"/>
   <noun singular="cherub" plural="cherubs"/>
   <noun singular="faculty" plural="faculties"/>
   <noun singular="hotelier" plural="hoteliers"/>
-  <noun singular="tube" plural="tubes"/>
   <noun singular="dockyard" plural="dockyards"/>
   <noun singular="skinhead" plural="skinhead"/>
   <noun singular="shackle" plural="shackles"/>
   <noun singular="ogre" plural="ogres"/>
+  <noun singular="hotel" plural="hotels"/>
+  <noun singular="lodger" plural="lodgers"/>
+  <noun singular="team" plural="teams"/>
+  <noun singular="reactor" plural="reactor"/>
+  <noun singular="renter" plural="renters"/>
+  <noun singular="parade" plural="parades"/>
+  <noun singular="slacker" plural="slackers"/>
+  <noun singular="gripe" plural="gripes"/>
+  <noun singular="chimney" plural="chimneys"/>
+  <noun singular="layout" plural="layouts"/>
+  <noun singular="busfare" plural="busfares"/>
+  <noun singular="preserve" plural="preserves"/>
+  <noun singular="boatswain" plural="boatswains"/>
+  <noun singular="tinge" plural="tinges"/>
+  <noun singular="husk" plural="husks"/>
+  <noun singular="jail" plural="jails"/>
+  <noun singular="gaol" plural="gaols"/>
+  <noun singular="credit" plural="credit"/>
+  <noun singular="refit" plural="refits"/>
+  <noun singular="precept" plural="precepts"/>
+  <noun singular="member" plural="members"/>
+  <noun singular="pillow" plural="pillows"/>
+  <noun singular="showlace" plural="showlaces"/>
+  <noun singular="recess" plural="recesses"/>
+  <noun singular="genius" plural="geniuses"/>
 </dictionary>
-  
