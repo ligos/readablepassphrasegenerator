@@ -1535,4 +1535,10 @@ limitations under the License.
   <noun singular="showlace" plural="showlaces"/>
   <noun singular="recess" plural="recesses"/>
   <noun singular="genius" plural="geniuses"/>
+  <noun singular="doormat" plural="doormats"/>
+  <noun singular="espresso" plural="espressos"/>
+  <noun singular="voodoo" />
+  <noun plural="dirt"/>
+  <noun singular="beacon" plural="beacons"/>
+  <noun singular="package" plural="packages"/>
 </dictionary>

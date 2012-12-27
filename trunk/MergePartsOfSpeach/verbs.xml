@@ -2300,4 +2300,14 @@ limitations under the License.
   <verb presentSingular="says" pastSingular="said" pastContinuousSingular="was saying" futureSingular="will say" continuousSingular="is saying" perfectSingular="has said" subjunctiveSingular="might say"
         presentPlural="say" pastPlural="said" pastContinuousPlural="were saying" futurePlural="will say" continuousPlural="are saying" perfectPlural="have said" subjunctivePlural="might say"
         transitive="false"/>
+  <verb presentSingular="unzips" pastSingular="unzipped" pastContinuousSingular="was unzipping" futureSingular="will unzip" continuousSingular="is unzipping" perfectSingular="has unzipped" subjunctiveSingular="might unzip"
+        presentPlural="unzip" pastPlural="unzipped" pastContinuousPlural="were unzipping" futurePlural="will unzip" continuousPlural="are unzipping" perfectPlural="have unzipped" subjunctivePlural="might unzip"/>
+  <verb presentSingular="dirties" pastSingular="dirtied" pastContinuousSingular="was dirtying" futureSingular="will dirty" continuousSingular="is dirtying" perfectSingular="has dirtied" subjunctiveSingular="might dirty"
+        presentPlural="dirty" pastPlural="dirtied" pastContinuousPlural="were dirtying" futurePlural="will dirty" continuousPlural="are dirtying" perfectPlural="have dirtied" subjunctivePlural="might dirty"/>
+  <verb presentSingular="disgorges" pastSingular="disgorged" pastContinuousSingular="was disgorging" futureSingular="will disgorge" continuousSingular="is disgorging" perfectSingular="has disgorged" subjunctiveSingular="might disgorge"
+        presentPlural="disgorge" pastPlural="disgorged" pastContinuousPlural="were disgorging" futurePlural="will disgorge" continuousPlural="are disgorging" perfectPlural="have disgorged" subjunctivePlural="might disgorge"/>
+  <verb presentSingular="retrieves" pastSingular="retrieved" pastContinuousSingular="was retrieving" futureSingular="will retrieve" continuousSingular="is retrieving" perfectSingular="has retrieved" subjunctiveSingular="might retrieve"
+        presentPlural="retrieve" pastPlural="retrieved" pastContinuousPlural="were retrieving" futurePlural="will retrieve" continuousPlural="are retrieving" perfectPlural="have retrieved" subjunctivePlural="might retrieve"/>
+  <verb presentSingular="packages" pastSingular="packaged" pastContinuousSingular="was packaging" futureSingular="will package" continuousSingular="is packaging" perfectSingular="has packaged" subjunctiveSingular="might package"
+        presentPlural="package" pastPlural="packaged" pastContinuousPlural="were packaging" futurePlural="will package" continuousPlural="are packaging" perfectPlural="have packaged" subjunctivePlural="might package"/>
 </dictionary>
