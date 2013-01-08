@@ -105,13 +105,13 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             if (!quiet)
             {
                 Console.WriteLine("Dictionary contains {0:N0} words (loaded in {1:N2}ms)", generator.Dictionary.Count, dictSw.Elapsed.TotalMilliseconds);
-                double combinations;
+                PhraseCombinations combinations;
                 if (strength != PhraseStrength.Custom)
                     combinations = generator.CalculateCombinations(strength);
                 else
                     combinations = generator.CalculateCombinations(phraseDescription);
-                var entropy = generator.CalculateEntropyBits(combinations);
-                Console.WriteLine("Total combinations ~{0:N0} representing {1:N2} bits of entropy", combinations, entropy);
+                Console.WriteLine("Average combinations ~{0:N0} representing ~{1:N2} bits of entropy", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
+                Console.WriteLine("Total combinations {0:N0} - {1:N0} representing {2:N2} - {3:N2} bits of entropy", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 Console.WriteLine();
             }
 

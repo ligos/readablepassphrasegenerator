@@ -82,6 +82,8 @@ namespace Test
 
             // Test load an alternate dictionary loader.
 
+            // Test the config form.
+            //TestConfigForm(generator);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
@@ -147,9 +149,10 @@ namespace Test
         {
             Console.WriteLine();
             Console.WriteLine("Combination count:");
-            foreach (var strength in new PhraseStrength[] { PhraseStrength.Normal, PhraseStrength.Strong, PhraseStrength.Insane })
+            foreach (var strength in new PhraseStrength[] { PhraseStrength.Normal, PhraseStrength.NormalEqual, PhraseStrength.Strong, PhraseStrength.StrongEqual, PhraseStrength.Insane, PhraseStrength.InsaneEqual })
             {
-                Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, generator.CalculateCombinations(strength), generator.CalculateEntropyBits(strength));
+                var combinations = generator.CalculateCombinations(strength);
+                Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
             }
 
         }

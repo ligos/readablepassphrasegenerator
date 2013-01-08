@@ -178,15 +178,19 @@ namespace KeePassReadablePassphrase
         private void UpdateCombinations(Config config)
         {
             var combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
-            if (combinations >= 0)
+            if (combinations.Shortest >= 0)
             {
-                this.txtCombinations.Text = combinations.ToString("N0");
-                this.txtEntropy.Text = this._Generator.CalculateEntropyBits(combinations).ToString("N2") + " bits";
+                this.txtCombinationRange.Text = combinations.Shortest.ToString("E3") + " ‐ " + combinations.Longest.ToString("E3");
+                this.txtEntropyRange.Text = combinations.ShortestAsEntropyBits.ToString("N2") + " ‐ " + combinations.LongestAsEntropyBits.ToString("N2");
+                this.txtCombinationAverage.Text = combinations.OptionalAverage.ToString("N0");
+                this.txtEntropyAverage.Text = combinations.OptionalAverageAsEntropyBits.ToString("N2");
             }
             else
             {
-                this.txtCombinations.Text = "?";
-                this.txtEntropy.Text = "?";
+                this.txtCombinationRange.Text = "?";
+                this.txtEntropyRange.Text = "?";
+                this.txtCombinationAverage.Text = "?";
+                this.txtEntropyAverage.Text = "?";
             }
         }
         private void UpdateDictionarySize(Config config)

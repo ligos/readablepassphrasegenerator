@@ -159,64 +159,25 @@ namespace MurrayGrant.ReadablePassphrase
         }
         #endregion
 
-        #region CalculateCombinations and Entropy
+        #region CalculateCombinations
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase strength.
         /// </summary>
-        /// <returns>The number of combinations (an integer) as a double (to allow for greater than Int64 combinations)</returns>
-        /// <remarks>
-        /// This number is a theoretical upper bound assuming no duplicate words in the dictionary.
-        /// </remarks>
-        public double CalculateCombinations(PhraseStrength strength)
+        public PhraseCombinations CalculateCombinations(PhraseStrength strength)
         {
             return this.CalculateCombinations(Clause.CreatePhraseDescription(strength));
         }
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase description.
         /// </summary>
-        /// <returns>The number of combinations (an integer) as a double (to allow for greater than Int64 combinations)</returns>
-        /// <remarks>
-        /// This number is a theoretical upper bound assuming no duplicate words in the dictionary.
-        /// </remarks>
-        public double CalculateCombinations(IEnumerable<Clause> phraseDescription)
+        public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription)
         {
             // Multiply all the combinations together.
             if (phraseDescription == null || !phraseDescription.Any())
-                return -1;
+                return PhraseCombinations.Zero;
             return phraseDescription
                     .Select(x => x.CountCombinations(this.Dictionary))
                     .Aggregate((accumulator, next) => accumulator * next);
-        }
-        /// <summary>
-        /// Calculates the number of bits of entropy based on the current dictionary and given phrase strength.
-        /// </summary>
-        /// <remarks>
-        /// This number is based on <c>CalculateCombinations()</c>.
-        /// </remarks>
-        public double CalculateEntropyBits(PhraseStrength strength)
-        {
-            return this.CalculateEntropyBits(Clause.CreatePhraseDescription(strength));
-        }
-        /// <summary>
-        /// Calculates the number of bits of entropy based on the current dictionary and given phrase description.
-        /// </summary>
-        /// <remarks>
-        /// This number is based on <c>CalculateCombinations()</c>.
-        /// </remarks>
-        public double CalculateEntropyBits(IEnumerable<Clause> phraseDescription)
-        {
-            var combinations = this.CalculateCombinations(phraseDescription);
-            return this.CalculateEntropyBits(combinations);
-        }
-        /// <summary>
-        /// Calculates the number of bits of entropy based on the number of combinations.
-        /// </summary>
-        /// <param name="combinations">As returned from <c>CalculateCombinations()</c>.</param>
-        public double CalculateEntropyBits(double combinations)
-        {
-            if (combinations <= 0)
-                return -1;
-            return Math.Log(combinations, 2);
         }
         #endregion
 

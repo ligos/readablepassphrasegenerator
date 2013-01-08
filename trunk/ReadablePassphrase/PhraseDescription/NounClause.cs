@@ -107,54 +107,39 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
 
 
-        public override double CountCombinations(WordDictionary dictionary)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
-            double result = 1;
+            var result = PhraseCombinations.One;
 
             // Prepositions.
-            double factor = 0;
-            if (this.PrepositionFactor > 0)
-                factor += dictionary.CountOf<Words.Preposition>();
-            if (this.NoPrepositionFactor > 0 && this.PrepositionFactor > 0)
-                factor += 1;
-            if (factor > 0)
-                result *= factor;
+            result *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
 
             // Adjectives.
-            factor = 0;
-            if (this.AdjectiveFactor > 0)
-                factor += dictionary.CountOf<Words.Adjective>();
-            if (this.NoAdjectiveFactor > 0 && this.AdjectiveFactor > 0)
-                factor += 1;
-            if (factor > 0)
-                result *= factor;
+            result *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
 
             // Plural / Singular.
-            factor = 0;
+            double factor = 0;
             if (this.PluralityFactor > 0)
                 factor += 1;
             if (this.SingularityFactor > 0)
                 factor += 1;
             if (factor > 0)
-                result *= factor;
+                result *= new PhraseCombinations(factor, factor, factor);
 
             // Article / demonstrative / pronoun.
-            factor = 0;
+            int count = 0;
             if (this.DefiniteArticleFactor > 0)
-                factor += dictionary.CountOf<Words.Article>();
+                count += dictionary.CountOf<Words.Article>();
             if (this.IndefiniteArticleFactor > 0)
-                factor += dictionary.CountOf<Words.Article>();
+                count += dictionary.CountOf<Words.Article>();
             if (this.DemonstractiveFactor > 0)
-                factor += dictionary.CountOf<Words.Demonstrative>();
+                count += dictionary.CountOf<Words.Demonstrative>();
             if (this.PersonalPronounFactor > 0)
-                factor += dictionary.CountOf<Words.PersonalPronoun>();
-            if (this.NoArticleFactor > 0 && factor > 1)     // Cheat's way of checking if any of the other factors are present or if articles are just turned completely off.
-                factor += 1;
-            if (factor > 0)
-                result *= factor;
+                count += dictionary.CountOf<Words.PersonalPronoun>();
+            result *= this.CountSingleFactor(this.DefiniteArticleFactor + this.IndefiniteArticleFactor + this.DemonstractiveFactor + this.PersonalPronounFactor, this.NoArticleFactor, count);
 
             // Finally, the noun itself!
-            result *= dictionary.CountOf<Words.Noun>();
+            result *= this.CountSingleFactor<Words.Noun>(dictionary, 1, 0);
 
             return result;
         }

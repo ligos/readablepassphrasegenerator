@@ -216,46 +216,42 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             }
         }
 
-        public override double CountCombinations(WordDictionary dictionary)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
-            double result = 1;
+            var result = PhraseCombinations.One;
 
             // Adverbs.
-            double factor = 0;
-            if (this.AdverbFactor > 0)
-                factor += dictionary.CountOf<Words.Adverb>();
-            if (this.NoAdverbFactor > 0 && this.AdverbFactor > 0)
-                factor += 1;
-            if (factor > 0)
-                result *= factor;
+            result *= this.CountSingleFactor<Words.Adverb>(dictionary, this.AdverbFactor, this.NoAdverbFactor);
 
             // Tense form.
-            factor = 0;
-            foreach (var t in this._TenseData.Where(t => t.Property() > 0))
-                factor += 1;
-            // Interrogatives are handled as another tense form, because they restrict verb forms to present singular.
-            if (this.InterrogativeFactor > 0)
-                factor += 1;
-            if (factor > 0)     // This handles the case where no tense is selected (although this really makes no sense).
-                result *= factor;
+            double shortest = 1, longest = 1, average = 1;
+            shortest = this._TenseData.Where(t => t.Property() > 0).Select(x => 1.0).Sum();
+            longest = shortest + (this.InterrogativeFactor > 0 ? 1.0 : 0.0);
+            longest = longest + (this.InterrogativeFactor > 0 && this.NoInterrogativeFactor > 0 ? 1.0 : 0.0);
+            average = longest + (1.0 * (1.0 - ((double)this.NoInterrogativeFactor / (double)(this.InterrogativeFactor + this.NoInterrogativeFactor))));
+            result *= new PhraseCombinations(shortest, longest, average);
 
             
             // And the verbs themselves. (This assumes a verb will always be added).
+            var allVerbCount = dictionary.CountOf<Words.Verb>();
+            var transitiveVerbCount = dictionary.CountOf<Words.Verb>(v => v.IsTransitive);
+            var intransitiveVerbCount = dictionary.CountOf<Words.Verb>(v => !v.IsTransitive);
             if (IntransitiveByPrepositionFactor == 0 && IntransitiveByNoNounClauseFactor == 0)
                 // Handling intransitive problems by only choosing from transitive verbs!
-                result *= dictionary.CountOf<Words.Verb>(v => v.IsTransitive);
-            else
-                result *= dictionary.CountOf<Words.Verb>();
+                result *= new PhraseCombinations(transitiveVerbCount, transitiveVerbCount, transitiveVerbCount);
+            else 
+                result *= new PhraseCombinations(allVerbCount, allVerbCount, allVerbCount);
+
 
             // If we're handling intransitives by adding a preposition, count prepositions!
+            var prepositionCountFraction = dictionary.CountOf<Words.Preposition>()                             
+                // But only increase by the fraction of verbs which are intransitive.
+                            * ((double)allVerbCount / (double)intransitiveVerbCount);
             if (IntransitiveByPrepositionFactor > 0)
-                result *= dictionary.CountOf<Words.Preposition>()
-                            // But only increase by the fraction of verbs which are intransitive.
-                            * ((double)dictionary.CountOf<Words.Verb>() / (double)dictionary.CountOf<Words.Verb>(v => !v.IsTransitive));
+                result *= new PhraseCombinations(prepositionCountFraction, prepositionCountFraction, prepositionCountFraction);
 
             // The count of interrogative forms.
-            if (this.InterrogativeFactor > 0)
-                result *= dictionary.CountOf<Interrogative>();
+            result *= this.CountSingleFactor<Interrogative>(dictionary, this.InterrogativeFactor, this.NoInterrogativeFactor);
 
             return result;
         }

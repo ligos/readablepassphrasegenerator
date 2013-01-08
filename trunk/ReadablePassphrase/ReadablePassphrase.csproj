@@ -80,6 +80,7 @@
     <Compile Include="MaterialisedWords\PersonalPronoun.cs" />
     <Compile Include="MaterialisedWords\Preposition.cs" />
     <Compile Include="MaterialisedWords\Verb.cs" />
+    <Compile Include="PhraseCombinations.cs" />
     <Compile Include="PhraseDescription\Clause.cs" />
     <Compile Include="PhraseDescription\NounClause.cs" />
     <Compile Include="PhraseDescription\PhraseDescriptionParseException.cs" />

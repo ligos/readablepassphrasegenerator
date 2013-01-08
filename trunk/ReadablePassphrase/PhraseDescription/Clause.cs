@@ -48,7 +48,37 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         /// <summary>
         /// Counts the total unique combinations possible for this clause based on dictionary word counts and the clause's configuration.
         /// </summary>
-        public abstract double CountCombinations(WordDictionary dictionary);
+        public abstract PhraseCombinations CountCombinations(WordDictionary dictionary);
+
+        protected PhraseCombinations CountSingleFactor<T>(WordDictionary dictionary, int factor, int optionalFactor) where T : Words.Word
+        {
+            var count = dictionary.CountOf<T>();
+            return this.CountSingleFactor(factor, optionalFactor, count);
+        }
+        protected PhraseCombinations CountSingleFactor(int factor, int optionalFactor, int count)
+        {
+            double shortResult = 1, longResult = 1, optionalAverage = 1;
+
+            var isPresent = factor > 0;
+            var isOptional = optionalFactor > 0;
+            if (isPresent && count > 0)
+            {
+                if (isOptional)
+                {
+                    longResult *= count + 1;     // Plus the optional possiblility.
+                    optionalAverage *= count * (1.0 - ((double)optionalFactor / (double)(factor + optionalFactor)));
+                }
+                else
+                {
+                    shortResult *= count;
+                    longResult *= count;
+                    optionalAverage = count;
+                }
+            }
+
+            return new PhraseCombinations(shortResult, longResult, optionalAverage);
+        }
+
 
         public String ToTextString()
         {
