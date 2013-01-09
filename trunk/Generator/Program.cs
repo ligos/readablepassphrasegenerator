@@ -36,8 +36,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static bool quiet = false;
         static IEnumerable<Clause> phraseDescription = new Clause[] { };
         static int maxLength = Int32.MaxValue;
+        static int minLength = 1;
 
-        static readonly int MaxAttemptsPerCount = 500;
+        static readonly int MaxAttemptsPerCount = 1000;
 
         static void Main(string[] args)
         {
@@ -73,7 +74,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             else if (!quiet && !String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
             if (maxLength < Int32.MaxValue)
-                Console.WriteLine("(Maximum length {0:N0} characters)", maxLength);
+                Console.WriteLine("Must be between {0:N0} and {1} characters.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N2"));
 
             var generator = new ReadablePassphraseGenerator();
 
@@ -134,7 +135,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     phrase = generator.Generate(strength, includeSpaces);
                 else
                     phrase = generator.Generate(phraseDescription, includeSpaces);
-                if (phrase.Length < maxLength)
+                if (phrase.Length >= minLength && phrase.Length <= maxLength)
                 {
                     Console.WriteLine(phrase);
                     generated++;
@@ -150,7 +151,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine();
                 Console.WriteLine("Generated {0:N0} phrase(s) in {1:N2}ms.", generated, genSw.Elapsed.TotalMilliseconds);
                 if (attempts >= maxAttempts)
-                    Console.WriteLine("But unable to generate requested {0:N0} phrase(s) after {1:N0} attempts." + Environment.NewLine + "Perhaps try decreasing the maximum phrase length.", count, attempts);
+                    Console.WriteLine("But unable to generate requested {0:N0} phrase(s) after {1:N0} attempts." + Environment.NewLine + "Perhaps try changing the minimum or maximum phrase length.", count, attempts);
             }
         }
 
@@ -242,7 +243,16 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     }
                     i++;
                 }
-                else if (arg == "m" || arg == "max")
+                else if (arg == "min")
+                {
+                    if (!Int32.TryParse(args[i + 1].Trim(), out minLength))
+                    {
+                        Console.WriteLine("Unable to parse number '{0}' for 'min' option.", args[i + 1]);
+                        return false;
+                    }
+                    i++;
+                }
+                else if (arg == "max")
                 {
                     if (!Int32.TryParse(args[i + 1].Trim(), out maxLength))
                     {
@@ -283,7 +293,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -d --dict str         Specifies a custom dictionary file");
             Console.WriteLine("  -p --phrase path      Specifies a custom phrase file ");
             Console.WriteLine("                          Must use -strength custom ");
-            Console.WriteLine("  -m --max xxx          Specifies a maximum length for phrases");
+            Console.WriteLine("  --min xxx             Specifies a minimum length for phrases");
+            Console.WriteLine("  --max xxx             Specifies a maximum length for phrases");
             Console.WriteLine("  -q --quiet            Does not display any status messages (default: show) ");
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.CodeplexHomepage);
