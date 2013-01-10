@@ -149,10 +149,15 @@ namespace Test
         {
             Console.WriteLine();
             Console.WriteLine("Combination count:");
-            foreach (var strength in new PhraseStrength[] { PhraseStrength.Normal, PhraseStrength.NormalEqual, PhraseStrength.Strong, PhraseStrength.StrongEqual, PhraseStrength.Insane, PhraseStrength.InsaneEqual })
+            var predefined = new PhraseStrength[] { PhraseStrength.Normal, PhraseStrength.NormalEqual, PhraseStrength.NormalRequired, PhraseStrength.Strong, PhraseStrength.StrongEqual, PhraseStrength.StrongRequired, PhraseStrength.Insane, PhraseStrength.InsaneEqual, PhraseStrength.InsaneRequired };
+
+            for (int i = 0; i < predefined.Length; i++)
             {
+                var strength = predefined[i];
                 var combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
+                if ((i+1) % 3 == 0)
+                    Console.WriteLine();
             }
 
         }

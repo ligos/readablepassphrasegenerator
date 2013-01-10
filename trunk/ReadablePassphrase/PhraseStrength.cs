@@ -29,10 +29,13 @@ namespace MurrayGrant.ReadablePassphrase
     {
         Normal,
         NormalEqual,
+        NormalRequired,
         Strong,
         StrongEqual,
+        StrongRequired,
         Insane,
         InsaneEqual,
+        InsaneRequired,
         Custom
     }
 }

@@ -285,7 +285,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("Usage: PassphraseGenerator.exe [options]");
             Console.WriteLine("  -c --count nnn        Generates nnn phrases (default: 1)");
             Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: normal)");
-            Console.WriteLine("                xxx =     [normal|strong|insane][equal] or 'custom'");
+            Console.WriteLine("                xxx =     [normal|strong|insane][equal|required] or 'custom'");
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
             Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
             Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");
