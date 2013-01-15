@@ -2284,4 +2284,70 @@ limitations under the License.
   <noun singular="misprint" plural="misprints"/>
   <noun singular="angle" plural="angles"/>
   <noun singular="ember" plural="embers"/>
+  <noun singular="LED" plural="LEDs"/>
+  <noun singular="staff" plural="staff"/>
+  <noun singular="current" plural="currents"/>
+  <noun singular="tightwad" plural="tightwads"/>
+  <noun singular="seventy" plural="seventies"/>
+  <noun singular="stone" plural="stones"/>
+  <noun singular="sampan" plural="sampans"/>
+  <noun singular="cafe" plural="cafes"/>
+  <noun singular="cafeteria" plural="cafeterias"/>
+  <noun singular="sketch" plural="sketches"/>
+  <noun singular="chaplain" plural="chaplains"/>
+  <noun singular="synonym" plural="synonyms"/>
+  <noun singular="hand" plural="hands"/>
+  <noun plural="flack"/>
+  <noun singular="tithe" plural="tithes"/>
+  <noun singular="gas" plural="gases"/>
+  <noun singular="teargas" plural="teargases"/>
+  <noun singular="alliance" plural="alliances"/>
+  <noun singular="bound" plural="bounds"/>
+  <noun singular="bathmat" plural="bathmats"/>
+  <noun singular="oracle" plural="oracles"/>
+  <noun singular="section" plural="sections"/>
+  <noun singular="ant" plural="ants"/>
+  <noun singular="dollop" plural="dollops"/>
+  <noun singular="defect" plural="defects"/>
+  <noun singular="defector" plural="defectors"/>
+  <noun singular="halfback" plural="halfbacks"/>
+  <noun singular="router" plural="routers"/>
+  <noun singular="lodge" plural="lodges"/>
+  <noun singular="forearm" plural="forearms"/>
+  <noun singular="raid" plural="raids"/>
+  <noun singular="insurer" plural="insurers"/>
+  <noun singular="peeper" plural="peepers"/>
+  <noun singular="comet" plural="comets"/>
+  <noun singular="condition" plural="conditions"/>
+  <noun singular="dolt" plural="dolts"/>
+  <noun singular="singer" plural="singers"/>
+  <noun singular="weld" plural="welds"/>
+  <noun singular="domino" plural="dominos"/>
+  <noun singular="kiss" plural="kisses"/>
+  <noun singular="label" plural="labels"/>
+  <noun singular="model" plural="models"/>
+  <noun singular="pilaf" plural="pilafs"/>
+  <noun singular="brawl" plural="brawls"/>
+  <noun singular="pulsar" plural="pulsars"/>
+  <noun singular="wreck" plural="wrecks"/>
+  <noun singular="stake" plural="stakes"/>
+  <noun singular="stakeout" plural="stakeouts"/>
+  <noun singular="colony" plural="colonies"/>
+  <noun singular="scarab" plural="scarabs"/>
+  <noun singular="crystal" plural="crystals"/>
+  <noun singular="scone" plural="scones"/>
+  <noun singular="opponent" plural="opponents"/>
+  <noun singular="elitist" plural="elitists"/>
+  <noun singular="clot" plural="clots"/>
+  <noun singular="rule" plural="rules"/>
+  <noun singular="ruler" plural="rulers"/>
+  <noun singular="circus" plural="circuses"/>
+  <noun singular="flute" plural="flutes"/>
+  <noun singular="factor" plural="factors"/>
+  <noun singular="theist" plural="theists"/>
+  <noun singular="dawn" plural="dawns"/>
+  <noun singular="scotch" plural="bottles of scotch"/>
+  <noun singular="carp" plural="carps"/>
+  <noun singular="boot" plural="boots"/>
+  <noun singular="kebab" plural="kebabs"/>
 </dictionary>
