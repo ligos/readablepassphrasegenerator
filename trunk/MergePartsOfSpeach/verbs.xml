@@ -3355,4 +3355,64 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="rues" pastSingular="rued" pastContinuousSingular="was ruing" futureSingular="will rue" continuousSingular="is ruing" perfectSingular="has rued" subjunctiveSingular="might rue"
         presentPlural="rue" pastPlural="rued" pastContinuousPlural="were ruing" futurePlural="will rue" continuousPlural="are ruing" perfectPlural="have rued" subjunctivePlural="might rue"/>
+  <verb presentSingular="tinkers" pastSingular="tinkered" pastContinuousSingular="was tinkering" futureSingular="will tinker" continuousSingular="is tinkering" perfectSingular="has tinkered" subjunctiveSingular="might tinker"
+        presentPlural="tinker" pastPlural="tinkered" pastContinuousPlural="were tinkering" futurePlural="will tinker" continuousPlural="are tinkering" perfectPlural="have tinkered" subjunctivePlural="might tinker"
+        transitive="false"/>
+  <verb presentSingular="deranges" pastSingular="deranged" pastContinuousSingular="was deranging" futureSingular="will derange" continuousSingular="is deranging" perfectSingular="has deranged" subjunctiveSingular="might derange"
+        presentPlural="derange" pastPlural="deranged" pastContinuousPlural="were deranging" futurePlural="will derange" continuousPlural="are deranging" perfectPlural="have deranged" subjunctivePlural="might derange"/>
+  <verb presentSingular="pastes" pastSingular="pasted" pastContinuousSingular="was pasting" futureSingular="will paste" continuousSingular="is pasting" perfectSingular="has pasted" subjunctiveSingular="might paste"
+        presentPlural="paste" pastPlural="pasted" pastContinuousPlural="were pasting" futurePlural="will paste" continuousPlural="are pasting" perfectPlural="have pasted" subjunctivePlural="might paste"/>
+  <verb presentSingular="preps" pastSingular="preped" pastContinuousSingular="was preping" futureSingular="will prep" continuousSingular="is preping" perfectSingular="has preped" subjunctiveSingular="might prep"
+        presentPlural="prep" pastPlural="preped" pastContinuousPlural="were preping" futurePlural="will prep" continuousPlural="are preping" perfectPlural="have preped" subjunctivePlural="might prep"/>
+  <verb presentSingular="bottles" pastSingular="bottled" pastContinuousSingular="was bottling" futureSingular="will bottle" continuousSingular="is bottling" perfectSingular="has bottled" subjunctiveSingular="might bottle"
+        presentPlural="bottle" pastPlural="bottled" pastContinuousPlural="were bottling" futurePlural="will bottle" continuousPlural="are bottling" perfectPlural="have bottled" subjunctivePlural="might bottle"/>
+  <verb presentSingular="leases" pastSingular="leased" pastContinuousSingular="was leasing" futureSingular="will lease" continuousSingular="is leasing" perfectSingular="has leased" subjunctiveSingular="might lease"
+        presentPlural="lease" pastPlural="leased" pastContinuousPlural="were leasing" futurePlural="will lease" continuousPlural="are leasing" perfectPlural="have leased" subjunctivePlural="might lease"/>
+  <verb presentSingular="scars" pastSingular="scarred" pastContinuousSingular="was scarring" futureSingular="will scar" continuousSingular="is scarring" perfectSingular="has scarred" subjunctiveSingular="might scar"
+        presentPlural="scar" pastPlural="scarred" pastContinuousPlural="were scarring" futurePlural="will scar" continuousPlural="are scarring" perfectPlural="have scarred" subjunctivePlural="might scar"/>
+  <verb presentSingular="divulges" pastSingular="divulged" pastContinuousSingular="was divulging" futureSingular="will divulge" continuousSingular="is divulging" perfectSingular="has divulged" subjunctiveSingular="might divulge"
+        presentPlural="divulge" pastPlural="divulged" pastContinuousPlural="were divulging" futurePlural="will divulge" continuousPlural="are divulging" perfectPlural="have divulged" subjunctivePlural="might divulge"
+        transitive="false"/>
+  <verb presentSingular="unties" pastSingular="untied" pastContinuousSingular="was untying" futureSingular="will untie" continuousSingular="is untying" perfectSingular="has untied" subjunctiveSingular="might untie"
+        presentPlural="untie" pastPlural="untied" pastContinuousPlural="were untying" futurePlural="will untie" continuousPlural="are untying" perfectPlural="have untied" subjunctivePlural="might untie"/>
+  <verb presentSingular="skylarks" pastSingular="skylarked" pastContinuousSingular="was skylarking" futureSingular="will skylark" continuousSingular="is skylarking" perfectSingular="has skylarked" subjunctiveSingular="might skylark"
+        presentPlural="skylark" pastPlural="skylarked" pastContinuousPlural="were skylarking" futurePlural="will skylark" continuousPlural="are skylarking" perfectPlural="have skylarked" subjunctivePlural="might skylark"
+        transitive="false"/>
+  <verb presentSingular="abets" pastSingular="abetted" pastContinuousSingular="was abetting" futureSingular="will abet" continuousSingular="is abetting" perfectSingular="has abetted" subjunctiveSingular="might abet"
+        presentPlural="abet" pastPlural="abetted" pastContinuousPlural="were abetting" futurePlural="will abet" continuousPlural="are abetting" perfectPlural="have abetted" subjunctivePlural="might abet"/>
+  <verb presentSingular="hamstrings" pastSingular="hamstrung" pastContinuousSingular="was hamstringing" futureSingular="will hamstring" continuousSingular="is hamstringing" perfectSingular="has hamstrung" subjunctiveSingular="might hamstring"
+        presentPlural="hamstring" pastPlural="hamstrung" pastContinuousPlural="were hamstringing" futurePlural="will hamstring" continuousPlural="are hamstringing" perfectPlural="have hamstrung" subjunctivePlural="might hamstring"/>
+  <verb presentSingular="spools" pastSingular="spooled" pastContinuousSingular="was spooling" futureSingular="will spool" continuousSingular="is spooling" perfectSingular="has spooled" subjunctiveSingular="might spool"
+        presentPlural="spool" pastPlural="spooled" pastContinuousPlural="were spooling" futurePlural="will spool" continuousPlural="are spooling" perfectPlural="have spooled" subjunctivePlural="might spool"/>
+  <verb presentSingular="constructs" pastSingular="constructed" pastContinuousSingular="was constructing" futureSingular="will construct" continuousSingular="is constructing" perfectSingular="has constructed" subjunctiveSingular="might construct"
+        presentPlural="construct" pastPlural="constructed" pastContinuousPlural="were constructing" futurePlural="will construct" continuousPlural="are constructing" perfectPlural="have constructed" subjunctivePlural="might construct"/>
+  <verb presentSingular="reelects" pastSingular="reelected" pastContinuousSingular="was reelecting" futureSingular="will reelect" continuousSingular="is reelecting" perfectSingular="has reelected" subjunctiveSingular="might reelect"
+        presentPlural="reelect" pastPlural="reelected" pastContinuousPlural="were reelecting" futurePlural="will reelect" continuousPlural="are reelecting" perfectPlural="have reelected" subjunctivePlural="might reelect"/>
+  <verb presentSingular="chops" pastSingular="chopped" pastContinuousSingular="was chopping" futureSingular="will chop" continuousSingular="is chopping" perfectSingular="has chopped" subjunctiveSingular="might chop"
+        presentPlural="chop" pastPlural="chopped" pastContinuousPlural="were chopping" futurePlural="will chop" continuousPlural="are chopping" perfectPlural="have chopped" subjunctivePlural="might chop"/>
+  <verb presentSingular="relieves" pastSingular="relieved" pastContinuousSingular="was relieving" futureSingular="will relieve" continuousSingular="is relieving" perfectSingular="has relieved" subjunctiveSingular="might relieve"
+        presentPlural="relieve" pastPlural="relieved" pastContinuousPlural="were relieving" futurePlural="will relieve" continuousPlural="are relieving" perfectPlural="have relieved" subjunctivePlural="might relieve"/>
+  <verb presentSingular="presents" pastSingular="presented" pastContinuousSingular="was presenting" futureSingular="will present" continuousSingular="is presenting" perfectSingular="has presented" subjunctiveSingular="might present"
+        presentPlural="present" pastPlural="presented" pastContinuousPlural="were presenting" futurePlural="will present" continuousPlural="are presenting" perfectPlural="have presented" subjunctivePlural="might present"/>
+  <verb presentSingular="strips" pastSingular="stripped" pastContinuousSingular="was stripping" futureSingular="will strip" continuousSingular="is stripping" perfectSingular="has stripped" subjunctiveSingular="might strip"
+        presentPlural="strip" pastPlural="stripped" pastContinuousPlural="were stripping" futurePlural="will strip" continuousPlural="are stripping" perfectPlural="have stripped" subjunctivePlural="might strip"/>
+  <verb presentSingular="crunches" pastSingular="crunched" pastContinuousSingular="was crunching" futureSingular="will crunch" continuousSingular="is crunching" perfectSingular="has crunched" subjunctiveSingular="might crunch"
+        presentPlural="crunch" pastPlural="crunched" pastContinuousPlural="were crunching" futurePlural="will crunch" continuousPlural="are crunching" perfectPlural="have crunched" subjunctivePlural="might crunch"/>
+  <verb presentSingular="roosts" pastSingular="roosted" pastContinuousSingular="was roosting" futureSingular="will roost" continuousSingular="is roosting" perfectSingular="has roosted" subjunctiveSingular="might roost"
+        presentPlural="roost" pastPlural="roosted" pastContinuousPlural="were roosting" futurePlural="will roost" continuousPlural="are roosting" perfectPlural="have roosted" subjunctivePlural="might roost"
+        transitive="false"/>
+  <verb presentSingular="values" pastSingular="valued" pastContinuousSingular="was valuing" futureSingular="will value" continuousSingular="is valuing" perfectSingular="has valued" subjunctiveSingular="might value"
+        presentPlural="value" pastPlural="valued" pastContinuousPlural="were valuing" futurePlural="will value" continuousPlural="are valuing" perfectPlural="have valued" subjunctivePlural="might value"/>
+  <verb presentSingular="forces" pastSingular="forced" pastContinuousSingular="was forcing" futureSingular="will force" continuousSingular="is forcing" perfectSingular="has forced" subjunctiveSingular="might force"
+        presentPlural="force" pastPlural="forced" pastContinuousPlural="were forcing" futurePlural="will force" continuousPlural="are forcing" perfectPlural="have forced" subjunctivePlural="might force"/>
+  <verb presentSingular="grits" pastSingular="gritted" pastContinuousSingular="was gritting" futureSingular="will grit" continuousSingular="is griting" perfectSingular="has gritted" subjunctiveSingular="might grit"
+        presentPlural="grit" pastPlural="gritted" pastContinuousPlural="were gritting" futurePlural="will grit" continuousPlural="are griting" perfectPlural="have gritted" subjunctivePlural="might grit"/>
+  <verb presentSingular="awes" pastSingular="awed" pastContinuousSingular="was awing" futureSingular="will awe" continuousSingular="is awing" perfectSingular="has awed" subjunctiveSingular="might awe"
+        presentPlural="awe" pastPlural="awed" pastContinuousPlural="were awing" futurePlural="will awe" continuousPlural="are awing" perfectPlural="have awed" subjunctivePlural="might awe"/>
+  <verb presentSingular="sprays" pastSingular="sprayed" pastContinuousSingular="was spraying" futureSingular="will spray" continuousSingular="is spraying" perfectSingular="has sprayed" subjunctiveSingular="might spray"
+        presentPlural="spray" pastPlural="sprayed" pastContinuousPlural="were spraying" futurePlural="will spray" continuousPlural="are spraying" perfectPlural="have sprayed" subjunctivePlural="might spray"/>
+  <verb presentSingular="shushes" pastSingular="shushed" pastContinuousSingular="was shushing" futureSingular="will shush" continuousSingular="is shushing" perfectSingular="has shushed" subjunctiveSingular="might shush"
+        presentPlural="shush" pastPlural="shushed" pastContinuousPlural="were shushing" futurePlural="will shush" continuousPlural="are shushing" perfectPlural="have shushed" subjunctivePlural="might shush"/>
+  <verb presentSingular="befriends" pastSingular="befriended" pastContinuousSingular="was befriending" futureSingular="will befriend" continuousSingular="is befriending" perfectSingular="has befriended" subjunctiveSingular="might befriend"
+        presentPlural="befriend" pastPlural="befriended" pastContinuousPlural="were befriending" futurePlural="will befriend" continuousPlural="are befriending" perfectPlural="have befriended" subjunctivePlural="might befriend"/>
 </dictionary>
