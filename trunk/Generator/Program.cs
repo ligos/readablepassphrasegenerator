@@ -74,7 +74,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             else if (!quiet && !String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
             if (maxLength < Int32.MaxValue)
-                Console.WriteLine("Must be between {0:N0} and {1} characters.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N2"));
+                Console.WriteLine("Must be between {0:N0} and {1:N0} characters.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N2"));
 
             var generator = new ReadablePassphraseGenerator();
 
