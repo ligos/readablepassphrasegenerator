@@ -40,6 +40,8 @@
             this.txtDictionarySize = new System.Windows.Forms.TextBox();
             this.txtCombinationRange = new System.Windows.Forms.TextBox();
             this.txtEntropyRange = new System.Windows.Forms.TextBox();
+            this.txtEntropyAverage = new System.Windows.Forms.TextBox();
+            this.txtCombinationAverage = new System.Windows.Forms.TextBox();
             this.lblPhraseDetail = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -59,9 +61,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.txtEntropyAverage = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCombinationAverage = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -174,6 +174,27 @@
             this.toolTip1.SetToolTip(this.txtEntropyRange, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
         "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
         "n KeePass.");
+            // 
+            // txtEntropyAverage
+            // 
+            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 148);
+            this.txtEntropyAverage.Name = "txtEntropyAverage";
+            this.txtEntropyAverage.ReadOnly = true;
+            this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
+            this.txtEntropyAverage.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.txtEntropyAverage, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
+        "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
+        "n KeePass.");
+            // 
+            // txtCombinationAverage
+            // 
+            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 148);
+            this.txtCombinationAverage.Name = "txtCombinationAverage";
+            this.txtCombinationAverage.ReadOnly = true;
+            this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
+            this.txtCombinationAverage.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.txtCombinationAverage, "The total combinations of words based on your selected dictionary and phrase stre" +
+        "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
             // lblPhraseDetail
             // 
@@ -356,17 +377,6 @@
             this.lblVersion.TabIndex = 23;
             this.lblVersion.Text = "lblVersion";
             // 
-            // txtEntropyAverage
-            // 
-            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 148);
-            this.txtEntropyAverage.Name = "txtEntropyAverage";
-            this.txtEntropyAverage.ReadOnly = true;
-            this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
-            this.txtEntropyAverage.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.txtEntropyAverage, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
-        "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
-        "n KeePass.");
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -376,24 +386,14 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Entropy:";
             // 
-            // txtCombinationAverage
-            // 
-            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 148);
-            this.txtCombinationAverage.Name = "txtCombinationAverage";
-            this.txtCombinationAverage.ReadOnly = true;
-            this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
-            this.txtCombinationAverage.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.txtCombinationAverage, "The total combinations of words based on your selected dictionary and phrase stre" +
-        "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 151);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 13);
+            this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 26;
-            this.label9.Text = "Avg Comb:";
+            this.label9.Text = "Avg Comb\'ns:";
             // 
             // ConfigRoot
             // 
