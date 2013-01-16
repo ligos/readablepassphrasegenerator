@@ -44,6 +44,7 @@ namespace KeePassReadablePassphrase
             this.txtDemonstratives.Text = this._Dictionary.CountOf<Demonstrative>().ToString("N0");
             this.txtTheArticle.Text = this._Dictionary.CountOf<Article>().ToString("N0");
             this.txtPersonalPronouns.Text = this._Dictionary.CountOf<PersonalPronoun>().ToString("N0");
+            this.txtInterrogatives.Text = this._Dictionary.CountOf<Interrogative>().ToString("N0");
 
             this.txtTotal.Text = (this._Dictionary.CountOf<Noun>()
                                  + this._Dictionary.CountOf<Verb>()
@@ -52,7 +53,9 @@ namespace KeePassReadablePassphrase
                                  + this._Dictionary.CountOf<Preposition>()
                                  + this._Dictionary.CountOf<Demonstrative>()
                                  + this._Dictionary.CountOf<Article>()
-                                 + this._Dictionary.CountOf<PersonalPronoun>()).ToString("N0");
+                                 + this._Dictionary.CountOf<PersonalPronoun>()
+                                 + this._Dictionary.CountOf<Interrogative>()
+                                 ).ToString("N0");
             this.txtReconciledTotal.Text = this._Dictionary.Count.ToString("N0");
         }
 
@@ -60,11 +63,5 @@ namespace KeePassReadablePassphrase
         {
             this.Close();
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }

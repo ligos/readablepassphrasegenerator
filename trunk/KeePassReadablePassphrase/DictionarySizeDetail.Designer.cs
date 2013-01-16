@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNouns = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.txtVerbs = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAdjectives = new System.Windows.Forms.TextBox();
@@ -50,6 +49,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtReconciledTotal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtInterrogatives = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -74,25 +75,13 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(64, 284);
+            this.btnOK.Location = new System.Drawing.Point(80, 314);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 10;
+            this.btnOK.TabIndex = 11;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(154, 284);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtVerbs
             // 
@@ -232,17 +221,17 @@
             this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(118, 228);
+            this.txtTotal.Location = new System.Drawing.Point(118, 262);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtTotal.TabIndex = 8;
+            this.txtTotal.TabIndex = 9;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 231);
+            this.label9.Location = new System.Drawing.Point(12, 265);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 27;
@@ -252,28 +241,48 @@
             // 
             this.txtReconciledTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReconciledTotal.Location = new System.Drawing.Point(118, 254);
+            this.txtReconciledTotal.Location = new System.Drawing.Point(118, 288);
             this.txtReconciledTotal.Name = "txtReconciledTotal";
             this.txtReconciledTotal.ReadOnly = true;
             this.txtReconciledTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtReconciledTotal.TabIndex = 9;
+            this.txtReconciledTotal.TabIndex = 10;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 257);
+            this.label10.Location = new System.Drawing.Point(12, 291);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 13);
             this.label10.TabIndex = 29;
             this.label10.Text = "Reconciled";
+            // 
+            // txtInterrogatives
+            // 
+            this.txtInterrogatives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInterrogatives.Location = new System.Drawing.Point(118, 228);
+            this.txtInterrogatives.Name = "txtInterrogatives";
+            this.txtInterrogatives.ReadOnly = true;
+            this.txtInterrogatives.Size = new System.Drawing.Size(100, 20);
+            this.txtInterrogatives.TabIndex = 8;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 231);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 13);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Interrogatives";
             // 
             // DictionarySizeDetail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(241, 319);
+            this.ClientSize = new System.Drawing.Size(241, 349);
+            this.Controls.Add(this.txtInterrogatives);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtReconciledTotal);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtTotal);
@@ -293,7 +302,6 @@
             this.Controls.Add(this.txtVerbs);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtNouns);
             this.Controls.Add(this.label1);
             this.Name = "DictionarySizeDetail";
@@ -309,7 +317,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNouns;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtVerbs;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAdjectives;
@@ -328,5 +335,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtReconciledTotal;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtInterrogatives;
+        private System.Windows.Forms.Label label11;
     }
 }
