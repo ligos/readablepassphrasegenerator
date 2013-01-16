@@ -247,7 +247,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                     new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 0, ContinuousPastFactor = 0, PerfectFactor = 0, SubjunctiveFactor = 0,
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
-                                        NoIntransitiveFactor = 0, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
                     new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,

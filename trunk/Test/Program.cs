@@ -46,6 +46,13 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
             BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
 
+            BenchmarkGeneration(generator, PhraseStrength.NormalEqual, 10);
+            BenchmarkGeneration(generator, PhraseStrength.NormalRequired, 10);
+            BenchmarkGeneration(generator, PhraseStrength.StrongEqual, 10);
+            BenchmarkGeneration(generator, PhraseStrength.StrongRequired, 10);
+            BenchmarkGeneration(generator, PhraseStrength.InsaneEqual, 10);
+            BenchmarkGeneration(generator, PhraseStrength.InsaneRequired, 10);
+
             //GenerateCustomSamples(new Clause[]
             //    {
             //        new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
