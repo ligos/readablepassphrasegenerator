@@ -53,6 +53,16 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.InsaneEqual, 10);
             BenchmarkGeneration(generator, PhraseStrength.InsaneRequired, 10);
 
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.Normal), 100000, "Normal.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.NormalEqual), 100000, "NormalEqual.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.NormalRequired), 100000, "NormalRequired.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.Strong), 100000, "Strong.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.StrongEqual), 100000, "StrongEqual.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.StrongRequired), 100000, "StrongRequired.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.Insane), 100000, "Insane.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.InsaneEqual), 100000, "InsaneEqual.csv");
+            //WriteStatisticsFor(generator, Clause.CreatePhraseDescription(PhraseStrength.InsaneRequired), 100000, "InsaneRequired.csv");
+
             //GenerateCustomSamples(new Clause[]
             //    {
             //        new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
@@ -283,6 +293,51 @@ namespace Test
             using (var frm = new KeePassReadablePassphrase.ConfigRoot(config, GetRandomness()))
             {
                 frm.ShowDialog();
+            }
+        }
+
+        private static void WriteStatisticsFor(ReadablePassphraseGenerator generator, IEnumerable<MurrayGrant.ReadablePassphrase.PhraseDescription.Clause> clause, int count, string filename)
+        {
+            Console.WriteLine("Writing statistics to '{0}'.", filename);
+
+            var wordHistogram = new Dictionary<int, int>();
+            var charHistogram = new Dictionary<int, int>();
+            var combinations = generator.CalculateCombinations(clause);
+            for (int i = 0; i < count; i++)
+            {
+                var phrase = generator.Generate(clause);
+                
+                if (!charHistogram.ContainsKey(phrase.Length))
+                    charHistogram.Add(phrase.Length, 0);
+                charHistogram[phrase.Length] = charHistogram[phrase.Length] + 1;
+                
+                var wordCount = phrase.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length;
+                if (!wordHistogram.ContainsKey(wordCount))
+                    wordHistogram.Add(wordCount, 0);
+                wordHistogram[wordCount] = wordHistogram[wordCount] + 1;
+            }
+
+            using (var writer = new System.IO.StreamWriter(filename, false, Encoding.UTF8))
+            {
+                writer.WriteLine("Word histogram");
+                for (int i = wordHistogram.Keys.Min(); i < wordHistogram.Keys.Max()+1; i++)
+                    writer.WriteLine("{0},{1}", i, wordHistogram.ContainsKey(i) ? wordHistogram[i] : 0);
+                writer.WriteLine();
+                
+                writer.WriteLine("Character histogram");
+                for (int i = charHistogram.Keys.Min(); i < charHistogram.Keys.Max()+1; i++)
+                    writer.WriteLine("{0},{1}", i, charHistogram.ContainsKey(i) ? charHistogram[i] : 0);
+                writer.WriteLine();
+                
+                writer.WriteLine("Combination counts");
+                writer.WriteLine("Min:,{0:E3},{1:N2}", combinations.Shortest, combinations.ShortestAsEntropyBits);
+                writer.WriteLine("Max:,{0:E3},{1:N2}", combinations.Longest, combinations.LongestAsEntropyBits);
+                writer.WriteLine("Avg:,{0:E3},{1:N2}", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
+
+                writer.WriteLine();
+                writer.WriteLine("Samples:");
+                for (int i = 0; i < 10; i++)
+                    writer.WriteLine(generator.Generate(clause));
             }
         }
 
