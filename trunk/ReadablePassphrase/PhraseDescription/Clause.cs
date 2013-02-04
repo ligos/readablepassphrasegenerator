@@ -200,6 +200,17 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 throw new ArgumentException(string.Format("Unsupported default PhraseStrength '{0}'. To use Custom, create an IEnumerable<Clause>.", strength), "strength");
             return PredefinedPhraseDescriptions[strength];
         }
+        /// <summary>
+        /// Returns phrase description at random.
+        /// </summary>
+        public static IEnumerable<Clause> CreatePhraseDescription(Random.RandomSourceBase randomness)
+        {
+            var keys = PredefinedPhraseDescriptions.Keys.ToList();
+            var choise = randomness.Next(keys.Count);
+            var result = CreatePhraseDescription(keys[choise]);
+            return result;
+        }
+
         public static IEnumerable<Clause> CreatePhraseDescriptionForNormal()
         {
             return new List<Clause>()

@@ -29,14 +29,15 @@ namespace Test
         static void Main(string[] args)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            var generator = new ReadablePassphraseGenerator(GetRandomness());
+            var randomness = GetRandomness();
+            var generator = new ReadablePassphraseGenerator(randomness);
             var loader = new ExplicitXmlDictionaryLoader();
             var dict = loader.LoadFrom();
             generator.SetDictionary(dict);
             sw.Stop();
-            Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds); 
+            Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
 
-            GenerateSamples(PhraseStrength.Strong, generator);
+            GenerateSamples(randomness, generator);
             DictionaryCheck(generator);
             CombinationCount(generator);
 
@@ -138,6 +139,20 @@ namespace Test
             }
         }
 
+        private static void GenerateSamples(RandomSourceBase randomness, ReadablePassphraseGenerator generator)
+        {
+            GenerateSamples(randomness, generator, 20);
+        }
+        private static void GenerateSamples(RandomSourceBase randomness, ReadablePassphraseGenerator generator, int count)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Samples:");
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(generator.Generate(Clause.CreatePhraseDescription(randomness)));
+            }
+        }
+
         private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator)
         {
             GenerateSamples(strength, generator, 20);
@@ -150,7 +165,6 @@ namespace Test
             {
                 Console.WriteLine(generator.Generate(strength));
             }
-
         }
         private static void GenerateCustomSamples(IEnumerable<MurrayGrant.ReadablePassphrase.PhraseDescription.Clause> clause, ReadablePassphraseGenerator generator, int count)
         {
