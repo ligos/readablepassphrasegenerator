@@ -97,7 +97,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
             this._LastVerbTemplateIndex = -1;
-            var subjectIsPlural = currentTemplate.OfType<NounTemplate>().First().IsPlural;
+            bool subjectIsPlural;
+            var ntemp = currentTemplate.OfType<NounTemplate>().FirstOrDefault();
+            if (ntemp == null)
+                subjectIsPlural = false;        // Proper nouns are never plural.
+            else
+                subjectIsPlural = ntemp.IsPlural;
             var verbFormToBePlural = subjectIsPlural;
 
             // TODO: handle cases where probabilities are zero.

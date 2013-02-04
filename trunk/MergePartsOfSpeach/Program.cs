@@ -11,7 +11,7 @@ namespace MergePartsOfSpeach
         static void Main(string[] args)
         {
             // Base must be first.
-            string[] files = new string[] { "base.xml", "nouns.xml", "prepositions.xml", "adjectives.xml", "verbs.xml", "adverbs.xml" };
+            string[] files = new string[] { "base.xml", "nouns.xml", "properNouns.xml", "prepositions.xml", "adjectives.xml", "verbs.xml", "adverbs.xml" };
             string output = "dictionary.xml";
 
             // The dictionary is too hard to edit / append to in a monolithic form.

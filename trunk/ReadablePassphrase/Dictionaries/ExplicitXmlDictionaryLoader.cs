@@ -38,6 +38,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("demonstrative", ParseDemonstrative),
                 new KeyValuePair<string, Action<XmlReader>>("personalpronoun", ParsePersonalPronoun),
                 new KeyValuePair<string, Action<XmlReader>>("noun", ParseNoun),
+                new KeyValuePair<string, Action<XmlReader>>("propernoun", ParseProperNoun),
                 new KeyValuePair<string, Action<XmlReader>>("preposition", ParsePreposition),
                 new KeyValuePair<string, Action<XmlReader>>("adjective", ParseAdjective),
                 new KeyValuePair<string, Action<XmlReader>>("adverb", ParseAdverb),
@@ -296,6 +297,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseNoun(XmlReader reader)
         {
             _Dict.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+        }
+        private void ParseProperNoun(XmlReader reader)
+        {
+            _Dict.Add(new MaterialisedProperNoun(reader.GetAttribute("value")));
         }
         private void ParsePreposition(XmlReader reader)
         {

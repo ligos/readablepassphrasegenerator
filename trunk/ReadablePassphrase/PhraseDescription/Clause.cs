@@ -204,7 +204,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -212,7 +213,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         InterrogativeFactor = 1, NoInterrogativeFactor = 8, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -222,7 +224,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -230,7 +233,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -240,7 +244,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -248,7 +253,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -259,7 +265,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 7, PluralityFactor = 3, 
+                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -267,7 +274,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 4},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 6, AdjectiveFactor = 3,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -277,7 +285,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -285,7 +294,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -295,7 +305,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -303,7 +314,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 0, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 0, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -314,7 +326,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 7, PluralityFactor = 3, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 6, AdjectiveFactor = 3,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -322,7 +335,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 10, AdverbFactor = 3,
                                         NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 5},
-                    new NounClause() { SingularityFactor = 7, PluralityFactor = 3, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 6, AdjectiveFactor = 3,
                                         NoPrepositionFactor = 8, PrepositionFactor = 2},
@@ -332,7 +346,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -340,7 +355,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 1,
                                         NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 1},
@@ -350,7 +366,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 0, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
@@ -358,7 +375,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 0, AdverbFactor = 1,
                                         NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 0, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 0, PrepositionFactor = 1},

@@ -196,7 +196,7 @@ namespace KeePassReadablePassphrase
         private void UpdateDictionarySize(Config config)
         {
             var total = this._Generator.Dictionary.Count;
-            this.txtDictionarySize.Text = total.ToString();
+            this.txtDictionarySize.Text = total.ToString("N0");
         }
         private void UpdateCustomStrengthVisibility(bool isCustomSelected)
         {

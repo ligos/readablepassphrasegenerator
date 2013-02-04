@@ -37,6 +37,7 @@ namespace KeePassReadablePassphrase
         private void DictionarySizeDetail_Load(object sender, EventArgs e)
         {
             this.txtNouns.Text = this._Dictionary.CountOf<Noun>().ToString("N0");
+            this.txtProperNouns.Text = this._Dictionary.CountOf<ProperNoun>().ToString("N0");
             this.txtVerbs.Text = this._Dictionary.CountOf<Verb>().ToString("N0");
             this.txtAdjectives.Text = this._Dictionary.CountOf<Adjective>().ToString("N0");
             this.txtAdverbs.Text = this._Dictionary.CountOf<Adverb>().ToString("N0");
@@ -47,6 +48,7 @@ namespace KeePassReadablePassphrase
             this.txtInterrogatives.Text = this._Dictionary.CountOf<Interrogative>().ToString("N0");
 
             this.txtTotal.Text = (this._Dictionary.CountOf<Noun>()
+                                 + this._Dictionary.CountOf<ProperNoun>()
                                  + this._Dictionary.CountOf<Verb>()
                                  + this._Dictionary.CountOf<Adjective>()
                                  + this._Dictionary.CountOf<Adverb>()

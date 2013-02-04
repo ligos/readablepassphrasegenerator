@@ -114,6 +114,7 @@ namespace Test
             Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
             Console.WriteLine("TOTAL:           {0:N0}", generator.Dictionary.Count);
             Console.WriteLine("Nouns:           {0:N0}", generator.Dictionary.OfType<Noun>().Count());
+            Console.WriteLine("Proper Nouns:    {0:N0}", generator.Dictionary.OfType<ProperNoun>().Count());
             Console.WriteLine("Verbs (all):     {0:N0}", generator.Dictionary.OfType<Verb>().Count());
             Console.WriteLine("Verbs (trans):   {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => w.IsTransitive));
             Console.WriteLine("Verbs (intrans): {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => !w.IsTransitive));

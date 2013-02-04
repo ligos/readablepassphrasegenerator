@@ -24,6 +24,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
     [TagInConfiguration("Noun")]
     public class NounClause : Clause
     {
+        [TagInConfiguration("ProperNoun", "Noun")]
+        public int ProperNounFactor { get; set; }
+        [TagInConfiguration("CommonNoun", "Noun")]
+        public int CommonNounFactor { get; set; }
+
         [TagInConfiguration("Plural", "Number")]
         public int PluralityFactor { get; set; }
         [TagInConfiguration("Single", "Number")]
@@ -57,6 +62,15 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            // Common or proper noun?
+            var commonNoun = randomness.WeightedCoinFlip(CommonNounFactor, ProperNounFactor);
+            if (!commonNoun)
+            {
+                // Proper noun is simply added as-is. There is never an adjective, article, plural, etc.
+                currentTemplate.Add(new ProperNounTemplate());
+                return;
+            }
+
             // Include a preposition?
             bool includePreposition = randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
             if (includePreposition && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
@@ -109,13 +123,13 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
-            var result = PhraseCombinations.One;
+            var resultCommon = PhraseCombinations.One;
 
             // Prepositions.
-            result *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
+            resultCommon *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
 
             // Adjectives.
-            result *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
+            resultCommon *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
 
             // Plural / Singular.
             double factor = 0;
@@ -124,7 +138,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             if (this.SingularityFactor > 0)
                 factor += 1;
             if (factor > 0)
-                result *= new PhraseCombinations(factor, factor, factor);
+                resultCommon *= new PhraseCombinations(factor, factor, factor);
 
             // Article / demonstrative / pronoun.
             int count = 0;
@@ -136,12 +150,33 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 count += dictionary.CountOf<Words.Demonstrative>();
             if (this.PersonalPronounFactor > 0)
                 count += dictionary.CountOf<Words.PersonalPronoun>();
-            result *= this.CountSingleFactor(this.DefiniteArticleFactor + this.IndefiniteArticleFactor + this.DemonstractiveFactor + this.PersonalPronounFactor, this.NoArticleFactor, count);
+            resultCommon *= this.CountSingleFactor(this.DefiniteArticleFactor + this.IndefiniteArticleFactor + this.DemonstractiveFactor + this.PersonalPronounFactor, this.NoArticleFactor, count);
 
-            // Finally, the noun itself!
-            result *= this.CountSingleFactor<Words.Noun>(dictionary, 1, 0);
+            // Finally, the nouns themselves.
+            if (this.ProperNounFactor > 0)
+            {
+                // Proper nouns are calculated separately so we can work out the min / max / avg.
+                var commonWithoutNouns = resultCommon;
+                resultCommon *= this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, ProperNounFactor);
+                var resultProper = this.CountSingleFactor<Words.ProperNoun>(dictionary, ProperNounFactor, CommonNounFactor);
 
-            return result;
+                // Proper and common nouns are additive rather than multiplacative.
+                // Min is whichever is smaller (but not zero).
+                var minCommon = commonWithoutNouns.Shortest * dictionary.CountOf<Words.Noun>();
+                var minProper = (double)dictionary.CountOf<Words.ProperNoun>();
+                var min = Math.Min(minCommon, minProper);
+                // Max and avg are additive.
+                var max = resultCommon.Longest + resultProper.Longest;
+                var avg = resultCommon.OptionalAverage + resultProper.OptionalAverage;
+                var result = new PhraseCombinations(min, max, avg);
+                return result;
+            }
+            else
+            {
+                // No proper nouns.
+                resultCommon *= this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0);
+                return resultCommon;
+            }
         }
     }
 }

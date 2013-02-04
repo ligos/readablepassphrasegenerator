@@ -74,6 +74,7 @@
     <Compile Include="MaterialisedWords\Adjective.cs" />
     <Compile Include="MaterialisedWords\Adverb.cs" />
     <Compile Include="MaterialisedWords\Article.cs" />
+    <Compile Include="MaterialisedWords\ProperNoun.cs" />
     <Compile Include="MaterialisedWords\Interrogative.cs" />
     <Compile Include="MaterialisedWords\Demonstrative.cs" />
     <Compile Include="MaterialisedWords\Noun.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="WordTemplate\AdjectiveTemplate.cs" />
     <Compile Include="WordTemplate\ArticleTemplate.cs" />
     <Compile Include="WordTemplate\AdverbTemplate.cs" />
+    <Compile Include="WordTemplate\ProperNounTemplate.cs" />
     <Compile Include="WordTemplate\InterrogativeTemplate.cs" />
     <Compile Include="WordTemplate\PersonalPronounTemplate.cs" />
     <Compile Include="WordTemplate\PrepositionTemplate.cs" />
