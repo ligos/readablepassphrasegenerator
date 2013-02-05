@@ -31,7 +31,7 @@ Schema version 2 adds:
   <personalPronoun singular="her" plural="her" />
   <personalPronoun singular="its" plural="its" />
   <interrogative singular="why does" plural="why do" />
-  <interrogative singular="who does" plural="how do" />
+  <interrogative singular="how does" plural="how do" />
   <interrogative singular="when does" plural="when did" />
   <interrogative singular="can" plural="can" />
   <interrogative singular="will" plural="will" />
