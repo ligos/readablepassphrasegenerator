@@ -19,8 +19,11 @@ limitations under the License.
 Schema version 2 adds:
 - An optional boolean 'transitive' attribute on verbs.
 - The 'interrogative' element.
+Schema version 3 adds:
+- The 'properNoun' element.
+- The conjunction element.
 -->
-<dictionary schemaVersion="2" language="en-au" name="Default">
+<dictionary schemaVersion="3" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />
@@ -36,4 +39,12 @@ Schema version 2 adds:
   <interrogative singular="can" plural="can" />
   <interrogative singular="will" plural="will" />
   <interrogative singular="should" plural="should" />
+  <conjunction value="and" separates="nounsandphrases"/>
+  <conjunction value="or" separates="nounsandphrases"/>
+  <conjunction value="but not" separates="nounsandphrases"/>
+  <conjunction value="except" separates="nounsandphrases"/>
+  <conjunction value="after" separates="nounsandphrases"/>
+  <conjunction value="before" separates="nounsandphrases"/>
+  <conjunction value="because of" separates="nounsandphrases"/>
+  <conjunction value="and even" separates="nounsandphrases"/>
 </dictionary>

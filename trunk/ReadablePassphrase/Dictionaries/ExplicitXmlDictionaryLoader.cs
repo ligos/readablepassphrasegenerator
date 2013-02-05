@@ -44,6 +44,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("adverb", ParseAdverb),
                 new KeyValuePair<string, Action<XmlReader>>("verb", ParseVerb),
                 new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
+                new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -251,7 +252,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public ExplicitXmlWordDictionary LoadFrom(XmlReader reader)
         {
             this._Dict = new ExplicitXmlWordDictionary();
-            this._Dict.ExpandCapacityTo((int)(_StreamSize / 170L));         // Based on the 0.6.1 version, there are about 170 bytes per word.
+            this._Dict.ExpandCapacityTo((int)(_StreamSize / 100L));         // Based on the 0.10.0 version, there are about 100 bytes per word.
 
             while (reader.Read())
             {
@@ -273,7 +274,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseDictionaryRoot(XmlReader reader)
         {
             int version;
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 2)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 3)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
             _Dict.SetNameAndLanguageCodeAndVersion(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
@@ -309,6 +310,13 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseAdjective(XmlReader reader)
         {
             _Dict.Add(new MaterialisedAdjective(reader.GetAttribute("value")));
+        }
+        private void ParseConjunction(XmlReader reader)
+        {
+            var separates = reader.GetAttribute("separates");
+            var separatesNouns = separates.IndexOf("noun", StringComparison.OrdinalIgnoreCase) != -1;
+            var separatesPhrases = separates.IndexOf("phrase", StringComparison.OrdinalIgnoreCase) != -1;
+            _Dict.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases));
         }
         private void ParseVerb(XmlReader reader)
         {
