@@ -27,8 +27,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
     {
         // This is a bit of a cheats way of doing command line arguments. Please don't consider it good practice!
         static int count = 1;
-        static PhraseStrength strength = PhraseStrength.Normal;
+        static PhraseStrength strength = PhraseStrength.Random;
         static bool includeSpaces = true;
+        static bool useCustomLoader = false;
         static string loaderDll = "";
         static string loaderType = "";
         static string loaderArguments = "";
@@ -82,7 +83,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             // Must load dictionary before trying to generate.
             var dictSw = System.Diagnostics.Stopwatch.StartNew();
             System.Reflection.Assembly loaderAsm = null;
-            if (!String.IsNullOrEmpty(loaderDll))
+            if (useCustomLoader && !String.IsNullOrEmpty(loaderDll))
                 loaderAsm = System.Reflection.Assembly.LoadFrom(loaderDll);
             Type loaderT;
             if (!String.IsNullOrEmpty(loaderType) && loaderAsm != null)
@@ -132,10 +133,12 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             {
                 string phrase;
                 attempts++;
-                if (strength != PhraseStrength.Custom)
-                    phrase = generator.Generate(strength, includeSpaces);
-                else
+                if (strength == PhraseStrength.Custom)
                     phrase = generator.Generate(phraseDescription, includeSpaces);
+                else if (strength == PhraseStrength.Random)
+                    phrase = generator.Generate(Clause.CreatePhraseDescription(generator.Randomness), includeSpaces);
+                else
+                    phrase = generator.Generate(strength, includeSpaces);
                 if (phrase.Length >= minLength && phrase.Length <= maxLength)
                 {
                     Console.WriteLine(phrase);
@@ -285,8 +288,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         {
             Console.WriteLine("Usage: PassphraseGenerator.exe [options]");
             Console.WriteLine("  -c --count nnn        Generates nnn phrases (default: 1)");
-            Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: normal)");
-            Console.WriteLine("                xxx =     [normal|strong|insane][equal|required] or 'custom'");
+            Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: random)");
+            Console.WriteLine("                xxx =     [normal|strong|insane][equal|required]");
+            Console.WriteLine("                          or 'custom' or 'random'");
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
             Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
             Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");

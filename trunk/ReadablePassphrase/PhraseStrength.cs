@@ -36,6 +36,7 @@ namespace MurrayGrant.ReadablePassphrase
         Insane,
         InsaneEqual,
         InsaneRequired,
-        Custom
+        Custom,
+        Random
     }
 }

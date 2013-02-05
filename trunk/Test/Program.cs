@@ -29,15 +29,14 @@ namespace Test
         static void Main(string[] args)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            var randomness = GetRandomness();
-            var generator = new ReadablePassphraseGenerator(randomness);
+            var generator = new ReadablePassphraseGenerator(GetRandomness());
             var loader = new ExplicitXmlDictionaryLoader();
             var dict = loader.LoadFrom();
             generator.SetDictionary(dict);
             sw.Stop();
             Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
 
-            GenerateSamples(randomness, generator);
+            GenerateSamples(generator.Randomness, generator);
             DictionaryCheck(generator);
             CombinationCount(generator);
 

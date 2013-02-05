@@ -33,7 +33,7 @@ namespace MurrayGrant.ReadablePassphrase
     public sealed class ReadablePassphraseGenerator
     {
         public WordDictionary Dictionary { get; private set; }
-        private RandomSourceBase _Randomness;
+        public RandomSourceBase Randomness { get; private set; }
 
         public readonly static Uri CodeplexHomepage = new Uri("http://readablepassphrase.codeplex.com");
 
@@ -50,7 +50,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public ReadablePassphraseGenerator(RandomSourceBase randomness) 
         {
-            this._Randomness = randomness;
+            this.Randomness = randomness;
             this.Dictionary = new EmptyDictionary();          // Default empty dictionary,
         }
         #endregion
@@ -165,7 +165,28 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public PhraseCombinations CalculateCombinations(PhraseStrength strength)
         {
-            return this.CalculateCombinations(Clause.CreatePhraseDescription(strength));
+            if (strength == PhraseStrength.Random)
+            {
+                // Check all strengths and report min / max. 
+                // Avg is somewhat meaningless, but we average the log of it anyway.
+                double min = Double.MaxValue, max = 0.0, acc = 0.0;
+                var allStrengths = Enum.GetNames(typeof(PhraseStrength))
+                        .Where(x => !String.Equals(x, "Custom", StringComparison.OrdinalIgnoreCase)
+                                 && !String.Equals(x, "Random", StringComparison.OrdinalIgnoreCase))
+                        .Select(x => Enum.Parse(typeof(PhraseStrength), x))
+                        .Cast<PhraseStrength>()
+                        .ToList();
+                foreach (var s in allStrengths)
+                {
+                    var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s));
+                    min = Math.Min(min, comb.Shortest);
+                    max = Math.Max(max, comb.Longest);
+                    acc += comb.OptionalAverageAsEntropyBits;
+                }
+                return new PhraseCombinations(min, max, Math.Pow(2, acc / allStrengths.Count));
+            }
+            else
+                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength));
         }
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase description.
@@ -379,11 +400,11 @@ namespace MurrayGrant.ReadablePassphrase
 
                 // Process in specified order.
                 foreach (var clause in toProcess)
-                    clause.AddWordTemplate(_Randomness, this.Dictionary, thisPhraseTemplate);
+                    clause.AddWordTemplate(Randomness, this.Dictionary, thisPhraseTemplate);
 
                 // Process twice.
                 foreach (var clause in toProcess)
-                    clause.SecondPassOfWordTemplate(_Randomness, this.Dictionary, thisPhraseTemplate);
+                    clause.SecondPassOfWordTemplate(Randomness, this.Dictionary, thisPhraseTemplate);
                 
                 // Accumulate the whole phrase at the end.
                 result.AddRange(thisPhraseTemplate);
@@ -401,7 +422,7 @@ namespace MurrayGrant.ReadablePassphrase
                     previousArticle = (ArticleTemplate)t;
                 else
                 {
-                    var tuple = t.ChooseWord(this.Dictionary, this._Randomness, chosenWords);
+                    var tuple = t.ChooseWord(this.Dictionary, this.Randomness, chosenWords);
                     if (t.IncludeInAlreadyUsedList)
                         chosenWords.Add(tuple.Word);
                     
