@@ -24,6 +24,7 @@ using KeePassLib.Cryptography.PasswordGenerator;
 using KeePassLib.Security;
 using MurrayGrant.ReadablePassphrase;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
+using System.Security;
 
 namespace KeePassReadablePassphrase
 {
@@ -90,7 +91,11 @@ namespace KeePassReadablePassphrase
         private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // Using the secure version to keep the passphrase encrypted as much as possible.
-            var passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+            SecureString passphrase;
+            if (conf.PhraseStrength == PhraseStrength.Random)
+                passphrase = generator.GenerateAsSecure(MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(generator.Randomness), conf.SpacesBetweenWords);
+            else
+                passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
             IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(passphrase);
             try
             {
@@ -105,7 +110,11 @@ namespace KeePassReadablePassphrase
         private ProtectedString GenerateNotSoSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // This generates the passphrase as UTF8 in a byte[].
-            var passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+            byte[] passphrase;
+            if (conf.PhraseStrength == PhraseStrength.Random)
+                passphrase = generator.GenerateAsUtf8Bytes(MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(generator.Randomness), conf.SpacesBetweenWords);
+            else
+                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
             try
             {
                 return new ProtectedString(true, passphrase);
@@ -113,8 +122,7 @@ namespace KeePassReadablePassphrase
             finally
             {
                 // Using the byte[] is better than a String because we can deterministicly overwrite it here with zeros.
-                for (int i = 0; i < passphrase.Length; i++)
-                    passphrase[i] = 0;
+                Array.Clear(passphrase, 0, passphrase.Length);
             }
             
         }

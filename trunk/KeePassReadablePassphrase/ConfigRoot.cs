@@ -173,17 +173,24 @@ namespace KeePassReadablePassphrase
         }
         private void UpdateDescription(Config config)
         {
-            this.txtPhraseDescription.Text = String.Join(Environment.NewLine, config.PhraseDescription.Select(c => c.ToTextString()).ToArray());
+            if (config.PhraseStrength == PhraseStrength.Random)
+                this.txtPhraseDescription.Text = "";
+            else
+                this.txtPhraseDescription.Text = String.Join(Environment.NewLine, config.PhraseDescription.Select(c => c.ToTextString()).ToArray());
         }
         private void UpdateCombinations(Config config)
         {
-            var combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
+            PhraseCombinations combinations;
+            if (config.PhraseStrength == PhraseStrength.Random)
+                combinations = this._Generator.CalculateCombinations(config.PhraseStrength);
+            else
+                combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
             if (combinations.Shortest >= 0)
             {
                 this.txtCombinationRange.Text = combinations.Shortest.ToString("E3") + " ‐ " + combinations.Longest.ToString("E3");
                 this.txtEntropyRange.Text = combinations.ShortestAsEntropyBits.ToString("N2") + " ‐ " + combinations.LongestAsEntropyBits.ToString("N2");
-                this.txtCombinationAverage.Text = combinations.OptionalAverage.ToString("N0");
-                this.txtEntropyAverage.Text = combinations.OptionalAverageAsEntropyBits.ToString("N2");
+                this.txtCombinationAverage.Text = "≈ " + combinations.OptionalAverage.ToString("N0");
+                this.txtEntropyAverage.Text = "≈ " + combinations.OptionalAverageAsEntropyBits.ToString("N2");
             }
             else
             {

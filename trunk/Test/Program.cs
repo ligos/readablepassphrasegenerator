@@ -180,7 +180,7 @@ namespace Test
         {
             Console.WriteLine();
             Console.WriteLine("Combination count:");
-            var predefined = new PhraseStrength[] { PhraseStrength.Normal, PhraseStrength.NormalEqual, PhraseStrength.NormalRequired, PhraseStrength.Strong, PhraseStrength.StrongEqual, PhraseStrength.StrongRequired, PhraseStrength.Insane, PhraseStrength.InsaneEqual, PhraseStrength.InsaneRequired };
+            var predefined = new PhraseStrength[] { PhraseStrength.Random, PhraseStrength.Normal, PhraseStrength.NormalEqual, PhraseStrength.NormalRequired, PhraseStrength.Strong, PhraseStrength.StrongEqual, PhraseStrength.StrongRequired, PhraseStrength.Insane, PhraseStrength.InsaneEqual, PhraseStrength.InsaneRequired };
 
             for (int i = 0; i < predefined.Length; i++)
             {

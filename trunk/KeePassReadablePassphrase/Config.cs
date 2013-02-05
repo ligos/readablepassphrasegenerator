@@ -51,7 +51,7 @@ namespace KeePassReadablePassphrase
         {
             // Defaults.
             SpacesBetweenWords = true;
-            PhraseStrength = PhraseStrength.Normal;
+            PhraseStrength = PhraseStrength.Random;
             this.UpdatePhraseDescription();
         }
         private void ParseConfig(string configFromKeePass)
@@ -92,10 +92,13 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<SpacesBetweenWords value=\"{0}\"/>\n", this.SpacesBetweenWords);
             sb.AppendFormat("<PhraseStrength value=\"{0}\"/>\n", this.PhraseStrength);
             sb.AppendLine("<PhraseDescription>");
-            sb.Append("<![CDATA[");
-            foreach (var c in this.PhraseDescription)
-                c.ToStringBuilder(sb);
-            sb.Append("]]>");
+            if (this.PhraseStrength != MurrayGrant.ReadablePassphrase.PhraseStrength.Random)
+            {
+                sb.Append("<![CDATA[");
+                foreach (var c in this.PhraseDescription)
+                    c.ToStringBuilder(sb);
+                sb.Append("]]>");
+            }
             sb.AppendLine("</PhraseDescription>");
             sb.AppendFormat("<UseCustomDictionary value=\"{0}\"/>\n", this.UseCustomDictionary);
             sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", this.PathOfCustomDictionary);
@@ -106,7 +109,7 @@ namespace KeePassReadablePassphrase
 
         private void UpdatePhraseDescription()
         {
-            if (this.PhraseStrength != PhraseStrength.Custom)
+            if (this.PhraseStrength != PhraseStrength.Custom && this.PhraseStrength != PhraseStrength.Random)
                 this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength);
         }
     }

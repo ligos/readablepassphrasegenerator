@@ -180,8 +180,8 @@ namespace MurrayGrant.ReadablePassphrase
                 {
                     var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s));
                     min = Math.Min(min, comb.Shortest);
-                    max = Math.Max(max, comb.Longest);
-                    acc += comb.OptionalAverageAsEntropyBits;
+                    max += comb.Longest;
+                    acc += comb.OptionalAverageAsEntropyBits;       // Max adds because of variations between phrases.
                 }
                 return new PhraseCombinations(min, max, Math.Pow(2, acc / allStrengths.Count));
             }
