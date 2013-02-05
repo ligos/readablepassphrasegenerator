@@ -46,6 +46,7 @@ namespace KeePassReadablePassphrase
             this.txtTheArticle.Text = this._Dictionary.CountOf<Article>().ToString("N0");
             this.txtPersonalPronouns.Text = this._Dictionary.CountOf<PersonalPronoun>().ToString("N0");
             this.txtInterrogatives.Text = this._Dictionary.CountOf<Interrogative>().ToString("N0");
+            this.txtConjunctions.Text = this._Dictionary.CountOf<Conjunction>().ToString("N0");
 
             this.txtTotal.Text = (this._Dictionary.CountOf<Noun>()
                                  + this._Dictionary.CountOf<ProperNoun>()
@@ -57,6 +58,7 @@ namespace KeePassReadablePassphrase
                                  + this._Dictionary.CountOf<Article>()
                                  + this._Dictionary.CountOf<PersonalPronoun>()
                                  + this._Dictionary.CountOf<Interrogative>()
+                                 + this._Dictionary.CountOf<Conjunction>()
                                  ).ToString("N0");
             this.txtReconciledTotal.Text = this._Dictionary.Count.ToString("N0");
         }

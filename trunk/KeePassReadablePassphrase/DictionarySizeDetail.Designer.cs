@@ -53,6 +53,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtProperNouns = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.txtConjunctions = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -77,10 +79,10 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(80, 342);
+            this.btnOK.Location = new System.Drawing.Point(80, 365);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 12;
+            this.btnOK.TabIndex = 13;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -223,17 +225,17 @@
             this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(118, 288);
+            this.txtTotal.Location = new System.Drawing.Point(118, 312);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtTotal.TabIndex = 10;
+            this.txtTotal.TabIndex = 11;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 291);
+            this.label9.Location = new System.Drawing.Point(12, 315);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 27;
@@ -243,16 +245,16 @@
             // 
             this.txtReconciledTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReconciledTotal.Location = new System.Drawing.Point(118, 314);
+            this.txtReconciledTotal.Location = new System.Drawing.Point(118, 338);
             this.txtReconciledTotal.Name = "txtReconciledTotal";
             this.txtReconciledTotal.ReadOnly = true;
             this.txtReconciledTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtReconciledTotal.TabIndex = 11;
+            this.txtReconciledTotal.TabIndex = 12;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 317);
+            this.label10.Location = new System.Drawing.Point(12, 341);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 13);
             this.label10.TabIndex = 29;
@@ -296,12 +298,33 @@
             this.label12.TabIndex = 33;
             this.label12.Text = "Proper Nouns";
             // 
+            // txtConjunctions
+            // 
+            this.txtConjunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConjunctions.Location = new System.Drawing.Point(118, 280);
+            this.txtConjunctions.Name = "txtConjunctions";
+            this.txtConjunctions.ReadOnly = true;
+            this.txtConjunctions.Size = new System.Drawing.Size(100, 20);
+            this.txtConjunctions.TabIndex = 10;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(12, 283);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "Conjunctions";
+            // 
             // DictionarySizeDetail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 373);
+            this.ClientSize = new System.Drawing.Size(241, 396);
+            this.Controls.Add(this.txtConjunctions);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.txtProperNouns);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtInterrogatives);
@@ -362,5 +385,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtProperNouns;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtConjunctions;
+        private System.Windows.Forms.Label label13;
     }
 }
