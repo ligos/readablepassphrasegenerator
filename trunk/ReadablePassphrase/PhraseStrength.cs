@@ -27,6 +27,7 @@ namespace MurrayGrant.ReadablePassphrase
     /// </remarks>
     public enum PhraseStrength
     {
+        Random,
         Normal,
         NormalEqual,
         NormalRequired,
@@ -36,7 +37,6 @@ namespace MurrayGrant.ReadablePassphrase
         Insane,
         InsaneEqual,
         InsaneRequired,
-        Custom,
-        Random
+        Custom
     }
 }
