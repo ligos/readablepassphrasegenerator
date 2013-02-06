@@ -29,14 +29,25 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             PredefinedPhraseDescriptions = new Dictionary<PhraseStrength, IEnumerable<Clause>>();
             PredefinedPhraseDescriptions.Add(PhraseStrength.Normal, CreatePhraseDescriptionForNormal());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.NormalAnd, CreatePhraseDescriptionForNormalAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.NormalEqual, CreatePhraseDescriptionForNormalEqual());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.NormalEqualAnd, CreatePhraseDescriptionForNormalEqualAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.NormalRequired, CreatePhraseDescriptionForNormalRequired());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.NormalRequiredAnd, CreatePhraseDescriptionForNormalRequiredAnd());
+
             PredefinedPhraseDescriptions.Add(PhraseStrength.Strong, CreatePhraseDescriptionForStrong());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.StrongAnd, CreatePhraseDescriptionForStrongAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.StrongEqual, CreatePhraseDescriptionForStrongEqual());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.StrongEqualAnd, CreatePhraseDescriptionForStrongEqualAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.StrongRequired, CreatePhraseDescriptionForStrongRequired());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.StrongRequiredAnd, CreatePhraseDescriptionForStrongRequiredAnd());
+
             PredefinedPhraseDescriptions.Add(PhraseStrength.Insane, CreatePhraseDescriptionForInsane());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.InsaneAnd, CreatePhraseDescriptionForInsaneAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.InsaneEqual, CreatePhraseDescriptionForInsaneEqual());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.InsaneEqualAnd, CreatePhraseDescriptionForInsaneEqualAnd());
             PredefinedPhraseDescriptions.Add(PhraseStrength.InsaneRequired, CreatePhraseDescriptionForInsaneRequired());
+            PredefinedPhraseDescriptions.Add(PhraseStrength.InsaneRequiredAnd, CreatePhraseDescriptionForInsaneRequiredAnd());
         }
 
         /// <summary>
@@ -231,6 +242,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                 };
         }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForNormalAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 10, PastFactor = 8, FutureFactor = 8, ContinuousFactor = 0, ContinuousPastFactor = 0, PerfectFactor = 0, SubjunctiveFactor = 0,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        InterrogativeFactor = 1, NoInterrogativeFactor = 8, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
         public static IEnumerable<Clause> CreatePhraseDescriptionForNormalEqual()
         {
             return new List<Clause>()
@@ -251,6 +288,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                 };
         }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForNormalEqualAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 0, ContinuousPastFactor = 0, PerfectFactor = 0, SubjunctiveFactor = 0,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
         public static IEnumerable<Clause> CreatePhraseDescriptionForNormalRequired()
         {
             return new List<Clause>()
@@ -264,6 +327,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForNormalRequiredAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 0, ContinuousPastFactor = 0, PerfectFactor = 0, SubjunctiveFactor = 0,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        InterrogativeFactor = 1, NoInterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 0},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
                     new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
                                         SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 0, PersonalPronounFactor = 1,
@@ -292,6 +381,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                 };
         }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForStrongAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 10, PastFactor = 10, FutureFactor = 10, ContinuousFactor = 5, ContinuousPastFactor = 5, PerfectFactor = 5, SubjunctiveFactor = 2,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 4},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 6, AdjectiveFactor = 3,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 6, AdjectiveFactor = 3,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
         public static IEnumerable<Clause> CreatePhraseDescriptionForStrongEqual()
         {
             return new List<Clause>()
@@ -312,6 +427,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 1, PrepositionFactor = 0},
                 };
         }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForStrongEqualAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
         public static IEnumerable<Clause> CreatePhraseDescriptionForStrongRequired()
         {
             return new List<Clause>()
@@ -325,6 +466,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdverbFactor = 1, AdverbFactor = 0,
                                         NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
                                         NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 0, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForStrongRequiredAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 0, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 0, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 0, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
                     new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
                                         SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
@@ -353,6 +520,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoPrepositionFactor = 8, PrepositionFactor = 2},
                 };
         }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForInsaneAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 6, AdjectiveFactor = 3,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 10, PastFactor = 10, FutureFactor = 10, ContinuousFactor = 5, ContinuousPastFactor = 5, PerfectFactor = 5, SubjunctiveFactor = 5,
+                                        NoAdverbFactor = 10, AdverbFactor = 3,
+                                        NoInterrogativeFactor = 8, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 5},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 6, AdjectiveFactor = 3,
+                                        NoPrepositionFactor = 8, PrepositionFactor = 2},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 7, PluralityFactor = 3, 
+                                        NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
+                                        NoAdjectiveFactor = 6, AdjectiveFactor = 3,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+        }
         public static IEnumerable<Clause> CreatePhraseDescriptionForInsaneEqual()
         {
             return new List<Clause>()
@@ -371,6 +564,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 1, PrepositionFactor = 1},
+                };
+        }
+        public static IEnumerable<Clause> CreatePhraseDescriptionForInsaneEqualAnd()
+        {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 1,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 1},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
                 };
         }
         public static IEnumerable<Clause> CreatePhraseDescriptionForInsaneRequired()
@@ -392,6 +611,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                                         NoAdjectiveFactor = 0, AdjectiveFactor = 1,
                                         NoPrepositionFactor = 0, PrepositionFactor = 1},
                 };
-        }
+         }
+         public static IEnumerable<Clause> CreatePhraseDescriptionForInsaneRequiredAnd()
+         {
+            return new List<Clause>()
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 0, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 0, AdverbFactor = 1,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 1, 
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 0, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 0, PrepositionFactor = 1},
+                    new ConjunctionClause() { JoiningNounFactor = 1, JoiningPhraseFactor = 0 },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 0, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                };
+         }
     }
 }

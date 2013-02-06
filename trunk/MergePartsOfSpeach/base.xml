@@ -42,7 +42,6 @@ Schema version 3 adds:
   <conjunction value="and" separates="nounsandphrases"/>
   <conjunction value="or" separates="nounsandphrases"/>
   <conjunction value="but not" separates="nounsandphrases"/>
-  <conjunction value="except" separates="nounsandphrases"/>
   <conjunction value="after" separates="nounsandphrases"/>
   <conjunction value="before" separates="nounsandphrases"/>
   <conjunction value="because of" separates="nounsandphrases"/>

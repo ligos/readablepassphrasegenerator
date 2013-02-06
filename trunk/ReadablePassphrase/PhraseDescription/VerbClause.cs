@@ -61,8 +61,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         private int DistributionMax;
 
         public bool SubjectIsPlural { get; set; }
-        public NounClause Subject { get; set; }
-        public NounClause Object { get; set; }
+        public IEnumerable<Clause> Subject { get; set; }
+        public IEnumerable<Clause> Object { get; set; }
 
         private readonly IEnumerable<TenseData> _TenseData;
         private bool _IsSecondCall = false;
@@ -86,12 +86,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             // TODO: support more than one verb?? Or zero verbs?
             // Find the noun before and after this verb.
-            var beforeMe = clause.TakeWhile(x => x != this).Reverse();
-            var afterMe = clause.SkipWhile(x => x != this).Take(Int32.MaxValue);
+            var beforeMe = clause.TakeWhile(x => x != this);
+            var afterMe = clause.SkipWhile(x => x != this).Skip(1).Take(Int32.MaxValue);
 
             // Link to this verb.
-            this.Subject = (NounClause)beforeMe.First(x => x is NounClause);
-            this.Object = (NounClause)afterMe.First(x => x is NounClause);
+            this.Subject = beforeMe.ToList();
+            this.Object = afterMe.ToList();
         }
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)

@@ -170,11 +170,9 @@ namespace MurrayGrant.ReadablePassphrase
                 // Check all strengths and report min / max. 
                 // Avg is somewhat meaningless, but we average the log of it anyway.
                 double min = Double.MaxValue, max = 0.0, acc = 0.0;
-                var allStrengths = Enum.GetNames(typeof(PhraseStrength))
-                        .Where(x => !String.Equals(x, "Custom", StringComparison.OrdinalIgnoreCase)
-                                 && !String.Equals(x, "Random", StringComparison.OrdinalIgnoreCase))
-                        .Select(x => Enum.Parse(typeof(PhraseStrength), x))
+                var allStrengths = Enum.GetValues(typeof(PhraseStrength))
                         .Cast<PhraseStrength>()
+                        .Where(x => x != PhraseStrength.Custom && x != PhraseStrength.Random)
                         .ToList();
                 foreach (var s in allStrengths)
                 {
@@ -396,7 +394,7 @@ namespace MurrayGrant.ReadablePassphrase
             foreach (var verb in phraseList.OfType<VerbClause>())
             {
                 var thisPhraseTemplate = new List<Template>();
-                var toProcess = new Clause[] { verb.Subject, verb, verb.Object };       // Give the processing a logical order: subject, verb, object.
+                var toProcess = verb.Subject.Concat(new Clause[] { verb }).Concat(verb.Object);       // Give the processing a logical order: subject, verb, object.
 
                 // Process in specified order.
                 foreach (var clause in toProcess)
