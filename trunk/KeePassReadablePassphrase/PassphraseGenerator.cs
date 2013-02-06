@@ -91,11 +91,7 @@ namespace KeePassReadablePassphrase
         private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // Using the secure version to keep the passphrase encrypted as much as possible.
-            SecureString passphrase;
-            if (conf.PhraseStrength == PhraseStrength.Random)
-                passphrase = generator.GenerateAsSecure(MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(generator.Randomness), conf.SpacesBetweenWords);
-            else
-                passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+            var passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
             IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(passphrase);
             try
             {
@@ -110,11 +106,7 @@ namespace KeePassReadablePassphrase
         private ProtectedString GenerateNotSoSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // This generates the passphrase as UTF8 in a byte[].
-            byte[] passphrase;
-            if (conf.PhraseStrength == PhraseStrength.Random)
-                passphrase = generator.GenerateAsUtf8Bytes(MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(generator.Randomness), conf.SpacesBetweenWords);
-            else
-                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+            var passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
             try
             {
                 return new ProtectedString(true, passphrase);

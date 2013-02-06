@@ -202,12 +202,12 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region GenerateAsSecure()
         /// <summary>
-        /// Generates a single phrase as a <c>SecureString</c> based on <c>PasswordStrength.Normal</c>.
+        /// Generates a single phrase as a <c>SecureString</c> based on <c>PasswordStrength.Random</c>.
         /// This is the slowest and most secure method.
         /// </summary>
         public SecureString GenerateAsSecure()
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescriptionForNormal(), true);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -215,7 +215,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure(PhraseStrength strength)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength), true);
+            if (strength != PhraseStrength.Random)
+                return GenerateAsSecure(Clause.CreatePhraseDescription(strength), true);
+            else
+                return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -233,7 +236,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public SecureString GenerateAsSecure(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            if (strength != PhraseStrength.Random)
+                return GenerateAsSecure(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            else
+                return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -258,12 +264,12 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region Generate()
         /// <summary>
-        /// Generates a single phrase based on <c>PasswordStrength.Normal</c> in a <c>StringBuilder</c>.
+        /// Generates a single phrase based on <c>PasswordStrength.Random</c> in a <c>StringBuilder</c>.
         /// This is the fastest and least secure method.
         /// </summary>
         public String Generate()
         {
-            return Generate(Clause.CreatePhraseDescriptionForNormal());
+            return Generate(Clause.CreatePhraseDescription(Randomness));
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
@@ -271,7 +277,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public String Generate(PhraseStrength strength)
         {
-            return Generate(Clause.CreatePhraseDescription(strength), true);
+            if (strength != PhraseStrength.Random)
+                return Generate(Clause.CreatePhraseDescription(strength), true);
+            else
+                return Generate(Clause.CreatePhraseDescription(Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
@@ -281,7 +290,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public String Generate(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            return Generate(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            if (strength != PhraseStrength.Random)
+                return Generate(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            else
+                return Generate(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
@@ -310,12 +322,12 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region GenerateAsUtf8Bytes()
         /// <summary>
-        /// Generates a single phrase based on <c>PasswordStrength.Normal</c> in a UTF8 <c>byte[]</c>.
+        /// Generates a single phrase based on <c>PasswordStrength.Random</c> in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         public byte[] GenerateAsUtf8Bytes()
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescriptionForNormal());
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness));
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -323,7 +335,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), true);
+            if (strength != PhraseStrength.Random)
+                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), true);
+            else
+                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -333,7 +348,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            if (strength != PhraseStrength.Random)
+                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
+            else
+                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.

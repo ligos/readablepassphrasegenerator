@@ -50,18 +50,15 @@ namespace Test
 
             var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>().Where(x => x != PhraseStrength.Random && x != PhraseStrength.Custom);
             foreach (var strength in allToTest)
+            {
                 TestGeneration(generator, strength, 50);
+                TestGenerationAsUtf8(generator, strength, 20);
+                TestGenerationAsSecure(generator, strength, 20);
+            }
 
-            //WriteStatisticsFor(generator, PhraseStrength.Normal, 100000, "Normal.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.NormalEqual, 100000, "NormalEqual.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.NormalRequired, 100000, "NormalRequired.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.Strong, 100000, "Strong.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.StrongEqual, 100000, "StrongEqual.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.StrongRequired, 100000, "StrongRequired.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.Insane, 100000, "Insane.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.InsaneEqual, 100000, "InsaneEqual.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.InsaneRequired, 100000, "InsaneRequired.csv");
-            //WriteStatisticsFor(generator, PhraseStrength.Random, 100000, "Random.csv");
+            //foreach (var strength in allToTest)
+            //    WriteStatisticsFor(generator, strength, 100000, strength.ToString() + ".csv");
+            //WriteStatisticsFor(generator, PhraseStrength.Random, 1000000, "Random.csv");
 
             //GenerateCustomSamples(new Clause[]
             //    {
@@ -147,12 +144,7 @@ namespace Test
             Console.WriteLine();
             Console.WriteLine("Samples:");
             for (int i = 0; i < count; i++)
-            {
-                if (strength == PhraseStrength.Random)
-                    Console.WriteLine(generator.Generate(Clause.CreatePhraseDescription(generator.Randomness)));
-                else
-                    Console.WriteLine(generator.Generate(strength));
-            }
+                Console.WriteLine(generator.Generate(strength));
         }
         private static void GenerateCustomSamples(IEnumerable<MurrayGrant.ReadablePassphrase.PhraseDescription.Clause> clause, ReadablePassphraseGenerator generator, int count)
         {
@@ -193,9 +185,23 @@ namespace Test
 
         private static void TestGeneration(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
         {
-            Console.Write("Testing {0:N0} phrases of strength {1}...", iterations, strength);
+            Console.Write("Testing {0:N0} string phrases of strength {1}...", iterations, strength);
             for (int i = 0; i < iterations; i++)
                 generator.Generate(strength);
+            Console.WriteLine(" OK.");
+        }
+        private static void TestGenerationAsUtf8(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
+        {
+            Console.Write("Testing {0:N0} UTF8 phrases of strength {1}...", iterations, strength);
+            for (int i = 0; i < iterations; i++)
+                generator.GenerateAsUtf8Bytes(strength);
+            Console.WriteLine(" OK.");
+        }
+        private static void TestGenerationAsSecure(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
+        {
+            Console.Write("Testing {0:N0} secure phrases of strength {1}...", iterations, strength);
+            for (int i = 0; i < iterations; i++)
+                generator.GenerateAsSecure(strength);
             Console.WriteLine(" OK.");
         }
 
@@ -205,12 +211,7 @@ namespace Test
             Console.WriteLine("Benchmark of {0:N0} phrases of strength {1}...", iterations, strength);
             var sw = System.Diagnostics.Stopwatch.StartNew();
             for (int i = 0; i < iterations; i++)
-            {
-                if (strength == PhraseStrength.Random)
-                    generator.Generate(Clause.CreatePhraseDescription(generator.Randomness));
-                else
-                    generator.Generate(strength);
-            }
+                generator.Generate(strength);
             sw.Stop();
             Console.WriteLine("  in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
 
@@ -222,9 +223,7 @@ namespace Test
             Console.WriteLine("Benchmark of {0:N0} secure phrases of strength {1}...", iterations, strength);
             var sw = System.Diagnostics.Stopwatch.StartNew();
             for (int i = 0; i < iterations; i++)
-            {
                 generator.GenerateAsSecure(strength);
-            }
             sw.Stop();
             Console.WriteLine("  in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
         }
@@ -234,9 +233,7 @@ namespace Test
             Console.WriteLine("Benchmark of {0:N0} UTF8 phrases of strength {1}...", iterations, strength);
             var sw = System.Diagnostics.Stopwatch.StartNew();
             for (int i = 0; i < iterations; i++)
-            {
-                var bytes = generator.GenerateAsUtf8Bytes(strength);
-            }
+                generator.GenerateAsUtf8Bytes(strength);
             sw.Stop();
             Console.WriteLine("  in {0:N3}ms", sw.Elapsed.TotalMilliseconds);
         }
@@ -330,7 +327,7 @@ namespace Test
             for (int i = 0; i < count; i++)
             {
                 var phrase = generator.Generate(strength);
-                
+
                 if (!charHistogram.ContainsKey(phrase.Length))
                     charHistogram.Add(phrase.Length, 0);
                 charHistogram[phrase.Length] = charHistogram[phrase.Length] + 1;

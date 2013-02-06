@@ -135,8 +135,6 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 attempts++;
                 if (strength == PhraseStrength.Custom)
                     phrase = generator.Generate(phraseDescription, includeSpaces);
-                else if (strength == PhraseStrength.Random)
-                    phrase = generator.Generate(Clause.CreatePhraseDescription(generator.Randomness), includeSpaces);
                 else
                     phrase = generator.Generate(strength, includeSpaces);
                 if (phrase.Length >= minLength && phrase.Length <= maxLength)
