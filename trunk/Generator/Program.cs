@@ -118,8 +118,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     combinations = generator.CalculateCombinations(strength);
                 else
                     combinations = generator.CalculateCombinations(phraseDescription);
-                Console.WriteLine("Average combinations ~{0:N0} representing ~{1:N2} bits of entropy", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
-                Console.WriteLine("Total combinations {0:N0} - {1:N0} representing {2:N2} - {3:N2} bits of entropy", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
+                Console.WriteLine("Average combinations ~{0:E3} (~{1:N2} bits)", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
+                Console.WriteLine("Total combinations {0:E3} - {1:E3} ({2:N2} - {3:N2} bits)", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 Console.WriteLine();
             }
 
