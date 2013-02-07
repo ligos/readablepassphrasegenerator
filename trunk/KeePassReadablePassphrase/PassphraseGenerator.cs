@@ -58,6 +58,8 @@ namespace KeePassReadablePassphrase
             this.Host = host;
         }
 
+        private MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator _CachedGenerator;
+
         public override string GetOptions(string strCurrentOptions)
         {
             using (var frm = new ConfigRoot(strCurrentOptions, new KeePassRandomSource()))
@@ -78,20 +80,29 @@ namespace KeePassReadablePassphrase
             // Load the phrase template from config.
             var conf = new Config(profile.CustomAlgorithmOptions);
 
-            // Use the more portable generator to create our passphrase.
-            var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(new KeePassRandomSource(crsRandomSource));
-            LoadDictionary(conf, generator);
+            // Create the passphrase generator.
+            if (_CachedGenerator == null)
+            {
+                var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(new KeePassRandomSource(crsRandomSource));
+                LoadDictionary(conf, generator);
+                _CachedGenerator = generator;
+            }
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                return GenerateSecure(generator, conf);
+                return GenerateSecure(_CachedGenerator, conf);
             else
-                return GenerateNotSoSecure(generator, conf);
+                return GenerateNotSoSecure(_CachedGenerator, conf);
         }
 
         private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // Using the secure version to keep the passphrase encrypted as much as possible.
-            var passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+            SecureString passphrase;
+            if (conf.PhraseStrength == PhraseStrength.Custom)
+                passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+            else
+                passphrase = generator.GenerateAsSecure(conf.PhraseStrength, conf.SpacesBetweenWords);
+
             IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(passphrase);
             try
             {
@@ -106,7 +117,12 @@ namespace KeePassReadablePassphrase
         private ProtectedString GenerateNotSoSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
             // This generates the passphrase as UTF8 in a byte[].
-            var passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+            byte[] passphrase;
+            if (conf.PhraseStrength == PhraseStrength.Custom)
+                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+            else
+                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.SpacesBetweenWords);
+
             try
             {
                 return new ProtectedString(true, passphrase);
@@ -121,6 +137,7 @@ namespace KeePassReadablePassphrase
 
         public void Dispose()
         {
+            this._CachedGenerator = null;
             this.Host = null;
             GC.SuppressFinalize(this);
         }
