@@ -26,7 +26,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
     class Program
     {
         // This is a bit of a cheats way of doing command line arguments. Please don't consider it good practice!
-        static int count = 1;
+        static int count = 10;
         static PhraseStrength strength = PhraseStrength.Random;
         static bool includeSpaces = true;
         static bool useCustomLoader = false;
