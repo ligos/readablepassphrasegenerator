@@ -134,7 +134,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             public TagInConfigurationAttribute Tag { get; set; }
         }
 
-        private static readonly Type[] AllowedClauseTypes = new Type[] { typeof(NounClause), typeof(VerbClause) };
+        private static readonly Type[] AllowedClauseTypes = new Type[] { typeof(NounClause), typeof(VerbClause), typeof(ConjunctionClause) };
         public static IEnumerable<Clause> CreateCollectionFromTextString(string s)
         {
             var result = new List<Clause>();
