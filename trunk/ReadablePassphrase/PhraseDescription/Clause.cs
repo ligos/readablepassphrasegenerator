@@ -226,7 +226,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 1,
                                         SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -246,7 +246,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 1,
                                         SingularityFactor = 1, PluralityFactor = 0, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 0, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -365,7 +365,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 1,
                                         SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -385,7 +385,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             return new List<Clause>()
                 {
-                    new NounClause() { CommonNounFactor = 9, ProperNounFactor = 1,
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 1,
                                         SingularityFactor = 7, PluralityFactor = 3, 
                                         NoArticleFactor = 5, DefiniteArticleFactor = 4, IndefiniteArticleFactor = 4, DemonstractiveFactor = 1, PersonalPronounFactor = 2,
                                         NoAdjectiveFactor = 1, AdjectiveFactor = 0,
