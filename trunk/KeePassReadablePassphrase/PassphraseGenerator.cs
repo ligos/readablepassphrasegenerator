@@ -139,7 +139,7 @@ namespace KeePassReadablePassphrase
                         passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.SpacesBetweenWords);
 
                     var length = Encoding.UTF8.GetCharCount(passphrase);
-                    if (length > conf.MinLength && length < conf.MaxLength)
+                    if (length >= conf.MinLength && length <= conf.MaxLength)
                         return new ProtectedString(true, passphrase);
                     // Bail out if we've tried lots of times.
                     if (attempts <= 0)
