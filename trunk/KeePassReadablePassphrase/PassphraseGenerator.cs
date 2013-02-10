@@ -96,12 +96,21 @@ namespace KeePassReadablePassphrase
 
         private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
+            int attempts = 1000;
             // Using the secure version to keep the passphrase encrypted as much as possible.
-            SecureString passphrase;
-            if (conf.PhraseStrength == PhraseStrength.Custom)
-                passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
-            else
-                passphrase = generator.GenerateAsSecure(conf.PhraseStrength, conf.SpacesBetweenWords);
+            SecureString passphrase = new SecureString();
+            do
+            {
+                attempts--;
+                if (conf.PhraseStrength == PhraseStrength.Custom)
+                    passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+                else
+                    passphrase = generator.GenerateAsSecure(conf.PhraseStrength, conf.SpacesBetweenWords);
+            } while ((passphrase.Length < conf.MinLength || passphrase.Length > conf.MaxLength) && attempts > 0);
+
+            // Bail out if we tried too many times.
+            if (attempts <= 0)
+                return new ProtectedString(true, "Unable to find a passphrase meeting the min and max length criteria in your settings.");
 
             IntPtr ustr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(passphrase);
             try
@@ -116,23 +125,32 @@ namespace KeePassReadablePassphrase
         }
         private ProtectedString GenerateNotSoSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
         {
+            var attempts = 1000;
             // This generates the passphrase as UTF8 in a byte[].
-            byte[] passphrase;
-            if (conf.PhraseStrength == PhraseStrength.Custom)
-                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
-            else
-                passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.SpacesBetweenWords);
+            byte[] passphrase = new byte[0];
+            do
+            {
+                attempts--;
+                try
+                {
+                    if (conf.PhraseStrength == PhraseStrength.Custom)
+                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+                    else
+                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.SpacesBetweenWords);
 
-            try
-            {
-                return new ProtectedString(true, passphrase);
-            }
-            finally
-            {
-                // Using the byte[] is better than a String because we can deterministicly overwrite it here with zeros.
-                Array.Clear(passphrase, 0, passphrase.Length);
-            }
-            
+                    var length = Encoding.UTF8.GetCharCount(passphrase);
+                    if (length > conf.MinLength && length < conf.MaxLength)
+                        return new ProtectedString(true, passphrase);
+                    // Bail out if we've tried lots of times.
+                    if (attempts <= 0)
+                        return new ProtectedString(true, "Unable to find a passphrase meeting the min and max length criteria in your settings.");
+                }
+                finally
+                {
+                    // Using the byte[] is better than a String because we can deterministicly overwrite it here with zeros.
+                    Array.Clear(passphrase, 0, passphrase.Length);
+                }
+            } while (true);
         }
 
         public void Dispose()

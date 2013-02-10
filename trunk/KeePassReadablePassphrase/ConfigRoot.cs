@@ -49,8 +49,9 @@ namespace KeePassReadablePassphrase
             {
                 config = new Config(this.ConfigForKeePass);
             }
-            catch (MurrayGrant.ReadablePassphrase.PhraseDescription.PhraseDescriptionParseException ex)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 MessageBox.Show(this, String.Format("Unable to load Readable Passphrase Config.{0}A default configuration will be used instead.{0}{0}{1}{0}{2}", Environment.NewLine, ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""), "Readable Passphrase", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 config = new Config();
             }
@@ -98,6 +99,11 @@ namespace KeePassReadablePassphrase
         {
             // Browse to doco page for phrases.
             this.bgwWorker.RunWorkerAsync(new Uri("http://readablepassphrase.codeplex.com/wikipage?title=Custom%20Phrase%20Description"));
+        }
+        private void lnkCombinationsHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Browse to doco page for combination counting.
+            this.bgwWorker.RunWorkerAsync(new Uri("http://readablepassphrase.codeplex.com/wikipage?title=Combination%20Counting"));
         }
 
         private void lnkDictionaryHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -164,6 +170,8 @@ namespace KeePassReadablePassphrase
             this.chkSpacesBetweenWords.Checked = config.SpacesBetweenWords;
             this.chkCustomDictionary.Checked = config.UseCustomDictionary;
             this.txtDictionaryPath.Text = config.PathOfCustomDictionary;
+            this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
+            this.nudMaxLength.Value = Math.Min(config.MaxLength, (int)this.nudMaxLength.Maximum);
 
             this.UpdateDescription(config);
             this.UpdateCombinations(config);
@@ -242,6 +250,8 @@ namespace KeePassReadablePassphrase
                 result.PhraseDescription = new MurrayGrant.ReadablePassphrase.PhraseDescription.Clause[0];
                 this.lblStatus.Text = ex.Message;
             }
+            result.MinLength = (int)this.nudMinLength.Value;
+            result.MaxLength = (int)this.nudMaxLength.Value;
             return result;
 
         }

@@ -30,6 +30,8 @@ namespace KeePassReadablePassphrase
         public IEnumerable<Clause> PhraseDescription { get; set; }
         public bool UseCustomDictionary { get; set; }
         public string PathOfCustomDictionary { get; set; }
+        public int MinLength { get; set; }
+        public int MaxLength { get; set; }
 
         public Config()
         {
@@ -37,14 +39,9 @@ namespace KeePassReadablePassphrase
         }
         public Config(string configFromKeePass)
         {
-            if (String.IsNullOrEmpty(configFromKeePass))
-            {
-                this.LoadDefaults();
-            }
-            else
-            {
+            this.LoadDefaults();
+            if (!String.IsNullOrEmpty(configFromKeePass))
                 this.ParseConfig(configFromKeePass);
-            }
         }
 
         private void LoadDefaults()
@@ -52,6 +49,8 @@ namespace KeePassReadablePassphrase
             // Defaults.
             SpacesBetweenWords = true;
             PhraseStrength = PhraseStrength.Random;
+            MinLength = 1;
+            MaxLength = 999;
             this.UpdatePhraseDescription();
         }
         private void ParseConfig(string configFromKeePass)
@@ -73,6 +72,10 @@ namespace KeePassReadablePassphrase
                     this.PathOfCustomDictionary = reader.GetAttribute("value");
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "phrasedescription")
                     inPhraseDescription = true;
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "maxlength")
+                    this.MaxLength = Int32.Parse(reader.GetAttribute("value"));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "minlength")
+                    this.MinLength = Int32.Parse(reader.GetAttribute("value"));
                 else if (reader.NodeType == XmlNodeType.CDATA && inPhraseDescription)
                 {
                     this.PhraseDescription = Clause.CreateCollectionFromTextString(reader.Value);
@@ -82,6 +85,15 @@ namespace KeePassReadablePassphrase
 
             if (this.PhraseStrength != PhraseStrength.Custom)
                 this.UpdatePhraseDescription();
+
+            if (MinLength < 1)
+                MinLength = 1;
+            if (MinLength > 999)
+                MinLength = 999;
+            if (MaxLength < 1)
+                MaxLength = 1;
+            if (MaxLength > 999)
+                MaxLength = 999;
         }
         public string ToConfigString()
         {
@@ -102,6 +114,8 @@ namespace KeePassReadablePassphrase
             sb.AppendLine("</PhraseDescription>");
             sb.AppendFormat("<UseCustomDictionary value=\"{0}\"/>\n", this.UseCustomDictionary);
             sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", this.PathOfCustomDictionary);
+            sb.AppendFormat("<MinLength value=\"{0}\"/>\n", this.MinLength);
+            sb.AppendFormat("<MaxLength value=\"{0}\"/>\n", this.MaxLength);
             sb.AppendLine("</ReadablePassphraseConfig>");
             return sb.ToString();
         }
