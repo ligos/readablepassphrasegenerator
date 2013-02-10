@@ -51,6 +51,7 @@ namespace Test
             var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>().Where(x => x != PhraseStrength.Random && x != PhraseStrength.Custom);
             foreach (var strength in allToTest)
             {
+                TestTextualParsing(generator, strength);
                 TestGeneration(generator, strength, 50);
                 TestGenerationAsUtf8(generator, strength, 20);
                 TestGenerationAsSecure(generator, strength, 20);
@@ -183,6 +184,20 @@ namespace Test
 
         }
 
+        private static void TestTextualParsing(ReadablePassphraseGenerator generator, PhraseStrength strength)
+        {
+            Console.WriteLine("Testing parsing of textual phrase strength {0}...", strength);
+            var description = Clause.CreatePhraseDescription(strength);
+            var sb = new StringBuilder();
+            foreach (var c in description)
+                c.ToStringBuilder(sb);
+            var textualDescription = sb.ToString();
+            Console.Write("    Generation OK.");
+            var customStrength = Clause.CreateCollectionFromTextString(textualDescription);
+            Console.Write(" Parsing OK.");
+            generator.Generate(customStrength);
+            Console.WriteLine(" Passphrase OK.");
+        }
         private static void TestGeneration(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
         {
             Console.Write("Testing {0:N0} string phrases of strength {1}...", iterations, strength);
