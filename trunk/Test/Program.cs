@@ -61,22 +61,30 @@ namespace Test
             //    WriteStatisticsFor(generator, strength, 100000, strength.ToString() + ".csv");
             //WriteStatisticsFor(generator, PhraseStrength.Random, 1000000, "Random.csv");
 
-            //GenerateCustomSamples(new Clause[]
-            //    {
-            //        new NounClause() { SingularityFactor = 0, PluralityFactor = 1, 
-            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
-            //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
-            //                            NoAdverbFactor = 1, AdverbFactor = 0,
-            //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
-            //                            NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-            //        new NounClause() { SingularityFactor = 1, PluralityFactor = 1, 
-            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
-            //    }
-            //    , generator, 100);
+            GenerateCustomSamples(new Clause[]
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new DirectSpeachClause() { NoDirectSpeachFactor = 0, DirectSpeachFactor = 1, },
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 0,
+                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1, 
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                }
+                , generator, 100);
             //GenerateSamples(PhraseStrength.InsaneEqual, generator);
             //TestConfigForm(generator);
 
@@ -151,6 +159,8 @@ namespace Test
         {
             Console.WriteLine();
             Console.WriteLine("Custom samples:");
+            var combinations = generator.CalculateCombinations(clause);
+            Console.WriteLine("Combinations: {0:E3} ({1:N2} bits)", combinations.ToString(), combinations.EntropyBitsToString());
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(generator.Generate(clause));

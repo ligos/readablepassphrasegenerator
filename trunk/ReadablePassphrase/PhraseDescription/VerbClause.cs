@@ -98,7 +98,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             this._LastVerbTemplateIndex = -1;
             bool subjectIsPlural;
-            var ntemp = currentTemplate.OfType<NounTemplate>().FirstOrDefault();
+            int speachVerbIdx = -1;
+            bool containsDirectSpeach = currentTemplate.OfType<SpeachVerbTemplate>().Any();
+            if (containsDirectSpeach)
+                speachVerbIdx = CollectionHelper.IndexOfType(currentTemplate, typeof(SpeachVerbTemplate));
+            var ntemp = !containsDirectSpeach ? currentTemplate.OfType<NounTemplate>().FirstOrDefault()
+                                              : currentTemplate.Skip(speachVerbIdx).OfType<NounTemplate>().FirstOrDefault();
             if (ntemp == null)
                 subjectIsPlural = false;        // Proper nouns are never plural.
             else
@@ -129,8 +134,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             
 
             bool makeInterrogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
-            if (makeInterrogative)
-                // Insert an interrogative template
+            if (makeInterrogative && containsDirectSpeach)
+                // Insert an interrogative template after the direct speach verb.
+                currentTemplate.Insert(speachVerbIdx + 1, new InterrogativeTemplate(subjectIsPlural));
+            else if (makeInterrogative && !containsDirectSpeach)
+                // Insert an interrogative template at the start of the phrase.
                 currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 
             // Include adverb?
@@ -270,6 +278,19 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             }
             public readonly Func<int> Property;
             public readonly VerbTense Tense;
+        }
+
+        private static class CollectionHelper
+        {
+            public static int IndexOfType<T>(IList<T> collection, Type t)
+            {
+                for (int i = 0; i < collection.Count; i++)
+                {
+                    if (collection[i].GetType() == t)
+                        return i;
+                }
+                return -1;
+            }
         }
     }
 }

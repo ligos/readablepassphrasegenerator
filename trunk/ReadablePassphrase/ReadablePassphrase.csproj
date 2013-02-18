@@ -86,6 +86,7 @@
     <Compile Include="PhraseCombinations.cs" />
     <Compile Include="PhraseDescription\Clause.cs" />
     <Compile Include="PhraseDescription\ConjunctionClause.cs" />
+    <Compile Include="PhraseDescription\DirectSpeachClause.cs" />
     <Compile Include="PhraseDescription\NounClause.cs" />
     <Compile Include="PhraseDescription\PhraseDescriptionParseException.cs" />
     <Compile Include="PhraseDescription\TagInConfigurationAttribute.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="WordTemplate\AdjectiveTemplate.cs" />
     <Compile Include="WordTemplate\ArticleTemplate.cs" />
     <Compile Include="WordTemplate\AdverbTemplate.cs" />
+    <Compile Include="WordTemplate\SpeachVerbTemplate.cs" />
     <Compile Include="WordTemplate\PhraseConjunctionTemplate.cs" />
     <Compile Include="WordTemplate\NounConjunctionTemplate.cs" />
     <Compile Include="WordTemplate\ProperNounTemplate.cs" />
