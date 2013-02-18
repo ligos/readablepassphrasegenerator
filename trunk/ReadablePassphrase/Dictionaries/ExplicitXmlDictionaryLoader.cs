@@ -45,6 +45,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("verb", ParseVerb),
                 new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
                 new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
+                new KeyValuePair<string, Action<XmlReader>>("speachverb", ParseSpeachVerb),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -274,7 +275,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseDictionaryRoot(XmlReader reader)
         {
             int version;
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 3)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 4)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
             _Dict.SetNameAndLanguageCodeAndVersion(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
@@ -310,6 +311,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseAdjective(XmlReader reader)
         {
             _Dict.Add(new MaterialisedAdjective(reader.GetAttribute("value")));
+        }
+        private void ParseSpeachVerb(XmlReader reader)
+        {
+            _Dict.Add(new MaterialisedSpeachVerb(reader.GetAttribute("past")));
         }
         private void ParseConjunction(XmlReader reader)
         {

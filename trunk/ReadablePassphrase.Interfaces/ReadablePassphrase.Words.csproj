@@ -57,6 +57,7 @@
     <Compile Include="Words\Adverb.cs" />
     <Compile Include="Words\Article.cs" />
     <Compile Include="Words\Conjunction.cs" />
+    <Compile Include="Words\SpeachVerb.cs" />
     <Compile Include="Words\ProperNoun.cs" />
     <Compile Include="Words\Demonstrative.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

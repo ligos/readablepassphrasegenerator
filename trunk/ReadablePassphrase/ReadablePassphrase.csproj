@@ -75,6 +75,7 @@
     <Compile Include="MaterialisedWords\Adverb.cs" />
     <Compile Include="MaterialisedWords\Article.cs" />
     <Compile Include="MaterialisedWords\Conjunction.cs" />
+    <Compile Include="MaterialisedWords\SpeachVerb.cs" />
     <Compile Include="MaterialisedWords\ProperNoun.cs" />
     <Compile Include="MaterialisedWords\Interrogative.cs" />
     <Compile Include="MaterialisedWords\Demonstrative.cs" />

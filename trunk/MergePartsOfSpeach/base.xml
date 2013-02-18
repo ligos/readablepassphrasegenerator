@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-Copyright 2011 Murray Grant
+Copyright 2011-2013 Murray Grant
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,9 +21,11 @@ Schema version 2 adds:
 - The 'interrogative' element.
 Schema version 3 adds:
 - The 'properNoun' element.
-- The conjunction element.
+- The 'conjunction' element.
+Schema version 4 adds:
+- The 'speachVerb' element.
 -->
-<dictionary schemaVersion="3" language="en-au" name="Default">
+<dictionary schemaVersion="4" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />
@@ -46,4 +48,24 @@ Schema version 3 adds:
   <conjunction value="before" separates="nounsandphrases"/>
   <conjunction value="because of" separates="nounsandphrases"/>
   <conjunction value="and even" separates="nounsandphrases"/>
+  <speachVerb past="said"/>
+  <speachVerb past="spoke"/>
+  <speachVerb past="uttered"/>
+  <speachVerb past="yelled"/>
+  <speachVerb past="stated"/>
+  <speachVerb past="declared"/>
+  <speachVerb past="announced"/>
+  <speachVerb past="proclaimed"/>
+  <speachVerb past="commented"/>
+  <speachVerb past="remarked"/>
+  <speachVerb past="voiced"/>
+  <speachVerb past="sung"/>
+  <speachVerb past="squeaked"/>
+  <speachVerb past="whispered"/>
+  <speachVerb past="thought"/>
+  <speachVerb past="cried out"/>
+  <speachVerb past="mumbled"/>
+  <speachVerb past="muttered"/>
+  <speachVerb past="shouted"/>
+  <speachVerb past="asserted"/>
 </dictionary>
