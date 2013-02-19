@@ -68,4 +68,5 @@ Schema version 4 adds:
   <speachVerb past="muttered"/>
   <speachVerb past="shouted"/>
   <speachVerb past="asserted"/>
+  <speachVerb past="prayed"/>
 </dictionary>
