@@ -34,22 +34,31 @@ namespace MurrayGrant.ReadablePassphrase
         Insane,
 
         NormalAnd,
+        NormalSpeach,
         NormalEqual,
         NormalEqualAnd,
+        NormalEqualSpeach,
         NormalRequired,
         NormalRequiredAnd,
+        NormalRequiredSpeach,
 
         StrongAnd,
+        StrongSpeach,
         StrongEqual,
         StrongEqualAnd,
+        StrongEqualSpeach,
         StrongRequired,
         StrongRequiredAnd,
+        StrongRequiredSpeach,
         
         InsaneAnd,
+        InsaneSpeach,
         InsaneEqual,
         InsaneEqualAnd,
+        InsaneEqualSpeach,
         InsaneRequired,
         InsaneRequiredAnd,
+        InsaneRequiredSpeach,
 
         Custom
     }

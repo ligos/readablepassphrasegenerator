@@ -37,8 +37,29 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
             // Direct speach verbs are very simple cases of verbs. They rely on a preceeding noun clause to make sense.
-            if (randomness.WeightedCoinFlip(DirectSpeachFactor, NoDirectSpeachFactor))
+            var chosenDirectSpeach = randomness.WeightedCoinFlip(DirectSpeachFactor, NoDirectSpeachFactor);
+            if (chosenDirectSpeach)
                 currentTemplate.Add(new SpeachVerbTemplate());
+            else
+            {
+                // No direct speach: remove any preceeding noun templates.
+                var nounClauseTemplates = new HashSet<Type>() 
+                { 
+                    typeof(NounTemplate), 
+                    typeof(AdjectiveTemplate), 
+                    typeof(ProperNounTemplate), 
+                    typeof(ArticleTemplate), 
+                    typeof(DemonstrativeTemplate), 
+                    typeof(PersonalPronounTemplate), 
+                    typeof(PrepositionTemplate)  
+                };
+                var toRemove = currentTemplate.Reverse().TakeWhile(wt => nounClauseTemplates.Contains(wt.GetType())).ToList();
+                if (toRemove.Count == currentTemplate.Count)
+                    currentTemplate.Clear();
+                else
+                    foreach (var x in toRemove)
+                        currentTemplate.Remove(x);
+            }
         }
         public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {

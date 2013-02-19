@@ -61,30 +61,24 @@ namespace Test
             //    WriteStatisticsFor(generator, strength, 100000, strength.ToString() + ".csv");
             //WriteStatisticsFor(generator, PhraseStrength.Random, 1000000, "Random.csv");
 
-            GenerateCustomSamples(new Clause[]
-                {
-                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1,
-                                        SingularityFactor = 1, PluralityFactor = 1, 
-                                        NoArticleFactor = 0, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
-                    new DirectSpeachClause() { NoDirectSpeachFactor = 0, DirectSpeachFactor = 1, },
-                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
-                                        SingularityFactor = 1, PluralityFactor = 1, 
-                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
-                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
-                                        NoAdverbFactor = 1, AdverbFactor = 0,
-                                        NoInterrogativeFactor = 1, InterrogativeFactor = 0,
-                                        NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
-                                        SingularityFactor = 1, PluralityFactor = 1, 
-                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
-                }
-                , generator, 100);
+            //GenerateCustomSamples(new Clause[]
+            //    {
+            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+            //                            SingularityFactor = 1, PluralityFactor = 1, 
+            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
+            //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+            //                            NoAdverbFactor = 1, AdverbFactor = 0,
+            //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
+            //                            NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+            //                            SingularityFactor = 1, PluralityFactor = 1, 
+            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
+            //    }
+            //    , generator, 100);
             //GenerateSamples(PhraseStrength.InsaneEqual, generator);
             //TestConfigForm(generator);
 
@@ -179,16 +173,16 @@ namespace Test
 
             var predefined = new PhraseStrength[] 
             { 
-                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, 
-                PhraseStrength.Strong, PhraseStrength.StrongAnd, PhraseStrength.StrongEqual, PhraseStrength.StrongEqualAnd, PhraseStrength.StrongRequired, PhraseStrength.StrongRequiredAnd, 
-                PhraseStrength.Insane, PhraseStrength.InsaneAnd, PhraseStrength.InsaneEqual, PhraseStrength.InsaneEqualAnd, PhraseStrength.InsaneRequired, PhraseStrength.InsaneRequiredAnd
+                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalSpeach, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalEqualSpeach, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, PhraseStrength.NormalRequiredSpeach, 
+                PhraseStrength.Strong, PhraseStrength.StrongAnd, PhraseStrength.StrongSpeach, PhraseStrength.StrongEqual, PhraseStrength.StrongEqualAnd, PhraseStrength.StrongEqualSpeach, PhraseStrength.StrongRequired, PhraseStrength.StrongRequiredAnd, PhraseStrength.StrongRequiredSpeach,
+                PhraseStrength.Insane, PhraseStrength.InsaneAnd, PhraseStrength.InsaneSpeach, PhraseStrength.InsaneEqual, PhraseStrength.InsaneEqualAnd, PhraseStrength.InsaneEqualSpeach, PhraseStrength.InsaneRequired, PhraseStrength.InsaneRequiredAnd, PhraseStrength.InsaneRequiredSpeach,
             };
             for (int i = 0; i < predefined.Length; i++)
             {
                 var strength = predefined[i];
                 combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
-                if ((i+1) % 6 == 0)
+                if ((i+1) % 9 == 0)
                     Console.WriteLine();
             }
 
