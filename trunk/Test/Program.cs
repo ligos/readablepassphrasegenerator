@@ -71,7 +71,7 @@ namespace Test
             //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
             //                            NoAdverbFactor = 1, AdverbFactor = 0,
             //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
-            //                            NoIntransitiveFactor = 1, IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+            //                            IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
             //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
             //                            SingularityFactor = 1, PluralityFactor = 1, 
             //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,

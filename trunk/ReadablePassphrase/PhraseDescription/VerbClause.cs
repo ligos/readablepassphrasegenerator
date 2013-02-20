@@ -50,8 +50,6 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("NoInterrogative", "Interrogative")]
         public int NoInterrogativeFactor { get; set; }
 
-        [TagInConfiguration("NoIntransitive", "Intransitive")]
-        public int NoIntransitiveFactor { get; set; }
         [TagInConfiguration("IntransitiveByNoNoun", "Intransitive")]
         public int IntransitiveByNoNounClauseFactor { get; set; }
         [TagInConfiguration("IntransitiveByPreposition", "Intransitive")]
@@ -113,25 +111,26 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // TODO: handle cases where probabilities are zero.
 
             // Choose how to handle intransitive verbs.
-            int choice = randomness.Next(dictionary.CountOf<Verb>());     // Choose between transitive or not by the number of trans/intrans verbs in dictionary.
-            bool selectTransitive = choice < dictionary.CountOfTransitiveVerbs();
+            bool selectTransitive = true;
             bool removeAccusativeNoun = false;
             bool addPreposition = false;
-            if (!selectTransitive)
+            int choice = 0;
+            if (IntransitiveByNoNounClauseFactor > 0 || IntransitiveByPrepositionFactor > 0)
             {
-                // OK, so we chose an intransitive verb, how will we handle that?
-                choice = randomness.Next(NoIntransitiveFactor + IntransitiveByNoNounClauseFactor + IntransitiveByPrepositionFactor);
-                if (choice < NoIntransitiveFactor)
-                    // Actually, we won't choose the intransitive verb after all!
-                    selectTransitive = false;
-                else if (choice >= NoIntransitiveFactor && choice < IntransitiveByNoNounClauseFactor + IntransitiveByPrepositionFactor)
-                    // Remove the noun clause.
-                    removeAccusativeNoun = true;
-                else
-                    // Add a preposition.
-                    addPreposition = true;
+                choice = randomness.Next(dictionary.CountOf<Verb>());     // Choose between transitive or not by the number of trans/intrans verbs in dictionary.
+                selectTransitive = choice < dictionary.CountOfTransitiveVerbs();
+                if (!selectTransitive)
+                {
+                    // OK, so we chose an intransitive verb, how will we handle that?
+                    bool handleIntransByNoObjectNoun = randomness.WeightedCoinFlip(IntransitiveByNoNounClauseFactor, IntransitiveByPrepositionFactor);
+                    if (handleIntransByNoObjectNoun)
+                        // Remove the noun clause.
+                        removeAccusativeNoun = true;
+                    else
+                        // Add a preposition.
+                        addPreposition = true;
+                }
             }
-            
 
             bool makeInterrogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
             if (makeInterrogative && containsDirectSpeach)
