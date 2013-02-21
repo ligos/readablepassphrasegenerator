@@ -3759,4 +3759,19 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="occludes" pastSingular="occluded" pastContinuousSingular="was occluding" futureSingular="will occlude" continuousSingular="is occluding" perfectSingular="has occluded" subjunctiveSingular="might occlude"
         presentPlural="occlude" pastPlural="occluded" pastContinuousPlural="were occluding" futurePlural="will occlude" continuousPlural="are occluding" perfectPlural="have occluded" subjunctivePlural="might occlude"/>
+  <verb presentSingular="replies" pastSingular="replied" pastContinuousSingular="was replying" futureSingular="will reply" continuousSingular="is replying" perfectSingular="has replied" subjunctiveSingular="might reply"
+        presentPlural="reply" pastPlural="replied" pastContinuousPlural="were replying" futurePlural="will reply" continuousPlural="are replying" perfectPlural="have replied" subjunctivePlural="might reply"
+        transitive="false"/>
+  <verb presentSingular="gropes" pastSingular="groped" pastContinuousSingular="was groping" futureSingular="will grope" continuousSingular="is groping" perfectSingular="has groped" subjunctiveSingular="might grope"
+        presentPlural="grope" pastPlural="groped" pastContinuousPlural="were groping" futurePlural="will grope" continuousPlural="are groping" perfectPlural="have groped" subjunctivePlural="might grope"/>
+  <verb presentSingular="rants" pastSingular="ranted" pastContinuousSingular="was ranting" futureSingular="will rant" continuousSingular="is ranting" perfectSingular="has ranted" subjunctiveSingular="might rant"
+        presentPlural="rant" pastPlural="ranted" pastContinuousPlural="were ranting" futurePlural="will rant" continuousPlural="are ranting" perfectPlural="have ranted" subjunctivePlural="might rant"
+        transitive="false"/>
+  <verb presentSingular="pleases" pastSingular="pleased" pastContinuousSingular="was pleasing" futureSingular="will please" continuousSingular="is pleasing" perfectSingular="has pleased" subjunctiveSingular="might please"
+        presentPlural="please" pastPlural="pleased" pastContinuousPlural="were pleasing" futurePlural="will please" continuousPlural="are pleasing" perfectPlural="have pleased" subjunctivePlural="might please"/>
+  <verb presentSingular="spots" pastSingular="spotted" pastContinuousSingular="was spotting" futureSingular="will spot" continuousSingular="is spotting" perfectSingular="has spotted" subjunctiveSingular="might spot"
+        presentPlural="spot" pastPlural="spotted" pastContinuousPlural="were spotting" futurePlural="will spot" continuousPlural="are spotting" perfectPlural="have spotted" subjunctivePlural="might spot"/>
+  <verb presentSingular="reasons" pastSingular="reasoned" pastContinuousSingular="was reasoning" futureSingular="will reason" continuousSingular="is reasoning" perfectSingular="has reasoned" subjunctiveSingular="might reason"
+        presentPlural="reason" pastPlural="reasoned" pastContinuousPlural="were reasoning" futurePlural="will reason" continuousPlural="are reasoning" perfectPlural="have reasoned" subjunctivePlural="might reason"
+        transitive="false"/>
 </dictionary>
