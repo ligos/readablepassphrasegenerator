@@ -3870,4 +3870,6 @@ limitations under the License.
   <verb presentSingular="dreams" pastSingular="dreamed" pastContinuousSingular="was dreaming" futureSingular="will dream" continuousSingular="is dreaming" perfectSingular="has dreamed" subjunctiveSingular="might dream"
         presentPlural="dream" pastPlural="dreamed" pastContinuousPlural="were dreaming" futurePlural="will dream" continuousPlural="are dreaming" perfectPlural="have dreamed" subjunctivePlural="might dream"
         transitive="false"/>
+  <verb presentSingular="dupes" pastSingular="duped" pastContinuousSingular="was duping" futureSingular="will dupe" continuousSingular="is duping" perfectSingular="has duped" subjunctiveSingular="might dupe"
+        presentPlural="dupe" pastPlural="duped" pastContinuousPlural="were duping" futurePlural="will dupe" continuousPlural="are duping" perfectPlural="have duped" subjunctivePlural="might dupe"/>
 </dictionary>
