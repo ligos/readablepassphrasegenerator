@@ -55,7 +55,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtConjunctions = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtSpeachVerbs = new System.Windows.Forms.TextBox();
+            this.txtSpeechVerbs = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -319,15 +319,15 @@
             this.label13.TabIndex = 35;
             this.label13.Text = "Conjunctions";
             // 
-            // txtSpeachVerbs
+            // txtSpeechVerbs
             // 
-            this.txtSpeachVerbs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSpeechVerbs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpeachVerbs.Location = new System.Drawing.Point(118, 98);
-            this.txtSpeachVerbs.Name = "txtSpeachVerbs";
-            this.txtSpeachVerbs.ReadOnly = true;
-            this.txtSpeachVerbs.Size = new System.Drawing.Size(100, 20);
-            this.txtSpeachVerbs.TabIndex = 36;
+            this.txtSpeechVerbs.Location = new System.Drawing.Point(118, 98);
+            this.txtSpeechVerbs.Name = "txtSpeechVerbs";
+            this.txtSpeechVerbs.ReadOnly = true;
+            this.txtSpeechVerbs.Size = new System.Drawing.Size(100, 20);
+            this.txtSpeechVerbs.TabIndex = 36;
             // 
             // label14
             // 
@@ -336,7 +336,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(74, 13);
             this.label14.TabIndex = 37;
-            this.label14.Text = "Speach Verbs";
+            this.label14.Text = "Speech Verbs";
             // 
             // DictionarySizeDetail
             // 
@@ -344,7 +344,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(241, 427);
-            this.Controls.Add(this.txtSpeachVerbs);
+            this.Controls.Add(this.txtSpeechVerbs);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtConjunctions);
             this.Controls.Add(this.label13);
@@ -412,7 +412,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtConjunctions;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtSpeachVerbs;
+        private System.Windows.Forms.TextBox txtSpeechVerbs;
         private System.Windows.Forms.Label label14;
     }
 }

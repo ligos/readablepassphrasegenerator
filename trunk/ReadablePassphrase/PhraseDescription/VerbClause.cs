@@ -96,12 +96,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             this._LastVerbTemplateIndex = -1;
             bool subjectIsPlural;
-            int speachVerbIdx = -1;
-            bool containsDirectSpeach = currentTemplate.OfType<SpeachVerbTemplate>().Any();
-            if (containsDirectSpeach)
-                speachVerbIdx = CollectionHelper.IndexOfType(currentTemplate, typeof(SpeachVerbTemplate));
-            var ntemp = !containsDirectSpeach ? currentTemplate.OfType<NounTemplate>().FirstOrDefault()
-                                              : currentTemplate.Skip(speachVerbIdx).OfType<NounTemplate>().FirstOrDefault();
+            int speechVerbIdx = -1;
+            bool containsDirectSpeech = currentTemplate.OfType<SpeechVerbTemplate>().Any();
+            if (containsDirectSpeech)
+                speechVerbIdx = CollectionHelper.IndexOfType(currentTemplate, typeof(SpeechVerbTemplate));
+            var ntemp = !containsDirectSpeech ? currentTemplate.OfType<NounTemplate>().FirstOrDefault()
+                                              : currentTemplate.Skip(speechVerbIdx).OfType<NounTemplate>().FirstOrDefault();
             if (ntemp == null)
                 subjectIsPlural = false;        // Proper nouns are never plural.
             else
@@ -133,10 +133,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             }
 
             bool makeInterrogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
-            if (makeInterrogative && containsDirectSpeach)
-                // Insert an interrogative template after the direct speach verb.
-                currentTemplate.Insert(speachVerbIdx + 1, new InterrogativeTemplate(subjectIsPlural));
-            else if (makeInterrogative && !containsDirectSpeach)
+            if (makeInterrogative && containsDirectSpeech)
+                // Insert an interrogative template after the direct speech verb.
+                currentTemplate.Insert(speechVerbIdx + 1, new InterrogativeTemplate(subjectIsPlural));
+            else if (makeInterrogative && !containsDirectSpeech)
                 // Insert an interrogative template at the start of the phrase.
                 currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 

@@ -21,13 +21,13 @@ using MurrayGrant.ReadablePassphrase.Words;
 
 namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
-    public sealed class MaterialisedSpeachVerb : SpeachVerb
+    public sealed class MaterialisedSpeechVerb : SpeechVerb
     {
         private string _Past;
         public override string Past { get { return _Past; } }
 
-        private MaterialisedSpeachVerb() { }
-        public MaterialisedSpeachVerb(string past)
+        private MaterialisedSpeechVerb() { }
+        public MaterialisedSpeechVerb(string past)
         {
             _Past = past;
         }

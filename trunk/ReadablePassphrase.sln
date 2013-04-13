@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator", "Generator\Gene
 		{EE49DD2F-8815-4090-8F78-06851D77CE3B} = {EE49DD2F-8815-4090-8F78-06851D77CE3B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePartsOfSpeach", "MergePartsOfSpeach\MergePartsOfSpeach.csproj", "{A9A16D25-23D6-4865-8353-41927998CE03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePartsOfSpeech", "MergePartsOfSpeach\MergePartsOfSpeech.csproj", "{A9A16D25-23D6-4865-8353-41927998CE03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadablePassphrase.Words", "ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj", "{CE0EEC1C-F997-4B6B-97C8-909474ED6970}"
 EndProject

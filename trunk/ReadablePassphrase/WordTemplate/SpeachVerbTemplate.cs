@@ -21,12 +21,12 @@ using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.WordTemplate
 {
-    public class SpeachVerbTemplate : Template
+    public class SpeechVerbTemplate : Template
     {
         public override bool IncludeInAlreadyUsedList { get { return true; } }
         public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
-            var word = words.ChooseWord<SpeachVerb>(randomness, alreadyChosen);
+            var word = words.ChooseWord<SpeechVerb>(randomness, alreadyChosen);
             return new WordAndString(word, word.Past);
         }
     }

@@ -3867,4 +3867,7 @@ limitations under the License.
   <verb presentSingular="cares" pastSingular="cared" pastContinuousSingular="was caring" futureSingular="will care" continuousSingular="is caring" perfectSingular="has cared" subjunctiveSingular="might care"
         presentPlural="care" pastPlural="cared" pastContinuousPlural="were caring" futurePlural="will care" continuousPlural="are caring" perfectPlural="have cared" subjunctivePlural="might care"
         transitive="false"/>
+  <verb presentSingular="dreams" pastSingular="dreamed" pastContinuousSingular="was dreaming" futureSingular="will dream" continuousSingular="is dreaming" perfectSingular="has dreamed" subjunctiveSingular="might dream"
+        presentPlural="dream" pastPlural="dreamed" pastContinuousPlural="were dreaming" futurePlural="will dream" continuousPlural="are dreaming" perfectPlural="have dreamed" subjunctivePlural="might dream"
+        transitive="false"/>
 </dictionary>

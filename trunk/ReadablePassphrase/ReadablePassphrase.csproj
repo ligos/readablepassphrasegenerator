@@ -124,7 +124,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(SolutionDir)MergePartsOfSpeach\bin\$(ConfigurationName)\dictionary.xml" "$(TargetDir)"
+    <PostBuildEvent>copy /y "$(SolutionDir)MergePartsOfSpeech\bin\$(ConfigurationName)\dictionary.xml" "$(TargetDir)"
 copy /y "$(TargetPath)" "$(SolutionDir)KeePassReadablePassphrase"
 copy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)KeePassReadablePassphrase"</PostBuildEvent>
   </PropertyGroup>

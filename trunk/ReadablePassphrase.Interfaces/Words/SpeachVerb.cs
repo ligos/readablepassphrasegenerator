@@ -20,10 +20,10 @@ using System.Xml;
 
 namespace MurrayGrant.ReadablePassphrase.Words
 {
-    public abstract class SpeachVerb : Word
+    public abstract class SpeechVerb : Word
     {
         public abstract string Past { get; }
         public override string DictionaryEntry { get { return Past; } }
-        public sealed override Type OfType { get { return typeof(SpeachVerb); } }
+        public sealed override Type OfType { get { return typeof(SpeechVerb); } }
     }
 }

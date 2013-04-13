@@ -45,7 +45,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("verb", ParseVerb),
                 new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
                 new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
-                new KeyValuePair<string, Action<XmlReader>>("speachverb", ParseSpeachVerb),
+                new KeyValuePair<string, Action<XmlReader>>("speechverb", ParseSpeechVerb),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -312,9 +312,9 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             _Dict.Add(new MaterialisedAdjective(reader.GetAttribute("value")));
         }
-        private void ParseSpeachVerb(XmlReader reader)
+        private void ParseSpeechVerb(XmlReader reader)
         {
-            _Dict.Add(new MaterialisedSpeachVerb(reader.GetAttribute("past")));
+            _Dict.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past")));
         }
         private void ParseConjunction(XmlReader reader)
         {

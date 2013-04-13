@@ -65,7 +65,7 @@ namespace KeePassReadablePassphrase
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "spacesbetweenwords")
                     this.SpacesBetweenWords = Boolean.Parse(reader.GetAttribute("value"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "phrasestrength")
-                    this.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), reader.GetAttribute("value"));
+                    this.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), reader.GetAttribute("value").Replace("Speach", "Speech"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "usecustomdictionary")
                     this.UseCustomDictionary = Boolean.Parse(reader.GetAttribute("value"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "pathofcustomdictionary")

@@ -21,13 +21,13 @@ using MurrayGrant.ReadablePassphrase.Dictionaries;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
-    [TagInConfiguration("DirectSpeach")]
-    public class DirectSpeachClause : Clause
+    [TagInConfiguration("DirectSpeech")]
+    public class DirectSpeechClause : Clause
     {
-        [TagInConfiguration("DirectSpeach", "DirectSpeach")]
-        public int NoDirectSpeachFactor { get; set; }
-        [TagInConfiguration("NoDirectSpeach", "DirectSpeach")]
-        public int DirectSpeachFactor { get; set; }
+        [TagInConfiguration("DirectSpeech", "DirectSpeech")]
+        public int NoDirectSpeechFactor { get; set; }
+        [TagInConfiguration("NoDirectSpeech", "DirectSpeech")]
+        public int DirectSpeechFactor { get; set; }
 
         public override void InitialiseRelationships(IEnumerable<Clause> phrase)
         {
@@ -36,13 +36,13 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
-            // Direct speach verbs are very simple cases of verbs. They rely on a preceeding noun clause to make sense.
-            var chosenDirectSpeach = randomness.WeightedCoinFlip(DirectSpeachFactor, NoDirectSpeachFactor);
-            if (chosenDirectSpeach)
-                currentTemplate.Add(new SpeachVerbTemplate());
+            // Direct speech verbs are very simple cases of verbs. They rely on a preceeding noun clause to make sense.
+            var chosenDirectSpeech = randomness.WeightedCoinFlip(DirectSpeechFactor, NoDirectSpeechFactor);
+            if (chosenDirectSpeech)
+                currentTemplate.Add(new SpeechVerbTemplate());
             else
             {
-                // No direct speach: remove any preceeding noun templates.
+                // No direct speech: remove any preceeding noun templates.
                 var nounClauseTemplates = new HashSet<Type>() 
                 { 
                     typeof(NounTemplate), 
@@ -69,7 +69,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
-            var result = this.CountSingleFactor<Words.SpeachVerb>(dictionary, this.DirectSpeachFactor, this.NoDirectSpeachFactor);
+            var result = this.CountSingleFactor<Words.SpeechVerb>(dictionary, this.DirectSpeechFactor, this.NoDirectSpeechFactor);
             return result;
         }
     }

@@ -23,7 +23,7 @@ Schema version 3 adds:
 - The 'properNoun' element.
 - The 'conjunction' element.
 Schema version 4 adds:
-- The 'speachVerb' element.
+- The 'speechVerb' element.
 -->
 <dictionary schemaVersion="4" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
@@ -48,28 +48,28 @@ Schema version 4 adds:
   <conjunction value="before" separates="nounsandphrases"/>
   <conjunction value="because of" separates="nounsandphrases"/>
   <conjunction value="and even" separates="nounsandphrases"/>
-  <speachVerb past="said"/>
-  <speachVerb past="spoke"/>
-  <speachVerb past="uttered"/>
-  <speachVerb past="yelled"/>
-  <speachVerb past="stated"/>
-  <speachVerb past="declared"/>
-  <speachVerb past="announced"/>
-  <speachVerb past="proclaimed"/>
-  <speachVerb past="commented"/>
-  <speachVerb past="remarked"/>
-  <speachVerb past="voiced"/>
-  <speachVerb past="sung"/>
-  <speachVerb past="squeaked"/>
-  <speachVerb past="whispered"/>
-  <speachVerb past="thought"/>
-  <speachVerb past="cried out"/>
-  <speachVerb past="mumbled"/>
-  <speachVerb past="muttered"/>
-  <speachVerb past="shouted"/>
-  <speachVerb past="asserted"/>
-  <speachVerb past="prayed"/>
-  <speachVerb past="replied"/>
-  <speachVerb past="ranted"/>
-  <speachVerb past="reasoned"/>
+  <speechVerb past="said"/>
+  <speechVerb past="spoke"/>
+  <speechVerb past="uttered"/>
+  <speechVerb past="yelled"/>
+  <speechVerb past="stated"/>
+  <speechVerb past="declared"/>
+  <speechVerb past="announced"/>
+  <speechVerb past="proclaimed"/>
+  <speechVerb past="commented"/>
+  <speechVerb past="remarked"/>
+  <speechVerb past="voiced"/>
+  <speechVerb past="sung"/>
+  <speechVerb past="squeaked"/>
+  <speechVerb past="whispered"/>
+  <speechVerb past="thought"/>
+  <speechVerb past="cried out"/>
+  <speechVerb past="mumbled"/>
+  <speechVerb past="muttered"/>
+  <speechVerb past="shouted"/>
+  <speechVerb past="asserted"/>
+  <speechVerb past="prayed"/>
+  <speechVerb past="replied"/>
+  <speechVerb past="ranted"/>
+  <speechVerb past="reasoned"/>
 </dictionary>

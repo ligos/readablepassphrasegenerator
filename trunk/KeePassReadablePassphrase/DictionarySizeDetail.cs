@@ -39,7 +39,7 @@ namespace KeePassReadablePassphrase
             this.txtNouns.Text = this._Dictionary.CountOf<Noun>().ToString("N0");
             this.txtProperNouns.Text = this._Dictionary.CountOf<ProperNoun>().ToString("N0");
             this.txtVerbs.Text = this._Dictionary.CountOf<Verb>().ToString("N0");
-            this.txtSpeachVerbs.Text = this._Dictionary.CountOf<SpeachVerb>().ToString("N0");
+            this.txtSpeechVerbs.Text = this._Dictionary.CountOf<SpeechVerb>().ToString("N0");
             this.txtAdjectives.Text = this._Dictionary.CountOf<Adjective>().ToString("N0");
             this.txtAdverbs.Text = this._Dictionary.CountOf<Adverb>().ToString("N0");
             this.txtPrepositions.Text = this._Dictionary.CountOf<Preposition>().ToString("N0");
@@ -52,7 +52,7 @@ namespace KeePassReadablePassphrase
             this.txtTotal.Text = (this._Dictionary.CountOf<Noun>()
                                  + this._Dictionary.CountOf<ProperNoun>()
                                  + this._Dictionary.CountOf<Verb>()
-                                 + this._Dictionary.CountOf<SpeachVerb>()
+                                 + this._Dictionary.CountOf<SpeechVerb>()
                                  + this._Dictionary.CountOf<Adjective>()
                                  + this._Dictionary.CountOf<Adverb>()
                                  + this._Dictionary.CountOf<Preposition>()

@@ -173,9 +173,9 @@ namespace Test
 
             var predefined = new PhraseStrength[] 
             { 
-                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalSpeach, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalEqualSpeach, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, PhraseStrength.NormalRequiredSpeach, 
-                PhraseStrength.Strong, PhraseStrength.StrongAnd, PhraseStrength.StrongSpeach, PhraseStrength.StrongEqual, PhraseStrength.StrongEqualAnd, PhraseStrength.StrongEqualSpeach, PhraseStrength.StrongRequired, PhraseStrength.StrongRequiredAnd, PhraseStrength.StrongRequiredSpeach,
-                PhraseStrength.Insane, PhraseStrength.InsaneAnd, PhraseStrength.InsaneSpeach, PhraseStrength.InsaneEqual, PhraseStrength.InsaneEqualAnd, PhraseStrength.InsaneEqualSpeach, PhraseStrength.InsaneRequired, PhraseStrength.InsaneRequiredAnd, PhraseStrength.InsaneRequiredSpeach,
+                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalSpeech, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalEqualSpeech, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, PhraseStrength.NormalRequiredSpeech, 
+                PhraseStrength.Strong, PhraseStrength.StrongAnd, PhraseStrength.StrongSpeech, PhraseStrength.StrongEqual, PhraseStrength.StrongEqualAnd, PhraseStrength.StrongEqualSpeech, PhraseStrength.StrongRequired, PhraseStrength.StrongRequiredAnd, PhraseStrength.StrongRequiredSpeech,
+                PhraseStrength.Insane, PhraseStrength.InsaneAnd, PhraseStrength.InsaneSpeech, PhraseStrength.InsaneEqual, PhraseStrength.InsaneEqualAnd, PhraseStrength.InsaneEqualSpeech, PhraseStrength.InsaneRequired, PhraseStrength.InsaneRequiredAnd, PhraseStrength.InsaneRequiredSpeech,
             };
             for (int i = 0; i < predefined.Length; i++)
             {

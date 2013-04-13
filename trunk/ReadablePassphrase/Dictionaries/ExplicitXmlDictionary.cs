@@ -21,7 +21,7 @@ using MurrayGrant.ReadablePassphrase.Words;
 namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
     /// <summary>
-    /// A dictionary is a collection of words categorised by parts of speach. 
+    /// A dictionary is a collection of words categorised by parts of speech. 
     /// </summary>
     public class ExplicitXmlWordDictionary : WordDictionary
     {
