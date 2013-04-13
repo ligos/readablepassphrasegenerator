@@ -124,7 +124,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(SolutionDir)MergePartsOfSpeach\bin\$(ConfigurationName)\dictionary.xml" "$(TargetDir)"
+    <PostBuildEvent>copy /y "$(SolutionDir)MergePartsOfSpeech\bin\$(ConfigurationName)\dictionary.xml" "$(TargetDir)"
 del "$(TargetDir)dictionary.xml.gz"
 "$(SolutionDir)gzip.exe" -9 "$(TargetDir)dictionary.xml"</PostBuildEvent>
   </PropertyGroup>
