@@ -3919,4 +3919,31 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="convinces" pastSingular="convinced" pastContinuousSingular="was convincing" futureSingular="will convince" continuousSingular="is convincing" perfectSingular="has convinced" subjunctiveSingular="might convince"
         presentPlural="convince" pastPlural="convinced" pastContinuousPlural="were convincing" futurePlural="will convince" continuousPlural="are convincing" perfectPlural="have convinced" subjunctivePlural="might convince"/>
+  <verb presentSingular="shampoos" pastSingular="shampooed" pastContinuousSingular="was shampooing" futureSingular="will shampoo" continuousSingular="is shampooing" perfectSingular="has shampooed" subjunctiveSingular="might shampoo"
+        presentPlural="shampoo" pastPlural="shampooed" pastContinuousPlural="were shampooing" futurePlural="will shampoo" continuousPlural="are shampooing" perfectPlural="have shampooed" subjunctivePlural="might shampoo"/>
+  <verb presentSingular="advances" pastSingular="advanced" pastContinuousSingular="was advancing" futureSingular="will advance" continuousSingular="is advancing" perfectSingular="has advanced" subjunctiveSingular="might advance"
+        presentPlural="advance" pastPlural="advanced" pastContinuousPlural="were advancing" futurePlural="will advance" continuousPlural="are advancing" perfectPlural="have advanced" subjunctivePlural="might advance"/>
+  <verb presentSingular="adorns" pastSingular="adorned" pastContinuousSingular="was adorning" futureSingular="will adorn" continuousSingular="is adorning" perfectSingular="has adorned" subjunctiveSingular="might adorn"
+        presentPlural="adorn" pastPlural="adorned" pastContinuousPlural="were adorning" futurePlural="will adorn" continuousPlural="are adorning" perfectPlural="have adorned" subjunctivePlural="might adorn"/>
+  <verb presentSingular="explores" pastSingular="explored" pastContinuousSingular="was exploring" futureSingular="will explore" continuousSingular="is exploring" perfectSingular="has explored" subjunctiveSingular="might explore"
+        presentPlural="explore" pastPlural="explored" pastContinuousPlural="were exploring" futurePlural="will explore" continuousPlural="are exploring" perfectPlural="have explored" subjunctivePlural="might explore"/>
+  <verb presentSingular="conquers" pastSingular="conquered" pastContinuousSingular="was conquering" futureSingular="will conquer" continuousSingular="is conquering" perfectSingular="has conquered" subjunctiveSingular="might conquer"
+        presentPlural="conquer" pastPlural="conquered" pastContinuousPlural="were conquering" futurePlural="will conquer" continuousPlural="are conquering" perfectPlural="have conquered" subjunctivePlural="might conquer"/>
+  <verb presentSingular="divides" pastSingular="divided" pastContinuousSingular="was dividing" futureSingular="will divide" continuousSingular="is dividing" perfectSingular="has divided" subjunctiveSingular="might divide"
+        presentPlural="divide" pastPlural="divided" pastContinuousPlural="were dividing" futurePlural="will divide" continuousPlural="are dividing" perfectPlural="have divided" subjunctivePlural="might divide"/>
+  <verb presentSingular="unlaces" pastSingular="unlaced" pastContinuousSingular="was unlacing" futureSingular="will unlace" continuousSingular="is unlacing" perfectSingular="has unlaced" subjunctiveSingular="might unlace"
+        presentPlural="unlace" pastPlural="unlaced" pastContinuousPlural="were unlacing" futurePlural="will unlace" continuousPlural="are unlacing" perfectPlural="have unlaced" subjunctivePlural="might unlace"/>
+  <verb presentSingular="stagnates" pastSingular="stagnated" pastContinuousSingular="was stagnating" futureSingular="will stagnate" continuousSingular="is stagnating" perfectSingular="has stagnated" subjunctiveSingular="might stagnate"
+        presentPlural="stagnate" pastPlural="stagnated" pastContinuousPlural="were stagnating" futurePlural="will stagnate" continuousPlural="are stagnating" perfectPlural="have stagnated" subjunctivePlural="might stagnate"
+        transitive="false"/>
+  <verb presentSingular="retouches" pastSingular="retouched" pastContinuousSingular="was retouching" futureSingular="will retouch" continuousSingular="is retouching" perfectSingular="has retouched" subjunctiveSingular="might retouch"
+        presentPlural="retouch" pastPlural="retouched" pastContinuousPlural="were retouching" futurePlural="will retouch" continuousPlural="are retouching" perfectPlural="have retouched" subjunctivePlural="might retouch"/>
+  <verb presentSingular="fits" pastSingular="fitted" pastContinuousSingular="was fitting" futureSingular="will fit" continuousSingular="is fitting" perfectSingular="has fitted" subjunctiveSingular="might fit"
+        presentPlural="fit" pastPlural="fitted" pastContinuousPlural="were fitting" futurePlural="will fit" continuousPlural="are fitting" perfectPlural="have fitted" subjunctivePlural="might fit"/>
+  <verb presentSingular="rebukes" pastSingular="rebuked" pastContinuousSingular="was rebuking" futureSingular="will rebuke" continuousSingular="is rebuking" perfectSingular="has rebuked" subjunctiveSingular="might rebuke"
+        presentPlural="rebuke" pastPlural="rebuked" pastContinuousPlural="were rebuking" futurePlural="will rebuke" continuousPlural="are rebuking" perfectPlural="have rebuked" subjunctivePlural="might rebuke"/>
+  <verb presentSingular="swashes" pastSingular="swashed" pastContinuousSingular="was swashing" futureSingular="will swash" continuousSingular="is swashing" perfectSingular="has swashed" subjunctiveSingular="might swash"
+        presentPlural="swash" pastPlural="swashed" pastContinuousPlural="were swashing" futurePlural="will swash" continuousPlural="are swashing" perfectPlural="have swashed" subjunctivePlural="might swash"/>
+  <verb presentSingular="furrows" pastSingular="furrowed" pastContinuousSingular="was furrowing" futureSingular="will furrow" continuousSingular="is furrowing" perfectSingular="has furrowed" subjunctiveSingular="might furrow"
+        presentPlural="furrow" pastPlural="furrowed" pastContinuousPlural="were furrowing" futurePlural="will furrow" continuousPlural="are furrowing" perfectPlural="have furrowed" subjunctivePlural="might furrow"/>
 </dictionary>
