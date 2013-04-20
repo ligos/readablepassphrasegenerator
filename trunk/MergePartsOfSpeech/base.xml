@@ -72,4 +72,5 @@ Schema version 4 adds:
   <speechVerb past="replied"/>
   <speechVerb past="ranted"/>
   <speechVerb past="reasoned"/>
+  <speechVerb past="yammered"/>
 </dictionary>
