@@ -299,7 +299,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         private void ParseIndefinitePronoun(XmlReader reader)
         {
-            _Dict.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+            _Dict.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal"))));
         }
         private void ParseNoun(XmlReader reader)
         {

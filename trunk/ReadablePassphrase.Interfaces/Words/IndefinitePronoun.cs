@@ -24,6 +24,7 @@ namespace MurrayGrant.ReadablePassphrase.Words
     {
         public abstract string Singular { get; }
         public abstract string Plural { get; }
+        public abstract bool IsPersonal { get; }
 
         public override string DictionaryEntry { get { return Singular; } }
         public sealed override Type OfType { get { return typeof(IndefinitePronoun); } }

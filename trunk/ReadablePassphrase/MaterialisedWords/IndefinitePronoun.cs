@@ -25,15 +25,18 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
     {
         private string _Singular;
         private string _Plural;
+        private bool _IsPersonal;
 
         public override string Singular { get { return _Singular; } }
         public override string Plural { get { return _Plural; } }
+        public override bool IsPersonal  { get { return _IsPersonal; } }
 
         private MaterialisedIndefinitePronoun() { }
-        public MaterialisedIndefinitePronoun(string singular, string plural)
+        public MaterialisedIndefinitePronoun(string singular, string plural, bool isPersonal)
         {
             _Singular = singular;
             _Plural = plural;
+            _IsPersonal = isPersonal;
         }
     }
 }

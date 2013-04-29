@@ -95,17 +95,32 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
             this._LastVerbTemplateIndex = -1;
+            
+            // Figuring out if the verb will be plural or not is... well... complicated.
             bool subjectIsPlural;
-            int speechVerbIdx = -1;
+            int speechVerbIdx = -1, indefiniteNounIdx = -1;
             bool containsDirectSpeech = currentTemplate.OfType<SpeechVerbTemplate>().Any();
+            bool containsIndefiniteNoun = currentTemplate.OfType<IndefinitePronounTemplate>().Any();
             if (containsDirectSpeech)
                 speechVerbIdx = CollectionHelper.IndexOfType(currentTemplate, typeof(SpeechVerbTemplate));
+            if (containsIndefiniteNoun)
+                indefiniteNounIdx = CollectionHelper.IndexOfType(currentTemplate, typeof(IndefinitePronounTemplate));
+            
             var ntemp = !containsDirectSpeech ? currentTemplate.OfType<NounTemplate>().FirstOrDefault()
                                               : currentTemplate.Skip(speechVerbIdx).OfType<NounTemplate>().FirstOrDefault();
-            if (ntemp == null)
+            var ptemp = containsIndefiniteNoun ? (currentTemplate[indefiniteNounIdx] as IndefinitePronounTemplate) : null;
+
+            if (ptemp == null && ntemp == null)
                 subjectIsPlural = false;        // Proper nouns are never plural.
-            else
+            else if (ptemp == null && ntemp != null)
                 subjectIsPlural = ntemp.IsPlural;
+            else if (ptemp != null && ntemp == null)
+                subjectIsPlural = ptemp.IsPlural;
+            else if (ptemp != null && ntemp != null)
+                // This probably shouldn't happen, but if it does, we'll take the noun.
+                subjectIsPlural = ntemp.IsPlural;
+            else
+                throw new ApplicationException("Unexpected state.");
             var verbFormToBePlural = subjectIsPlural;
 
             // TODO: handle cases where probabilities are zero.

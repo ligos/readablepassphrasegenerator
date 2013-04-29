@@ -75,6 +75,6 @@ Schema version 5 adds:
   <speechVerb past="ranted"/>
   <speechVerb past="reasoned"/>
   <speechVerb past="yammered"/>
-  <indefinitePronoun singular="one" plural="ones"/>
-  <indefinitePronoun singular="thing" plural="things"/>
+  <indefinitePronoun singular="one" plural="ones" personal="true"/>
+  <indefinitePronoun singular="thing" plural="things" personal="false"/>
 </dictionary>

@@ -100,6 +100,7 @@
     <Compile Include="WordTemplate\AdjectiveTemplate.cs" />
     <Compile Include="WordTemplate\ArticleTemplate.cs" />
     <Compile Include="WordTemplate\AdverbTemplate.cs" />
+    <Compile Include="WordTemplate\IndefinitePronounTemplate.cs" />
     <Compile Include="WordTemplate\SpeachVerbTemplate.cs" />
     <Compile Include="WordTemplate\PhraseConjunctionTemplate.cs" />
     <Compile Include="WordTemplate\NounConjunctionTemplate.cs" />

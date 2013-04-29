@@ -63,7 +63,7 @@ namespace Test
 
             //GenerateCustomSamples(new Clause[]
             //    {
-            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1, NounFromAdjectiveFactor = 1,
             //                            SingularityFactor = 1, PluralityFactor = 1, 
             //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
             //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -72,7 +72,7 @@ namespace Test
             //                            NoAdverbFactor = 1, AdverbFactor = 0,
             //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
             //                            IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0,
+            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
             //                            SingularityFactor = 1, PluralityFactor = 1, 
             //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
             //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
@@ -100,7 +100,7 @@ namespace Test
             // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
-            TestConfigForm(generator);
+            //TestConfigForm(generator);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");

@@ -28,6 +28,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public int ProperNounFactor { get; set; }
         [TagInConfiguration("CommonNoun", "Noun")]
         public int CommonNounFactor { get; set; }
+        [TagInConfiguration("AdjectiveNoun", "Noun")]
+        public int NounFromAdjectiveFactor { get; set; }
 
         [TagInConfiguration("Plural", "Number")]
         public int PluralityFactor { get; set; }
@@ -55,6 +57,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("NoPreposition", "Preposition")]
         public int NoPrepositionFactor { get; set; }
 
+
+
         public override void InitialiseRelationships(IEnumerable<Clause> phrase)
         {
             // The verb does all this at the moment, but perhaps that shouldn't be the case.
@@ -62,22 +66,66 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
-            // Common or proper noun?
-            var commonNoun = randomness.WeightedCoinFlip(CommonNounFactor, ProperNounFactor);
-            if (!commonNoun)
-            {
-                // Proper noun is simply added as-is. There is never an adjective, article, plural, etc.
-                currentTemplate.Add(new ProperNounTemplate());
-                return;
-            }
+            // How do we form the noun? 
+            // - Common noun.
+            // - Proper noun. 
+            // - Adjective with indefinite pronoun?
+            if (randomness.WeightedCoinFlip(CommonNounFactor, ProperNounFactor + NounFromAdjectiveFactor))
+                this.AddCommonNoun(randomness, dictionary, currentTemplate);
+            else if (randomness.WeightedCoinFlip(ProperNounFactor, NounFromAdjectiveFactor))
+                this.AddProperNoun(randomness, dictionary, currentTemplate);
+            else if (NounFromAdjectiveFactor != 0)
+                this.AddAdjectiveAsNoun(randomness, dictionary, currentTemplate);
+            else
+                throw new ApplicationException("Unexpected state.");
+        }
+        public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // No-op for noun clause.
+        }
 
+        private void AddCommonNoun(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // Common nouns allow for the full range of extra stuff.
+            bool isPlural;
+            AddNounPrelude(randomness, dictionary, currentTemplate, out isPlural);
+            
+            // Add an adjective?
+            bool includeAdjective = randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
+            if (includeAdjective)
+                currentTemplate.Add(new AdjectiveTemplate());
+
+            // Finally add the noun!
+            currentTemplate.Add(new NounTemplate(isPlural));
+        }
+        private void AddProperNoun(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // Proper noun is simply added as-is. There is never an adjective, article, plural, etc.
+            currentTemplate.Add(new ProperNounTemplate());
+            return;
+        }
+        private void AddAdjectiveAsNoun(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
+        {
+            // Using an adjective as a noun means we can't add an adjective, but otherwise allows for a variety of parts of speach.
+            bool isPlural;
+            AddNounPrelude(randomness, dictionary, currentTemplate, out isPlural);
+
+            currentTemplate.Add(new AdjectiveTemplate());
+
+            // Will we use a personal or impersonal pronoun here?
+            bool isPersonal = randomness.CoinFlip();
+            currentTemplate.Add(new IndefinitePronounTemplate(isPlural, isPersonal));    
+        }
+        private void AddNounPrelude(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate, out bool isPlural)
+        {
+            // There's a bunch of stuff common to common and adjectives as nouns.
             // Include a preposition?
             bool includePreposition = randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
             if (includePreposition && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
                 currentTemplate.Add(new PrepositionTemplate());
 
             // Will this noun be plural?
-            bool isPlural = randomness.WeightedCoinFlip(PluralityFactor, SingularityFactor);
+            isPlural = randomness.WeightedCoinFlip(PluralityFactor, SingularityFactor);
 
             // What kind of article will this Noun have?
             if (!isPlural)
@@ -106,20 +154,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 else
                     currentTemplate.Add(new PersonalPronounTemplate(isPlural));
             }
-
-            // Add an adjective?
-            bool includeAdjective = randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
-            if (includeAdjective)
-                currentTemplate.Add(new AdjectiveTemplate());
-
-            // Finally add the noun!
-            currentTemplate.Add(new NounTemplate(isPlural));
         }
-        public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
-        {
-            // No-op for noun clause.
-        }
-
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
