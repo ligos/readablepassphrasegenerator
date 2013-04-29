@@ -97,10 +97,10 @@ namespace Test
             //TestNextInt32(SeededRandom(), 256);
             //TestNextInt32(SeededRandom(), 1296);
 
-            // Test load an alternate dictionary loader.
+            // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
-            //TestConfigForm(generator);
+            TestConfigForm(generator);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");

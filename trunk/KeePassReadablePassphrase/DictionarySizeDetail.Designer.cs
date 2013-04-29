@@ -57,6 +57,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtSpeechVerbs = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtIndefinitePronouns = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -70,33 +72,29 @@
             // 
             // txtNouns
             // 
-            this.txtNouns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNouns.Location = new System.Drawing.Point(118, 20);
+            this.txtNouns.Location = new System.Drawing.Point(103, 20);
             this.txtNouns.Name = "txtNouns";
             this.txtNouns.ReadOnly = true;
-            this.txtNouns.Size = new System.Drawing.Size(100, 20);
+            this.txtNouns.Size = new System.Drawing.Size(85, 20);
             this.txtNouns.TabIndex = 0;
             // 
             // btnOK
             // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(80, 396);
+            this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOK.Location = new System.Drawing.Point(175, 265);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 13;
+            this.btnOK.TabIndex = 15;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtVerbs
             // 
-            this.txtVerbs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtVerbs.Location = new System.Drawing.Point(118, 72);
+            this.txtVerbs.Location = new System.Drawing.Point(103, 72);
             this.txtVerbs.Name = "txtVerbs";
             this.txtVerbs.ReadOnly = true;
-            this.txtVerbs.Size = new System.Drawing.Size(100, 20);
+            this.txtVerbs.Size = new System.Drawing.Size(85, 20);
             this.txtVerbs.TabIndex = 2;
             // 
             // label2
@@ -110,13 +108,11 @@
             // 
             // txtAdjectives
             // 
-            this.txtAdjectives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdjectives.Location = new System.Drawing.Point(118, 125);
+            this.txtAdjectives.Location = new System.Drawing.Point(103, 125);
             this.txtAdjectives.Name = "txtAdjectives";
             this.txtAdjectives.ReadOnly = true;
-            this.txtAdjectives.Size = new System.Drawing.Size(100, 20);
-            this.txtAdjectives.TabIndex = 3;
+            this.txtAdjectives.Size = new System.Drawing.Size(85, 20);
+            this.txtAdjectives.TabIndex = 4;
             // 
             // label3
             // 
@@ -129,13 +125,11 @@
             // 
             // txtAdverbs
             // 
-            this.txtAdverbs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdverbs.Location = new System.Drawing.Point(118, 151);
+            this.txtAdverbs.Location = new System.Drawing.Point(103, 151);
             this.txtAdverbs.Name = "txtAdverbs";
             this.txtAdverbs.ReadOnly = true;
-            this.txtAdverbs.Size = new System.Drawing.Size(100, 20);
-            this.txtAdverbs.TabIndex = 4;
+            this.txtAdverbs.Size = new System.Drawing.Size(85, 20);
+            this.txtAdverbs.TabIndex = 5;
             // 
             // label4
             // 
@@ -148,13 +142,11 @@
             // 
             // txtPrepositions
             // 
-            this.txtPrepositions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrepositions.Location = new System.Drawing.Point(118, 177);
+            this.txtPrepositions.Location = new System.Drawing.Point(103, 177);
             this.txtPrepositions.Name = "txtPrepositions";
             this.txtPrepositions.ReadOnly = true;
-            this.txtPrepositions.Size = new System.Drawing.Size(100, 20);
-            this.txtPrepositions.TabIndex = 5;
+            this.txtPrepositions.Size = new System.Drawing.Size(85, 20);
+            this.txtPrepositions.TabIndex = 6;
             // 
             // label5
             // 
@@ -167,18 +159,18 @@
             // 
             // txtDemonstratives
             // 
-            this.txtDemonstratives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDemonstratives.Location = new System.Drawing.Point(118, 203);
+            this.txtDemonstratives.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDemonstratives.Location = new System.Drawing.Point(312, 20);
             this.txtDemonstratives.Name = "txtDemonstratives";
             this.txtDemonstratives.ReadOnly = true;
-            this.txtDemonstratives.Size = new System.Drawing.Size(100, 20);
-            this.txtDemonstratives.TabIndex = 6;
+            this.txtDemonstratives.Size = new System.Drawing.Size(85, 20);
+            this.txtDemonstratives.TabIndex = 7;
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 206);
+            this.label6.Location = new System.Drawing.Point(206, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 21;
@@ -186,18 +178,18 @@
             // 
             // txtTheArticle
             // 
-            this.txtTheArticle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTheArticle.Location = new System.Drawing.Point(118, 229);
+            this.txtTheArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTheArticle.Location = new System.Drawing.Point(312, 46);
             this.txtTheArticle.Name = "txtTheArticle";
             this.txtTheArticle.ReadOnly = true;
-            this.txtTheArticle.Size = new System.Drawing.Size(100, 20);
-            this.txtTheArticle.TabIndex = 7;
+            this.txtTheArticle.Size = new System.Drawing.Size(85, 20);
+            this.txtTheArticle.TabIndex = 8;
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 232);
+            this.label7.Location = new System.Drawing.Point(206, 49);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 13);
             this.label7.TabIndex = 23;
@@ -205,18 +197,18 @@
             // 
             // txtPersonalPronouns
             // 
-            this.txtPersonalPronouns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPersonalPronouns.Location = new System.Drawing.Point(118, 255);
+            this.txtPersonalPronouns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPersonalPronouns.Location = new System.Drawing.Point(312, 72);
             this.txtPersonalPronouns.Name = "txtPersonalPronouns";
             this.txtPersonalPronouns.ReadOnly = true;
-            this.txtPersonalPronouns.Size = new System.Drawing.Size(100, 20);
-            this.txtPersonalPronouns.TabIndex = 8;
+            this.txtPersonalPronouns.Size = new System.Drawing.Size(85, 20);
+            this.txtPersonalPronouns.TabIndex = 9;
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 258);
+            this.label8.Location = new System.Drawing.Point(206, 75);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 25;
@@ -224,20 +216,20 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(118, 342);
+            this.txtTotal.Location = new System.Drawing.Point(203, 208);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtTotal.TabIndex = 11;
+            this.txtTotal.Size = new System.Drawing.Size(85, 20);
+            this.txtTotal.TabIndex = 13;
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 345);
+            this.label9.Location = new System.Drawing.Point(127, 211);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 27;
@@ -245,18 +237,18 @@
             // 
             // txtReconciledTotal
             // 
-            this.txtReconciledTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReconciledTotal.Location = new System.Drawing.Point(118, 368);
+            this.txtReconciledTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtReconciledTotal.Location = new System.Drawing.Point(203, 234);
             this.txtReconciledTotal.Name = "txtReconciledTotal";
             this.txtReconciledTotal.ReadOnly = true;
-            this.txtReconciledTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtReconciledTotal.TabIndex = 12;
+            this.txtReconciledTotal.Size = new System.Drawing.Size(85, 20);
+            this.txtReconciledTotal.TabIndex = 14;
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 371);
+            this.label10.Location = new System.Drawing.Point(127, 237);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 13);
             this.label10.TabIndex = 29;
@@ -264,18 +256,18 @@
             // 
             // txtInterrogatives
             // 
-            this.txtInterrogatives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInterrogatives.Location = new System.Drawing.Point(118, 281);
+            this.txtInterrogatives.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInterrogatives.Location = new System.Drawing.Point(312, 125);
             this.txtInterrogatives.Name = "txtInterrogatives";
             this.txtInterrogatives.ReadOnly = true;
-            this.txtInterrogatives.Size = new System.Drawing.Size(100, 20);
-            this.txtInterrogatives.TabIndex = 9;
+            this.txtInterrogatives.Size = new System.Drawing.Size(85, 20);
+            this.txtInterrogatives.TabIndex = 11;
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 284);
+            this.label11.Location = new System.Drawing.Point(206, 128);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(71, 13);
             this.label11.TabIndex = 31;
@@ -283,12 +275,10 @@
             // 
             // txtProperNouns
             // 
-            this.txtProperNouns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProperNouns.Location = new System.Drawing.Point(118, 46);
+            this.txtProperNouns.Location = new System.Drawing.Point(103, 46);
             this.txtProperNouns.Name = "txtProperNouns";
             this.txtProperNouns.ReadOnly = true;
-            this.txtProperNouns.Size = new System.Drawing.Size(100, 20);
+            this.txtProperNouns.Size = new System.Drawing.Size(85, 20);
             this.txtProperNouns.TabIndex = 1;
             // 
             // label12
@@ -302,18 +292,18 @@
             // 
             // txtConjunctions
             // 
-            this.txtConjunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtConjunctions.Location = new System.Drawing.Point(118, 307);
+            this.txtConjunctions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConjunctions.Location = new System.Drawing.Point(312, 151);
             this.txtConjunctions.Name = "txtConjunctions";
             this.txtConjunctions.ReadOnly = true;
-            this.txtConjunctions.Size = new System.Drawing.Size(100, 20);
-            this.txtConjunctions.TabIndex = 10;
+            this.txtConjunctions.Size = new System.Drawing.Size(85, 20);
+            this.txtConjunctions.TabIndex = 12;
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 310);
+            this.label13.Location = new System.Drawing.Point(206, 154);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(68, 13);
             this.label13.TabIndex = 35;
@@ -321,13 +311,11 @@
             // 
             // txtSpeechVerbs
             // 
-            this.txtSpeechVerbs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpeechVerbs.Location = new System.Drawing.Point(118, 98);
+            this.txtSpeechVerbs.Location = new System.Drawing.Point(103, 98);
             this.txtSpeechVerbs.Name = "txtSpeechVerbs";
             this.txtSpeechVerbs.ReadOnly = true;
-            this.txtSpeechVerbs.Size = new System.Drawing.Size(100, 20);
-            this.txtSpeechVerbs.TabIndex = 36;
+            this.txtSpeechVerbs.Size = new System.Drawing.Size(85, 20);
+            this.txtSpeechVerbs.TabIndex = 3;
             // 
             // label14
             // 
@@ -338,12 +326,33 @@
             this.label14.TabIndex = 37;
             this.label14.Text = "Speech Verbs";
             // 
+            // txtIndefinitePronouns
+            // 
+            this.txtIndefinitePronouns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIndefinitePronouns.Location = new System.Drawing.Point(312, 98);
+            this.txtIndefinitePronouns.Name = "txtIndefinitePronouns";
+            this.txtIndefinitePronouns.ReadOnly = true;
+            this.txtIndefinitePronouns.Size = new System.Drawing.Size(85, 20);
+            this.txtIndefinitePronouns.TabIndex = 10;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(206, 101);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(98, 13);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "Indefinite Pronouns";
+            // 
             // DictionarySizeDetail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 427);
+            this.ClientSize = new System.Drawing.Size(416, 300);
+            this.Controls.Add(this.txtIndefinitePronouns);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.txtSpeechVerbs);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtConjunctions);
@@ -414,5 +423,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSpeechVerbs;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtIndefinitePronouns;
+        private System.Windows.Forms.Label label15;
     }
 }

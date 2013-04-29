@@ -24,6 +24,8 @@ Schema version 3 adds:
 - The 'conjunction' element.
 Schema version 4 adds:
 - The 'speechVerb' element.
+Schema version 5 adds:
+- The 'indefinitePronoun' element.
 -->
 <dictionary schemaVersion="4" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
@@ -73,4 +75,6 @@ Schema version 4 adds:
   <speechVerb past="ranted"/>
   <speechVerb past="reasoned"/>
   <speechVerb past="yammered"/>
+  <indefinitePronoun singular="one" plural="ones"/>
+  <indefinitePronoun singular="thing" plural="things"/>
 </dictionary>

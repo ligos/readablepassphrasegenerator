@@ -46,6 +46,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
                 new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
                 new KeyValuePair<string, Action<XmlReader>>("speechverb", ParseSpeechVerb),
+                new KeyValuePair<string, Action<XmlReader>>("indefinitepronoun", ParseIndefinitePronoun),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -295,6 +296,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParsePersonalPronoun(XmlReader reader)
         {
             _Dict.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+        }
+        private void ParseIndefinitePronoun(XmlReader reader)
+        {
+            _Dict.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
         }
         private void ParseNoun(XmlReader reader)
         {
