@@ -158,13 +158,61 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
-            var resultCommon = PhraseCombinations.One;
+            var baseCombinations = this.CountBase(dictionary);
+            PhraseCombinations resultCommon = PhraseCombinations.One, resultProper = PhraseCombinations.One, resultAdjective = PhraseCombinations.One, resultCommonAndAdjective = PhraseCombinations.One;
+            
+            // Count for just common nouns.
+            if (CommonNounFactor > 0)
+                resultCommon = baseCombinations * this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0);
+
+            // Count for proper nouns (very simple).
+            if (ProperNounFactor > 0)
+                resultProper = this.CountSingleFactor<Words.ProperNoun>(dictionary, ProperNounFactor, 0);
+
+            // Count for adjective nouns.
+            if (NounFromAdjectiveFactor > 0)
+                resultAdjective = baseCombinations * this.CountSingleFactor<Words.Adjective>(dictionary, NounFromAdjectiveFactor, 0);
+
+            // Count combining common and adjective nouns.
+            var nounAndAdjectiveCount = (this.CommonNounFactor <= 0 ? 0 : dictionary.CountOf<Words.Noun>())
+                                      + (this.NounFromAdjectiveFactor <= 0 ? 0 : dictionary.CountOf<Words.Adjective>());
+            if (NounFromAdjectiveFactor > 0 && CommonNounFactor > 0)
+                resultCommonAndAdjective = baseCombinations * new PhraseCombinations(nounAndAdjectiveCount, nounAndAdjectiveCount, nounAndAdjectiveCount);
+
+            // Min is whichever of the above is smallest.
+            var min = new[] { resultCommon.Shortest, resultProper.Shortest, resultAdjective.Shortest, resultCommonAndAdjective.Shortest }
+                            .Where(x => x > 1.0001)
+                            .Min();
+            // Max is whichever of the above is largest.
+            var max = new[] { resultCommon.Longest, resultProper.Longest, resultAdjective.Longest, resultCommonAndAdjective.Longest }
+                            .Where(x => x > 1.0001)
+                            .Max();
+            // Avg is a weighted average of the above.
+            double total = CommonNounFactor + ProperNounFactor + NounFromAdjectiveFactor;
+            double avg = 0.0;
+            if (CommonNounFactor > 0 && NounFromAdjectiveFactor > 0)
+                avg += resultCommonAndAdjective.OptionalAverage * ((double)(CommonNounFactor + NounFromAdjectiveFactor) / total);
+            else if (CommonNounFactor > 0 && NounFromAdjectiveFactor <= 0)
+                avg += resultCommon.OptionalAverage * ((double)CommonNounFactor / total);
+            else if (CommonNounFactor <= 0 && NounFromAdjectiveFactor > 0)
+                avg += resultAdjective.OptionalAverage * ((double)NounFromAdjectiveFactor / total);
+            if (ProperNounFactor > 0)
+                avg += resultProper.OptionalAverage * ((double)ProperNounFactor / total);
+
+            return new PhraseCombinations(min, max, avg);
+        }
+
+        private PhraseCombinations CountBase(WordDictionary dictionary)
+        {
+            // Base factors common to most different noun forms (common nouns and adjective nouns).
+
+            var result = PhraseCombinations.One;
 
             // Prepositions.
-            resultCommon *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
+            result *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
 
             // Adjectives.
-            resultCommon *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
+            result *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
 
             // Plural / Singular.
             double factor = 0;
@@ -173,7 +221,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             if (this.SingularityFactor > 0)
                 factor += 1;
             if (factor > 0)
-                resultCommon *= new PhraseCombinations(factor, factor, factor);
+                result *= new PhraseCombinations(factor, factor, factor);
 
             // Article / demonstrative / pronoun.
             int count = 0;
@@ -185,33 +233,9 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 count += dictionary.CountOf<Words.Demonstrative>();
             if (this.PersonalPronounFactor > 0)
                 count += dictionary.CountOf<Words.PersonalPronoun>();
-            resultCommon *= this.CountSingleFactor(this.DefiniteArticleFactor + this.IndefiniteArticleFactor + this.DemonstractiveFactor + this.PersonalPronounFactor, this.NoArticleFactor, count);
+            result *= this.CountSingleFactor(this.DefiniteArticleFactor + this.IndefiniteArticleFactor + this.DemonstractiveFactor + this.PersonalPronounFactor, this.NoArticleFactor, count);
 
-            // Finally, the nouns themselves.
-            if (this.ProperNounFactor > 0)
-            {
-                // Proper nouns are calculated separately so we can work out the min / max / avg.
-                var commonWithoutNouns = resultCommon;
-                resultCommon *= this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, ProperNounFactor);
-                var resultProper = this.CountSingleFactor<Words.ProperNoun>(dictionary, ProperNounFactor, CommonNounFactor);
-
-                // Proper and common nouns are additive rather than multiplacative.
-                // Min is whichever is smaller (but not zero).
-                var minCommon = commonWithoutNouns.Shortest * dictionary.CountOf<Words.Noun>();
-                var minProper = (double)dictionary.CountOf<Words.ProperNoun>();
-                var min = Math.Min(minCommon, minProper);
-                // Max and avg are additive.
-                var max = resultCommon.Longest + resultProper.Longest;
-                var avg = resultCommon.OptionalAverage + resultProper.OptionalAverage;
-                var result = new PhraseCombinations(min, max, avg);
-                return result;
-            }
-            else
-            {
-                // No proper nouns.
-                resultCommon *= this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0);
-                return resultCommon;
-            }
+            return result;
         }
     }
 }
