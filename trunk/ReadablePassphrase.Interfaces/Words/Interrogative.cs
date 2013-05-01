@@ -26,5 +26,11 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string Plural { get; }
         public override string DictionaryEntry { get { return Singular; } }
         public sealed override Type OfType { get { return typeof(Interrogative); } }
+
+        public override IEnumerable<string> AllForms()
+        {
+            yield return this.Singular;
+            yield return this.Plural;
+        }
     }
 }

@@ -87,6 +87,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             return IntransitiveVerbCount;
         }
+        public int CountOfAllDistinctForms()
+        {
+            return this.SelectMany(w => w.AllForms()).Distinct(StringComparer.CurrentCultureIgnoreCase).Count();
+        }
 
         public WordDictionary() : base() { }
         public WordDictionary(IList<Word> words) : base(words) { }

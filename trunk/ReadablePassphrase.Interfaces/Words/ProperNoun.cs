@@ -25,5 +25,10 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string Value { get; }
         public override string DictionaryEntry { get { return this.Value; } }
         public sealed override Type OfType { get { return typeof(ProperNoun); } }
+
+        public override IEnumerable<string> AllForms()
+        {
+            yield return this.Value;
+        }
     }
 }

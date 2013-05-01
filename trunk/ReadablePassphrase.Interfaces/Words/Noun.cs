@@ -29,5 +29,13 @@ namespace MurrayGrant.ReadablePassphrase.Words
 
         public override string DictionaryEntry { get { return this.HasSingular ? this.Singular : this.Plural; } }
         public sealed override Type OfType { get { return typeof(Noun); } }
+
+        public override IEnumerable<string> AllForms()
+        {
+            if (this.HasSingular)
+                yield return this.Singular;
+            if (this.HasPlural)
+                yield return this.Plural;
+        }
     }
 }

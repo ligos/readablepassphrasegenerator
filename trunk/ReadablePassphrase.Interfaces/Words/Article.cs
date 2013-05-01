@@ -28,5 +28,12 @@ namespace MurrayGrant.ReadablePassphrase.Words
 
         public override string DictionaryEntry { get { return Definite; } }
         public sealed override Type OfType { get { return typeof(Article); } }
+
+        public override IEnumerable<string> AllForms()
+        {
+            yield return this.Definite;
+            yield return this.Indefinite;
+            yield return this.IndefiniteBeforeVowel;
+        }
     }
 }

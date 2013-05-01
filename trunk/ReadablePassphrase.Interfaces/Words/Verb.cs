@@ -81,6 +81,16 @@ namespace MurrayGrant.ReadablePassphrase.Words
             else
                 throw new ApplicationException(String.Format("Unexpected case of tense ({0}) and isPlural ({1}).", tense, isPlural));
         }
+        public override IEnumerable<string> AllForms()
+        {
+            foreach (var t in Enum.GetValues(typeof(VerbTense)).Cast<VerbTense>())
+            {
+                if (this.HasForm(t, false))
+                    yield return this.GetForm(t, false);
+                if (this.HasForm(t, true))
+                    yield return this.GetForm(t, true);
+            }
+        }
     }
 
     public enum VerbTense

@@ -54,5 +54,8 @@ namespace MurrayGrant.ReadablePassphrase.Words
         {
             return StringComparer.OrdinalIgnoreCase.Compare(this.DictionaryEntry, other.DictionaryEntry);
         }
+
+        // Returns all the forms a word can take.
+        public abstract IEnumerable<string> AllForms();
     }
 }

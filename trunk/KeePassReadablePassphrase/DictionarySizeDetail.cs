@@ -65,11 +65,27 @@ namespace KeePassReadablePassphrase
                                  + this._Dictionary.CountOf<IndefinitePronoun>()
                                  ).ToString("N0");
             this.txtReconciledTotal.Text = this._Dictionary.Count.ToString("N0");
+            this.txtTotalForms.Text = this._Dictionary.CountOfAllDistinctForms().ToString("N0");
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lnkTotals_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Browse to doco page for totals.
+            this.bgwWorker.RunWorkerAsync(new Uri("http://readablepassphrase.codeplex.com/wikipage?title=Dictionary%20Totals"));
+        }
+
+        private void bgwWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var url = e.Argument as Uri;
+            if (url != null)
+            {
+                System.Diagnostics.Process.Start(url.ToString());
+            }
         }
     }
 }

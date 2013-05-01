@@ -59,6 +59,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtIndefinitePronouns = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtTotalForms = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lnkTotals = new System.Windows.Forms.LinkLabel();
+            this.bgwWorker = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -81,10 +85,10 @@
             // btnOK
             // 
             this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnOK.Location = new System.Drawing.Point(175, 265);
+            this.btnOK.Location = new System.Drawing.Point(175, 287);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 15;
+            this.btnOK.TabIndex = 16;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -218,7 +222,7 @@
             // 
             this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(203, 208);
+            this.txtTotal.Location = new System.Drawing.Point(201, 205);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(85, 20);
@@ -229,7 +233,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(127, 211);
+            this.label9.Location = new System.Drawing.Point(125, 208);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 27;
@@ -238,7 +242,7 @@
             // txtReconciledTotal
             // 
             this.txtReconciledTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtReconciledTotal.Location = new System.Drawing.Point(203, 234);
+            this.txtReconciledTotal.Location = new System.Drawing.Point(201, 231);
             this.txtReconciledTotal.Name = "txtReconciledTotal";
             this.txtReconciledTotal.ReadOnly = true;
             this.txtReconciledTotal.Size = new System.Drawing.Size(85, 20);
@@ -248,7 +252,7 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(127, 237);
+            this.label10.Location = new System.Drawing.Point(125, 234);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 13);
             this.label10.TabIndex = 29;
@@ -345,12 +349,51 @@
             this.label15.TabIndex = 39;
             this.label15.Text = "Indefinite Pronouns";
             // 
+            // txtTotalForms
+            // 
+            this.txtTotalForms.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtTotalForms.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalForms.Location = new System.Drawing.Point(201, 261);
+            this.txtTotalForms.Name = "txtTotalForms";
+            this.txtTotalForms.ReadOnly = true;
+            this.txtTotalForms.Size = new System.Drawing.Size(85, 20);
+            this.txtTotalForms.TabIndex = 15;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(78, 264);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(117, 13);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "Total Unique Forms";
+            // 
+            // lnkTotals
+            // 
+            this.lnkTotals.AutoSize = true;
+            this.lnkTotals.Location = new System.Drawing.Point(309, 208);
+            this.lnkTotals.Name = "lnkTotals";
+            this.lnkTotals.Size = new System.Drawing.Size(91, 13);
+            this.lnkTotals.TabIndex = 42;
+            this.lnkTotals.TabStop = true;
+            this.lnkTotals.Text = "Why Two Totals?";
+            this.lnkTotals.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTotals_LinkClicked);
+            // 
+            // bgwWorker
+            // 
+            this.bgwWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwWorker_DoWork);
+            // 
             // DictionarySizeDetail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 300);
+            this.ClientSize = new System.Drawing.Size(416, 322);
+            this.Controls.Add(this.lnkTotals);
+            this.Controls.Add(this.txtTotalForms);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.txtIndefinitePronouns);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtSpeechVerbs);
@@ -425,5 +468,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtIndefinitePronouns;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtTotalForms;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.LinkLabel lnkTotals;
+        private System.ComponentModel.BackgroundWorker bgwWorker;
     }
 }
