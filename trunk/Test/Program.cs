@@ -26,6 +26,9 @@ namespace Test
 {
     class Program
     {
+        private readonly static string AllStatsCharFilename = "stats.all.char.csv";
+        private readonly static IEnumerable<PhraseStrength> RandomStrengths = new[] { PhraseStrength.Random, PhraseStrength.RandomForever, PhraseStrength.RandomLong, PhraseStrength.RandomShort };
+
         static void Main(string[] args)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
@@ -48,7 +51,9 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.Random, 1000);
             Console.WriteLine();
 
-            var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>().Where(x => x != PhraseStrength.Random && x != PhraseStrength.Custom);
+            var specialStrengths = RandomStrengths.Concat(new [] { PhraseStrength.Custom });
+            var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
+                .Where(x => !specialStrengths.Contains(x));
             foreach (var strength in allToTest)
             {
                 TestTextualParsing(generator, strength);
@@ -56,10 +61,20 @@ namespace Test
                 TestGenerationAsUtf8(generator, strength, 20);
                 TestGenerationAsSecure(generator, strength, 20);
             }
+            foreach (var strength in RandomStrengths)
+            {
+                TestGeneration(generator, Clause.RandomMappings[strength], 10);
+                TestGenerationAsUtf8(generator, Clause.RandomMappings[strength], 10);
+                TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
+            }
 
+            // Generate statistics.
+            //Console.WriteLine();
+            //System.IO.File.Delete(AllStatsCharFilename);
             //foreach (var strength in allToTest)
-            //    WriteStatisticsFor(generator, strength, 100000, strength.ToString() + ".csv");
-            //WriteStatisticsFor(generator, PhraseStrength.Random, 1000000, "Random.csv");
+            //    WriteStatisticsFor(generator, strength, 1000000, strength.ToString() + ".csv");
+            //foreach (var strength in RandomStrengths)
+            //    WriteStatisticsFor(generator, strength, 10000000, strength.ToString() + ".csv");
 
             //GenerateCustomSamples(new Clause[]
             //    {
@@ -168,8 +183,11 @@ namespace Test
             Console.WriteLine();
             Console.WriteLine("Combination count:");
 
-            var combinations = generator.CalculateCombinations(PhraseStrength.Random);
-            Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", PhraseStrength.Random, combinations.ToString(), combinations.EntropyBitsToString());
+            foreach (var strength in RandomStrengths)
+            {
+                var combinations = generator.CalculateCombinations(strength);
+                Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
+            }
             Console.WriteLine();
 
             var predefined = new PhraseStrength[] 
@@ -181,7 +199,7 @@ namespace Test
             for (int i = 0; i < predefined.Length; i++)
             {
                 var strength = predefined[i];
-                combinations = generator.CalculateCombinations(strength);
+                var combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
                 if ((i+1) % 9 == 0)
                     Console.WriteLine();
@@ -192,7 +210,7 @@ namespace Test
         private static void TestTextualParsing(ReadablePassphraseGenerator generator, PhraseStrength strength)
         {
             Console.WriteLine("Testing parsing of textual phrase strength {0}...", strength);
-            var description = Clause.CreatePhraseDescription(strength);
+            var description = Clause.CreatePhraseDescription(strength, generator.Randomness);
             var sb = new StringBuilder();
             foreach (var c in description)
                 c.ToStringBuilder(sb);
@@ -210,6 +228,13 @@ namespace Test
                 generator.Generate(strength);
             Console.WriteLine(" OK.");
         }
+        private static void TestGeneration(ReadablePassphraseGenerator generator, IEnumerable<PhraseStrength> strengths, int iterations)
+        {
+            Console.Write("Testing {0:N0} string phrases of strength {1}...", iterations, String.Join(",", strengths.Select(x => x.ToString())));
+            for (int i = 0; i < iterations; i++)
+                generator.Generate(strengths);
+            Console.WriteLine(" OK.");
+        }
         private static void TestGenerationAsUtf8(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
         {
             Console.Write("Testing {0:N0} UTF8 phrases of strength {1}...", iterations, strength);
@@ -217,11 +242,25 @@ namespace Test
                 generator.GenerateAsUtf8Bytes(strength);
             Console.WriteLine(" OK.");
         }
+        private static void TestGenerationAsUtf8(ReadablePassphraseGenerator generator, IEnumerable<PhraseStrength> strengths, int iterations)
+        {
+            Console.Write("Testing {0:N0} UTF8 phrases of strength {1}...", iterations, String.Join(",", strengths.Select(x => x.ToString())));
+            for (int i = 0; i < iterations; i++)
+                generator.GenerateAsUtf8Bytes(strengths);
+            Console.WriteLine(" OK.");
+        }
         private static void TestGenerationAsSecure(ReadablePassphraseGenerator generator, PhraseStrength strength, int iterations)
         {
             Console.Write("Testing {0:N0} secure phrases of strength {1}...", iterations, strength);
             for (int i = 0; i < iterations; i++)
                 generator.GenerateAsSecure(strength);
+            Console.WriteLine(" OK.");
+        }
+        private static void TestGenerationAsSecure(ReadablePassphraseGenerator generator, IEnumerable<PhraseStrength> strengths, int iterations)
+        {
+            Console.Write("Testing {0:N0} secure phrases of strength {1}...", iterations, String.Join(",", strengths.Select(x => x.ToString())));
+            for (int i = 0; i < iterations; i++)
+                generator.GenerateAsSecure(strengths);
             Console.WriteLine(" OK.");
         }
 
@@ -338,7 +377,7 @@ namespace Test
 
         private static void WriteStatisticsFor(ReadablePassphraseGenerator generator, PhraseStrength strength, int count, string filename)
         {
-            Console.WriteLine("Writing statistics to '{0}'.", filename);
+            Console.Write("Writing statistics to '{0}'...", filename);
 
             var wordHistogram = new Dictionary<int, int>();
             var charHistogram = new Dictionary<int, int>();
@@ -362,7 +401,7 @@ namespace Test
                     keepassQualityHistogram.Add(keePassQualityEst, 0);
                 keepassQualityHistogram[keePassQualityEst] = keepassQualityHistogram[keePassQualityEst] + 1;
             }
-
+            
             using (var writer = new System.IO.StreamWriter(filename, false, Encoding.UTF8))
             {
                 writer.WriteLine("Word histogram");
@@ -390,6 +429,43 @@ namespace Test
                 for (int i = 0; i < 20; i++)
                     writer.WriteLine(generator.Generate(strength));
             }
+
+            Console.WriteLine(" Done.");
+
+            bool isFirst = !System.IO.File.Exists(AllStatsCharFilename);
+            using (var writer = new System.IO.StreamWriter(AllStatsCharFilename, true, Encoding.UTF8))
+            {
+                if (isFirst)
+                    writer.WriteLine("Strength,Min,Max,Avg,Median,Samples");
+                writer.WriteLine("{0},{1},{2},{3},{4},{5}", strength.ToString(), charHistogram.Keys.Min(), charHistogram.Keys.Max(), GetAvg(charHistogram), GetMedian(charHistogram), count);
+            }
+        }
+        private static double GetAvg(IDictionary<int, int> histogram)
+        {
+            var result = histogram.Select(x => (double)x.Key * (double)x.Value).Sum()
+                       / histogram.Select(x => x.Value).Sum();
+            return result;
+        }
+        private static int GetMedian(IDictionary<int, int> histogram)
+        {
+            var copy = histogram.ToDictionary(x => x.Key, x => x.Value);
+            
+            var total = copy.Values.Sum();
+            while (total > 2)
+            {
+                var minKey = copy.Keys.Min();
+                var maxKey = copy.Keys.Max();
+                copy[minKey] = copy[minKey] - 1;
+                copy[maxKey] = copy[maxKey] - 1;
+                if (copy[minKey] <= 0)
+                    copy.Remove(minKey);
+                if (copy[maxKey] <= 0)
+                    copy.Remove(maxKey);
+
+                total -= 2;
+            }
+            var result = copy.Keys.First();
+            return result;
         }
 
         private static RandomSourceBase GetRandomness()

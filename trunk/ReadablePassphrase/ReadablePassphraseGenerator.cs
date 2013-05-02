@@ -165,27 +165,32 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public PhraseCombinations CalculateCombinations(PhraseStrength strength)
         {
-            if (strength == PhraseStrength.Random)
-            {
-                // Check all strengths and report min / max. 
-                // Avg is somewhat meaningless, but we average the log of it anyway.
-                double min = Double.MaxValue, max = 0.0, acc = 0.0;
-                var allStrengths = Enum.GetValues(typeof(PhraseStrength))
-                        .Cast<PhraseStrength>()
-                        .Where(x => x != PhraseStrength.Custom && x != PhraseStrength.Random)
-                        .ToList();
-                foreach (var s in allStrengths)
-                {
-                    var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s));
-                    min = Math.Min(min, comb.Shortest);
-                    max += comb.Longest;
-                    acc += comb.OptionalAverageAsEntropyBits;       // Max adds because of variations between phrases.
-                }
-                return new PhraseCombinations(min, max, Math.Pow(2, acc / allStrengths.Count));
-            }
+            if (Clause.RandomMappings.ContainsKey(strength))
+                return this.CalculateCombinations(Clause.RandomMappings[strength]);
             else
-                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength));
+                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength, this.Randomness));
         }
+        /// <summary>
+        /// Calculates the number of possible combinations of phrases based on the current dictionary and randomly choosing between the given phrase strengths.
+        /// </summary>
+        public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+
+            // Check all strengths and report min / max. 
+            // Avg is somewhat meaningless, but we average the log of it anyway.
+            double min = Double.MaxValue, max = 0.0, acc = 0.0;
+            foreach (var s in strengths)
+            {
+                var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s, this.Randomness));
+                min = Math.Min(min, comb.Shortest);
+                max += comb.Longest;
+                acc += comb.OptionalAverageAsEntropyBits;       // Max adds because of variations between phrases.
+            }
+            return new PhraseCombinations(min, max, Math.Pow(2, acc / strengths.Count()));        
+        }
+
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase description.
         /// </summary>
@@ -207,7 +212,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure()
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), true);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -215,10 +220,15 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure(PhraseStrength strength)
         {
-            if (strength != PhraseStrength.Random)
-                return GenerateAsSecure(Clause.CreatePhraseDescription(strength), true);
-            else
-                return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), true);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), true);
+        }
+        /// <summary>
+        /// Generates a single phrase as a <c>SecureString</c> based on a randomly selected phrase strength.
+        /// This is the slowest and most secure method.
+        /// </summary>
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths)
+        {
+            return GenerateAsSecure(strengths, true);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -236,10 +246,20 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public SecureString GenerateAsSecure(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            if (strength != PhraseStrength.Random)
-                return GenerateAsSecure(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
-            else
-                return GenerateAsSecure(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
+        }
+        /// <summary>
+        /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
+        /// This is the slowest and most secure method.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+            var strength = this.ChooseAtRandom(strengths);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -269,7 +289,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public String Generate()
         {
-            return Generate(Clause.CreatePhraseDescription(Randomness));
+            return Generate(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness));
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
@@ -277,10 +297,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public String Generate(PhraseStrength strength)
         {
-            if (strength != PhraseStrength.Random)
-                return Generate(Clause.CreatePhraseDescription(strength), true);
-            else
-                return Generate(Clause.CreatePhraseDescription(Randomness), true);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
@@ -290,10 +307,29 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public String Generate(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            if (strength != PhraseStrength.Random)
-                return Generate(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
-            else
-                return Generate(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
+        }
+        /// <summary>
+        /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        public String Generate(IEnumerable<PhraseStrength> strengths)
+        {
+            return this.Generate(strengths, true);
+        }
+        /// <summary>
+        /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
+        /// This is the fastest and least secure method.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        public String Generate(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+            var strength = this.ChooseAtRandom(strengths);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
@@ -327,7 +363,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public byte[] GenerateAsUtf8Bytes()
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness));
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness));
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -335,10 +371,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
         {
-            if (strength != PhraseStrength.Random)
-                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), true);
-            else
-                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness), true);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), true);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -348,10 +381,29 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            if (strength != PhraseStrength.Random)
-                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength), includeSpacesBetweenWords);
-            else
-                return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(Randomness), includeSpacesBetweenWords);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
+        }
+        /// <summary>
+        /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths)
+        {
+            return this.GenerateAsUtf8Bytes(strengths, true);
+        }
+        /// <summary>
+        /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+            var strength = this.ChooseAtRandom(strengths);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
@@ -473,7 +525,16 @@ namespace MurrayGrant.ReadablePassphrase
         }
 
         #endregion
-}
+
+        #region Helpers
+        private PhraseStrength ChooseAtRandom(IEnumerable<PhraseStrength> strengths)
+        {
+            var choise = this.Randomness.Next(strengths.Count());
+            var result = strengths.ElementAt(choise);
+            return result;
+        }
+        #endregion
+    }
 
     #region Internal GenerateTarget Classes
     internal abstract class GenerateTarget

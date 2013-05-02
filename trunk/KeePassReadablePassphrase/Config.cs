@@ -104,7 +104,7 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<SpacesBetweenWords value=\"{0}\"/>\n", this.SpacesBetweenWords);
             sb.AppendFormat("<PhraseStrength value=\"{0}\"/>\n", this.PhraseStrength);
             sb.AppendLine("<PhraseDescription>");
-            if (this.PhraseStrength != MurrayGrant.ReadablePassphrase.PhraseStrength.Random)
+            if (!Clause.RandomMappings.ContainsKey(this.PhraseStrength))
             {
                 sb.Append("<![CDATA[");
                 foreach (var c in this.PhraseDescription)
@@ -123,8 +123,8 @@ namespace KeePassReadablePassphrase
 
         private void UpdatePhraseDescription()
         {
-            if (this.PhraseStrength != PhraseStrength.Custom && this.PhraseStrength != PhraseStrength.Random)
-                this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength);
+            if (this.PhraseStrength != PhraseStrength.Custom && !Clause.RandomMappings.ContainsKey(this.PhraseStrength))
+                this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength, null);
         }
     }
 }

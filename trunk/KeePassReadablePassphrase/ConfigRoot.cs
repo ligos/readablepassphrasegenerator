@@ -181,7 +181,7 @@ namespace KeePassReadablePassphrase
         }
         private void UpdateDescription(Config config)
         {
-            if (config.PhraseStrength == PhraseStrength.Random)
+            if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
                 this.txtPhraseDescription.Text = "";
             else
                 this.txtPhraseDescription.Text = String.Join(Environment.NewLine, config.PhraseDescription.Select(c => c.ToTextString()).ToArray());
@@ -189,7 +189,7 @@ namespace KeePassReadablePassphrase
         private void UpdateCombinations(Config config)
         {
             PhraseCombinations combinations;
-            if (config.PhraseStrength == PhraseStrength.Random)
+            if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
                 combinations = this._Generator.CalculateCombinations(config.PhraseStrength);
             else
                 combinations = this._Generator.CalculateCombinations(config.PhraseDescription);

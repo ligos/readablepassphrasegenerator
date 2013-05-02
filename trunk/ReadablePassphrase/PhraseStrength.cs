@@ -28,6 +28,9 @@ namespace MurrayGrant.ReadablePassphrase
     public enum PhraseStrength
     {
         Random,
+        RandomShort,
+        RandomLong,
+        RandomForever,
         
         Normal,
         Strong,
