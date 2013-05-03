@@ -45,31 +45,31 @@ namespace Test
             CombinationCount(generator);
 
             // Short benchmarks.
-            BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
-            BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
-            BenchmarkUtf8Generation(generator, PhraseStrength.Normal, 1000);
-            BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
-            BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
-            BenchmarkGeneration(generator, PhraseStrength.Random, 1000);
-            Console.WriteLine();
+            //BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
+            //BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
+            //BenchmarkUtf8Generation(generator, PhraseStrength.Normal, 1000);
+            //BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
+            //BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
+            //BenchmarkGeneration(generator, PhraseStrength.Random, 1000);
+            //Console.WriteLine();
 
             // Test all combinations of phrase combinations / textual parsing.
             var specialStrengths = RandomStrengths.Concat(new [] { PhraseStrength.Custom });
             var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
                 .Where(x => !specialStrengths.Contains(x));
-            foreach (var strength in allToTest)
-            {
-                TestTextualParsing(generator, strength);
-                TestGeneration(generator, strength, 50);
-                TestGenerationAsUtf8(generator, strength, 20);
-                TestGenerationAsSecure(generator, strength, 20);
-            }
-            foreach (var strength in RandomStrengths)
-            {
-                TestGeneration(generator, Clause.RandomMappings[strength], 10);
-                TestGenerationAsUtf8(generator, Clause.RandomMappings[strength], 10);
-                TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
-            }
+            //foreach (var strength in allToTest)
+            //{
+            //    TestTextualParsing(generator, strength);
+            //    TestGeneration(generator, strength, 50);
+            //    TestGenerationAsUtf8(generator, strength, 20);
+            //    TestGenerationAsSecure(generator, strength, 20);
+            //}
+            //foreach (var strength in RandomStrengths)
+            //{
+            //    TestGeneration(generator, Clause.RandomMappings[strength], 10);
+            //    TestGenerationAsUtf8(generator, Clause.RandomMappings[strength], 10);
+            //    TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
+            //}
 
             // Generate statistics.
             //Console.WriteLine();
