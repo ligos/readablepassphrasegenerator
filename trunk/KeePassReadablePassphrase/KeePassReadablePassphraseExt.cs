@@ -25,6 +25,8 @@ namespace KeePassReadablePassphrase
         private IPluginHost _Host;
         private PassphraseGenerator _Generator;
 
+        public override string UpdateUrl { get { return "http://www.users.on.net/~ligos/readable_passphrase.version"; } }
+
         public override bool Initialize(IPluginHost host)
         {
             this._Host = host;
