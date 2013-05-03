@@ -2052,7 +2052,7 @@ limitations under the License.
   <noun singular="brother" plural="brothers"/>
   <noun singular="surface" plural="surfaces"/>
   <noun singular="anarchist" plural="anarchists"/>
-  <noun plural="clothes"/>
+  <noun singular="pile of clothes" plural="clothes"/>
   <noun singular="cloth" plural="cloths"/>
   <noun singular="lad" plural="lads"/>
   <noun singular="airwave" plural="airwaves"/>
@@ -2799,4 +2799,71 @@ limitations under the License.
   <noun singular="intersection" plural="intersections"/>
   <noun plural="sugar"/>
   <noun singular="person" plural="people"/>
+  <noun singular="night" plural="nights"/>
+  <noun singular="shower" plural="showers"/>
+  <noun singular="siege" plural="sieges"/>
+  <noun singular="courier" plural="couriers"/>
+  <noun singular="mission" plural="missions"/>
+  <noun singular="howitzer" plural="howitzers"/>
+  <noun singular="fridge" plural="fridges"/>
+  <noun singular="ornament" plural="ornaments"/>
+  <noun singular="gentleman" plural="gentlemen"/>
+  <noun singular="abstract" plural="abstracts"/>
+  <noun singular="citadel" plural="citadels"/>
+  <noun singular="rehearsal" plural="rehearsals"/>
+  <noun singular="tail" plural="tails"/>
+  <noun singular="welt" plural="welts"/>
+  <noun singular="device" plural="devices"/>
+  <noun singular="laywoman" plural="laywomen"/>
+  <noun singular="hemp plant" plural="hemp"/>
+  <noun singular="clamp" plural="clamps"/>
+  <noun singular="slammer" plural="slammers"/>
+  <noun singular="truism" plural="truisms"/>
+  <noun singular="league" plural="leagues"/>
+  <noun singular="barrel of gunpowder" plural="gunpowder"/>
+  <noun singular="drug" plural="drugs"/>
+  <noun singular="undergrad" plural="undergrads"/>
+  <noun singular="video" plural="videos"/>
+  <noun singular="yard" plural="yards"/>
+  <noun singular="bearing" plural="bearings"/>
+  <noun singular="atoll" plural="atolls"/>
+  <noun singular="sparrow" plural="sparrows"/>
+  <noun singular="desk" plural="desks"/>
+  <noun singular="response" plural="responses"/>
+  <noun singular="gavel" plural="gavels"/>
+  <noun singular="snack" plural="snacks"/>
+  <noun singular="pair of nylons" plural="nylons"/>
+  <noun singular="pageant" plural="pageants"/>
+  <noun singular="classmate" plural="classmates"/>
+  <noun singular="seer" plural="seers"/>
+  <noun singular="triathlon" plural="triathlons"/>
+  <noun singular="tooth" plural="teeth"/>
+  <noun singular="brace" plural="braces"/>
+  <noun singular="lettuce" plural="lettuces"/>
+  <noun singular="preamble" plural="preambles"/>
+  <noun singular="pendent" plural="pendents"/>
+  <noun singular="piston" plural="pistons"/>
+  <noun singular="kickback" plural="kickbacks"/>
+  <noun singular="silkworm" plural="silkworms"/>
+  <noun singular="rollback" plural="rollbacks"/>
+  <noun singular="milkman" plural="milkmen"/>
+  <noun singular="radial" plural="radials"/>
+  <noun plural="turmeric"/>
+  <noun singular="suffix" plural="suffixes"/>
+  <noun singular="footman" plural="footmen"/>
+  <noun plural="scampi"/>
+  <noun singular="putter" plural="putters"/>
+  <noun singular="flyleaf" plural="flyleaves"/>
+  <noun singular="message" plural="messages"/>
+  <noun singular="signpost" plural="signposts"/>
+  <noun singular="hardship" plural="hardships"/>
+  <noun singular="silo" plural="silos"/>
+  <noun singular="driblet" plural="driblets"/>
+  <noun singular="heptagon" plural="heptagons"/>
+  <noun singular="fatalist" plural="fatalists"/>
+  <noun singular="bayonet" plural="bayonets"/>
+  <noun singular="farmer" plural="farmers"/>
+  <noun singular="pump" plural="pumps"/>
+  <noun singular="challenge" plural="challenges"/>
+  <noun singular="graft" plural="grafts"/>
 </dictionary>
