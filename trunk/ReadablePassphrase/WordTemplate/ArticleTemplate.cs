@@ -24,17 +24,17 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
     public class ArticleTemplate : Template
     {
         private readonly static char[] VowelSounds = new char[] { 'a', 'e', 'i', 'o', 'u' };
-        private readonly bool _IsDefinite;
+        public readonly bool IsDefinite;
         public override bool IncludeInAlreadyUsedList { get { return false; } }
         public ArticleTemplate(bool isDefinite)
         {
-            this._IsDefinite = isDefinite;
+            this.IsDefinite = isDefinite;
         }
 
         public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
             // This won't always produce the correct result.
-            if (this._IsDefinite)
+            if (this.IsDefinite)
                 return new WordAndString(words.TheArticle, words.TheArticle.Definite);
             else 
                 return new WordAndString(words.TheArticle, words.TheArticle.Indefinite);
@@ -42,7 +42,7 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
         public string ChooseBasedOnFollowingWord(WordDictionary words, string nextWord)
         {
-            if (this._IsDefinite)
+            if (this.IsDefinite)
                 return words.TheArticle.Definite;
             else if (VowelSounds.Contains(nextWord[0]))
                 return words.TheArticle.IndefiniteBeforeVowel;

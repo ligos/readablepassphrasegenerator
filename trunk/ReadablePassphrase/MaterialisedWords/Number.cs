@@ -25,7 +25,7 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
     {
         private int _Value;
         public override string Value { get { return _Value.ToString(); } }
-        public override bool RequiresPluralNoun { get { return _Value != 1; } }
+        public override bool RequiresSingularNoun { get { return _Value == 1; } }
 
         private MaterialisedNumber() { }
         public MaterialisedNumber(int value)

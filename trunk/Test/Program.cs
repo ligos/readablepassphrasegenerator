@@ -39,10 +39,12 @@ namespace Test
             sw.Stop();
             Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
 
+            // Basic statistics / samples.
             GenerateSamples(PhraseStrength.Random, generator);
             DictionaryCheck(generator);
             CombinationCount(generator);
 
+            // Short benchmarks.
             BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
             BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
             BenchmarkUtf8Generation(generator, PhraseStrength.Normal, 1000);
@@ -51,6 +53,7 @@ namespace Test
             BenchmarkGeneration(generator, PhraseStrength.Random, 1000);
             Console.WriteLine();
 
+            // Test all combinations of phrase combinations / textual parsing.
             var specialStrengths = RandomStrengths.Concat(new [] { PhraseStrength.Custom });
             var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
                 .Where(x => !specialStrengths.Contains(x));
@@ -76,11 +79,13 @@ namespace Test
             //foreach (var strength in RandomStrengths)
             //    WriteStatisticsFor(generator, strength, 10000000, strength.ToString() + ".csv");
 
+            // This is used to tinker with custom clauses, probabilities, grammar, etc.
             //GenerateCustomSamples(new Clause[]
             //    {
-            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 1, NounFromAdjectiveFactor = 1,
+            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
             //                            SingularityFactor = 1, PluralityFactor = 1, 
             //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoNumberFactor = 1, NumberFactor = 1,
             //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
             //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
             //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
@@ -90,13 +95,12 @@ namespace Test
             //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
             //                            SingularityFactor = 1, PluralityFactor = 1, 
             //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+            //                            NoNumberFactor = 1, NumberFactor = 0,
             //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
             //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
             //    }
             //    , generator, 100);
-            //GenerateSamples(PhraseStrength.InsaneEqual, generator);
-            //TestConfigForm(generator);
-
+            
             // Longer benchmarks.
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Normal, 10000);
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Strong, 10000);
@@ -115,7 +119,7 @@ namespace Test
             // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
-            TestConfigForm(generator);
+            //TestConfigForm(generator);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");

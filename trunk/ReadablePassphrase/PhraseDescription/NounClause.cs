@@ -47,6 +47,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("PersonalPronoun", "Article")]
         public int PersonalPronounFactor { get; set; }
 
+        [TagInConfiguration("Number", "Number")]
+        public int NumberFactor { get; set; }
+        [TagInConfiguration("NoNumber", "Number")]
+        public int NoNumberFactor { get; set; }
+
         [TagInConfiguration("Adjective", "Adjective")]
         public int AdjectiveFactor { get; set; }
         [TagInConfiguration("NoAdjective", "Adjective")]
@@ -90,6 +95,19 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             bool isPlural;
             AddNounPrelude(randomness, dictionary, currentTemplate, out isPlural);
             
+            // Add a number? Only for plurals, if they are choosable.
+            if (NumberFactor + NoNumberFactor > 0 && (isPlural || PluralityFactor == 0))
+            {
+                if (!isPlural
+                        && !(currentTemplate.Any() && currentTemplate.Last() is ArticleTemplate && !(currentTemplate.Last() as ArticleTemplate).IsDefinite)
+                        && randomness.WeightedCoinFlip(NumberFactor, NoNumberFactor))
+                    // Singulars cannot have an indifinite article.
+                    currentTemplate.Add(new NumberTemplate(!isPlural));
+                else if (isPlural && randomness.WeightedCoinFlip(NumberFactor, NoNumberFactor))
+                    currentTemplate.Add(new NumberTemplate(!isPlural));
+
+            }                
+
             // Add an adjective?
             bool includeAdjective = randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
             if (includeAdjective)
@@ -160,10 +178,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             var baseCombinations = this.CountBase(dictionary);
             PhraseCombinations resultCommon = PhraseCombinations.One, resultProper = PhraseCombinations.One, resultAdjective = PhraseCombinations.One, resultCommonAndAdjective = PhraseCombinations.One;
-            
+
             // Count for just common nouns.
             if (CommonNounFactor > 0)
-                resultCommon = baseCombinations * this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0);
+                resultCommon = baseCombinations * this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0)
+                                                    // Numbers are usually only applied to plurals, so they reduced in number.
+                                                    * this.CountSingleFactor<Words.Number>(dictionary, NumberFactor / 2, NoNumberFactor);       
 
             // Count for proper nouns (very simple).
             if (ProperNounFactor > 0)
