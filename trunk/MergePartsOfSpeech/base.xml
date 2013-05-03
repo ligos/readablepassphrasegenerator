@@ -26,8 +26,9 @@ Schema version 4 adds:
 - The 'speechVerb' element.
 Schema version 5 adds:
 - The 'indefinitePronoun' element.
+- The 'numberRange' element.
 -->
-<dictionary schemaVersion="4" language="en-au" name="Default">
+<dictionary schemaVersion="5" language="en-au" name="Default">
 	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />
@@ -77,4 +78,5 @@ Schema version 5 adds:
   <speechVerb past="yammered"/>
   <indefinitePronoun singular="one" plural="ones" personal="true"/>
   <indefinitePronoun singular="thing" plural="things" personal="false"/>
+  <numberRange start="1" end="999"/>
 </dictionary>

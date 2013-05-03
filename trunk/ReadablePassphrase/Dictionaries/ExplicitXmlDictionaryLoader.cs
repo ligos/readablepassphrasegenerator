@@ -47,6 +47,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
                 new KeyValuePair<string, Action<XmlReader>>("speechverb", ParseSpeechVerb),
                 new KeyValuePair<string, Action<XmlReader>>("indefinitepronoun", ParseIndefinitePronoun),
+                new KeyValuePair<string, Action<XmlReader>>("numberrange", ParseNumberRange),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -276,7 +277,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseDictionaryRoot(XmlReader reader)
         {
             int version;
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 4)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out version) || version > 5)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
             _Dict.SetNameAndLanguageCodeAndVersion(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
@@ -357,6 +358,14 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             _Dict.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
         }
+        private void ParseNumberRange(XmlReader reader)
+        {
+            var start = Int32.Parse(reader.GetAttribute("start"));
+            var end = Int32.Parse(reader.GetAttribute("end"));
+            for (int i = start; i <= end; i++)
+                _Dict.Add(new MaterialisedNumber(i));
+        }
+
         #region Dispose
         private bool _IsDisposed = false;
         public void Dispose()

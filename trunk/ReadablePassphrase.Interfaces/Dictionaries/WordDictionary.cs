@@ -47,7 +47,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             var result = this.GroupBy(w => w.OfType)
                             .ToDictionary(ws => ws.Key, ws => ws.OrderBy(w => w).ToList());
             // Make sure all the different parts of speech are in the dictionary (even if they have empty lists).
-            var allWordTypes = new[] { typeof(Adjective), typeof(Adverb), typeof(Article), typeof(Demonstrative), typeof(Noun), typeof(ProperNoun), typeof(PersonalPronoun), typeof(Preposition), typeof(Verb), typeof(Interrogative), typeof(Conjunction), typeof(SpeechVerb), typeof(IndefinitePronoun) };
+            var allWordTypes = new[] { typeof(Adjective), typeof(Adverb), typeof(Article), typeof(Demonstrative), typeof(Noun), typeof(ProperNoun), typeof(PersonalPronoun), typeof(Preposition), typeof(Verb), typeof(Interrogative), typeof(Conjunction), typeof(SpeechVerb), typeof(IndefinitePronoun), typeof(Number) };
             foreach (var t in allWordTypes)
             {
                 if (!result.ContainsKey(t))

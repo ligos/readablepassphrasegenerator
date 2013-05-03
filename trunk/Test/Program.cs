@@ -115,7 +115,7 @@ namespace Test
             // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
-            //TestConfigForm(generator);
+            TestConfigForm(generator);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");

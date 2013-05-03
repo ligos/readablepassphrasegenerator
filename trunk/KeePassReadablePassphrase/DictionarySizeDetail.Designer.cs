@@ -63,6 +63,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lnkTotals = new System.Windows.Forms.LinkLabel();
             this.bgwWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtNumbers = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -88,7 +90,7 @@
             this.btnOK.Location = new System.Drawing.Point(175, 287);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 16;
+            this.btnOK.TabIndex = 17;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -226,7 +228,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(85, 20);
-            this.txtTotal.TabIndex = 13;
+            this.txtTotal.TabIndex = 14;
             // 
             // label9
             // 
@@ -246,7 +248,7 @@
             this.txtReconciledTotal.Name = "txtReconciledTotal";
             this.txtReconciledTotal.ReadOnly = true;
             this.txtReconciledTotal.Size = new System.Drawing.Size(85, 20);
-            this.txtReconciledTotal.TabIndex = 14;
+            this.txtReconciledTotal.TabIndex = 15;
             // 
             // label10
             // 
@@ -357,7 +359,7 @@
             this.txtTotalForms.Name = "txtTotalForms";
             this.txtTotalForms.ReadOnly = true;
             this.txtTotalForms.Size = new System.Drawing.Size(85, 20);
-            this.txtTotalForms.TabIndex = 15;
+            this.txtTotalForms.TabIndex = 16;
             // 
             // label16
             // 
@@ -385,12 +387,33 @@
             // 
             this.bgwWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwWorker_DoWork);
             // 
+            // txtNumbers
+            // 
+            this.txtNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNumbers.Location = new System.Drawing.Point(312, 177);
+            this.txtNumbers.Name = "txtNumbers";
+            this.txtNumbers.ReadOnly = true;
+            this.txtNumbers.Size = new System.Drawing.Size(85, 20);
+            this.txtNumbers.TabIndex = 13;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(206, 180);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(49, 13);
+            this.label17.TabIndex = 44;
+            this.label17.Text = "Numbers";
+            // 
             // DictionarySizeDetail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 322);
+            this.Controls.Add(this.txtNumbers);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.lnkTotals);
             this.Controls.Add(this.txtTotalForms);
             this.Controls.Add(this.label16);
@@ -472,5 +495,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.LinkLabel lnkTotals;
         private System.ComponentModel.BackgroundWorker bgwWorker;
+        private System.Windows.Forms.TextBox txtNumbers;
+        private System.Windows.Forms.Label label17;
     }
 }
