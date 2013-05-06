@@ -455,6 +455,10 @@ namespace MurrayGrant.ReadablePassphrase
             // Apply gramatical rules of various kinds.
             var phraseList = phrases.ToList();      // NOTE: Anything more complicated and this will need a tree, possibly a trie.
 
+            // If there's no verb, we use different logic.
+            if (!phraseList.OfType<VerbClause>().Any())
+                return this.PhrasesToTemplateWithoutVerb(phrases);
+
             // Turn the high level phrases into word templates.
             var result = new List<Template>();
 
@@ -477,6 +481,14 @@ namespace MurrayGrant.ReadablePassphrase
                 // Accumulate the whole phrase at the end.
                 result.AddRange(thisPhraseTemplate);
             }
+            return result;
+        }
+        private IEnumerable<Template> PhrasesToTemplateWithoutVerb(IEnumerable<Clause> phrases)
+        {
+            // If there's no verb, we just iterate over each clause.
+            var result = new List<Template>();
+            foreach (var clause in phrases)
+                clause.AddWordTemplate(Randomness, this.Dictionary, result);
             return result;
         }
         private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, bool spacesBetweenWords)

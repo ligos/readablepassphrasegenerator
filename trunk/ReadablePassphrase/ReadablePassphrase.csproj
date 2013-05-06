@@ -88,6 +88,7 @@
     <Compile Include="PhraseCombinations.cs" />
     <Compile Include="PhraseDescription\Clause.cs" />
     <Compile Include="PhraseDescription\ConjunctionClause.cs" />
+    <Compile Include="PhraseDescription\AnyWordClause.cs" />
     <Compile Include="PhraseDescription\DirectSpeachClause.cs" />
     <Compile Include="PhraseDescription\NounClause.cs" />
     <Compile Include="PhraseDescription\PhraseDescriptionParseException.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="WordTemplate\AdjectiveTemplate.cs" />
     <Compile Include="WordTemplate\ArticleTemplate.cs" />
     <Compile Include="WordTemplate\AdverbTemplate.cs" />
+    <Compile Include="WordTemplate\AnyTemplate.cs" />
     <Compile Include="WordTemplate\NumberTemplate.cs" />
     <Compile Include="WordTemplate\IndefinitePronounTemplate.cs" />
     <Compile Include="WordTemplate\SpeachVerbTemplate.cs" />

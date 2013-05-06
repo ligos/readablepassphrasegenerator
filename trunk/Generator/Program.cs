@@ -38,6 +38,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static IEnumerable<Clause> phraseDescription = new Clause[] { };
         static int maxLength = 999;
         static int minLength = 1;
+        static int anyLength = 0;       // Used to indicate a non-gramatic, totally random selection of word forms.
 
         static readonly int MaxAttemptsPerCount = 1000;
 
@@ -71,7 +72,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             // Generate and print phrases.
             if (!quiet)
                 Console.WriteLine("Readable Passphrase Generator");
-            if (!quiet && String.IsNullOrEmpty(customPhrasePath))
+            if (!quiet && anyLength > 0)
+                Console.WriteLine("Generating {0:N0} non-grammatic phrase(s) of length '{1}'...", count, anyLength);
+            else if (!quiet && String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) of strength '{1}'...", count, strength);
             else if (!quiet && !String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
@@ -114,7 +117,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             {
                 Console.WriteLine("Dictionary contains {0:N0} words (loaded in {1:N2}ms)", generator.Dictionary.Count, dictSw.Elapsed.TotalMilliseconds);
                 PhraseCombinations combinations;
-                if (strength != PhraseStrength.Custom)
+                if (anyLength > 0)
+                    combinations = generator.CalculateCombinations(NonGrammaticalClause(anyLength));
+                else if (strength != PhraseStrength.Custom)
                     combinations = generator.CalculateCombinations(strength);
                 else
                     combinations = generator.CalculateCombinations(phraseDescription);
@@ -133,7 +138,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             {
                 string phrase;
                 attempts++;
-                if (strength == PhraseStrength.Custom)
+                if (anyLength > 0)
+                    phrase = generator.Generate(NonGrammaticalClause(anyLength), includeSpaces);
+                else if (strength == PhraseStrength.Custom)
                     phrase = generator.Generate(phraseDescription, includeSpaces);
                 else
                     phrase = generator.Generate(strength, includeSpaces);
@@ -157,6 +164,11 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             }
         }
 
+        static IEnumerable<Clause> NonGrammaticalClause(int count)
+        {
+            for (int i = 0; i < count; i++)
+                yield return new AnyWordClause();
+        }
         static bool ParseCommandLine(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
@@ -224,6 +236,15 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     loaderArguments = args[i + 1];
                     i++;
                 }
+                else if (arg == "n" || arg == "nongrammar")
+                {
+                    if (!Int32.TryParse(args[i + 1].Trim(), out anyLength))
+                    {
+                        Console.WriteLine("Unable to parse number '{0}' for 'nongrammar' option.", args[i + 1]);
+                        return false;
+                    }
+                    i++;
+                }
                 else if (arg == "p" || arg == "phrase")
                 {
                     customPhrasePath = args[i + 1];
@@ -289,6 +310,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -s --strength xxx     Selects phrase strength (default: {0})", strength);
             Console.WriteLine("                xxx =     [normal|strong|insane][equal|required][and|speech]");
             Console.WriteLine("                          or 'custom' or 'random[short|long|forever]'");
+            Console.WriteLine("  -n --nongrammar nn    Creates non-grammatical passphrases of length nn");
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: {0})", includeSpaces);
             Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
             Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");
