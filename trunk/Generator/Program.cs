@@ -69,9 +69,14 @@ namespace MurrayGrant.ReadablePassphrase.Generator
 
         static void RunMain()
         {
+
             // Generate and print phrases.
             if (!quiet)
-                Console.WriteLine("Readable Passphrase Generator");
+            {
+                var ver = ((System.Reflection.AssemblyFileVersionAttribute)typeof(Program).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyFileVersionAttribute), true).GetValue(0)).Version;
+                var idx = ver.IndexOf('.', ver.IndexOf('.') + 1);
+                Console.WriteLine("Readable Passphrase Generator {0}", ver.Substring(0, idx));
+            }
             if (!quiet && anyLength > 0)
                 Console.WriteLine("Generating {0:N0} non-grammatic phrase(s) of length '{1}'...", count, anyLength);
             else if (!quiet && String.IsNullOrEmpty(customPhrasePath))
