@@ -95,6 +95,7 @@
     <Compile Include="PhraseDescription\TagInConfigurationAttribute.cs" />
     <Compile Include="PhraseDescription\VerbClause.cs" />
     <Compile Include="PhraseStrength.cs" />
+    <Compile Include="Random\ExternalRandomSource.cs" />
     <Compile Include="Random\CryptoRandomSource.cs" />
     <Compile Include="Random\RandomSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
