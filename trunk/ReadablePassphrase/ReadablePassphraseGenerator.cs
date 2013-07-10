@@ -42,16 +42,34 @@ namespace MurrayGrant.ReadablePassphrase
         /// Initialises the object with the default random source (based on <c>RNGCryptoServiceProvider</c>) and dictionary (internal XML dictionary).
         /// </summary>
         public ReadablePassphraseGenerator() 
-            : this(new CryptoRandomSource())
+            : this(new EmptyDictionary(), new CryptoRandomSource())
         { 
         }
         /// <summary>
         /// Initialises the object with the given random source.
         /// </summary>
         public ReadablePassphraseGenerator(RandomSourceBase randomness) 
+            : this(new EmptyDictionary(), randomness)
         {
+        }
+        /// <summary>
+        /// Initialises the object with a preloaded dictionary
+        /// </summary>
+        public ReadablePassphraseGenerator(WordDictionary words) 
+            : this (words, new CryptoRandomSource())
+        {
+        }
+        /// <summary>
+        /// Initialises the object with a preloaded dictionary and alternate random source.
+        /// </summary>
+        public ReadablePassphraseGenerator(WordDictionary words, RandomSourceBase randomness)
+        {
+            if (words == null)
+                throw new ArgumentNullException("words");
+            if (randomness == null)
+                throw new ArgumentNullException("randomness");
             this.Randomness = randomness;
-            this.Dictionary = new EmptyDictionary();          // Default empty dictionary,
+            this.Dictionary = words;
         }
         #endregion
 
