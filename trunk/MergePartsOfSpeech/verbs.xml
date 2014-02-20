@@ -328,7 +328,8 @@ limitations under the License.
   <verb presentSingular="chokes" pastSingular="choked" pastContinuousSingular="was choking" futureSingular="will choke" continuousSingular="is choking" perfectSingular="has choked" subjunctiveSingular="might choke"
         presentPlural="choke" pastPlural="choked" pastContinuousPlural="were choking" futurePlural="will choke" continuousPlural="are choking" perfectPlural="have choked" subjunctivePlural="might choke"/>
   <verb presentSingular="leaps" pastSingular="leapt" pastContinuousSingular="was leaping" futureSingular="will leap" continuousSingular="is leaping" perfectSingular="has leapt" subjunctiveSingular="might leap"
-        presentPlural="leap" pastPlural="leapt" pastContinuousPlural="were leaping" futurePlural="will leap" continuousPlural="are leaping" perfectPlural="have leapt" subjunctivePlural="might leap"/>
+        presentPlural="leap" pastPlural="leapt" pastContinuousPlural="were leaping" futurePlural="will leap" continuousPlural="are leaping" perfectPlural="have leapt" subjunctivePlural="might leap"
+        transitive="false"/>
   <verb presentSingular="argues" pastSingular="argued" pastContinuousSingular="was arguing" futureSingular="will argue" continuousSingular="is arguing" perfectSingular="has argued" subjunctiveSingular="might argue"
         presentPlural="argue" pastPlural="argued" pastContinuousPlural="were arguing" futurePlural="will argue" continuousPlural="are arguing" perfectPlural="have argued" subjunctivePlural="might argue"
         transitive="false"/>
