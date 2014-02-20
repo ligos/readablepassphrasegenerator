@@ -905,7 +905,7 @@ limitations under the License.
   <noun singular="dynasty" plural="dynasties"/>
   <noun singular="newbie" plural="newbies"/>
   <noun singular="utility" plural="utilities"/>
-  <noun singular="sample" plural="sample"/>
+  <noun singular="sample" plural="samples"/>
   <noun singular="lifeboat" plural="lifeboats"/>
   <noun singular="witch" plural="witches"/>
   <noun singular="foxhound" plural="foxhounds"/>
@@ -3039,4 +3039,88 @@ limitations under the License.
   <noun singular="rower" plural="rowers"/>
   <noun singular="sorcerer" plural="sorcerers"/>
   <noun singular="bullet" plural="bullets"/>
+  <noun singular="testical" plural="testes"/>
+  <noun singular="urine" plural="urine"/>
+  <noun singular="crop" plural="crops"/>
+  <noun singular="curd" plural="curds"/>
+  <noun singular="cavalcade" plural="cavalcades"/>
+  <noun singular="groupie" plural="groupies"/>
+  <noun singular="payee" plural="payees"/>
+  <noun singular="payor" plural="payors"/>
+  <noun singular="whisk" plural="whisks"/>
+  <noun singular="possum" plural="possums"/>
+  <noun singular="ringer" plural="ringers"/>
+  <noun singular="leapfrog" plural="leapfrogs"/>
+  <noun singular="pedal" plural="pedals"/>
+  <noun singular="artwork" plural="artworks"/>
+  <noun singular="tugboat" plural="tugboats"/>
+  <noun singular="subject" plural="subjects"/>
+  <noun singular="tendril" plural="tendrils"/>
+  <noun singular="sun" plural="son"/>
+  <noun singular="quest" plural="quests"/>
+  <noun singular="scapegoat" plural="scapegoats"/>
+  <noun singular="serf" plural="serfs"/>
+  <noun singular="superior" plural="superiors"/>
+  <noun singular="extra" plural="extras"/>
+  <noun plural="vinegar"/>
+  <noun singular="kit" plural="kits"/>
+  <noun plural="heat"/>
+  <noun singular="rupee" plural="rupees"/>
+  <noun singular="moonbeam" plural="moonbeams"/>
+  <noun singular="cockfight" plural="cockfights"/>
+  <noun singular="group" plural="groups"/>
+  <noun singular="scumbag" plural="scumbags"/>
+  <noun singular="rectum" plural="rectums"/>
+  <noun singular="gong" plural="gongs"/>
+  <noun singular="thistle" plural="thistles"/>
+  <noun singular="plaintiff" plural="plaintiffs"/>
+  <noun singular="shirt" plural="shirts"/>
+  <noun singular="segue" plural="segues"/>
+  <noun singular="bull" plural="bulls"/>
+  <noun singular="spatter" plural="spatters"/>
+  <noun singular="cup" plural="cups"/>
+  <noun singular="folder" plural="folders"/>
+  <noun singular="drunkard" plural="drunkards"/>
+  <noun singular="sound" plural="sounds"/>
+  <noun singular="gunrunner" plural="gunrunners"/>
+  <noun singular="clique" plural="cliques"/>
+  <noun singular="canon" plural="canons"/>
+  <noun singular="gibbon" plural="gibbons"/>
+  <noun singular="analyst" plural="analysts"/>
+  <noun singular="belfry" plural="belfries"/>
+  <noun plural="kale"/>
+  <noun singular="triad" plural="triads"/>
+  <noun singular="motorist" plural="motorists"/>
+  <noun plural="fennel"/>
+  <noun plural="pollution"/>
+  <noun singular="safari" plural="safaris"/>
+  <noun singular="shanty" plural="shanties"/>
+  <noun singular="hoodlum" plural="hoodlums"/>
+  <noun singular="libretto" plural="librettos"/>
+  <noun singular="profit" plural="profits"/>
+  <noun singular="doctorate" plural="doctorates"/>
+  <noun singular="score" plural="scores"/>
+  <noun singular="acrobat" plural="acrobats"/>
+  <noun singular="padlock" plural="padlocks"/>
+  <noun singular="gauntlet" plural="gauntlets"/>
+  <noun singular="melon" plural="melons"/>
+  <noun singular="revolver" plural="revolvers"/>
+  <noun singular="patriot" plural="patriots"/>
+  <noun singular="mast" plural="masts"/>
+  <noun singular="jihad" plural="jihads"/>
+  <noun singular="rectory" plural="rectories"/>
+  <noun singular="bat" plural="bats"/>
+  <noun singular="backpack" plural="backpacks"/>
+  <noun singular="varsity" plural="varsities"/>
+  <noun singular="drifter" plural="drifters"/>
+  <noun singular="bunk" plural="bunks"/>
+  <noun singular="margin" plural="margins"/>
+  <noun singular="tearoom" plural="tearooms"/>
+  <noun singular="morsel" plural="morsels"/>
+  <noun singular="pyramid" plural="pyramids"/>
+  <noun singular="royalist" plural="royalists"/>
+  <noun singular="developer" plural="developers"/>
+  <noun singular="landfill" plural="landfills"/>
+  <noun singular="treetop" plural="treetops"/>
+  <noun singular="asteroid" plural="asteroids"/>
 </dictionary>
