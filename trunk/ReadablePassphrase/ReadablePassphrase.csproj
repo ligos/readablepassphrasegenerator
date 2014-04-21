@@ -85,6 +85,9 @@
     <Compile Include="MaterialisedWords\PersonalPronoun.cs" />
     <Compile Include="MaterialisedWords\Preposition.cs" />
     <Compile Include="MaterialisedWords\Verb.cs" />
+    <Compile Include="Mutators\ICombinations.cs" />
+    <Compile Include="Mutators\NumericMutator.cs" />
+    <Compile Include="Mutators\UppercaseMutator.cs" />
     <Compile Include="PhraseCombinations.cs" />
     <Compile Include="PhraseDescription\Clause.cs" />
     <Compile Include="PhraseDescription\ConjunctionClause.cs" />
@@ -121,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MurrayGrant.snk" />
+    <Compile Include="Mutators\IMutator.cs" />
     <None Include="NotMurrayGrant.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +132,9 @@
       <Project>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</Project>
       <Name>ReadablePassphrase.Words</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

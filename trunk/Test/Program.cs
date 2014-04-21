@@ -21,6 +21,7 @@ using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.Words;
 using MurrayGrant.ReadablePassphrase.Random;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
+using MurrayGrant.ReadablePassphrase.Mutators;
 
 namespace Test
 {
@@ -121,6 +122,9 @@ namespace Test
             // Test the config form.
             //TestConfigForm(generator);
 
+            // Test mutators.
+            GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic });
+
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey(true);
@@ -168,6 +172,18 @@ namespace Test
             Console.WriteLine("Samples:");
             for (int i = 0; i < count; i++)
                 Console.WriteLine(generator.Generate(strength));
+        }
+        private static void GenerateMutatedSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count, IEnumerable<IMutator> mutators)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Mutated Samples:");
+            for (int i = 0; i < count; i++)
+            {
+                var passphrase = new StringBuilder(generator.Generate(strength));
+                foreach (var m in mutators)
+                    m.Mutate(passphrase, generator.Randomness);
+                Console.WriteLine(passphrase);
+            }
         }
         private static void GenerateCustomSamples(IEnumerable<MurrayGrant.ReadablePassphrase.PhraseDescription.Clause> clause, ReadablePassphraseGenerator generator, int count)
         {
