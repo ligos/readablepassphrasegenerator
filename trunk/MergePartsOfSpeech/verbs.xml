@@ -4427,4 +4427,6 @@ limitations under the License.
         presentPlural="subdue" pastPlural="subdued" pastContinuousPlural="were subduing" futurePlural="will subdue" continuousPlural="are subduing" perfectPlural="have subdued" subjunctivePlural="might subdue"/>
   <verb presentSingular="adapts" pastSingular="adapted" pastContinuousSingular="was adapting" futureSingular="will adapt" continuousSingular="is adapting" perfectSingular="has adapted" subjunctiveSingular="might adapt"
         presentPlural="adapt" pastPlural="adapted" pastContinuousPlural="were adapting" futurePlural="will adapt" continuousPlural="are adapting" perfectPlural="have adapted" subjunctivePlural="might adapt"/>
+  <verb presentSingular="overpowers" pastSingular="overpowered" pastContinuousSingular="was overpowering" futureSingular="will overpower" continuousSingular="is overpowering" perfectSingular="has overpowered" subjunctiveSingular="might overpower"
+        presentPlural="overpower" pastPlural="overpowered" pastContinuousPlural="were overpowering" futurePlural="will overpower" continuousPlural="are overpowering" perfectPlural="have overpowered" subjunctivePlural="might overpower"/>
 </dictionary>
