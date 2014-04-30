@@ -86,6 +86,7 @@
     <Compile Include="MaterialisedWords\Preposition.cs" />
     <Compile Include="MaterialisedWords\Verb.cs" />
     <Compile Include="Mutators\ICombinations.cs" />
+    <Compile Include="Mutators\NullMutator.cs" />
     <Compile Include="Mutators\NumericMutator.cs" />
     <Compile Include="Mutators\UppercaseMutator.cs" />
     <Compile Include="PhraseCombinations.cs" />

@@ -39,7 +39,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
 
         public void Mutate(StringBuilder passphrase, RandomSourceBase random)
         {
-            if (this.When == UppercaseStyles.Never)
+            if (this.When == UppercaseStyles.Never || this.NumberOfCharactersToCapitalise <= 0)
                 return;
 
             // Make a list of characters which can be capitalised.

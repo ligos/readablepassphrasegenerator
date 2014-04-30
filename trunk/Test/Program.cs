@@ -179,9 +179,7 @@ namespace Test
             Console.WriteLine("Mutated Samples:");
             for (int i = 0; i < count; i++)
             {
-                var passphrase = new StringBuilder(generator.Generate(strength));
-                foreach (var m in mutators)
-                    m.Mutate(passphrase, generator.Randomness);
+                var passphrase = generator.Generate(strength, mutators: mutators);
                 Console.WriteLine(passphrase);
             }
         }

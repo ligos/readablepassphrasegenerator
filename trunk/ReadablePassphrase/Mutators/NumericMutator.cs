@@ -45,7 +45,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
 
         public void Mutate(StringBuilder passphrase, RandomSourceBase random)
         {
-            if (this.When == NumericStyles.Never)
+            if (this.When == NumericStyles.Never || this.NumberOfNumbersToAdd <= 0)
                 return;
 
             // Make a list of positions which can have numbers inserted.

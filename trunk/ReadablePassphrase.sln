@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+Microsoft Visual Studio Solution File, Format Version 13.00
+# Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}

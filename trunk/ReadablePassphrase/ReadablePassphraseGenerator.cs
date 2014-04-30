@@ -24,6 +24,7 @@ using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.WordTemplate;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
 using MurrayGrant.ReadablePassphrase.Random;
+using MurrayGrant.ReadablePassphrase.Mutators;
 
 namespace MurrayGrant.ReadablePassphrase
 {
@@ -302,60 +303,29 @@ namespace MurrayGrant.ReadablePassphrase
 
         #region Generate()
         /// <summary>
-        /// Generates a single phrase based on <c>PasswordStrength.Random</c> in a <c>StringBuilder</c>.
-        /// This is the fastest and least secure method.
-        /// </summary>
-        public String Generate()
-        {
-            return Generate(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness));
-        }
-        /// <summary>
         /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
         /// This is the fastest and least secure method.
         /// </summary>
-        public String Generate(PhraseStrength strength)
+        /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members (default: Random).</param>
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (default: true).</param>
+        /// /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
+        public String Generate(PhraseStrength strength = PhraseStrength.Random, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
         {
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), true);
-        }
-        /// <summary>
-        /// Generates a single phrase based on the given phrase strength in a <c>StringBuilder</c>.
-        /// This is the fastest and least secure method.
-        /// </summary>
-        /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
-        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        public String Generate(PhraseStrength strength, bool includeSpacesBetweenWords)
-        {
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
         /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
-        public String Generate(IEnumerable<PhraseStrength> strengths)
-        {
-            return this.Generate(strengths, true);
-        }
-        /// <summary>
-        /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
-        /// This is the fastest and least secure method.
-        /// </summary>
-        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
-        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        public String Generate(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
+        /// <param name="includeSpacesBetweenWords">Include spaces between words (default: true).</param>
+        /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
+        public String Generate(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
         {
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
-        }
-        /// <summary>
-        /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
-        /// This is the fastest and least secure method.
-        /// </summary>
-        public String Generate(IEnumerable<Clause> phraseDescription)
-        {
-            return Generate(phraseDescription, true);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
@@ -363,13 +333,19 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        public String Generate(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
+        /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
+        public String Generate(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
 
             var result = new GenerateInStringBuilder();
             this.GenerateInternal(phraseDescription, includeSpacesBetweenWords, result);
+
+            if (mutators == null)
+                mutators = Enumerable.Empty<IMutator>();
+            foreach (var m in mutators)
+                m.Mutate(result.Target, this.Randomness);
             return result.Target.ToString().Trim();         // A trailing space is always included when spaces are between words.
         }
         #endregion
