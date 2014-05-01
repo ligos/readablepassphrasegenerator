@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MurrayGrant.ReadablePassphrase;
+using MurrayGrant.ReadablePassphrase.Mutators;
 
 namespace KeePassReadablePassphrase
 {
@@ -35,7 +36,8 @@ namespace KeePassReadablePassphrase
 
         public string ConfigForKeePass { get; private set; }
         private readonly ReadablePassphraseGenerator _Generator;
-        private bool IsCurrentPhraseStrengthCustom { get { return (PhraseStrength)Enum.Parse(typeof(PhraseStrength), this.cboPhraseSelection.Text) == PhraseStrength.Custom; } } 
+        private bool IsCurrentPhraseStrengthCustom { get { return (PhraseStrength)Enum.Parse(typeof(PhraseStrength), this.cboPhraseSelection.Text) == PhraseStrength.Custom; } }
+        private bool _IsLoading = false;
 
         private void ConfigRoot_Load(object sender, EventArgs e)
         {
@@ -86,7 +88,19 @@ namespace KeePassReadablePassphrase
             this.UpdateCombinations(newConf);
             this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
         }
-
+        private void mutatorStyleOrCountChanged(object sender, EventArgs e)
+        {
+            // The mutator style affects the number of combinations.
+            var newConf = this.FormToConfigObject();
+            this.UpdateCombinations(newConf);
+        }
+        private void radMutator_CheckedChanged(object sender, EventArgs e)
+        {
+            // The mutator style affects the number of combinations.
+            var newConf = this.FormToConfigObject();
+            this.UpdateCombinations(newConf);
+            this.UpdateCustomMutatorControlEnabledStatus();
+        }
 
 
 
@@ -165,31 +179,53 @@ namespace KeePassReadablePassphrase
 
         private void ConfigObjectToForm(Config config)
         {
-            this.cboPhraseSelection.DataSource = Enum.GetNames(typeof(PhraseStrength));
-            this.cboPhraseSelection.Text = config.PhraseStrength.ToString();
-            this.chkSpacesBetweenWords.Checked = config.SpacesBetweenWords;
-            this.chkCustomDictionary.Checked = config.UseCustomDictionary;
-            this.txtDictionaryPath.Text = config.PathOfCustomDictionary;
-            this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
-            this.nudMaxLength.Value = Math.Min(config.MaxLength, (int)this.nudMaxLength.Maximum);
+            _IsLoading = true;
+            try
+            {
+                this.cboPhraseSelection.DataSource = Enum.GetNames(typeof(PhraseStrength));
+                this.cboPhraseSelection.Text = config.PhraseStrength.ToString();
+                this.chkSpacesBetweenWords.Checked = config.SpacesBetweenWords;
+                this.chkCustomDictionary.Checked = config.UseCustomDictionary;
+                this.txtDictionaryPath.Text = config.PathOfCustomDictionary;
+                this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
+                this.nudMaxLength.Value = Math.Min(config.MaxLength, (int)this.nudMaxLength.Maximum);
 
-            this.UpdateDescription(config);
-            this.UpdateCombinations(config);
-            this.UpdateDictionarySize(config);
-            this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
-            this.UpdateCustomDictionaryVisibility();
+                this.radMutatorNone.Checked = config.Mutator == MutatorOption.None;
+                this.radMutatorStandard.Checked = config.Mutator == MutatorOption.Standard;
+                this.radMutatorCustom.Checked = config.Mutator == MutatorOption.Custom;
+                this.cboUpperStyle.DataSource = Enum.GetNames(typeof(UppercaseStyles));
+                this.cboUpperStyle.Text = config.UpperStyle.ToString();
+                this.nudUpperCount.Value = config.UpperCount;
+                this.cboNumericStyle.DataSource = Enum.GetNames(typeof(NumericStyles));
+                this.cboNumericStyle.Text = config.NumericStyle.ToString();
+                this.nudNumberCount.Value = config.NumericCount;
+
+
+                this.UpdateDescription(config);
+                this.UpdateCombinations(config);
+                this.UpdateDictionarySize(config);
+                this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
+                this.UpdateCustomDictionaryVisibility();
+            }
+            finally
+            {
+                _IsLoading = false;
+            }
         }
         private void UpdateDescription(Config config)
         {
-            if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
+            if (config == null || MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
                 this.txtPhraseDescription.Text = "";
             else
                 this.txtPhraseDescription.Text = String.Join(Environment.NewLine, config.PhraseDescription.Select(c => c.ToTextString()).ToArray());
         }
         private void UpdateCombinations(Config config)
         {
+            // TODO: this should take into account the mutators as well.
             PhraseCombinations combinations;
-            if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
+            if (config == null)
+                combinations = PhraseCombinations.Zero;
+            else if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
                 combinations = this._Generator.CalculateCombinations(config.PhraseStrength);
             else
                 combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
@@ -232,8 +268,20 @@ namespace KeePassReadablePassphrase
         {
             this.lnkDictionaryHelp.Visible = this.chkCustomDictionary.Checked;
         }
+        public void UpdateCustomMutatorControlEnabledStatus()
+        {
+            // Update the enabled / disabled status of custom mutator controls.
+            this.cboUpperStyle.Enabled = this.radMutatorCustom.Checked;
+            this.nudUpperCount.Enabled = this.radMutatorCustom.Checked;
+            this.cboNumericStyle.Enabled = this.radMutatorCustom.Checked;
+            this.nudNumberCount.Enabled = this.radMutatorCustom.Checked;
+        }
+
         private Config FormToConfigObject()
         {
+            if (_IsLoading)
+                return null;
+
             var result = new Config();
             result.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), this.cboPhraseSelection.Text);
             result.SpacesBetweenWords = this.chkSpacesBetweenWords.Checked;
@@ -252,6 +300,15 @@ namespace KeePassReadablePassphrase
             }
             result.MinLength = (int)this.nudMinLength.Value;
             result.MaxLength = (int)this.nudMaxLength.Value;
+
+            result.Mutator = this.radMutatorNone.Checked ? MutatorOption.None 
+                                : this.radMutatorStandard.Checked ? MutatorOption.Standard
+                                : this.radMutatorCustom.Checked ? MutatorOption.Custom
+                                : MutatorOption.None;
+            result.UpperStyle = (UppercaseStyles)Enum.Parse(typeof(UppercaseStyles), this.cboUpperStyle.Text);
+            result.UpperCount = (int)this.nudUpperCount.Value;
+            result.NumericStyle = (NumericStyles)Enum.Parse(typeof(NumericStyles), this.cboNumericStyle.Text);
+            result.NumericCount = (int)this.nudNumberCount.Value;
             return result;
 
         }

@@ -25,6 +25,7 @@ using KeePassLib.Security;
 using MurrayGrant.ReadablePassphrase;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
 using System.Security;
+using MurrayGrant.ReadablePassphrase.Mutators;
 
 namespace KeePassReadablePassphrase
 {
@@ -88,7 +89,9 @@ namespace KeePassReadablePassphrase
                 _CachedGenerator = generator;
             }
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            if (conf.Mutator != MutatorOption.None)
+                return GenerateForMutators(_CachedGenerator, conf);
+            else if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 return GenerateSecure(_CachedGenerator, conf);
             else
                 return GenerateNotSoSecure(_CachedGenerator, conf);
@@ -152,7 +155,49 @@ namespace KeePassReadablePassphrase
                 }
             } while (true);
         }
+        private ProtectedString GenerateForMutators(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
+        {
+            var attempts = 1000;
+            // This generates the passphrase as a string, which is bad for security, but lets us use mutators.
+            do
+            {
+                attempts--;
+                try
+                {
+                    var passphrase = "";
+                    if (conf.PhraseStrength == PhraseStrength.Custom)
+                        passphrase = generator.Generate(conf.PhraseDescription, conf.SpacesBetweenWords, GetMutators(conf));
+                    else
+                        passphrase = generator.Generate(conf.PhraseStrength, conf.SpacesBetweenWords, GetMutators(conf));
 
+                    if (passphrase.Length >= conf.MinLength && passphrase.Length <= conf.MaxLength)
+                        return new ProtectedString(true, passphrase);
+                    // Bail out if we've tried lots of times.
+                    if (attempts <= 0)
+                        return new ProtectedString(true, "Unable to find a passphrase meeting the min and max length criteria in your settings.");
+                }
+                finally
+                {
+                    // I live in the slim hope that the the GC will actually clear the string we generated.
+                    GC.Collect(0);
+                }
+            } while (true);
+        }
+
+        private IEnumerable<IMutator> GetMutators(Config conf)
+        {
+            if (conf.Mutator == MutatorOption.None)
+                return Enumerable.Empty<IMutator>();
+            else if (conf.Mutator == MutatorOption.Standard)
+                return new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic };
+            else if (conf.Mutator == MutatorOption.Custom)
+                return new IMutator[] {
+                    new UppercaseMutator() { When = conf.UpperStyle, NumberOfCharactersToCapitalise = conf.UpperCount },
+                    new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
+                };
+            else
+                return Enumerable.Empty<IMutator>();
+        }
         public void Dispose()
         {
             this._CachedGenerator = null;

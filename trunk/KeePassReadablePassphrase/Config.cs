@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using MurrayGrant.ReadablePassphrase;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
+using MurrayGrant.ReadablePassphrase.Mutators;
 using System.Xml;
 
 namespace KeePassReadablePassphrase
@@ -32,6 +33,12 @@ namespace KeePassReadablePassphrase
         public string PathOfCustomDictionary { get; set; }
         public int MinLength { get; set; }
         public int MaxLength { get; set; }
+
+        public MutatorOption Mutator { get; set; }
+        public UppercaseStyles UpperStyle { get; set; }
+        public int UpperCount { get; set; }
+        public NumericStyles NumericStyle { get; set; }
+        public int NumericCount { get; set; }
 
         public Config()
         {
@@ -52,6 +59,11 @@ namespace KeePassReadablePassphrase
             MinLength = 1;
             MaxLength = 999;
             this.UpdatePhraseDescription();
+            this.Mutator = MutatorOption.None;
+            this.UpperStyle = UppercaseMutator.Basic.When;
+            this.UpperCount = UppercaseMutator.Basic.NumberOfCharactersToCapitalise;
+            this.NumericStyle = NumericMutator.Basic.When;
+            this.NumericCount = NumericMutator.Basic.NumberOfNumbersToAdd;
         }
         private void ParseConfig(string configFromKeePass)
         {
@@ -81,6 +93,16 @@ namespace KeePassReadablePassphrase
                     this.PhraseDescription = Clause.CreateCollectionFromTextString(reader.Value);
                     inPhraseDescription = false;
                 }
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "mutator")
+                    this.Mutator = (MutatorOption)Enum.Parse(typeof(MutatorOption), reader.GetAttribute("value").Replace(" ", ""));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "upperstyle")
+                    this.UpperStyle = (UppercaseStyles)Enum.Parse(typeof(UppercaseStyles), reader.GetAttribute("value").Replace(" ", ""));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "uppercount")
+                    this.UpperCount = Int32.Parse(reader.GetAttribute("value"));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "numericstyle")
+                    this.NumericStyle = (NumericStyles)Enum.Parse(typeof(NumericStyles), reader.GetAttribute("value").Replace(" ", ""));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "numericcount")
+                    this.NumericCount = Int32.Parse(reader.GetAttribute("value"));
             }
 
             if (this.PhraseStrength != PhraseStrength.Custom)
@@ -94,6 +116,15 @@ namespace KeePassReadablePassphrase
                 MaxLength = 1;
             if (MaxLength > 999)
                 MaxLength = 999;
+
+            if (UpperCount < 0)
+                UpperCount = 0;
+            if (UpperCount > 999)
+                UpperCount = 999;
+            if (NumericCount < 0)
+                NumericCount = 0;
+            if (NumericCount > 999)
+                NumericCount = 999;
         }
         public string ToConfigString()
         {
@@ -116,6 +147,11 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", this.PathOfCustomDictionary);
             sb.AppendFormat("<MinLength value=\"{0}\"/>\n", this.MinLength);
             sb.AppendFormat("<MaxLength value=\"{0}\"/>\n", this.MaxLength);
+            sb.AppendFormat("<Mutator value=\"{0}\"/>\n", this.Mutator);
+            sb.AppendFormat("<UpperStyle value=\"{0}\"/>\n", this.UpperStyle);
+            sb.AppendFormat("<UpperCount value=\"{0}\"/>\n", this.UpperCount);
+            sb.AppendFormat("<NumericStyle value=\"{0}\"/>\n", this.NumericStyle);
+            sb.AppendFormat("<NumericCount value=\"{0}\"/>\n", this.NumericCount);
             sb.AppendLine("</ReadablePassphraseConfig>");
             return sb.ToString();
         }
@@ -126,5 +162,12 @@ namespace KeePassReadablePassphrase
             if (this.PhraseStrength != PhraseStrength.Custom && !Clause.RandomMappings.ContainsKey(this.PhraseStrength))
                 this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength, null);
         }
+    }
+
+    public enum MutatorOption
+    {
+        None,
+        Standard,
+        Custom,
     }
 }

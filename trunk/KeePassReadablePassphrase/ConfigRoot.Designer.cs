@@ -42,6 +42,12 @@
             this.txtEntropyRange = new System.Windows.Forms.TextBox();
             this.txtEntropyAverage = new System.Windows.Forms.TextBox();
             this.txtCombinationAverage = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radMutatorNone = new System.Windows.Forms.RadioButton();
+            this.radMutatorStandard = new System.Windows.Forms.RadioButton();
+            this.radMutatorCustom = new System.Windows.Forms.RadioButton();
+            this.cboUpperStyle = new System.Windows.Forms.ComboBox();
+            this.cboNumericStyle = new System.Windows.Forms.ComboBox();
             this.lblPhraseDetail = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -69,9 +75,26 @@
             this.nudMaxLength = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.nudUpperCount = new System.Windows.Forms.NumericUpDown();
+            this.nudNumberCount = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUpperCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberCount)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkSpacesBetweenWords
@@ -120,11 +143,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhraseDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 317);
+            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 412);
             this.txtPhraseDescription.Multiline = true;
             this.txtPhraseDescription.Name = "txtPhraseDescription";
             this.txtPhraseDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtPhraseDescription.Size = new System.Drawing.Size(461, 104);
+            this.txtPhraseDescription.Size = new System.Drawing.Size(461, 109);
             this.txtPhraseDescription.TabIndex = 13;
             this.toolTip1.SetToolTip(this.txtPhraseDescription, resources.GetString("txtPhraseDescription.ToolTip"));
             this.txtPhraseDescription.TextChanged += new System.EventHandler(this.txtPhraseDescription_TextChanged);
@@ -133,7 +156,7 @@
             // 
             this.txtDictionaryPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 244);
+            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 338);
             this.txtDictionaryPath.Name = "txtDictionaryPath";
             this.txtDictionaryPath.ReadOnly = true;
             this.txtDictionaryPath.Size = new System.Drawing.Size(339, 20);
@@ -143,7 +166,7 @@
             // chkCustomDictionary
             // 
             this.chkCustomDictionary.AutoSize = true;
-            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 221);
+            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 315);
             this.chkCustomDictionary.Name = "chkCustomDictionary";
             this.chkCustomDictionary.Size = new System.Drawing.Size(145, 17);
             this.chkCustomDictionary.TabIndex = 8;
@@ -155,7 +178,7 @@
             // 
             // txtDictionarySize
             // 
-            this.txtDictionarySize.Location = new System.Drawing.Point(104, 270);
+            this.txtDictionarySize.Location = new System.Drawing.Point(104, 364);
             this.txtDictionarySize.Name = "txtDictionarySize";
             this.txtDictionarySize.ReadOnly = true;
             this.txtDictionarySize.Size = new System.Drawing.Size(87, 20);
@@ -164,7 +187,7 @@
             // 
             // txtCombinationRange
             // 
-            this.txtCombinationRange.Location = new System.Drawing.Point(104, 161);
+            this.txtCombinationRange.Location = new System.Drawing.Point(104, 254);
             this.txtCombinationRange.Name = "txtCombinationRange";
             this.txtCombinationRange.ReadOnly = true;
             this.txtCombinationRange.Size = new System.Drawing.Size(220, 20);
@@ -174,7 +197,7 @@
             // 
             // txtEntropyRange
             // 
-            this.txtEntropyRange.Location = new System.Drawing.Point(382, 161);
+            this.txtEntropyRange.Location = new System.Drawing.Point(382, 254);
             this.txtEntropyRange.Name = "txtEntropyRange";
             this.txtEntropyRange.ReadOnly = true;
             this.txtEntropyRange.Size = new System.Drawing.Size(90, 20);
@@ -185,7 +208,7 @@
             // 
             // txtEntropyAverage
             // 
-            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 187);
+            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 280);
             this.txtEntropyAverage.Name = "txtEntropyAverage";
             this.txtEntropyAverage.ReadOnly = true;
             this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
@@ -196,7 +219,7 @@
             // 
             // txtCombinationAverage
             // 
-            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 187);
+            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 280);
             this.txtCombinationAverage.Name = "txtCombinationAverage";
             this.txtCombinationAverage.ReadOnly = true;
             this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
@@ -204,10 +227,85 @@
             this.toolTip1.SetToolTip(this.txtCombinationAverage, "The total combinations of words based on your selected dictionary and phrase stre" +
         "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(12, 173);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(51, 13);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "Mutators:";
+            this.toolTip1.SetToolTip(this.label13, "Mutators change the final passphrase");
+            // 
+            // radMutatorNone
+            // 
+            this.radMutatorNone.AutoSize = true;
+            this.radMutatorNone.Location = new System.Drawing.Point(104, 169);
+            this.radMutatorNone.Name = "radMutatorNone";
+            this.radMutatorNone.Size = new System.Drawing.Size(51, 17);
+            this.radMutatorNone.TabIndex = 35;
+            this.radMutatorNone.TabStop = true;
+            this.radMutatorNone.Text = "None";
+            this.toolTip1.SetToolTip(this.radMutatorNone, "Makes no changes to the final passphrase");
+            this.radMutatorNone.UseVisualStyleBackColor = true;
+            this.radMutatorNone.CheckedChanged += new System.EventHandler(this.radMutator_CheckedChanged);
+            // 
+            // radMutatorStandard
+            // 
+            this.radMutatorStandard.AutoSize = true;
+            this.radMutatorStandard.Location = new System.Drawing.Point(170, 169);
+            this.radMutatorStandard.Name = "radMutatorStandard";
+            this.radMutatorStandard.Size = new System.Drawing.Size(203, 17);
+            this.radMutatorStandard.TabIndex = 36;
+            this.radMutatorStandard.TabStop = true;
+            this.radMutatorStandard.Text = "Standard (adds numbers and capitals)";
+            this.toolTip1.SetToolTip(this.radMutatorStandard, "Adds 2 upper case letters and 2 numbers to the final passphrase. Use this to meet" +
+        " minimum password strength requirements.");
+            this.radMutatorStandard.UseVisualStyleBackColor = true;
+            this.radMutatorStandard.CheckedChanged += new System.EventHandler(this.radMutator_CheckedChanged);
+            // 
+            // radMutatorCustom
+            // 
+            this.radMutatorCustom.AutoSize = true;
+            this.radMutatorCustom.Location = new System.Drawing.Point(383, 169);
+            this.radMutatorCustom.Name = "radMutatorCustom";
+            this.radMutatorCustom.Size = new System.Drawing.Size(60, 17);
+            this.radMutatorCustom.TabIndex = 37;
+            this.radMutatorCustom.TabStop = true;
+            this.radMutatorCustom.Text = "Custom";
+            this.toolTip1.SetToolTip(this.radMutatorCustom, "Lets you configure how numbers and capitals are added to the passphrase in detail" +
+        "");
+            this.radMutatorCustom.UseVisualStyleBackColor = true;
+            this.radMutatorCustom.CheckedChanged += new System.EventHandler(this.radMutator_CheckedChanged);
+            // 
+            // cboUpperStyle
+            // 
+            this.cboUpperStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpperStyle.FormattingEnabled = true;
+            this.cboUpperStyle.Location = new System.Drawing.Point(104, 192);
+            this.cboUpperStyle.Name = "cboUpperStyle";
+            this.cboUpperStyle.Size = new System.Drawing.Size(220, 21);
+            this.cboUpperStyle.TabIndex = 40;
+            this.toolTip1.SetToolTip(this.cboUpperStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
+        "stom for this option to be available.");
+            this.cboUpperStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
+            // cboNumericStyle
+            // 
+            this.cboNumericStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNumericStyle.FormattingEnabled = true;
+            this.cboNumericStyle.Location = new System.Drawing.Point(104, 218);
+            this.cboNumericStyle.Name = "cboNumericStyle";
+            this.cboNumericStyle.Size = new System.Drawing.Size(220, 21);
+            this.cboNumericStyle.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.cboNumericStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
+        "stom for this option to be available.");
+            this.cboNumericStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
             // lblPhraseDetail
             // 
             this.lblPhraseDetail.AutoSize = true;
-            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 300);
+            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 394);
             this.lblPhraseDetail.Name = "lblPhraseDetail";
             this.lblPhraseDetail.Size = new System.Drawing.Size(73, 13);
             this.lblPhraseDetail.TabIndex = 3;
@@ -217,7 +315,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(397, 427);
+            this.btnCancel.Location = new System.Drawing.Point(397, 527);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 15;
@@ -228,7 +326,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(307, 427);
+            this.btnOK.Location = new System.Drawing.Point(307, 527);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 14;
@@ -240,7 +338,7 @@
             // 
             this.lnkPhraseHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkPhraseHelp.AutoSize = true;
-            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 299);
+            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 393);
             this.lnkPhraseHelp.Name = "lnkPhraseHelp";
             this.lnkPhraseHelp.Size = new System.Drawing.Size(155, 13);
             this.lnkPhraseHelp.TabIndex = 19;
@@ -283,7 +381,7 @@
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Enabled = false;
-            this.btnBrowse.Location = new System.Drawing.Point(449, 241);
+            this.btnBrowse.Location = new System.Drawing.Point(449, 337);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(24, 23);
             this.btnBrowse.TabIndex = 10;
@@ -294,7 +392,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 248);
+            this.label5.Location = new System.Drawing.Point(12, 342);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 12;
@@ -304,7 +402,7 @@
             // 
             this.lnkDictionaryHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkDictionaryHelp.AutoSize = true;
-            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 222);
+            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 316);
             this.lnkDictionaryHelp.Name = "lnkDictionaryHelp";
             this.lnkDictionaryHelp.Size = new System.Drawing.Size(175, 13);
             this.lnkDictionaryHelp.TabIndex = 18;
@@ -319,7 +417,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 274);
+            this.label6.Location = new System.Drawing.Point(12, 368);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 16;
@@ -328,7 +426,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 164);
+            this.label7.Location = new System.Drawing.Point(12, 257);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 18;
@@ -337,7 +435,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(330, 164);
+            this.label8.Location = new System.Drawing.Point(330, 257);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 20;
@@ -345,7 +443,7 @@
             // 
             // btnDictionarySizeDetail
             // 
-            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 268);
+            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 362);
             this.btnDictionarySizeDetail.Name = "btnDictionarySizeDetail";
             this.btnDictionarySizeDetail.Size = new System.Drawing.Size(24, 23);
             this.btnDictionarySizeDetail.TabIndex = 12;
@@ -363,7 +461,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 459);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(485, 22);
             this.statusStrip1.TabIndex = 22;
@@ -388,7 +486,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 190);
+            this.label2.Location = new System.Drawing.Point(330, 283);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 27;
@@ -397,7 +495,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 190);
+            this.label9.Location = new System.Drawing.Point(12, 283);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 26;
@@ -486,13 +584,173 @@
             this.label12.TabIndex = 33;
             this.label12.Text = "Letters Long (inc spaces)";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(12, 195);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(92, 13);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "Upper Case Style:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 221);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(75, 13);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "Numeric Style:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(334, 195);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 13);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "Upper Count:";
+            // 
+            // nudUpperCount
+            // 
+            this.nudUpperCount.Location = new System.Drawing.Point(418, 193);
+            this.nudUpperCount.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudUpperCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudUpperCount.Name = "nudUpperCount";
+            this.nudUpperCount.Size = new System.Drawing.Size(55, 20);
+            this.nudUpperCount.TabIndex = 42;
+            this.nudUpperCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudUpperCount.ValueChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
+            // nudNumberCount
+            // 
+            this.nudNumberCount.Location = new System.Drawing.Point(418, 219);
+            this.nudNumberCount.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudNumberCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberCount.Name = "nudNumberCount";
+            this.nudNumberCount.Size = new System.Drawing.Size(55, 20);
+            this.nudNumberCount.TabIndex = 45;
+            this.nudNumberCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudNumberCount.ValueChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(334, 221);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(78, 13);
+            this.label17.TabIndex = 44;
+            this.label17.Text = "Number Count:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(20, 162);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(450, 1);
+            this.panel1.TabIndex = 46;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(450, 1);
+            this.panel2.TabIndex = 47;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.Black;
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Location = new System.Drawing.Point(17, 245);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(450, 1);
+            this.panel3.TabIndex = 47;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.Location = new System.Drawing.Point(0, 84);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(450, 1);
+            this.panel4.TabIndex = 47;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.BackColor = System.Drawing.Color.Black;
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Location = new System.Drawing.Point(17, 309);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(450, 1);
+            this.panel5.TabIndex = 48;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.Black;
+            this.panel6.Location = new System.Drawing.Point(0, 84);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(450, 1);
+            this.panel6.TabIndex = 47;
+            // 
             // ConfigRoot
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(485, 481);
+            this.ClientSize = new System.Drawing.Size(485, 581);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.nudNumberCount);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.cboNumericStyle);
+            this.Controls.Add(this.nudUpperCount);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.cboUpperStyle);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.radMutatorCustom);
+            this.Controls.Add(this.radMutatorStandard);
+            this.Controls.Add(this.radMutatorNone);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.nudMaxLength);
@@ -535,6 +793,11 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUpperCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberCount)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,5 +844,23 @@
         private System.Windows.Forms.NumericUpDown nudMaxLength;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RadioButton radMutatorNone;
+        private System.Windows.Forms.RadioButton radMutatorStandard;
+        private System.Windows.Forms.RadioButton radMutatorCustom;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cboUpperStyle;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown nudUpperCount;
+        private System.Windows.Forms.NumericUpDown nudNumberCount;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cboNumericStyle;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }
