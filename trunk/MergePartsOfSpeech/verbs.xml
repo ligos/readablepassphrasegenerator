@@ -4429,4 +4429,45 @@ limitations under the License.
         presentPlural="adapt" pastPlural="adapted" pastContinuousPlural="were adapting" futurePlural="will adapt" continuousPlural="are adapting" perfectPlural="have adapted" subjunctivePlural="might adapt"/>
   <verb presentSingular="overpowers" pastSingular="overpowered" pastContinuousSingular="was overpowering" futureSingular="will overpower" continuousSingular="is overpowering" perfectSingular="has overpowered" subjunctiveSingular="might overpower"
         presentPlural="overpower" pastPlural="overpowered" pastContinuousPlural="were overpowering" futurePlural="will overpower" continuousPlural="are overpowering" perfectPlural="have overpowered" subjunctivePlural="might overpower"/>
+  <verb presentSingular="bypasses" pastSingular="bypassed" pastContinuousSingular="was bypassing" futureSingular="will bypass" continuousSingular="is bypassing" perfectSingular="has bypassed" subjunctiveSingular="might bypass"
+        presentPlural="bypass" pastPlural="bypassed" pastContinuousPlural="were bypassing" futurePlural="will bypass" continuousPlural="are bypassing" perfectPlural="have bypassed" subjunctivePlural="might bypass"/>
+  <verb presentSingular="bunts" pastSingular="bunted" pastContinuousSingular="was bunting" futureSingular="will bunt" continuousSingular="is bunting" perfectSingular="has bunted" subjunctiveSingular="might bunt"
+        presentPlural="bunt" pastPlural="bunted" pastContinuousPlural="were bunting" futurePlural="will bunt" continuousPlural="are bunting" perfectPlural="have bunted" subjunctivePlural="might bunt"/>
+  <verb presentSingular="slings" pastSingular="slung" pastContinuousSingular="was slinging" futureSingular="will sling" continuousSingular="is slinging" perfectSingular="has slung" subjunctiveSingular="might sling"
+        presentPlural="sling" pastPlural="slung" pastContinuousPlural="were slinging" futurePlural="will sling" continuousPlural="are slinging" perfectPlural="have slung" subjunctivePlural="might sling"/>
+  <verb presentSingular="sculpts" pastSingular="sculpted" pastContinuousSingular="was sculpting" futureSingular="will sculpt" continuousSingular="is sculpting" perfectSingular="has sculpted" subjunctiveSingular="might sculpt"
+        presentPlural="sculpt" pastPlural="sculpted" pastContinuousPlural="were sculpting" futurePlural="will sculpt" continuousPlural="are sculpting" perfectPlural="have sculpted" subjunctivePlural="might sculpt"/>
+  <verb presentSingular="designs" pastSingular="designed" pastContinuousSingular="was designing" futureSingular="will design" continuousSingular="is designing" perfectSingular="has designed" subjunctiveSingular="might design"
+        presentPlural="design" pastPlural="designed" pastContinuousPlural="were designing" futurePlural="will design" continuousPlural="are designing" perfectPlural="have designed" subjunctivePlural="might design"/>
+  <verb presentSingular="surfs" pastSingular="surfed" pastContinuousSingular="was surfing" futureSingular="will surf" continuousSingular="is surfing" perfectSingular="has surfed" subjunctiveSingular="might surf"
+        presentPlural="surf" pastPlural="surfed" pastContinuousPlural="were surfing" futurePlural="will surf" continuousPlural="are surfing" perfectPlural="have surfed" subjunctivePlural="might surf"
+        transitive="false"/>
+  <verb presentSingular="becalms" pastSingular="becalmed" pastContinuousSingular="was becalming" futureSingular="will becalm" continuousSingular="is becalming" perfectSingular="has becalmed" subjunctiveSingular="might becalm"
+        presentPlural="becalm" pastPlural="becalmed" pastContinuousPlural="were becalming" futurePlural="will becalm" continuousPlural="are becalming" perfectPlural="have becalmed" subjunctivePlural="might becalm"/>
+  <verb presentSingular="represses" pastSingular="repressed" pastContinuousSingular="was repressing" futureSingular="will repress" continuousSingular="is repressing" perfectSingular="has repressed" subjunctiveSingular="might repress"
+        presentPlural="repress" pastPlural="repressed" pastContinuousPlural="were repressing" futurePlural="will repress" continuousPlural="are repressing" perfectPlural="have repressed" subjunctivePlural="might repress"/>
+  <verb presentSingular="ushers" pastSingular="ushered" pastContinuousSingular="was ushering" futureSingular="will usher" continuousSingular="is ushering" perfectSingular="has ushered" subjunctiveSingular="might usher"
+        presentPlural="usher" pastPlural="ushered" pastContinuousPlural="were ushering" futurePlural="will usher" continuousPlural="are ushering" perfectPlural="have ushered" subjunctivePlural="might usher"/>
+  <verb presentSingular="shaves" pastSingular="shaved" pastContinuousSingular="was shaving" futureSingular="will shave" continuousSingular="is shaving" perfectSingular="has shaved" subjunctiveSingular="might shave"
+        presentPlural="shave" pastPlural="shaved" pastContinuousPlural="were shaving" futurePlural="will shave" continuousPlural="are shaving" perfectPlural="have shaved" subjunctivePlural="might shave"/>
+  <verb presentSingular="creaks" pastSingular="creaked" pastContinuousSingular="was creaking" futureSingular="will creak" continuousSingular="is creaking" perfectSingular="has creaked" subjunctiveSingular="might creak"
+        presentPlural="creak" pastPlural="creaked" pastContinuousPlural="were creaking" futurePlural="will creak" continuousPlural="are creaking" perfectPlural="have creaked" subjunctivePlural="might creak"
+        transitive="false"/>
+  <verb presentSingular="binges" pastSingular="binged" pastContinuousSingular="was bingeing" futureSingular="will binge" continuousSingular="is bingeing" perfectSingular="has binged" subjunctiveSingular="might binge"
+        presentPlural="binge" pastPlural="binged" pastContinuousPlural="were bingeing" futurePlural="will binge" continuousPlural="are bingeing" perfectPlural="have binged" subjunctivePlural="might binge"
+        transitive="false"/>
+  <verb presentSingular="overlays" pastSingular="overlaid" pastContinuousSingular="was overlaying" futureSingular="will overlay" continuousSingular="is overlaying" perfectSingular="has overlaid" subjunctiveSingular="might overlay"
+        presentPlural="overlay" pastPlural="overlaid" pastContinuousPlural="were overlaying" futurePlural="will overlay" continuousPlural="are overlaying" perfectPlural="have overlaid" subjunctivePlural="might overlay"/>
+  <verb presentSingular="placates" pastSingular="placated" pastContinuousSingular="was placating" futureSingular="will placate" continuousSingular="is placating" perfectSingular="has placated" subjunctiveSingular="might placate"
+        presentPlural="placate" pastPlural="placated" pastContinuousPlural="were placating" futurePlural="will placate" continuousPlural="are placating" perfectPlural="have placated" subjunctivePlural="might placate"/>
+  <verb presentSingular="dashes" pastSingular="dashed" pastContinuousSingular="was dashing" futureSingular="will dash" continuousSingular="is dashing" perfectSingular="has dashed" subjunctiveSingular="might dash"
+        presentPlural="dash" pastPlural="dashed" pastContinuousPlural="were dashing" futurePlural="will dash" continuousPlural="are dashing" perfectPlural="have dashed" subjunctivePlural="might dash"
+        transitive="false"/>
+  <verb presentSingular="despoils" pastSingular="despoiled" pastContinuousSingular="was despoiling" futureSingular="will despoil" continuousSingular="is despoiling" perfectSingular="has despoiled" subjunctiveSingular="might despoil"
+        presentPlural="despoil" pastPlural="despoiled" pastContinuousPlural="were despoiling" futurePlural="will despoil" continuousPlural="are despoiling" perfectPlural="have despoiled" subjunctivePlural="might despoil"/>
+  <verb presentSingular="yearns" pastSingular="yearned" pastContinuousSingular="was yearning" futureSingular="will yearn" continuousSingular="is yearning" perfectSingular="has yearned" subjunctiveSingular="might yearn"
+        presentPlural="yearn" pastPlural="yearned" pastContinuousPlural="were yearning" futurePlural="will yearn" continuousPlural="are yearning" perfectPlural="have yearned" subjunctivePlural="might yearn"
+        transitive="false"/>
+  <verb presentSingular="denigrates" pastSingular="denigrated" pastContinuousSingular="was denigrating" futureSingular="will denigrate" continuousSingular="is denigrating" perfectSingular="has denigrated" subjunctiveSingular="might denigrate"
+        presentPlural="denigrate" pastPlural="denigrated" pastContinuousPlural="were denigrating" futurePlural="will denigrate" continuousPlural="are denigrating" perfectPlural="have denigrated" subjunctivePlural="might denigrate"/>
 </dictionary>
