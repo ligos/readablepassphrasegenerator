@@ -123,7 +123,7 @@ namespace Test
             //TestConfigForm(generator);
 
             // Test mutators.
-            GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic });
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
