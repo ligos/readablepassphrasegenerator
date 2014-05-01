@@ -55,15 +55,18 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 if (
                     ((this.When & NumericStyles.Anywhere) == NumericStyles.Anywhere)
                     || ((this.When & NumericStyles.StartOfWord) == NumericStyles.StartOfWord && 
-                        ((i == 0) || (i > 0 && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetter(passphrase[i])))
+                        ((i == 0) || (i > 0 && i < passphrase.Length && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetterOrDigit(passphrase[i])))
                         ) 
-                    || ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord && 
-                        ((i == passphrase.Length) || (i < passphrase.Length && Char.IsWhiteSpace(passphrase[i]) && Char.IsLetter(passphrase[i-1])))
+                    || ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord &&
+                        (i < passphrase.Length && Char.IsWhiteSpace(passphrase[i]) && Char.IsLetterOrDigit(passphrase[i-1]))
                         )
                     )
                     possibleInsertIndexes.Add(i);
             }
-            
+            // Usually, there's a trailing whitespace character, but just in case there isn't...
+            if ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord && !Char.IsWhiteSpace(passphrase[passphrase.Length - 1]))
+                possibleInsertIndexes.Add(passphrase.Length);
+
             // Randomly choose up to the count allowed.
             var toInsertAt = new List<int>();
             var c = Math.Min(this.NumberOfNumbersToAdd, possibleInsertIndexes.Count);
