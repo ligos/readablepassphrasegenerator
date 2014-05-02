@@ -79,6 +79,9 @@ Schema version 5 adds:
   <speechVerb past="chanted"/>
   <speechVerb past="wondered"/>
   <speechVerb past="stuttered"/>
+  <speechVerb past="drawled"/>
+  <speechVerb past="intoned"/>
+  <speechVerb past="bragged"/>
   <indefinitePronoun singular="one" plural="ones" personal="true"/>
   <indefinitePronoun singular="thing" plural="things" personal="false"/>
   <numberRange start="1" end="999"/>
