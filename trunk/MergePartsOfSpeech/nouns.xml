@@ -3237,4 +3237,52 @@ limitations under the License.
   <noun singular="house" plural="houses"/>
   <noun singular="surname" plural="surnames"/>
   <noun singular="stamen" plural="stamens"/>
+  <noun singular="roommate" plural="roommates"/>
+  <noun singular="hangman" plural="hangmen"/>
+  <noun plural="solder"/>
+  <noun singular="chef" plural="chefs"/>
+  <noun singular="twirler" plural="twirlers"/>
+  <noun singular="nobleman" plural="noblemen"/>
+  <noun plural="slang"/>
+  <noun singular="siren" plural="sirens"/>
+  <noun singular="line" plural="lines"/>
+  <noun singular="thesaurus" plural="thesauruses"/>
+  <noun singular="stowaway" plural="stowaways"/>
+  <noun plural="presence"/>
+  <noun singular="narcotic" plural="narcotics"/>
+  <noun singular="burrow" plural="burrows"/>
+  <noun singular="reel" plural="reels"/>
+  <noun singular="fact" plural="facts"/>
+  <noun singular="haul" plural="hauls"/>
+  <noun singular="walrus" plural="walrus"/>
+  <noun singular="sunbeam" plural="sunbeams"/>
+  <noun singular="archer" plural="archers"/>
+  <noun singular="seabed" plural="seabeds"/>
+  <noun singular="phone" plural="phones"/>
+  <noun singular="magpie" plural="magpies"/>
+  <noun singular="passbook" plural="passbooks"/>
+  <noun plural="chess"/>
+  <noun singular="jumble" plural="jumbles"/>
+  <noun singular="fireball" plural="fireballs"/>
+  <noun singular="brain" plural="brains"/>
+  <noun singular="shell" plural="shells"/>
+  <noun singular="pinprick" plural="pinpricks"/>
+  <noun singular="crumpet" plural="crumpets"/>
+  <noun singular="page" plural="pages"/>
+  <noun plural="oil"/>
+  <noun plural="glue"/>
+  <noun singular="passkey" plural="passkeys"/>
+  <noun singular="scratch" plural="scratches"/>
+  <noun singular="goul" plural="gouls"/>
+  <noun singular="chemist" plural="chemists"/>
+  <noun singular="diesel" plural="diesels"/>
+  <noun singular="rate" plural="rates"/>
+  <noun singular="magnate" plural="magnates"/>
+  <noun singular="skydiver" plural="skydivers"/>
+  <noun singular="bout" plural="bouts"/>
+  <noun singular="dramatist" plural="dramatists"/>
+  <noun singular="sulky" plural="sulkies"/>
+  <noun singular="piranha" plural="piranhas"/>
+  <noun singular="acolyte" plural="acolytes"/>
+  <noun singular="routine" plural="routines"/>
 </dictionary>
