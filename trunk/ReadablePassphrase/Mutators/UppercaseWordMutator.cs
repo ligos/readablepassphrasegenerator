@@ -21,7 +21,7 @@ using MurrayGrant.ReadablePassphrase.Random;
 namespace MurrayGrant.ReadablePassphrase.Mutators
 {
     /// <summary>
-    /// Changes letters to uppercase at random.
+    /// Changes whole words to uppercase at random.
     /// </summary>
     public sealed class UppercaseWordMutator : ICombinations, IMutator
     {
