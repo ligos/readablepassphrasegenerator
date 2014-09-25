@@ -28,11 +28,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         /// <summary>
         /// A general instance designed to get a phrase to pass password requirements more than add serious entropy.
         /// </summary>
-        public readonly static NumericMutator Basic = new NumericMutator()
-        {
-            When = NumericStyles.EndOfWord,
-            NumberOfNumbersToAdd = 2,
-        };
+        public readonly static NumericMutator Basic = new NumericMutator();
 
         public NumericStyles When { get; set; }
         public int NumberOfNumbersToAdd { get; set; }
@@ -41,6 +37,8 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         public NumericMutator()
         {
             this.Numbers = "0123456789".ToCharArray();
+            this.When = NumericStyles.EndOfWord;
+            this.NumberOfNumbersToAdd = 2;
         }
 
         public void Mutate(StringBuilder passphrase, RandomSourceBase random)
@@ -50,22 +48,42 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
 
             // Make a list of positions which can have numbers inserted.
             var possibleInsertIndexes = new List<int>();
-            for (int i = 0; i <= passphrase.Length; i++)
+
+            if (this.When == NumericStyles.EndOfPhrase)
             {
-                if (
-                    ((this.When & NumericStyles.Anywhere) == NumericStyles.Anywhere)
-                    || ((this.When & NumericStyles.StartOfWord) == NumericStyles.StartOfWord && 
-                        ((i == 0) || (i > 0 && i < passphrase.Length && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetterOrDigit(passphrase[i])))
-                        ) 
-                    || ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord &&
-                        (i < passphrase.Length && Char.IsWhiteSpace(passphrase[i]) && Char.IsLetterOrDigit(passphrase[i-1]))
+                // End of passphrase is a special case with only one option.
+                // Although there is usually some whitespace at the end, so we still need a short loop.
+                for (int i = passphrase.Length - 1; i >= 0; i--)
+                {
+                    if (Char.IsLetterOrDigit(passphrase[i]))
+                    {
+                        possibleInsertIndexes.AddRange(Enumerable.Repeat(i+1, this.NumberOfNumbersToAdd));
+                        break;
+                    }
+                }
+            } 
+            else
+            {
+                // Everything else needs to look.
+                for (int i = 0; i <= passphrase.Length; i++)
+                {
+                    if (
+                        ((this.When & NumericStyles.Anywhere) == NumericStyles.Anywhere)
+                        || ((this.When & NumericStyles.StartOfWord) == NumericStyles.StartOfWord &&
+                            ((i == 0) || (i > 0 && i < passphrase.Length && Char.IsWhiteSpace(passphrase[i - 1]) && Char.IsLetterOrDigit(passphrase[i])))
+                            )
+                        || ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord &&
+                            (i < passphrase.Length && Char.IsWhiteSpace(passphrase[i]) && Char.IsLetterOrDigit(passphrase[i - 1]))
+                            )
                         )
-                    )
-                    possibleInsertIndexes.Add(i);
+                        possibleInsertIndexes.Add(i);
+                }
+                // Usually, there's a trailing whitespace character, but just in case there isn't...
+                if ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord && !Char.IsWhiteSpace(passphrase[passphrase.Length - 1]))
+                    possibleInsertIndexes.Add(passphrase.Length);
             }
-            // Usually, there's a trailing whitespace character, but just in case there isn't...
-            if ((this.When & NumericStyles.EndOfWord) == NumericStyles.EndOfWord && !Char.IsWhiteSpace(passphrase[passphrase.Length - 1]))
-                possibleInsertIndexes.Add(passphrase.Length);
+
+
 
             // Randomly choose up to the count allowed.
             var toInsertAt = new List<int>();
@@ -102,5 +120,6 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         EndOfWord = 2,
         StartOrEndOfWord = StartOfWord | EndOfWord,
         Anywhere = 4,
+        EndOfPhrase = 5,
     }
 }
