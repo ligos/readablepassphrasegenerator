@@ -28,11 +28,12 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         /// <summary>
         /// A general instance designed to get a phrase to pass password requirements more than add serious entropy.
         /// </summary>
-        public readonly static UppercaseMutator Basic = new UppercaseMutator()
+        public readonly static UppercaseMutator Basic = new UppercaseMutator();
+        public UppercaseMutator()
         {
-            When = UppercaseStyles.StartOfWord,
-            NumberOfCharactersToCapitalise = 2,
-        };
+            When = UppercaseStyles.StartOfWord;
+            NumberOfCharactersToCapitalise = 2;
+        }
 
         public UppercaseStyles When { get; set; }
         public int NumberOfCharactersToCapitalise { get; set; }
@@ -75,12 +76,5 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             // TODO.
             return Double.NaN;
         }
-    }
-    
-    public enum UppercaseStyles
-    {
-        Never = 0,
-        StartOfWord,
-        Anywhere,
     }
 }
