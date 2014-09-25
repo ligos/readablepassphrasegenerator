@@ -40,7 +40,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
 
         public void Mutate(StringBuilder passphrase, RandomSourceBase random)
         {
-            if (this.NumberOfWordsToCapitalise == 0)
+            if (this.NumberOfWordsToCapitalise <= 0)
                 return;
 
             // Make a list of words which can be capitalised.
