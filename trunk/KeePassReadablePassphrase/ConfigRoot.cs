@@ -193,7 +193,7 @@ namespace KeePassReadablePassphrase
                 this.radMutatorNone.Checked = config.Mutator == MutatorOption.None;
                 this.radMutatorStandard.Checked = config.Mutator == MutatorOption.Standard;
                 this.radMutatorCustom.Checked = config.Mutator == MutatorOption.Custom;
-                this.cboUpperStyle.DataSource = Enum.GetNames(typeof(UppercaseStyles));
+                this.cboUpperStyle.DataSource = Enum.GetNames(typeof(AllUppercaseStyles));
                 this.cboUpperStyle.Text = config.UpperStyle.ToString();
                 this.nudUpperCount.Value = config.UpperCount;
                 this.cboNumericStyle.DataSource = Enum.GetNames(typeof(NumericStyles));
@@ -305,7 +305,7 @@ namespace KeePassReadablePassphrase
                                 : this.radMutatorStandard.Checked ? MutatorOption.Standard
                                 : this.radMutatorCustom.Checked ? MutatorOption.Custom
                                 : MutatorOption.None;
-            result.UpperStyle = (UppercaseStyles)Enum.Parse(typeof(UppercaseStyles), this.cboUpperStyle.Text);
+            result.UpperStyle = (AllUppercaseStyles)Enum.Parse(typeof(AllUppercaseStyles), this.cboUpperStyle.Text);
             result.UpperCount = (int)this.nudUpperCount.Value;
             result.NumericStyle = (NumericStyles)Enum.Parse(typeof(NumericStyles), this.cboNumericStyle.Text);
             result.NumericCount = (int)this.nudNumberCount.Value;

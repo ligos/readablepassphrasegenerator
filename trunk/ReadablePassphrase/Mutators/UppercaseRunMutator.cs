@@ -89,11 +89,4 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             return Double.NaN;
         }
     }
-    
-    public enum UppercaseStyles
-    {
-        Never = 0,
-        StartOfWord,
-        Anywhere,
-    }
 }

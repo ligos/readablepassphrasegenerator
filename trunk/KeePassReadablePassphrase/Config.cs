@@ -35,7 +35,7 @@ namespace KeePassReadablePassphrase
         public int MaxLength { get; set; }
 
         public MutatorOption Mutator { get; set; }
-        public UppercaseStyles UpperStyle { get; set; }
+        public AllUppercaseStyles UpperStyle { get; set; }
         public int UpperCount { get; set; }
         public NumericStyles NumericStyle { get; set; }
         public int NumericCount { get; set; }
@@ -60,8 +60,8 @@ namespace KeePassReadablePassphrase
             MaxLength = 999;
             this.UpdatePhraseDescription();
             this.Mutator = MutatorOption.None;
-            this.UpperStyle = UppercaseMutator.Basic.When;
-            this.UpperCount = UppercaseMutator.Basic.NumberOfCharactersToCapitalise;
+            this.UpperStyle = AllUppercaseStyles.WholeWord;
+            this.UpperCount = UppercaseWordMutator.Basic.NumberOfWordsToCapitalise;
             this.NumericStyle = NumericMutator.Basic.When;
             this.NumericCount = NumericMutator.Basic.NumberOfNumbersToAdd;
         }
@@ -96,7 +96,7 @@ namespace KeePassReadablePassphrase
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "mutator")
                     this.Mutator = (MutatorOption)Enum.Parse(typeof(MutatorOption), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "upperstyle")
-                    this.UpperStyle = (UppercaseStyles)Enum.Parse(typeof(UppercaseStyles), reader.GetAttribute("value").Replace(" ", ""));
+                    this.UpperStyle = (AllUppercaseStyles)Enum.Parse(typeof(AllUppercaseStyles), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "uppercount")
                     this.UpperCount = Int32.Parse(reader.GetAttribute("value"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "numericstyle")
