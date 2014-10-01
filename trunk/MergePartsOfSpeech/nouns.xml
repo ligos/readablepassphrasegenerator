@@ -360,7 +360,7 @@ limitations under the License.
   <noun singular="torturer" plural="torturers"/>
   <noun singular="stampede" plural="stampedes"/>
   <noun singular="task" plural="tasks"/>
-  <noun singular="loan" plural="loaner"/>
+  <noun singular="loaner" plural="loaners"/>
   <noun singular="cymbal" plural="cymbals"/>
   <noun singular="bedroll" plural="bedrolls"/>
   <noun singular="cavern" plural="caverns"/>
@@ -3391,4 +3391,49 @@ limitations under the License.
   <noun singular="skit" plural="skits"/>
   <noun singular="theft" plural="thefts"/>
   <noun singular="disguise" plural="disguises"/>
+  <noun singular="purge" plural="purges"/>
+  <noun singular="barrack" plural="barracks"/>
+  <noun singular="segment" plural="segments"/>
+  <noun singular="knack" plural="knacks"/>
+  <noun singular="jam" plural="jams"/>
+  <noun singular="armistice" plural="armistices"/>
+  <noun singular="peach" plural="peaches"/>
+  <noun singular="rink" plural="rinks"/>
+  <noun singular="forwarder" plural="forwarders"/>
+  <noun singular="procurer" plural="procurers"/>
+  <noun singular="kitten" plural="kittens"/>
+  <noun singular="pushcart" plural="pushcarts"/>
+  <noun singular="cannibal" plural="cannibals"/>
+  <noun singular="outhouse" plural="outhouses"/>
+  <noun singular="cupcake" plural="cupcakes"/>
+  <noun plural="homework"/>
+  <noun singular="sinew" plural="sinews"/>
+  <noun singular="sideboard" plural="sideboards"/>
+  <noun singular="surfer" plural="surfers"/>
+  <noun singular="windsurfer" plural="windsurfers"/>
+  <noun singular="satyr" plural="satyrs"/>
+  <noun singular="garland" plural="garlands"/>
+  <noun singular="avatar" plural="avatars"/>
+  <noun singular="footstep" plural="footsteps"/>
+  <noun singular="fob" plural="fobs"/>
+  <noun singular="throwback" plural="throwbacks"/>
+  <noun singular="settee" plural="settees"/>
+  <noun plural="chaff"/>
+  <noun singular="article" plural="articles"/>
+  <noun singular="feather" plural="feathers"/>
+  <noun plural="judiciary"/>
+  <noun singular="bloc" plural="blocs"/>
+  <noun plural="insulation"/>
+  <noun singular="pickle" plural="pickles"/>
+  <noun singular="plait" plural="plaits"/>
+  <noun singular="highway" plural="highways"/>
+  <noun singular="smacker" plural="smackers"/>
+  <noun singular="bobble" plural="bobbles"/>
+  <noun singular="claw" plural="claws"/>
+  <noun singular="hippo" plural="hippos"/>
+  <noun singular="curb" plural="curbs"/>
+  <noun singular="ghost" plural="ghosts"/>
+  <noun singular="lady" plural="ladies"/>
+  <noun singular="start" plural="starts"/>
+  <noun singular="activist" plural="activists"/>
 </dictionary>
