@@ -178,15 +178,21 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             while (generated < count)
             {
                 // Generate phrase.
+                // We always include spaces in the phrase because the mutators rely on whitespace.
                 string phrase;
                 attempts++;
                 if (anyLength > 0)
-                    phrase = generator.Generate(NonGrammaticalClause(anyLength), includeSpaces, mutators);
+                    phrase = generator.Generate(NonGrammaticalClause(anyLength), true, mutators);
                 else if (strength == PhraseStrength.Custom)
-                    phrase = generator.Generate(phraseDescription, includeSpaces, mutators);
+                    phrase = generator.Generate(phraseDescription, true, mutators);
                 else
-                    phrase = generator.Generate(strength, includeSpaces, mutators);
+                    phrase = generator.Generate(strength, true, mutators);
 
+                // After mutators are applied, it's safe to remove white space.
+                if (!includeSpaces)
+                    phrase = new string(phrase.Where(c => !Char.IsWhiteSpace(c)).ToArray());
+
+                // Clamp the length.
                 if (phrase.Length >= minLength && phrase.Length <= maxLength)
                 {
                     Console.WriteLine(phrase);
