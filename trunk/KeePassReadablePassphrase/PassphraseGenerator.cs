@@ -164,11 +164,16 @@ namespace KeePassReadablePassphrase
                 attempts--;
                 try
                 {
+                    // This always includes spaces, and removes them at a later stage after the mutators are applied.
                     var passphrase = "";
                     if (conf.PhraseStrength == PhraseStrength.Custom)
-                        passphrase = generator.Generate(conf.PhraseDescription, conf.SpacesBetweenWords, GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseDescription, true, GetMutators(conf));
                     else
-                        passphrase = generator.Generate(conf.PhraseStrength, conf.SpacesBetweenWords, GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseStrength, true, GetMutators(conf));
+
+                    // It's now safe to remove whitespace.
+                    if (!conf.SpacesBetweenWords)
+                        passphrase = new string(passphrase.Where(c => !Char.IsWhiteSpace(c)).ToArray());
 
                     if (passphrase.Length >= conf.MinLength && passphrase.Length <= conf.MaxLength)
                         return new ProtectedString(true, passphrase);
