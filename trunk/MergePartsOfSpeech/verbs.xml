@@ -4768,4 +4768,17 @@ limitations under the License.
         presentPlural="repudiate" pastPlural="repudiated" pastContinuousPlural="were repudiating" futurePlural="will repudiate" continuousPlural="are repudiating" perfectPlural="have repudiated" subjunctivePlural="might repudiate"/>
   <verb presentSingular="garbles" pastSingular="garbled" pastContinuousSingular="was garbling" futureSingular="will garble" continuousSingular="is garbling" perfectSingular="has garbled" subjunctiveSingular="might garble"
         presentPlural="garble" pastPlural="garbled" pastContinuousPlural="were garbling" futurePlural="will garble" continuousPlural="are garbling" perfectPlural="have garbled" subjunctivePlural="might garble"/>
+  <verb presentSingular="chains" pastSingular="chained" pastContinuousSingular="was chaining" futureSingular="will chain" continuousSingular="is chaining" perfectSingular="has chained" subjunctiveSingular="might chain"
+        presentPlural="chain" pastPlural="chained" pastContinuousPlural="were chaining" futurePlural="will chain" continuousPlural="are chaining" perfectPlural="have chained" subjunctivePlural="might chain"/>
+  <verb presentSingular="referees" pastSingular="refereed" pastContinuousSingular="was refereeing" futureSingular="will referee" continuousSingular="is refereeing" perfectSingular="has refereed" subjunctiveSingular="might referee"
+        presentPlural="referee" pastPlural="refereed" pastContinuousPlural="were refereeing" futurePlural="will referee" continuousPlural="are refereeing" perfectPlural="have refereed" subjunctivePlural="might referee"/>
+  <verb presentSingular="fades" pastSingular="faded" pastContinuousSingular="was fading" futureSingular="will fade" continuousSingular="is fading" perfectSingular="has faded" subjunctiveSingular="might fade"
+        presentPlural="fade" pastPlural="faded" pastContinuousPlural="were fading" futurePlural="will fade" continuousPlural="are fading" perfectPlural="have faded" subjunctivePlural="might fade"/>
+  <verb presentSingular="unpins" pastSingular="unpinned" pastContinuousSingular="was unpinning" futureSingular="will unpin" continuousSingular="is unpinning" perfectSingular="has unpinned" subjunctiveSingular="might unpin"
+        presentPlural="unpin" pastPlural="unpinned" pastContinuousPlural="were unpinning" futurePlural="will unpin" continuousPlural="are unpinning" perfectPlural="have unpinned" subjunctivePlural="might unpin"/>
+  <verb presentSingular="interacts" pastSingular="interacted" pastContinuousSingular="was interacting" futureSingular="will interact" continuousSingular="is interacting" perfectSingular="has interacted" subjunctiveSingular="might interact"
+        presentPlural="interact" pastPlural="interacted" pastContinuousPlural="were interacting" futurePlural="will interact" continuousPlural="are interacting" perfectPlural="have interacted" subjunctivePlural="might interact"
+        transitive="false"/>
+  <verb presentSingular="grabs" pastSingular="grabbed" pastContinuousSingular="was grabbing" futureSingular="will grab" continuousSingular="is grabbing" perfectSingular="has grabbed" subjunctiveSingular="might grab"
+        presentPlural="grab" pastPlural="grabbed" pastContinuousPlural="were grabbing" futurePlural="will grab" continuousPlural="are grabbing" perfectPlural="have grabbed" subjunctivePlural="might grab"/>
 </dictionary>
