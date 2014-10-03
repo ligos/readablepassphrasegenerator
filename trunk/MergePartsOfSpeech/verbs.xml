@@ -4798,7 +4798,8 @@ limitations under the License.
   <verb presentSingular="bisects" pastSingular="bisected" pastContinuousSingular="was bisecting" futureSingular="will bisect" continuousSingular="is bisecting" perfectSingular="has bisected" subjunctiveSingular="might bisect"
         presentPlural="bisect" pastPlural="bisected" pastContinuousPlural="were bisecting" futurePlural="will bisect" continuousPlural="are bisecting" perfectPlural="have bisected" subjunctivePlural="might bisect"/>
   <verb presentSingular="scuttles" pastSingular="scuttled" pastContinuousSingular="was scuttling" futureSingular="will scuttle" continuousSingular="is scuttling" perfectSingular="has scuttled" subjunctiveSingular="might scuttle"
-        presentPlural="scuttle" pastPlural="scuttled" pastContinuousPlural="were scuttling" futurePlural="will scuttle" continuousPlural="are scuttling" perfectPlural="have scuttled" subjunctivePlural="might scuttle"/>
+        presentPlural="scuttle" pastPlural="scuttled" pastContinuousPlural="were scuttling" futurePlural="will scuttle" continuousPlural="are scuttling" perfectPlural="have scuttled" subjunctivePlural="might scuttle"
+        transitive="false"/>
   <verb presentSingular="replaces" pastSingular="replaced" pastContinuousSingular="was replacing" futureSingular="will replace" continuousSingular="is replacing" perfectSingular="has replaced" subjunctiveSingular="might replace"
         presentPlural="replace" pastPlural="replaced" pastContinuousPlural="were replacing" futurePlural="will replace" continuousPlural="are replacing" perfectPlural="have replaced" subjunctivePlural="might replace"/>
   <verb presentSingular="scrunches" pastSingular="scrunched" pastContinuousSingular="was scrunching" futureSingular="will scrunch" continuousSingular="is scrunching" perfectSingular="has scrunched" subjunctiveSingular="might scrunch"
@@ -4809,4 +4810,20 @@ limitations under the License.
         presentPlural="pay" pastPlural="paid" pastContinuousPlural="were paying" futurePlural="will pay" continuousPlural="are paying" perfectPlural="have paid" subjunctivePlural="might pay"/>
   <verb presentSingular="chucks" pastSingular="chucked" pastContinuousSingular="was chucking" futureSingular="will chuck" continuousSingular="is chucking" perfectSingular="has chucked" subjunctiveSingular="might chuck"
         presentPlural="chuck" pastPlural="chucked" pastContinuousPlural="were chucking" futurePlural="will chuck" continuousPlural="are chucking" perfectPlural="have chucked" subjunctivePlural="might chuck"/>
+  <verb presentSingular="creases" pastSingular="creased" pastContinuousSingular="was creasing" futureSingular="will crease" continuousSingular="is creasing" perfectSingular="has creased" subjunctiveSingular="might crease"
+        presentPlural="crease" pastPlural="creased" pastContinuousPlural="were creasing" futurePlural="will crease" continuousPlural="are creasing" perfectPlural="have creased" subjunctivePlural="might crease"/>
+  <verb presentSingular="munches" pastSingular="munched" pastContinuousSingular="was munching" futureSingular="will munch" continuousSingular="is munching" perfectSingular="has munched" subjunctiveSingular="might munch"
+        presentPlural="munch" pastPlural="munched" pastContinuousPlural="were munching" futurePlural="will munch" continuousPlural="are munching" perfectPlural="have munched" subjunctivePlural="might munch"
+        transitive="false"/>
+  <verb presentSingular="upsets" pastSingular="upset" pastContinuousSingular="was upsetting" futureSingular="will upset" continuousSingular="is upsetting" perfectSingular="has upset" subjunctiveSingular="might upset"
+        presentPlural="upset" pastPlural="upset" pastContinuousPlural="were upsetting" futurePlural="will upset" continuousPlural="are upsetting" perfectPlural="have upset" subjunctivePlural="might upset"/>
+  <verb presentSingular="calms" pastSingular="calmed" pastContinuousSingular="was calming" futureSingular="will calm" continuousSingular="is calming" perfectSingular="has calmed" subjunctiveSingular="might calm"
+        presentPlural="calm" pastPlural="calmed" pastContinuousPlural="were calming" futurePlural="will calm" continuousPlural="are calming" perfectPlural="have calmed" subjunctivePlural="might calm"/>
+  <verb presentSingular="supposes" pastSingular="supposed" pastContinuousSingular="was supposing" futureSingular="will suppose" continuousSingular="is supposing" perfectSingular="has supposed" subjunctiveSingular="might suppose"
+        presentPlural="suppose" pastPlural="supposed" pastContinuousPlural="were supposing" futurePlural="will suppose" continuousPlural="are supposing" perfectPlural="have supposed" subjunctivePlural="might suppose"/>
+  <verb presentSingular="signs" pastSingular="signed" pastContinuousSingular="was signing" futureSingular="will sign" continuousSingular="is signing" perfectSingular="has signed" subjunctiveSingular="might sign"
+        presentPlural="sign" pastPlural="signed" pastContinuousPlural="were signing" futurePlural="will sign" continuousPlural="are signing" perfectPlural="have signed" subjunctivePlural="might sign"/>
+  <verb presentSingular="indulges" pastSingular="indulged" pastContinuousSingular="was indulging" futureSingular="will indulge" continuousSingular="is indulging" perfectSingular="has indulged" subjunctiveSingular="might indulge"
+        presentPlural="indulge" pastPlural="indulged" pastContinuousPlural="were indulging" futurePlural="will indulge" continuousPlural="are indulging" perfectPlural="have indulged" subjunctivePlural="might indulge"
+        transitive="false"/>
 </dictionary>

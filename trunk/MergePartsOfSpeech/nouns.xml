@@ -3520,7 +3520,6 @@ limitations under the License.
   <noun singular="quotient" plural="quotients"/>
   <noun singular="dale" plural="dales"/>
   <noun singular="dual" plural="duals"/>
-  <noun singular="duel" plural="duels"/>
   <noun singular="passport" plural="passports"/>
   <noun singular="gigolo" plural="gigolos"/>
   <noun plural="breath"/>
@@ -3541,4 +3540,16 @@ limitations under the License.
   <noun singular="bugbear" plural="bugbears"/>
   <noun singular="organism" plural="organisms"/>
   <noun singular="wager" plural="wagers"/>
+  <noun singular="voyage" plural="voyages"/>
+  <noun singular="synapse" plural="synapses"/>
+  <noun singular="newt" plural="newts"/>
+  <noun singular="crease" plural="creases"/>
+  <noun plural="garlic"/>
+  <noun singular="life" plural="lives"/>
+  <noun singular="steer" plural="steers"/>
+  <noun singular="thug" plural="thugs"/>
+  <noun singular="suture" plural="sutures"/>
+  <noun singular="trapper" plural="trappers"/>
+  <noun singular="cocoon" plural="cocoons"/>
+  <noun singular="bison" plural="bison"/>
 </dictionary>
