@@ -259,7 +259,7 @@
             this.radMutatorStandard.TabIndex = 36;
             this.radMutatorStandard.TabStop = true;
             this.radMutatorStandard.Text = "Standard (adds numbers and capitals)";
-            this.toolTip1.SetToolTip(this.radMutatorStandard, "Adds 2 upper case letters and 2 numbers to the final passphrase. Use this to meet" +
+            this.toolTip1.SetToolTip(this.radMutatorStandard, "Capitalises one word and adds 2 numbers to the final passphrase. Use this to meet" +
         " minimum password strength requirements.");
             this.radMutatorStandard.UseVisualStyleBackColor = true;
             this.radMutatorStandard.CheckedChanged += new System.EventHandler(this.radMutator_CheckedChanged);
