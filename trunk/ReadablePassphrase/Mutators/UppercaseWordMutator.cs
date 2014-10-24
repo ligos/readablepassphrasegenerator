@@ -79,7 +79,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             foreach (var idx in toCapitalise)
             {
                 // Make capital until we hit whitespace or the end of the phrase.
-                for(int i = idx; !Char.IsWhiteSpace(passphrase[i]) && i < passphrase.Length; i++)
+                for(int i = idx; i < passphrase.Length && !Char.IsWhiteSpace(passphrase[i]); i++)
                     passphrase[i] = Char.ToUpper(passphrase[i]);
             }
                 
