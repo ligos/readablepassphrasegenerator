@@ -231,7 +231,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure()
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), true);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -239,7 +239,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure(PhraseStrength strength)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), true);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on a randomly selected phrase strength.
@@ -247,7 +247,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths)
         {
-            return GenerateAsSecure(strengths, true);
+            return GenerateAsSecure(strengths, " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -255,7 +255,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription)
         {
-            return GenerateAsSecure(phraseDescription, true);
+            return GenerateAsSecure(phraseDescription, " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -271,6 +271,16 @@ namespace MurrayGrant.ReadablePassphrase
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
         /// This is the slowest and most secure method.
         /// </summary>
+        /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public SecureString GenerateAsSecure(PhraseStrength strength, string wordDelimiter)
+        {
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
+        }
+        /// <summary>
+        /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
+        /// This is the slowest and most secure method.
+        /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
@@ -281,6 +291,19 @@ namespace MurrayGrant.ReadablePassphrase
             return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
+        /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
+        /// This is the slowest and most secure method.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+            var strength = this.ChooseAtRandom(strengths);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), wordDelimiter);
+        }
+        /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
         /// This is the slowest and most secure method.
         /// </summary>
@@ -288,14 +311,25 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
         {
+            return this.GenerateAsSecure(phraseDescription, includeSpacesBetweenWords ? " " : "");
+        }
+        /// <summary>
+        /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
+        /// This is the slowest and most secure method.
+        /// </summary>
+        /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, string wordDelimiter)
+        {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
+            wordDelimiter = wordDelimiter ?? "";
 
             var result = new GenerateInSecureString();
-            this.GenerateInternal(phraseDescription, includeSpacesBetweenWords, result);
-            if (includeSpacesBetweenWords)
-                // When spaces are included between words there is always a trailing space. Remove it.
-                result.Target.RemoveAt(result.Target.Length - 1);
+            this.GenerateInternal(phraseDescription, wordDelimiter, result);
+            if (wordDelimiter.Length > 0)
+                // When a delimiter is included between words there is always a trailing one. Remove it.
+                result.Target.RemoveAt(result.Target.Length - wordDelimiter.Length);
             result.Target.MakeReadOnly();
             return result.Target;
         }
@@ -307,46 +341,48 @@ namespace MurrayGrant.ReadablePassphrase
         /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members (default: Random).</param>
-        /// <param name="includeSpacesBetweenWords">Include spaces between words (default: true).</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(PhraseStrength strength = PhraseStrength.Random, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
+        public String Generate(PhraseStrength strength = PhraseStrength.Random, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
         {
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mutators);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
         /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
-        /// <param name="includeSpacesBetweenWords">Include spaces between words (default: true).</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
+        public String Generate(IEnumerable<PhraseStrength> strengths, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
         {
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mutators);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
         /// This is the fastest and least secure method.
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
-        /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords = true, IEnumerable<IMutator> mutators = null)
+        public String Generate(IEnumerable<Clause> phraseDescription, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
 
-            var result = new GenerateInStringBuilder();
-            this.GenerateInternal(phraseDescription, includeSpacesBetweenWords, result);
+            var str = new GenerateInStringBuilder();
+            this.GenerateInternal(phraseDescription, wordDelimiter, str);
 
             if (mutators == null)
                 mutators = Enumerable.Empty<IMutator>();
             foreach (var m in mutators)
-                m.Mutate(result.Target, this.Randomness);
-            return result.Target.ToString().Trim();         // A trailing space is always included when spaces are between words.
+                m.Mutate(str.Target, this.Randomness);
+            var result = str.Target.ToString();
+            // A trailing delimiter is always included when spaces are between words.
+            return result.Substring(0, result.Length - wordDelimiter.Length);         
         }
         #endregion
 
@@ -357,7 +393,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public byte[] GenerateAsUtf8Bytes()
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness));
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -365,7 +401,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), true);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -378,13 +414,23 @@ namespace MurrayGrant.ReadablePassphrase
             return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
+        /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
+        /// </summary>
+        /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, string wordDelimiter)
+        {
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
+        }
+        /// <summary>
         /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths)
         {
-            return this.GenerateAsUtf8Bytes(strengths, true);
+            return this.GenerateAsUtf8Bytes(strengths, " ");
         }
         /// <summary>
         /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
@@ -400,12 +446,25 @@ namespace MurrayGrant.ReadablePassphrase
             return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
+        /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
+        /// </summary>
+        /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
+        {
+            if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
+                throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
+            var strength = this.ChooseAtRandom(strengths);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
+        }
+        /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription)
         {
-            return GenerateAsUtf8Bytes(phraseDescription, true);
+            return GenerateAsUtf8Bytes(phraseDescription, " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
@@ -415,21 +474,32 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
         {
+            return this.GenerateAsUtf8Bytes(phraseDescription, includeSpacesBetweenWords ? " " : "");
+        }
+        /// <summary>
+        /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
+        /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
+        /// </summary>
+        /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
+        /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, string wordDelimiter)
+        {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
+            wordDelimiter = wordDelimiter ?? "";
 
             var result = new GenerateInUtf8ByteArray();
-            this.GenerateInternal(phraseDescription, includeSpacesBetweenWords, result);
-            if (includeSpacesBetweenWords)
+            this.GenerateInternal(phraseDescription, wordDelimiter, result);
+            if (wordDelimiter.Length > 0)
                 // A trailing space is always included when spaces are between words.
-                return result.Target.Take(result.Target.Length - 1).ToArray();
+                return result.Target.Take(result.Target.Length - wordDelimiter.Length).ToArray();
             else
                 return result.Target;
         }
         #endregion
 
         #region Internal Generate Methods
-        private void GenerateInternal(IEnumerable<Clause> phraseDescription, bool spacesBetweenWords, GenerateTarget result)
+        private void GenerateInternal(IEnumerable<Clause> phraseDescription, string wordDelimiter, GenerateTarget result)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
@@ -442,7 +512,7 @@ namespace MurrayGrant.ReadablePassphrase
             var template = this.PhrasesToTemplate(phraseDescription);
 
             // Build the phrase based on that template.
-            this.TemplateToWords(template, result, spacesBetweenWords);
+            this.TemplateToWords(template, result, wordDelimiter ?? "");
         }
         private IEnumerable<Template> PhrasesToTemplate(IEnumerable<Clause> phrases)
         {
@@ -485,7 +555,7 @@ namespace MurrayGrant.ReadablePassphrase
                 clause.AddWordTemplate(Randomness, this.Dictionary, result);
             return result;
         }
-        private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, bool spacesBetweenWords)
+        private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, string wordDelimiter)
         {
             var chosenWords = new HashSet<Word>();
             ArticleTemplate previousArticle = null;
@@ -505,29 +575,26 @@ namespace MurrayGrant.ReadablePassphrase
                     {
                         var w = previousArticle.ChooseBasedOnFollowingWord(this.Dictionary, tuple.FinalWord);
                         previousArticle = null;
-                        this.AppendWord(target, spacesBetweenWords, w);
+                        this.AppendWord(target, wordDelimiter, w);
                     }
 
                     // Rather than returning IEnumerable<String>, we build directly into the target (which may be backed by either a StringBuilder or a SecureString).
                     // This interface is required by SecureString as we can only append Char to it and can't easily read its contents back.
-                    this.AppendWord(target, spacesBetweenWords, tuple.FinalWord);
+                    this.AppendWord(target, wordDelimiter, tuple.FinalWord);
                 }
             }
         }
-        private void AppendWord(GenerateTarget target, bool spacesBetweenWords, string word)
+        private void AppendWord(GenerateTarget target, string wordDelimiter, string word)
         {
             // Remember that some words in the dictionary are actually multiple words (verbs often have a helper verb with them).
             // So, if there are no spaces, we must remove spaces from words.
-            if (spacesBetweenWords)
-            {
-                target.Append(word);
-                target.Append(' ');
-            }
-            else
-            {
-                target.Append(word.Replace(" ", ""));
-            }
+            // Also need to replace spaces in the word with our supplied word delimiter.
 
+            var toAppend = word;
+            if (wordDelimiter.Length > 0)
+            toAppend = toAppend.Replace(" ", wordDelimiter);
+            target.Append(word);
+            target.Append(wordDelimiter);
         }
 
         #endregion

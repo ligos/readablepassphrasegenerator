@@ -182,11 +182,11 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 string phrase;
                 attempts++;
                 if (anyLength > 0)
-                    phrase = generator.Generate(NonGrammaticalClause(anyLength), true, mutators);
+                    phrase = generator.Generate(NonGrammaticalClause(anyLength), " ", mutators);
                 else if (strength == PhraseStrength.Custom)
-                    phrase = generator.Generate(phraseDescription, true, mutators);
+                    phrase = generator.Generate(phraseDescription, " ", mutators);
                 else
-                    phrase = generator.Generate(strength, true, mutators);
+                    phrase = generator.Generate(strength, " ", mutators);
 
                 // After mutators are applied, it's safe to remove white space.
                 if (!includeSpaces)

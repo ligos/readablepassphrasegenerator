@@ -32,6 +32,7 @@ namespace Test
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             var sw = System.Diagnostics.Stopwatch.StartNew();
             var generator = new ReadablePassphraseGenerator(GetRandomness());
             var loader = new ExplicitXmlDictionaryLoader();
@@ -72,6 +73,12 @@ namespace Test
             //    TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
             //}
 
+            // Test spaces, no spaces and custom delimiter.
+            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, " ");
+            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, "");
+            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, ".");
+            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, "✶");
+
             // Generate statistics.
             //Console.WriteLine();
             //System.IO.File.Delete(AllStatsCharFilename);
@@ -101,7 +108,7 @@ namespace Test
             //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
             //    }
             //    , generator, 100);
-            
+
             // Longer benchmarks.
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Normal, 10000);
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Strong, 10000);
@@ -194,6 +201,13 @@ namespace Test
                 Console.WriteLine(generator.Generate(clause));
             }
 
+        }
+        private static void GenerateDelimiterSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count, string delimiter)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Delimited Samples ('{0}'):", delimiter);
+            for (int i = 0; i < count; i++)
+                Console.WriteLine(generator.Generate(strength, wordDelimiter: delimiter));
         }
 
         private static void CombinationCount(ReadablePassphraseGenerator generator)

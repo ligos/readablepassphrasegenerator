@@ -25,7 +25,10 @@ namespace KeePassReadablePassphrase
 {
     public class Config
     {
+        [Obsolete("Use WordSeparator instead")]
         public bool SpacesBetweenWords { get; set; }
+        public WordSeparatorOption WordSeparator { get; set; }
+        public string CustomSeparator { get; set; }
         private PhraseStrength _PhraseSelection;
         public PhraseStrength PhraseStrength { get { return this._PhraseSelection; } set { this._PhraseSelection = value; this.UpdatePhraseDescription(); } }
         public IEnumerable<Clause> PhraseDescription { get; set; }
@@ -39,6 +42,17 @@ namespace KeePassReadablePassphrase
         public int UpperCount { get; set; }
         public NumericStyles NumericStyle { get; set; }
         public int NumericCount { get; set; }
+
+        public string ActualSeparator
+        {
+            get
+            {
+                return this.WordSeparator == WordSeparatorOption.None ? "" 
+                     : this.WordSeparator == WordSeparatorOption.Space ? " "
+                     : this.WordSeparator == WordSeparatorOption.Custom ? this.CustomSeparator
+                     : "";
+            }
+        }
 
         public Config()
         {
@@ -55,6 +69,8 @@ namespace KeePassReadablePassphrase
         {
             // Defaults.
             SpacesBetweenWords = true;
+            WordSeparator = WordSeparatorOption.Space;
+            CustomSeparator = "";
             PhraseStrength = PhraseStrength.Random;
             MinLength = 1;
             MaxLength = 999;
@@ -76,6 +92,10 @@ namespace KeePassReadablePassphrase
                     { }// NoOp
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "spacesbetweenwords")
                     this.SpacesBetweenWords = Boolean.Parse(reader.GetAttribute("value"));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "wordseparator")
+                    this.WordSeparator = (WordSeparatorOption)Enum.Parse(typeof(WordSeparatorOption), reader.GetAttribute("value").Replace(" ", ""));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "customseparator")
+                    this.CustomSeparator = reader.GetAttribute("value");
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "phrasestrength")
                     this.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), reader.GetAttribute("value").Replace("Speach", "Speech"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "usecustomdictionary")
@@ -125,6 +145,11 @@ namespace KeePassReadablePassphrase
                 NumericCount = 0;
             if (NumericCount > 999)
                 NumericCount = 999;
+
+            if (WordSeparator == WordSeparatorOption.Unknown && SpacesBetweenWords)
+                WordSeparator = WordSeparatorOption.Space;
+            else if (WordSeparator == WordSeparatorOption.Unknown && !SpacesBetweenWords)
+                WordSeparator = WordSeparatorOption.None;
         }
         public string ToConfigString()
         {
@@ -132,7 +157,8 @@ namespace KeePassReadablePassphrase
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.AppendLine("<ReadablePassphraseConfig>");
-            sb.AppendFormat("<SpacesBetweenWords value=\"{0}\"/>\n", this.SpacesBetweenWords);
+            sb.AppendFormat("<WordSeparator value=\"{0}\"/>\n", this.WordSeparator);
+            sb.AppendFormat("<CustomSeparator value=\"{0}\"/>\n", this.CustomSeparator);
             sb.AppendFormat("<PhraseStrength value=\"{0}\"/>\n", this.PhraseStrength);
             sb.AppendLine("<PhraseDescription>");
             if (!Clause.RandomMappings.ContainsKey(this.PhraseStrength))
@@ -168,6 +194,14 @@ namespace KeePassReadablePassphrase
     {
         None,
         Standard,
+        Custom,
+    }
+
+    public enum WordSeparatorOption
+    {
+        Unknown,
+        None,
+        Space,
         Custom,
     }
 }

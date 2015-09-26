@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigRoot));
-            this.chkSpacesBetweenWords = new System.Windows.Forms.CheckBox();
             this.cboPhraseSelection = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -87,6 +86,10 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cboWordSeparator = new System.Windows.Forms.ComboBox();
+            this.txtCustomSeparator = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).BeginInit();
@@ -97,23 +100,11 @@
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chkSpacesBetweenWords
-            // 
-            this.chkSpacesBetweenWords.AutoSize = true;
-            this.chkSpacesBetweenWords.Location = new System.Drawing.Point(12, 72);
-            this.chkSpacesBetweenWords.Name = "chkSpacesBetweenWords";
-            this.chkSpacesBetweenWords.Size = new System.Drawing.Size(179, 17);
-            this.chkSpacesBetweenWords.TabIndex = 0;
-            this.chkSpacesBetweenWords.Text = "Include Spaces Between Words";
-            this.toolTip1.SetToolTip(this.chkSpacesBetweenWords, "If ticked, spaces are added to the phrase as a normal sentence.\r\nIf unticked, all" +
-        " the words are jammed up against each other.");
-            this.chkSpacesBetweenWords.UseVisualStyleBackColor = true;
-            // 
             // cboPhraseSelection
             // 
             this.cboPhraseSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPhraseSelection.FormattingEnabled = true;
-            this.cboPhraseSelection.Location = new System.Drawing.Point(104, 134);
+            this.cboPhraseSelection.Location = new System.Drawing.Point(104, 143);
             this.cboPhraseSelection.Name = "cboPhraseSelection";
             this.cboPhraseSelection.Size = new System.Drawing.Size(167, 21);
             this.cboPhraseSelection.TabIndex = 3;
@@ -125,7 +116,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 137);
+            this.label1.Location = new System.Drawing.Point(12, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 2;
@@ -230,7 +221,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 173);
+            this.label13.Location = new System.Drawing.Point(12, 180);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 13);
             this.label13.TabIndex = 34;
@@ -240,7 +231,7 @@
             // radMutatorNone
             // 
             this.radMutatorNone.AutoSize = true;
-            this.radMutatorNone.Location = new System.Drawing.Point(104, 169);
+            this.radMutatorNone.Location = new System.Drawing.Point(104, 176);
             this.radMutatorNone.Name = "radMutatorNone";
             this.radMutatorNone.Size = new System.Drawing.Size(51, 17);
             this.radMutatorNone.TabIndex = 35;
@@ -253,7 +244,7 @@
             // radMutatorStandard
             // 
             this.radMutatorStandard.AutoSize = true;
-            this.radMutatorStandard.Location = new System.Drawing.Point(170, 169);
+            this.radMutatorStandard.Location = new System.Drawing.Point(170, 176);
             this.radMutatorStandard.Name = "radMutatorStandard";
             this.radMutatorStandard.Size = new System.Drawing.Size(203, 17);
             this.radMutatorStandard.TabIndex = 36;
@@ -267,7 +258,7 @@
             // radMutatorCustom
             // 
             this.radMutatorCustom.AutoSize = true;
-            this.radMutatorCustom.Location = new System.Drawing.Point(383, 169);
+            this.radMutatorCustom.Location = new System.Drawing.Point(383, 176);
             this.radMutatorCustom.Name = "radMutatorCustom";
             this.radMutatorCustom.Size = new System.Drawing.Size(60, 17);
             this.radMutatorCustom.TabIndex = 37;
@@ -282,7 +273,7 @@
             // 
             this.cboUpperStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUpperStyle.FormattingEnabled = true;
-            this.cboUpperStyle.Location = new System.Drawing.Point(104, 192);
+            this.cboUpperStyle.Location = new System.Drawing.Point(104, 196);
             this.cboUpperStyle.Name = "cboUpperStyle";
             this.cboUpperStyle.Size = new System.Drawing.Size(220, 21);
             this.cboUpperStyle.TabIndex = 40;
@@ -294,7 +285,7 @@
             // 
             this.cboNumericStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNumericStyle.FormattingEnabled = true;
-            this.cboNumericStyle.Location = new System.Drawing.Point(104, 218);
+            this.cboNumericStyle.Location = new System.Drawing.Point(104, 220);
             this.cboNumericStyle.Name = "cboNumericStyle";
             this.cboNumericStyle.Size = new System.Drawing.Size(220, 21);
             this.cboNumericStyle.TabIndex = 43;
@@ -360,7 +351,7 @@
             // 
             this.label4.Location = new System.Drawing.Point(12, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(446, 32);
+            this.label4.Size = new System.Drawing.Size(458, 32);
             this.label4.TabIndex = 9;
             this.label4.Text = "This plugin generates passphrases which are grammatically correct (mostly), thoug" +
     "h non-sensical, from a dictionary of words. An example:";
@@ -505,7 +496,7 @@
             // 
             this.lnkCombinationsHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkCombinationsHelp.AutoSize = true;
-            this.lnkCombinationsHelp.Location = new System.Drawing.Point(344, 137);
+            this.lnkCombinationsHelp.Location = new System.Drawing.Point(344, 146);
             this.lnkCombinationsHelp.Name = "lnkCombinationsHelp";
             this.lnkCombinationsHelp.Size = new System.Drawing.Size(128, 13);
             this.lnkCombinationsHelp.TabIndex = 17;
@@ -516,7 +507,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 102);
+            this.label10.Location = new System.Drawing.Point(12, 94);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(157, 13);
             this.label10.TabIndex = 29;
@@ -524,7 +515,7 @@
             // 
             // nudMinLength
             // 
-            this.nudMinLength.Location = new System.Drawing.Point(175, 100);
+            this.nudMinLength.Location = new System.Drawing.Point(175, 92);
             this.nudMinLength.Maximum = new decimal(new int[] {
             999,
             0,
@@ -546,7 +537,7 @@
             // 
             // nudMaxLength
             // 
-            this.nudMaxLength.Location = new System.Drawing.Point(269, 99);
+            this.nudMaxLength.Location = new System.Drawing.Point(269, 91);
             this.nudMaxLength.Maximum = new decimal(new int[] {
             999,
             0,
@@ -569,7 +560,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(237, 102);
+            this.label11.Location = new System.Drawing.Point(237, 94);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 13);
             this.label11.TabIndex = 32;
@@ -578,7 +569,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(330, 102);
+            this.label12.Location = new System.Drawing.Point(330, 94);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(126, 13);
             this.label12.TabIndex = 33;
@@ -587,7 +578,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 195);
+            this.label14.Location = new System.Drawing.Point(12, 199);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(92, 13);
             this.label14.TabIndex = 38;
@@ -596,7 +587,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 221);
+            this.label15.Location = new System.Drawing.Point(12, 223);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 13);
             this.label15.TabIndex = 39;
@@ -605,7 +596,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(334, 195);
+            this.label16.Location = new System.Drawing.Point(334, 199);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(70, 13);
             this.label16.TabIndex = 41;
@@ -613,7 +604,7 @@
             // 
             // nudUpperCount
             // 
-            this.nudUpperCount.Location = new System.Drawing.Point(418, 193);
+            this.nudUpperCount.Location = new System.Drawing.Point(418, 197);
             this.nudUpperCount.Maximum = new decimal(new int[] {
             999,
             0,
@@ -636,7 +627,7 @@
             // 
             // nudNumberCount
             // 
-            this.nudNumberCount.Location = new System.Drawing.Point(418, 219);
+            this.nudNumberCount.Location = new System.Drawing.Point(418, 221);
             this.nudNumberCount.Maximum = new decimal(new int[] {
             999,
             0,
@@ -660,7 +651,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(334, 221);
+            this.label17.Location = new System.Drawing.Point(334, 223);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(78, 13);
             this.label17.TabIndex = 44;
@@ -672,7 +663,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(20, 162);
+            this.panel1.Location = new System.Drawing.Point(20, 169);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 1);
             this.panel1.TabIndex = 46;
@@ -693,7 +684,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(17, 245);
+            this.panel3.Location = new System.Drawing.Point(17, 247);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 1);
             this.panel3.TabIndex = 47;
@@ -729,6 +720,45 @@
             this.panel6.Size = new System.Drawing.Size(450, 1);
             this.panel6.TabIndex = 47;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 121);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(85, 13);
+            this.label18.TabIndex = 49;
+            this.label18.Text = "Word Separator:";
+            // 
+            // cboWordSeparator
+            // 
+            this.cboWordSeparator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWordSeparator.FormattingEnabled = true;
+            this.cboWordSeparator.Location = new System.Drawing.Point(104, 118);
+            this.cboWordSeparator.Name = "cboWordSeparator";
+            this.cboWordSeparator.Size = new System.Drawing.Size(167, 21);
+            this.cboWordSeparator.TabIndex = 50;
+            this.toolTip1.SetToolTip(this.cboWordSeparator, "Determines the complexity of the generated phrases. \r\nStronger phrases have more " +
+        "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
+        " additional verb tenses.");
+            this.cboWordSeparator.SelectedIndexChanged += new System.EventHandler(this.cboWordSeparator_SelectedIndexChanged);
+            // 
+            // txtCustomSeparator
+            // 
+            this.txtCustomSeparator.Location = new System.Drawing.Point(382, 118);
+            this.txtCustomSeparator.Name = "txtCustomSeparator";
+            this.txtCustomSeparator.ReadOnly = true;
+            this.txtCustomSeparator.Size = new System.Drawing.Size(90, 20);
+            this.txtCustomSeparator.TabIndex = 51;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(283, 122);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(94, 13);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Custom Separator:";
+            // 
             // ConfigRoot
             // 
             this.AcceptButton = this.btnOK;
@@ -736,6 +766,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(485, 581);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.txtCustomSeparator);
+            this.Controls.Add(this.cboWordSeparator);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -785,7 +819,6 @@
             this.Controls.Add(this.lblPhraseDetail);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboPhraseSelection);
-            this.Controls.Add(this.chkSpacesBetweenWords);
             this.Name = "ConfigRoot";
             this.Text = "Readable Passphrase Configuration";
             this.Load += new System.EventHandler(this.ConfigRoot_Load);
@@ -804,8 +837,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox chkSpacesBetweenWords;
         private System.Windows.Forms.ComboBox cboPhraseSelection;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -862,5 +893,9 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox cboWordSeparator;
+        private System.Windows.Forms.TextBox txtCustomSeparator;
+        private System.Windows.Forms.Label label19;
     }
 }

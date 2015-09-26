@@ -101,6 +101,10 @@ namespace KeePassReadablePassphrase
             this.UpdateCombinations(newConf);
             this.UpdateCustomMutatorControlEnabledStatus();
         }
+        private void cboWordSeparator_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.UpdateCustomSeparatorEnabledStatus();
+        }
 
 
 
@@ -184,7 +188,9 @@ namespace KeePassReadablePassphrase
             {
                 this.cboPhraseSelection.DataSource = Enum.GetNames(typeof(PhraseStrength));
                 this.cboPhraseSelection.Text = config.PhraseStrength.ToString();
-                this.chkSpacesBetweenWords.Checked = config.SpacesBetweenWords;
+                this.cboWordSeparator.DataSource = Enum.GetNames(typeof(WordSeparatorOption)).Where(x => !String.Equals(x, "unknown", StringComparison.OrdinalIgnoreCase)).ToArray();
+                this.cboWordSeparator.Text = config.WordSeparator.ToString();
+                this.txtCustomSeparator.Text = config.CustomSeparator;
                 this.chkCustomDictionary.Checked = config.UseCustomDictionary;
                 this.txtDictionaryPath.Text = config.PathOfCustomDictionary;
                 this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
@@ -206,6 +212,7 @@ namespace KeePassReadablePassphrase
                 this.UpdateDictionarySize(config);
                 this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
                 this.UpdateCustomDictionaryVisibility();
+                this.UpdateCustomSeparatorEnabledStatus();
             }
             finally
             {
@@ -276,6 +283,19 @@ namespace KeePassReadablePassphrase
             this.cboNumericStyle.Enabled = this.radMutatorCustom.Checked;
             this.nudNumberCount.Enabled = this.radMutatorCustom.Checked;
         }
+        public void UpdateCustomSeparatorEnabledStatus()
+        {
+            var sep = (WordSeparatorOption)Enum.Parse(typeof(WordSeparatorOption), this.cboWordSeparator.Text);
+            if (sep == WordSeparatorOption.Custom)
+            {
+                this.txtCustomSeparator.Enabled = true;
+            }
+            else
+            {
+                this.txtCustomSeparator.Enabled = false;
+                this.txtCustomSeparator.Text = "";
+            }
+        }
 
         private Config FormToConfigObject()
         {
@@ -284,7 +304,8 @@ namespace KeePassReadablePassphrase
 
             var result = new Config();
             result.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), this.cboPhraseSelection.Text);
-            result.SpacesBetweenWords = this.chkSpacesBetweenWords.Checked;
+            result.WordSeparator = (WordSeparatorOption)Enum.Parse(typeof(WordSeparatorOption), this.cboWordSeparator.Text);
+            result.CustomSeparator = this.txtCustomSeparator.Text;
             result.UseCustomDictionary = this.chkCustomDictionary.Checked;
             result.PathOfCustomDictionary = this.txtDictionaryPath.Text;
             try

@@ -106,9 +106,9 @@ namespace KeePassReadablePassphrase
             {
                 attempts--;
                 if (conf.PhraseStrength == PhraseStrength.Custom)
-                    passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.SpacesBetweenWords);
+                    passphrase = generator.GenerateAsSecure(conf.PhraseDescription, conf.ActualSeparator);
                 else
-                    passphrase = generator.GenerateAsSecure(conf.PhraseStrength, conf.SpacesBetweenWords);
+                    passphrase = generator.GenerateAsSecure(conf.PhraseStrength, conf.ActualSeparator);
             } while ((passphrase.Length < conf.MinLength || passphrase.Length > conf.MaxLength) && attempts > 0);
 
             // Bail out if we tried too many times.
@@ -137,9 +137,9 @@ namespace KeePassReadablePassphrase
                 try
                 {
                     if (conf.PhraseStrength == PhraseStrength.Custom)
-                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.SpacesBetweenWords);
+                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseDescription, conf.ActualSeparator);
                     else
-                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.SpacesBetweenWords);
+                        passphrase = generator.GenerateAsUtf8Bytes(conf.PhraseStrength, conf.ActualSeparator);
 
                     var length = Encoding.UTF8.GetCharCount(passphrase);
                     if (length >= conf.MinLength && length <= conf.MaxLength)
@@ -164,16 +164,19 @@ namespace KeePassReadablePassphrase
                 attempts--;
                 try
                 {
-                    // This always includes spaces, and removes them at a later stage after the mutators are applied.
+                    // This always includes a space delimiter, and removes them at a later stage after the mutators are applied.
+                    // We use a space delimiter as the constant because the mutators depend on actual whitespace between words.
                     var passphrase = "";
                     if (conf.PhraseStrength == PhraseStrength.Custom)
-                        passphrase = generator.Generate(conf.PhraseDescription, true, GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseDescription, " ", GetMutators(conf));
                     else
-                        passphrase = generator.Generate(conf.PhraseStrength, true, GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseStrength, " ", GetMutators(conf));
 
                     // It's now safe to remove whitespace.
-                    if (!conf.SpacesBetweenWords)
+                    if (conf.WordSeparator == WordSeparatorOption.Space)
                         passphrase = new string(passphrase.Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                    else if (conf.WordSeparator == WordSeparatorOption.Custom)
+                        passphrase = passphrase.Replace(" ", conf.CustomSeparator);
 
                     if (passphrase.Length >= conf.MinLength && passphrase.Length <= conf.MaxLength)
                         return new ProtectedString(true, passphrase);
