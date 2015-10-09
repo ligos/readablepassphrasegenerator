@@ -90,6 +90,15 @@ Schema version 5 adds:
   <speechVerb past="babbled"/>
   <speechVerb past="stipulated"/>
   <speechVerb past="swore"/>
+  <speechVerb past="slured"/>
+  <speechVerb past="discussed"/>
+  <speechVerb past="tattled"/>
+  <speechVerb past="quipped"/>
+  <speechVerb past="rephrased"/>
+  <speechVerb past="whined"/>
+  <speechVerb past="moaned"/>
+  <speechVerb past="rambled"/>
+  <speechVerb past="vented"/>
   <indefinitePronoun singular="one" plural="ones" personal="true"/>
   <indefinitePronoun singular="thing" plural="things" personal="false"/>
   <numberRange start="1" end="999"/>
