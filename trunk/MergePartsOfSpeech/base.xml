@@ -99,6 +99,9 @@ Schema version 5 adds:
   <speechVerb past="moaned"/>
   <speechVerb past="rambled"/>
   <speechVerb past="vented"/>
+  <speechVerb past="bellowed"/>
+  <speechVerb past="quacked"/>
+  <speechVerb past="brayed"/>
   <indefinitePronoun singular="one" plural="ones" personal="true"/>
   <indefinitePronoun singular="thing" plural="things" personal="false"/>
   <numberRange start="1" end="999"/>
