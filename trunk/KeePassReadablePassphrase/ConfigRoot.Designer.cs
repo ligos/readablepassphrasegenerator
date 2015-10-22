@@ -47,6 +47,7 @@
             this.radMutatorCustom = new System.Windows.Forms.RadioButton();
             this.cboUpperStyle = new System.Windows.Forms.ComboBox();
             this.cboNumericStyle = new System.Windows.Forms.ComboBox();
+            this.cboWordSeparator = new System.Windows.Forms.ComboBox();
             this.lblPhraseDetail = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -87,7 +88,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.cboWordSeparator = new System.Windows.Forms.ComboBox();
             this.txtCustomSeparator = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
@@ -292,6 +292,19 @@
             this.toolTip1.SetToolTip(this.cboNumericStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
         "stom for this option to be available.");
             this.cboNumericStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
+            // cboWordSeparator
+            // 
+            this.cboWordSeparator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWordSeparator.FormattingEnabled = true;
+            this.cboWordSeparator.Location = new System.Drawing.Point(104, 118);
+            this.cboWordSeparator.Name = "cboWordSeparator";
+            this.cboWordSeparator.Size = new System.Drawing.Size(167, 21);
+            this.cboWordSeparator.TabIndex = 50;
+            this.toolTip1.SetToolTip(this.cboWordSeparator, "Determines the complexity of the generated phrases. \r\nStronger phrases have more " +
+        "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
+        " additional verb tenses.");
+            this.cboWordSeparator.SelectedIndexChanged += new System.EventHandler(this.cboWordSeparator_SelectedIndexChanged);
             // 
             // lblPhraseDetail
             // 
@@ -729,24 +742,10 @@
             this.label18.TabIndex = 49;
             this.label18.Text = "Word Separator:";
             // 
-            // cboWordSeparator
-            // 
-            this.cboWordSeparator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboWordSeparator.FormattingEnabled = true;
-            this.cboWordSeparator.Location = new System.Drawing.Point(104, 118);
-            this.cboWordSeparator.Name = "cboWordSeparator";
-            this.cboWordSeparator.Size = new System.Drawing.Size(167, 21);
-            this.cboWordSeparator.TabIndex = 50;
-            this.toolTip1.SetToolTip(this.cboWordSeparator, "Determines the complexity of the generated phrases. \r\nStronger phrases have more " +
-        "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
-        " additional verb tenses.");
-            this.cboWordSeparator.SelectedIndexChanged += new System.EventHandler(this.cboWordSeparator_SelectedIndexChanged);
-            // 
             // txtCustomSeparator
             // 
             this.txtCustomSeparator.Location = new System.Drawing.Point(382, 118);
             this.txtCustomSeparator.Name = "txtCustomSeparator";
-            this.txtCustomSeparator.ReadOnly = true;
             this.txtCustomSeparator.Size = new System.Drawing.Size(90, 20);
             this.txtCustomSeparator.TabIndex = 51;
             // 
