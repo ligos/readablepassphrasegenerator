@@ -29,7 +29,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         // This is a bit of a cheats way of doing command line arguments. Please don't consider it good practice!
         static int count = 10;
         static PhraseStrength strength = PhraseStrength.Random;
-        static bool includeSpaces = true;
+        static string wordSeparator = " ";
         static bool useCustomLoader = false;
         static string loaderDll = "";
         static string loaderType = "";
@@ -189,8 +189,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     phrase = generator.Generate(strength, " ", mutators);
 
                 // After mutators are applied, it's safe to remove white space.
-                if (!includeSpaces)
-                    phrase = new string(phrase.Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                if (wordSeparator != " ")
+                    phrase = phrase.Replace(" ", wordSeparator);
 
                 // Clamp the length.
                 if (phrase.Length >= minLength && phrase.Length <= maxLength)
@@ -247,11 +247,21 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 }
                 else if (arg == "spaces")
                 {
-                    if (!Boolean.TryParse(args[i+1], out includeSpaces))
+                    bool includeSpaces;
+                    if (!Boolean.TryParse(args[i + 1], out includeSpaces))
                     {
-                        Console.WriteLine("Invalid boolean '{0}' for 'strength' option.", args[i + 1]);
+                        Console.WriteLine("Invalid boolean '{0}' for 'spaces' option.", args[i + 1]);
                         return false;
                     }
+                    else if (includeSpaces)
+                        wordSeparator = " ";
+                    else if (!includeSpaces)
+                        wordSeparator = "";
+                    i++;
+                }
+                else if (arg == "separator")
+                {
+                    wordSeparator = args[i + 1];
                     i++;
                 }
                 else if (arg == "d" || arg == "dict")
@@ -407,7 +417,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("                          or 'custom' or 'random[short|long|forever]'");
             Console.WriteLine("  --min xxx             Specifies a minimum length for phrases (def: {0})", minLength);
             Console.WriteLine("  --max xxx             Specifies a maximum length for phrases (def: {0})", maxLength);
-            Console.WriteLine("  --spaces true|false   Includes spaces between words (default: {0})", includeSpaces);
+            Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
+            Console.WriteLine("  --separator x         Character(s) to separate words (default: {0})", wordSeparator);
             Console.WriteLine("  -n --nongrammar nn    Creates non-grammatical passphrases of length nn");
             Console.WriteLine();
             Console.WriteLine("  -m --stdMutators      Adds 2 numbers and 2 capitals to the passphrase");

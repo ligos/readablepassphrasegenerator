@@ -374,13 +374,20 @@ namespace MurrayGrant.ReadablePassphrase
                 throw new ArgumentNullException("phraseDescription");
 
             var str = new GenerateInStringBuilder();
-            this.GenerateInternal(phraseDescription, wordDelimiter, str);
+
+            // Mutators rely on whitespace to do their work, so we use a space if mutators are specified.
+            var anyMutators = (mutators != null && mutators.Any());
+            this.GenerateInternal(phraseDescription, anyMutators ? " " : wordDelimiter, str);
 
             if (mutators == null)
                 mutators = Enumerable.Empty<IMutator>();
             foreach (var m in mutators)
                 m.Mutate(str.Target, this.Randomness);
             var result = str.Target.ToString();
+
+            // Now we replace the space with the actual delimiter.
+            result = result.Replace(" ", wordDelimiter);
+
             // A trailing delimiter is always included when spaces are between words.
             return result.Substring(0, result.Length - wordDelimiter.Length);         
         }
