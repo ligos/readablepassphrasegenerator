@@ -90,7 +90,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine("Generating {0:N0} phrase(s) of strength '{1}'...", count, strength);
             else if (!quiet && !String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
-            if (maxLength < Int32.MaxValue || minLength > 1)
+            if (!quiet && (maxLength < Int32.MaxValue || minLength > 1))
                 Console.WriteLine("Must be between {0:N0} and {1} characters.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N0"));
 
             var generator = new ReadablePassphraseGenerator();
