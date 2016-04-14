@@ -5077,4 +5077,20 @@ limitations under the License.
   <verb presentSingular="backfires" pastSingular="backfired" pastContinuousSingular="was backfiring" futureSingular="will backfire" continuousSingular="is backfiring" perfectSingular="has backfired" subjunctiveSingular="might backfire"
         presentPlural="backfire" pastPlural="backfired" pastContinuousPlural="were backfiring" futurePlural="will backfire" continuousPlural="are backfiring" perfectPlural="have backfired" subjunctivePlural="might backfire"
         transitive="false"/>
+  <verb presentSingular="precedes" pastSingular="preceded" pastContinuousSingular="was preceding" futureSingular="will precede" continuousSingular="is preceding" perfectSingular="has preceded" subjunctiveSingular="might precede"
+        presentPlural="precede" pastPlural="preceded" pastContinuousPlural="were preceding" futurePlural="will precede" continuousPlural="are preceding" perfectPlural="have preceded" subjunctivePlural="might precede"/>
+  <verb presentSingular="blacklists" pastSingular="blacklisted" pastContinuousSingular="was blacklisting" futureSingular="will blacklist" continuousSingular="is blacklisting" perfectSingular="has blacklisted" subjunctiveSingular="might blacklist"
+        presentPlural="blacklist" pastPlural="blacklisted" pastContinuousPlural="were blacklisting" futurePlural="will blacklist" continuousPlural="are blacklisting" perfectPlural="have blacklisted" subjunctivePlural="might blacklist"/>
+  <verb presentSingular="lengthens" pastSingular="lengthened" pastContinuousSingular="was lengthening" futureSingular="will lengthen" continuousSingular="is lengthening" perfectSingular="has lengthened" subjunctiveSingular="might lengthen"
+        presentPlural="lengthen" pastPlural="lengthened" pastContinuousPlural="were lengthening" futurePlural="will lengthen" continuousPlural="are lengthening" perfectPlural="have lengthened" subjunctivePlural="might lengthen"/>
+  <verb presentSingular="disobeys" pastSingular="disobeyed" pastContinuousSingular="was disobeying" futureSingular="will disobey" continuousSingular="is disobeying" perfectSingular="has disobeyed" subjunctiveSingular="might disobey"
+        presentPlural="disobey" pastPlural="disobeyed" pastContinuousPlural="were disobeying" futurePlural="will disobey" continuousPlural="are disobeying" perfectPlural="have disobeyed" subjunctivePlural="might disobey"/>
+  <verb presentSingular="partakes" pastSingular="partook" pastContinuousSingular="was partaking" futureSingular="will partake" continuousSingular="is partaking" perfectSingular="has partook" subjunctiveSingular="might partake"
+        presentPlural="partake" pastPlural="partook" pastContinuousPlural="were partaking" futurePlural="will partake" continuousPlural="are partaking" perfectPlural="have partook" subjunctivePlural="might partake"
+        transitive="false"/>
+  <verb presentSingular="roams" pastSingular="roamed" pastContinuousSingular="was roaming" futureSingular="will roam" continuousSingular="is roaming" perfectSingular="has roamed" subjunctiveSingular="might roam"
+        presentPlural="roam" pastPlural="roamed" pastContinuousPlural="were roaming" futurePlural="will roam" continuousPlural="are roaming" perfectPlural="have roamed" subjunctivePlural="might roam"
+        transitive="false"/>
+  <verb presentSingular="confirms" pastSingular="confirmed" pastContinuousSingular="was confirming" futureSingular="will confirm" continuousSingular="is confirming" perfectSingular="has confirmed" subjunctiveSingular="might confirm"
+        presentPlural="confirm" pastPlural="confirmed" pastContinuousPlural="were confirming" futurePlural="will confirm" continuousPlural="are confirming" perfectPlural="have confirmed" subjunctivePlural="might confirm"/>
 </dictionary>
