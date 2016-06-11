@@ -142,6 +142,7 @@
             this.txtPhraseDescription.TabIndex = 13;
             this.toolTip1.SetToolTip(this.txtPhraseDescription, resources.GetString("txtPhraseDescription.ToolTip"));
             this.txtPhraseDescription.TextChanged += new System.EventHandler(this.txtPhraseDescription_TextChanged);
+            this.txtPhraseDescription.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPhraseDescription_KeyUp);
             // 
             // txtDictionaryPath
             // 

@@ -342,5 +342,15 @@ namespace KeePassReadablePassphrase
                 System.Diagnostics.Process.Start(url.ToString());
             }
         }
+
+        private void txtPhraseDescription_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.A)
+            {
+                // CTRL+A = Select All.
+                this.txtPhraseDescription.SelectAll();
+                e.Handled = true;
+            }
+        }
     }
 }
