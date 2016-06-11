@@ -16,8 +16,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using MurrayGrant.ReadablePassphrase.WordTemplate;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
+using MurrayGrant.ReadablePassphrase.Helpers;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
@@ -71,6 +73,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            if (CommonNounFactor + ProperNounFactor + NounFromAdjectiveFactor <= 0)
+                // No noun clause at all!
+                return;
+
             // How do we form the noun? 
             // - Common noun.
             // - Proper noun. 
@@ -109,7 +115,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             }                
 
             // Add an adjective?
-            bool includeAdjective = randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
+            bool includeAdjective = (AdjectiveFactor + NoAdjectiveFactor > 0)       // Case where neither is specified: assume no adjective.
+                                  && randomness.WeightedCoinFlip(AdjectiveFactor, NoAdjectiveFactor);
             if (includeAdjective)
                 currentTemplate.Add(new AdjectiveTemplate());
 
@@ -138,26 +145,36 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             // There's a bunch of stuff common to common and adjectives as nouns.
             // Include a preposition?
-            bool includePreposition = randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
+            bool includePreposition = (PrepositionFactor + NoPrepositionFactor > 0)         // Case where neither is specified: assume no preposition.
+                                    && randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
             if (includePreposition && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
                 currentTemplate.Add(new PrepositionTemplate());
 
             // Will this noun be plural?
-            isPlural = randomness.WeightedCoinFlip(PluralityFactor, SingularityFactor);
+            isPlural = (PluralityFactor + SingularityFactor > 0)   // Case where neither is specified: assume singular.
+                     && randomness.WeightedCoinFlip(PluralityFactor, SingularityFactor);
 
             // What kind of article will this Noun have?
             if (!isPlural)
             {
                 // Singular accepts: Definite, Indefinite, Demonstrative, PersonalPronoun.
-                int choice = randomness.Next(DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor + PersonalPronounFactor);
-                if (choice < DefiniteArticleFactor)
-                    currentTemplate.Add(new ArticleTemplate(true));
-                else if (choice >= DefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor)
-                    currentTemplate.Add(new ArticleTemplate(false));
-                else if (choice >= DefiniteArticleFactor + IndefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor)
-                    currentTemplate.Add(new DemonstrativeTemplate(isPlural));
+                if (DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor + PersonalPronounFactor > 0)
+                {
+                    int choice = randomness.Next(DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor + PersonalPronounFactor);
+                    if (choice < DefiniteArticleFactor)
+                        currentTemplate.Add(new ArticleTemplate(true));
+                    else if (choice >= DefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor)
+                        currentTemplate.Add(new ArticleTemplate(false));
+                    else if (choice >= DefiniteArticleFactor + IndefiniteArticleFactor && choice < DefiniteArticleFactor + IndefiniteArticleFactor + DemonstractiveFactor)
+                        currentTemplate.Add(new DemonstrativeTemplate(isPlural));
+                    else
+                        currentTemplate.Add(new PersonalPronounTemplate(isPlural));
+                }
                 else
-                    currentTemplate.Add(new PersonalPronounTemplate(isPlural));
+                {
+                    // The user really doesn't want any article, so we run with that (although it won't be gramatically correct).
+                    // No-op.
+                }
             }
             else
             {
@@ -202,11 +219,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // Min is whichever of the above is smallest.
             var min = new[] { resultCommon.Shortest, resultProper.Shortest, resultAdjective.Shortest, resultCommonAndAdjective.Shortest }
                             .Where(x => x > 1.0001)
-                            .Min();
+                            .MinOrFallback(0.0);
             // Max is whichever of the above is largest.
             var max = new[] { resultCommon.Longest, resultProper.Longest, resultAdjective.Longest, resultCommonAndAdjective.Longest }
                             .Where(x => x > 1.0001)
-                            .Max();
+                            .MaxOrFallback(0.0);
             // Avg is a weighted average of the above.
             double total = CommonNounFactor + ProperNounFactor + NounFromAdjectiveFactor;
             double avg = 0.0;

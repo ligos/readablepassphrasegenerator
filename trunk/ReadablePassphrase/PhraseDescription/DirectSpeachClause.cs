@@ -37,7 +37,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
             // Direct speech verbs are very simple cases of verbs. They rely on a preceeding noun clause to make sense.
-            var chosenDirectSpeech = randomness.WeightedCoinFlip(DirectSpeechFactor, NoDirectSpeechFactor);
+            var chosenDirectSpeech = (DirectSpeechFactor + NoDirectSpeechFactor > 0)  // Case where neither is specified: assume no direct speech.
+                                   && randomness.WeightedCoinFlip(DirectSpeechFactor, NoDirectSpeechFactor);
             if (chosenDirectSpeech)
                 currentTemplate.Add(new SpeechVerbTemplate());
             else

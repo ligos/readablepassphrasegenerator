@@ -71,6 +71,7 @@
     <Compile Include="Dictionaries\EmptyDictionary.cs" />
     <Compile Include="Dictionaries\ExplicitXmlDictionary.cs" />
     <Compile Include="Dictionaries\ExplicitXmlDictionaryLoader.cs" />
+    <Compile Include="Helpers\CollectionHelpers.cs" />
     <Compile Include="MaterialisedWords\Adjective.cs" />
     <Compile Include="MaterialisedWords\Adverb.cs" />
     <Compile Include="MaterialisedWords\Article.cs" />

@@ -123,8 +123,6 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 throw new ApplicationException("Unexpected state.");
             var verbFormToBePlural = subjectIsPlural;
 
-            // TODO: handle cases where probabilities are zero.
-
             // Choose how to handle intransitive verbs.
             bool selectTransitive = true;
             bool removeAccusativeNoun = false;
@@ -137,6 +135,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 if (!selectTransitive)
                 {
                     // OK, so we chose an intransitive verb, how will we handle that?
+                    // Note that we've established either IntransitiveByNoNounClauseFactor or IntransitiveByPrepositionFactor is greater than zero, so WeightedCoinFlip() will never throw.
                     bool handleIntransByNoObjectNoun = randomness.WeightedCoinFlip(IntransitiveByNoNounClauseFactor, IntransitiveByPrepositionFactor);
                     if (handleIntransByNoObjectNoun)
                         // Remove the noun clause.
@@ -147,7 +146,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 }
             }
 
-            bool makeInterrogative = randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
+            bool makeInterrogative = (InterrogativeFactor + NoInterrogativeFactor > 0)      // Case where neither is specified: assume no interrogative.
+                                   && randomness.WeightedCoinFlip(InterrogativeFactor, NoInterrogativeFactor);
             if (makeInterrogative && containsDirectSpeech)
                 // Insert an interrogative template after the direct speech verb.
                 currentTemplate.Insert(speechVerbIdx + 1, new InterrogativeTemplate(subjectIsPlural));
@@ -156,7 +156,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 currentTemplate.Insert(0, new InterrogativeTemplate(subjectIsPlural));
 
             // Include adverb?
-            bool includeAdverb = randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
+            bool includeAdverb = (AdverbFactor + NoAdverbFactor > 0)        // Case where neither is specified: assume no adverb.
+                               && randomness.WeightedCoinFlip(AdverbFactor, NoAdverbFactor);
             bool includeAdverbBeforeVerb = randomness.CoinFlip();
             if (includeAdverb && includeAdverbBeforeVerb)
                 currentTemplate.Add(new AdverbTemplate());
