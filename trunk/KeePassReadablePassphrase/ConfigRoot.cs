@@ -59,7 +59,8 @@ namespace KeePassReadablePassphrase
             }
 
             // Load the dictionary so we can display the number of words in the config window.
-            PassphraseGenerator.LoadDictionary(config, this._Generator);
+            var dict = PassphraseGenerator.LoadDictionary(config);
+            this._Generator.SetDictionary(dict);
 
             // "Data Bind"
             this.ConfigObjectToForm(config);
@@ -141,7 +142,8 @@ namespace KeePassReadablePassphrase
             if (conf != null)
             {
                 // TODO: error handling.
-                PassphraseGenerator.LoadDictionary(conf, this._Generator);
+                var dict = PassphraseGenerator.LoadDictionary(conf);
+                this._Generator.SetDictionary(dict);
                 this.UpdateCombinations(conf);
                 this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
             }
@@ -159,7 +161,8 @@ namespace KeePassReadablePassphrase
                 if (conf != null)
                 {
                     // TODO: error handling.
-                    PassphraseGenerator.LoadDictionary(conf, this._Generator);
+                    var dict = PassphraseGenerator.LoadDictionary(conf);
+                    this._Generator.SetDictionary(dict);
                     this.UpdateCombinations(conf);
                     this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
                 }

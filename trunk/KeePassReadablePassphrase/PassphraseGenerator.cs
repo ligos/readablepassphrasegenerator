@@ -59,7 +59,8 @@ namespace KeePassReadablePassphrase
             this.Host = host;
         }
 
-        private MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator _CachedGenerator;
+        private Config _ConfigForCachedDictionary;
+        private WordDictionary _CachedDictionary;
 
         public override string GetOptions(string strCurrentOptions)
         {
@@ -81,20 +82,19 @@ namespace KeePassReadablePassphrase
             // Load the phrase template from config.
             var conf = new Config(profile.CustomAlgorithmOptions);
 
-            // Create the passphrase generator.
-            if (_CachedGenerator == null)
-            {
-                var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(new KeePassRandomSource(crsRandomSource));
-                LoadDictionary(conf, generator);
-                _CachedGenerator = generator;
-            }
+            // Create and cache the dictionary.
+            // Important note: do not cache the CryptoRandomStream or ReadablePassphraseGenerator
+            //    If you do, the CryptoRandomStream is disposed after the method returns, and you end up with very deterministic random numbers.
+            //    This can manifest itself as the name random words are generated in the Preview tab in KeeyPass's Generate Password form.
+            var dict = GetDictionary(conf);
+            var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(dict, new KeePassRandomSource(crsRandomSource));
 
             if (conf.Mutator != MutatorOption.None)
-                return GenerateForMutators(_CachedGenerator, conf);
+                return GenerateForMutators(generator, conf);
             else if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                return GenerateSecure(_CachedGenerator, conf);
+                return GenerateSecure(generator, conf);
             else
-                return GenerateNotSoSecure(_CachedGenerator, conf);
+                return GenerateNotSoSecure(generator, conf);
         }
 
         private ProtectedString GenerateSecure(MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator, Config conf)
@@ -218,27 +218,43 @@ namespace KeePassReadablePassphrase
         }
         public void Dispose()
         {
-            this._CachedGenerator = null;
+            this._CachedDictionary = null;
             this.Host = null;
             GC.SuppressFinalize(this);
         }
 
-        public static void LoadDictionary(Config conf, MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator generator)
+        public WordDictionary GetDictionary(Config conf)
+        {
+            if (!ConfigValidForCachedDictionary(_ConfigForCachedDictionary, conf))
+            {
+                _CachedDictionary = LoadDictionary(conf);
+                _ConfigForCachedDictionary = conf;
+            }
+            return _CachedDictionary;
+        }
+        private static bool ConfigValidForCachedDictionary(Config cacheConf, Config thisConf)
+        {
+            if (cacheConf == null || thisConf == null)
+                return false;
+            return cacheConf.UseCustomDictionary == thisConf.UseCustomDictionary
+                && cacheConf.PathOfCustomDictionary == thisConf.PathOfCustomDictionary;
+        }
+        public static WordDictionary LoadDictionary(Config conf)
         {
             var loader = new ExplicitXmlDictionaryLoader();
+            WordDictionary result;
             if (conf.UseCustomDictionary && !String.IsNullOrEmpty(conf.PathOfCustomDictionary) && System.IO.File.Exists(conf.PathOfCustomDictionary))
             {
-                var dict = loader.LoadFrom(conf.PathOfCustomDictionary);
-                generator.SetDictionary(dict);
+                result = loader.LoadFrom(conf.PathOfCustomDictionary);
             }
             else
             {
                 using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(DictionaryResourceName))
                 {
-                    var dict = loader.LoadFrom(s);
-                    generator.SetDictionary(dict);
+                    result = loader.LoadFrom(s);
                 }
             }
+            return result;
         }
     }
 }
