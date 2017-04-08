@@ -1,6 +1,6 @@
 ** Migration In Progress from Codeplex **
 
-The Wiki is being migrated from Codeplex. It's not quite working just yet.
+The Readme is being migrated from Codeplex. It's not quite working just yet.
 
 
 # Readable Passphrase Generator #
