@@ -96,7 +96,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// This will attempt to load 'dictionary.xml, .xml.gz and .gz' from
         /// the folder of the exe (<c>Assembly.GetEntryAssembly()</c>) or the current directory (<c>Environment.CurrentDirectory</c>).
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom()
         {
@@ -142,7 +142,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// <remarks>
         /// The file can be plaintext or gzipped.
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(string pathToExternalFile)
         {
@@ -157,22 +157,22 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// <remarks>
         /// The file can be plaintext or gzipped.
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(FileInfo externalFile)
         {
             using (var s = externalFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
                 return LoadFrom(s);
         }
-        
-        
+
+
         /// <summary>
         /// Loads a dictionary from the specified url.
         /// </summary>
         /// <remarks>
         /// The file can be plaintext or gzipped. But you must specify which using is <c>isCompressed</c> parameter.
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed)
         {
@@ -184,7 +184,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// <remarks>
         /// The file can be plaintext or gzipped. But you must specify which using is <c>isCompressed</c> parameter.
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed, TimeSpan timeout)
         {
@@ -203,7 +203,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// The file can be plaintext or gzipped.
         /// The stream must have <c>CanSeek</c> = true.
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(Stream s)
         {
@@ -232,7 +232,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// The stream does NOT require <c>CanSeek</c> = true.
         /// Use this overload for streams which do not support seeking but are compressed (eg: network stream).
         /// 
-        /// For information about the dictionary schema definition see the default xml file or codeplex website.
+        /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(Stream s, bool isCompressed)
         {

@@ -78,7 +78,7 @@ namespace KeePassReadablePassphrase
         private void lnkTotals_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to doco page for totals.
-            this.bgwWorker.RunWorkerAsync(new Uri("http://readablepassphrase.codeplex.com/wikipage?title=Dictionary%20Totals"));
+            this.bgwWorker.RunWorkerAsync(new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Dictionary-Totals"));
         }
 
         private void bgwWorker_DoWork(object sender, DoWorkEventArgs e)

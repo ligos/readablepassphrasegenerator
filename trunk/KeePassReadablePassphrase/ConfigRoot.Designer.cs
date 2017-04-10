@@ -376,10 +376,10 @@
             this.lnkWebsite.AutoSize = true;
             this.lnkWebsite.Location = new System.Drawing.Point(393, 41);
             this.lnkWebsite.Name = "lnkWebsite";
-            this.lnkWebsite.Size = new System.Drawing.Size(79, 13);
+            this.lnkWebsite.Size = new System.Drawing.Size(58, 13);
             this.lnkWebsite.TabIndex = 16;
             this.lnkWebsite.TabStop = true;
-            this.lnkWebsite.Text = "Codeplex Page";
+            this.lnkWebsite.Text = "Web Page";
             this.lnkWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebsite_LinkClicked);
             // 
             // btnBrowse
