@@ -112,7 +112,7 @@ namespace KeePassReadablePassphrase
         private void lnkWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to bitbucket site.
-            this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.BitBucketHompage);            
+            this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.BitBucketHomepage);            
         }
         private void lnkPhraseHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

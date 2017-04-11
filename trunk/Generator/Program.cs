@@ -439,7 +439,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine(); 
             Console.WriteLine("  -q --quiet            Does not display any status messages (default: {0})", quiet ? "hide" : "show");
             Console.WriteLine("  -h --help             Displays this message ");
-            Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.BitbucketHomepage);
+            Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.BitBucketHomepage);
         }
     }
 }
