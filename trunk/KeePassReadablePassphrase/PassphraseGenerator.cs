@@ -173,9 +173,11 @@ namespace KeePassReadablePassphrase
                         passphrase = generator.Generate(conf.PhraseStrength, " ", GetMutators(conf));
 
                     // It's now safe to remove whitespace.
-                    if (conf.WordSeparator == WordSeparatorOption.Space)
+                    if (conf.WordSeparator == WordSeparatorOption.None)
                         passphrase = new string(passphrase.Where(c => !Char.IsWhiteSpace(c)).ToArray());
-                    else if (conf.WordSeparator == WordSeparatorOption.Custom)
+                    else if (conf.WordSeparator == WordSeparatorOption.Space) {
+                        // No op.
+                    } else if (conf.WordSeparator == WordSeparatorOption.Custom)
                         passphrase = passphrase.Replace(" ", conf.CustomSeparator);
 
                     if (passphrase.Length >= conf.MinLength && passphrase.Length <= conf.MaxLength)
@@ -186,7 +188,7 @@ namespace KeePassReadablePassphrase
                 }
                 finally
                 {
-                    // I live in the slim hope that the the GC will actually clear the string we generated.
+                    // I live in the slim hope that the the GC will actually clear the string(s) we generated.
                     GC.Collect(0);
                 }
             } while (true);
