@@ -33,9 +33,9 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("AdjectiveNoun", "Noun")]
         public int NounFromAdjectiveFactor { get; set; }
 
-        [TagInConfiguration("Plural", "Number")]
+        [TagInConfiguration("Plural", "Plural")]
         public int PluralityFactor { get; set; }
-        [TagInConfiguration("Single", "Number")]
+        [TagInConfiguration("Single", "Plural")]
         public int SingularityFactor { get; set; }
 
         [TagInConfiguration("NoArticle", "Article")]
