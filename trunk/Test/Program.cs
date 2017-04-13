@@ -74,10 +74,10 @@ namespace Test
             //}
 
             // Test spaces, no spaces and custom delimiter.
-            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, " ");
-            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, "");
-            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, ".");
-            //GenerateDelimiterSamples(PhraseStrength.Normal, generator, 3, "✶");
+            //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, " ");
+            //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, "");
+            //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, ".");
+            //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, "✶");
 
             // Generate statistics.
             //Console.WriteLine();

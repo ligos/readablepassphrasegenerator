@@ -62,14 +62,6 @@
       <ExecutableExtension>.exe</ExecutableExtension>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
     </Reference>
-    <Reference Include="ReadablePassphrase, Version=1.0.4325.32987, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\ReadablePassphrase.dll</HintPath>
-    </Reference>
-    <Reference Include="ReadablePassphrase.Words, Version=0.7.0.0, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\ReadablePassphrase.Words.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -111,6 +103,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
+      <Project>{ce0eec1c-f997-4b6b-97c8-909474ed6970}</Project>
+      <Name>ReadablePassphrase.Words</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj">
+      <Project>{60c9ecf7-95d4-48e4-8e8c-f7a2029f443d}</Project>
+      <Name>ReadablePassphrase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

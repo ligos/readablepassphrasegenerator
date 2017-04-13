@@ -92,16 +92,6 @@
     <None Include="NotMurrayGrant.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
-      <Project>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</Project>
-      <Name>ReadablePassphrase.Words</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj">
-      <Project>{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}</Project>
-      <Name>ReadablePassphrase</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -117,6 +107,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
+      <Project>{ce0eec1c-f997-4b6b-97c8-909474ed6970}</Project>
+      <Name>ReadablePassphrase.Words</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj">
+      <Project>{60c9ecf7-95d4-48e4-8e8c-f7a2029f443d}</Project>
+      <Name>ReadablePassphrase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

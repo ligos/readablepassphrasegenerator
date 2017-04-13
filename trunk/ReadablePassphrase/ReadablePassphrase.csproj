@@ -132,13 +132,13 @@
     <None Include="NotMurrayGrant.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
-      <Project>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</Project>
-      <Name>ReadablePassphrase.Words</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
+      <Project>{ce0eec1c-f997-4b6b-97c8-909474ed6970}</Project>
+      <Name>ReadablePassphrase.Words</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

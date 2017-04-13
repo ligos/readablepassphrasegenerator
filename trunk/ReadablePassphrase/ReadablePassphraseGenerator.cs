@@ -600,9 +600,8 @@ namespace MurrayGrant.ReadablePassphrase
             // Also need to replace spaces in the word with our supplied word delimiter.
 
             var toAppend = word;
-            if (wordDelimiter.Length > 0)
             toAppend = toAppend.Replace(" ", wordDelimiter);
-            target.Append(word);
+            target.Append(toAppend);
             target.Append(wordDelimiter);
         }
 

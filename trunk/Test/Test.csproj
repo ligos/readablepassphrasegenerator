@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utf8StringHelper.cs" />
+    <Compile Include="SecureStringHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassReadablePassphrase\KeePassReadablePassphrase.csproj">
@@ -80,11 +82,11 @@
       <Name>KeePassReadablePassphrase</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
-      <Project>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</Project>
+      <Project>{ce0eec1c-f997-4b6b-97c8-909474ed6970}</Project>
       <Name>ReadablePassphrase.Words</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj">
-      <Project>{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}</Project>
+      <Project>{60c9ecf7-95d4-48e4-8e8c-f7a2029f443d}</Project>
       <Name>ReadablePassphrase</Name>
     </ProjectReference>
   </ItemGroup>
