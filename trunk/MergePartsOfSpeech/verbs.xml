@@ -3261,7 +3261,8 @@ limitations under the License.
   <verb presentSingular="cures" pastSingular="cured" pastContinuousSingular="was curing" futureSingular="will cure" continuousSingular="is curing" perfectSingular="has cured" subjunctiveSingular="might cure"
         presentPlural="cure" pastPlural="cured" pastContinuousPlural="were curing" futurePlural="will cure" continuousPlural="are curing" perfectPlural="have cured" subjunctivePlural="might cure"/>
   <verb presentSingular="embarks" pastSingular="embarked" pastContinuousSingular="was embarking" futureSingular="will embark" continuousSingular="is embarking" perfectSingular="has embarked" subjunctiveSingular="might embark"
-        presentPlural="embark" pastPlural="embarked" pastContinuousPlural="were embarking" futurePlural="will embark" continuousPlural="are embarking" perfectPlural="have embarked" subjunctivePlural="might embark"/>
+        presentPlural="embark" pastPlural="embarked" pastContinuousPlural="were embarking" futurePlural="will embark" continuousPlural="are embarking" perfectPlural="have embarked" subjunctivePlural="might embark"
+        transitive="false"/>
   <verb presentSingular="hogs" pastSingular="hogged" pastContinuousSingular="was hogging" futureSingular="will hog" continuousSingular="is hogging" perfectSingular="has hogged" subjunctiveSingular="might hog"
         presentPlural="hog" pastPlural="hogged" pastContinuousPlural="were hogging" futurePlural="will hog" continuousPlural="are hogging" perfectPlural="have hogged" subjunctivePlural="might hog"/>
   <verb presentSingular="hardens" pastSingular="hardened" pastContinuousSingular="was hardening" futureSingular="will harden" continuousSingular="is hardening" perfectSingular="has hardened" subjunctiveSingular="might harden"
@@ -5093,4 +5094,33 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="confirms" pastSingular="confirmed" pastContinuousSingular="was confirming" futureSingular="will confirm" continuousSingular="is confirming" perfectSingular="has confirmed" subjunctiveSingular="might confirm"
         presentPlural="confirm" pastPlural="confirmed" pastContinuousPlural="were confirming" futurePlural="will confirm" continuousPlural="are confirming" perfectPlural="have confirmed" subjunctivePlural="might confirm"/>
+  <verb presentSingular="medicates" pastSingular="medicated" pastContinuousSingular="was medicating" futureSingular="will medicate" continuousSingular="is medicating" perfectSingular="has medicated" subjunctiveSingular="might medicate"
+        presentPlural="medicate" pastPlural="medicated" pastContinuousPlural="were medicating" futurePlural="will medicate" continuousPlural="are medicating" perfectPlural="have medicated" subjunctivePlural="might medicate"/>
+  <verb presentSingular="reprograms" pastSingular="reprogrammed" pastContinuousSingular="was reprogramming" futureSingular="will reprogram" continuousSingular="is reprogramming" perfectSingular="has reprogrammed" subjunctiveSingular="might reprogram"
+        presentPlural="reprogram" pastPlural="reprogrammed" pastContinuousPlural="were reprogramming" futurePlural="will reprogram" continuousPlural="are reprogramming" perfectPlural="have reprogrammed" subjunctivePlural="might reprogram"/>
+  <verb presentSingular="undermines" pastSingular="undermined" pastContinuousSingular="was undermining" futureSingular="will undermine" continuousSingular="is undermining" perfectSingular="has undermined" subjunctiveSingular="might undermine"
+        presentPlural="undermine" pastPlural="undermined" pastContinuousPlural="were undermining" futurePlural="will undermine" continuousPlural="are undermining" perfectPlural="have undermined" subjunctivePlural="might undermine"/>
+  <verb presentSingular="potters" pastSingular="pottered" pastContinuousSingular="was pottering" futureSingular="will potter" continuousSingular="is pottering" perfectSingular="has pottered" subjunctiveSingular="might potter"
+        presentPlural="potter" pastPlural="pottered" pastContinuousPlural="were pottering" futurePlural="will potter" continuousPlural="are pottering" perfectPlural="have pottered" subjunctivePlural="might potter"
+        transitive="false"/>
+  <verb presentSingular="quits" pastSingular="quit" pastContinuousSingular="was quitting" futureSingular="will quit" continuousSingular="is quitting" perfectSingular="has quit" subjunctiveSingular="might quit"
+        presentPlural="quit" pastPlural="quit" pastContinuousPlural="were quitting" futurePlural="will quit" continuousPlural="are quitting" perfectPlural="have quit" subjunctivePlural="might quit"
+        transitive="false"/>
+  <verb presentSingular="captures" pastSingular="captured" pastContinuousSingular="was capturing" futureSingular="will capture" continuousSingular="is capturing" perfectSingular="has captured" subjunctiveSingular="might capture"
+        presentPlural="capture" pastPlural="captured" pastContinuousPlural="were capturing" futurePlural="will capture" continuousPlural="are capturing" perfectPlural="have captured" subjunctivePlural="might capture"/>
+  <verb presentSingular="recaptures" pastSingular="recaptured" pastContinuousSingular="was recapturing" futureSingular="will recapture" continuousSingular="is recapturing" perfectSingular="has recaptured" subjunctiveSingular="might recapture"
+        presentPlural="recapture" pastPlural="recaptured" pastContinuousPlural="were recapturing" futurePlural="will recapture" continuousPlural="are recapturing" perfectPlural="have recaptured" subjunctivePlural="might recapture"/>
+  <verb presentSingular="unravels" pastSingular="unravelled" pastContinuousSingular="was unravelling" futureSingular="will unravel" continuousSingular="is unravelling" perfectSingular="has unravelled" subjunctiveSingular="might unravel"
+        presentPlural="unravel" pastPlural="unravelled" pastContinuousPlural="were unravelling" futurePlural="will unravel" continuousPlural="are unravelling" perfectPlural="have unravelled" subjunctivePlural="might unravel"/>
+  <verb presentSingular="plucks" pastSingular="plucked" pastContinuousSingular="was plucking" futureSingular="will pluck" continuousSingular="is plucking" perfectSingular="has plucked" subjunctiveSingular="might pluck"
+        presentPlural="pluck" pastPlural="plucked" pastContinuousPlural="were plucking" futurePlural="will pluck" continuousPlural="are plucking" perfectPlural="have plucked" subjunctivePlural="might pluck"/>
+  <verb presentSingular="shelves" pastSingular="shelved" pastContinuousSingular="was shelving" futureSingular="will shelve" continuousSingular="is shelving" perfectSingular="has shelved" subjunctiveSingular="might shelve"
+        presentPlural="shelve" pastPlural="shelved" pastContinuousPlural="were shelving" futurePlural="will shelve" continuousPlural="are shelving" perfectPlural="have shelved" subjunctivePlural="might shelve"/>
+  <verb presentSingular="departs" pastSingular="departed" pastContinuousSingular="was departing" futureSingular="will depart" continuousSingular="is departing" perfectSingular="has departed" subjunctiveSingular="might depart"
+        presentPlural="depart" pastPlural="departed" pastContinuousPlural="were departing" futurePlural="will depart" continuousPlural="are departing" perfectPlural="have departed" subjunctivePlural="might depart"
+        transitive="false"/>
+  <verb presentSingular="wraps" pastSingular="wrapped" pastContinuousSingular="was wrapping" futureSingular="will wrap" continuousSingular="is wrapping" perfectSingular="has wrapped" subjunctiveSingular="might wrap"
+        presentPlural="wrap" pastPlural="wrapped" pastContinuousPlural="were wrapping" futurePlural="will wrap" continuousPlural="are wrapping" perfectPlural="have wrapped" subjunctivePlural="might wrap"/>
+  <verb presentSingular="misplaces" pastSingular="misplaced" pastContinuousSingular="was misplacing" futureSingular="will misplace" continuousSingular="is misplacing" perfectSingular="has misplaced" subjunctiveSingular="might misplace"
+        presentPlural="misplace" pastPlural="misplaced" pastContinuousPlural="were misplacing" futurePlural="will misplace" continuousPlural="are misplacing" perfectPlural="have misplaced" subjunctivePlural="might misplace"/>
 </dictionary>

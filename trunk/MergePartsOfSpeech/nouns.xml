@@ -3039,7 +3039,7 @@ limitations under the License.
   <noun singular="rower" plural="rowers"/>
   <noun singular="sorcerer" plural="sorcerers"/>
   <noun singular="bullet" plural="bullets"/>
-  <noun singular="testical" plural="testes"/>
+  <noun singular="testical" plural="testicles"/>
   <noun singular="urine" plural="urine"/>
   <noun singular="crop" plural="crops"/>
   <noun singular="curd" plural="curds"/>
@@ -3854,4 +3854,39 @@ limitations under the License.
   <noun singular="partaker" plural="partakers"/>
   <noun singular="leper" plural="lepers"/>
   <noun singular="botanist" plural="botanists"/>
+  <noun plural="wine"/>
+  <noun singular="warrent" plural="warrents"/>
+  <noun singular="variation" plural="variations"/>
+  <noun singular="vinyl" plural="vinyls"/>
+  <noun singular="abscess" plural="abscesses"/>
+  <noun plural="lumber"/>
+  <noun singular="sapling" plural="saplings"/>
+  <noun singular="cyst" plural="cysts"/>
+  <noun singular="pest" plural="pests"/>
+  <noun singular="pestle" plural="pestles"/>
+  <noun singular="pitch" plural="pitchs"/>
+  <noun singular="dairy" plural="dairies"/>
+  <noun singular="dairymaid" plural="dairymaids"/>
+  <noun singular="housefly" plural="houseflies"/>
+  <noun singular="grandson" plural="grandsons"/>
+  <noun singular="bazooka" plural="bazookas"/>
+  <noun singular="deerskin" plural="deerskins"/>
+  <noun singular="atrocity" plural="atrocities"/>
+  <noun singular="surprise" plural="surprises"/>
+  <noun singular="numerator" plural="numerators"/>
+  <noun singular="jingle" plural="jingles"/>
+  <noun singular="shelf" plural="shelves"/>
+  <noun plural="pepper"/>
+  <noun singular="array" plural="arrays"/>
+  <noun singular="rind" plural="rinds"/>
+  <noun singular="slot" plural="slots"/>
+  <noun singular="bunion" plural="bunions"/>
+  <noun singular="burglary" plural="burglaries"/>
+  <noun singular="femur" plural="femurs"/>
+  <noun singular="layover" plural="layovers"/>
+  <noun plural="bread"/>
+  <noun singular="guitar" plural="guitars"/>
+  <noun singular="ancestor" plural="ancestors"/>
+  <noun singular="earth" plural="earths"/>
+  <noun singular="hostess" plural="hostesses"/>
 </dictionary>
