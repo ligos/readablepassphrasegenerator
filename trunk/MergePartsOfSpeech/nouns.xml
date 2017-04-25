@@ -536,7 +536,7 @@ limitations under the License.
   <noun singular="potter" plural="potters"/>
   <noun singular="intern" plural="interns"/>
   <noun singular="loser" plural="losers"/>
-  <noun plural="junk"/>
+  <noun singular="junk" plural="junks"/>
   <noun singular="lamb" plural="lambs"/>
   <noun singular="upheaval" plural="upheavals"/>
   <noun singular="urinal" plural="urinals"/>
@@ -4032,4 +4032,49 @@ limitations under the License.
   <noun singular="voyeur" plural="voyeurs"/>
   <noun singular="skier" plural="skiers"/>
   <noun singular="madman" plural="madmen"/>
+  <noun singular="chalice" plural="chalices"/>
+  <noun singular="railroad" plural="railroads"/>
+  <noun singular="tack" plural="tacks"/>
+  <noun singular="echo" plural="echos"/>
+  <noun singular="howler" plural="howlers"/>
+  <noun singular="goblet" plural="goblets"/>
+  <noun singular="heist" plural="heists"/>
+  <noun singular="buffoon" plural="buffoons"/>
+  <noun singular="jailer" plural="jailers"/>
+  <noun singular="gaoler" plural="gaolers"/>
+  <noun singular="quasar" plural="quasars"/>
+  <noun singular="internet" plural="internets"/>
+  <noun singular="navel" plural="navels"/>
+  <noun singular="plane" plural="planes"/>
+  <noun singular="timer" plural="timers"/>
+  <noun singular="square" plural="squares"/>
+  <noun singular="leopard" plural="leopards"/>
+  <noun singular="sitter" plural="sitters"/>
+  <noun singular="kumquat" plural="kumquats"/>
+  <noun singular="star" plural="stars"/>
+  <noun singular="placenta" plural="placentas"/>
+  <noun singular="batsman" plural="batsmen"/>
+  <noun singular="sword" plural="swords"/>
+  <noun singular="swordsman" plural="swordsman"/>
+  <noun singular="bridle" plural="bridles"/>
+  <noun singular="housetop" plural="housetops"/>
+  <noun singular="lobe" plural="lobes"/>
+  <noun singular="clue" plural="clues"/>
+  <noun singular="chamber" plural="chambers"/>
+  <noun singular="call" plural="calls"/>
+  <noun singular="sheriff" plural="sheriffs"/>
+  <noun singular="wadi" plural="wadis"/>
+  <noun singular="decree" plural="decrees"/>
+  <noun singular="trowel" plural="trowels"/>
+  <noun singular="polymer" plural="polymers"/>
+  <noun singular="mason" plural="masons"/>
+  <noun singular="mace" plural="maces"/>
+  <noun singular="cork" plural="corks"/>
+  <noun singular="earl" plural="earls"/>
+  <noun singular="vibrator" plural="vibrators"/>
+  <noun singular="blacktop" plural="blacktops"/>
+  <noun singular="ship" plural="ships"/>
+  <noun singular="shaker" plural="shakers"/>
+  <noun singular="koala" plural="koalas"/>
+  <noun singular="pigment" plural="pigments"/>
 </dictionary>

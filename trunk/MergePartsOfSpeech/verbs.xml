@@ -5255,4 +5255,31 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="renovates" pastSingular="renovated" pastContinuousSingular="was renovating" futureSingular="will renovate" continuousSingular="is renovating" perfectSingular="has renovated" subjunctiveSingular="might renovate"
         presentPlural="renovate" pastPlural="renovated" pastContinuousPlural="were renovating" futurePlural="will renovate" continuousPlural="are renovating" perfectPlural="have renovated" subjunctivePlural="might renovate"/>
+  <verb presentSingular="abandoned" pastSingular="abandoned" pastContinuousSingular="was abandoning" futureSingular="will abandon" continuousSingular="is abandoning" perfectSingular="has abandoned" subjunctiveSingular="might abandon"
+        presentPlural="abandon" pastPlural="abandoned" pastContinuousPlural="were abandoning" futurePlural="will abandon" continuousPlural="are abandoning" perfectPlural="have abandoned" subjunctivePlural="might abandon"/>
+  <verb presentSingular="ventilates" pastSingular="ventilated" pastContinuousSingular="was ventilating" futureSingular="will ventilate" continuousSingular="is ventilating" perfectSingular="has ventilated" subjunctiveSingular="might ventilate"
+        presentPlural="ventilate" pastPlural="ventilated" pastContinuousPlural="were ventilating" futurePlural="will ventilate" continuousPlural="are ventilating" perfectPlural="have ventilated" subjunctivePlural="might ventilate"/>
+  <verb presentSingular="echos" pastSingular="echoed" pastContinuousSingular="was echoing" futureSingular="will echo" continuousSingular="is echoing" perfectSingular="has echoed" subjunctiveSingular="might echo"
+        presentPlural="echo" pastPlural="echoed" pastContinuousPlural="were echoing" futurePlural="will echo" continuousPlural="are echoing" perfectPlural="have echoed" subjunctivePlural="might echo"
+        transitive="false"/>
+  <verb presentSingular="esteems" pastSingular="esteemed" pastContinuousSingular="was esteeming" futureSingular="will esteem" continuousSingular="is esteeming" perfectSingular="has esteemed" subjunctiveSingular="might esteem"
+        presentPlural="esteem" pastPlural="esteemed" pastContinuousPlural="were esteeming" futurePlural="will esteem" continuousPlural="are esteeming" perfectPlural="have esteemed" subjunctivePlural="might esteem"/>
+  <verb presentSingular="jousts" pastSingular="jousted" pastContinuousSingular="was jousting" futureSingular="will joust" continuousSingular="is jousting" perfectSingular="has jousted" subjunctiveSingular="might joust"
+        presentPlural="joust" pastPlural="jousted" pastContinuousPlural="were jousting" futurePlural="will joust" continuousPlural="are jousting" perfectPlural="have jousted" subjunctivePlural="might joust"/>
+  <verb presentSingular="nourishes" pastSingular="nourished" pastContinuousSingular="was nourishing" futureSingular="will nourish" continuousSingular="is nourishing" perfectSingular="has nourished" subjunctiveSingular="might nourish"
+        presentPlural="nourish" pastPlural="nourished" pastContinuousPlural="were nourishing" futurePlural="will nourish" continuousPlural="are nourishing" perfectPlural="have nourished" subjunctivePlural="might nourish"/>
+  <verb presentSingular="ravages" pastSingular="ravaged" pastContinuousSingular="was ravaging" futureSingular="will ravage" continuousSingular="is ravaging" perfectSingular="has ravaged" subjunctiveSingular="might ravage"
+        presentPlural="ravage" pastPlural="ravaged" pastContinuousPlural="were ravaging" futurePlural="will ravage" continuousPlural="are ravaging" perfectPlural="have ravaged" subjunctivePlural="might ravage"/>
+  <verb presentSingular="surrounds" pastSingular="surrounded" pastContinuousSingular="was surrounding" futureSingular="will surround" continuousSingular="is surrounding" perfectSingular="has surrounded" subjunctiveSingular="might surround"
+        presentPlural="surround" pastPlural="surrounded" pastContinuousPlural="were surrounding" futurePlural="will surround" continuousPlural="are surrounding" perfectPlural="have surrounded" subjunctivePlural="might surround"/>
+  <verb presentSingular="calls" pastSingular="called" pastContinuousSingular="was calling" futureSingular="will call" continuousSingular="is calling" perfectSingular="has called" subjunctiveSingular="might call"
+        presentPlural="call" pastPlural="called" pastContinuousPlural="were calling" futurePlural="will call" continuousPlural="are calling" perfectPlural="have called" subjunctivePlural="might call"/>
+  <verb presentSingular="refreshes" pastSingular="refreshed" pastContinuousSingular="was refreshing" futureSingular="will refresh" continuousSingular="is refreshing" perfectSingular="has refreshed" subjunctiveSingular="might refresh"
+        presentPlural="refresh" pastPlural="refreshed" pastContinuousPlural="were refreshing" futurePlural="will refresh" continuousPlural="are refreshing" perfectPlural="have refreshed" subjunctivePlural="might refresh"/>
+  <verb presentSingular="classifies" pastSingular="classified" pastContinuousSingular="was classifying" futureSingular="will classify" continuousSingular="is classifying" perfectSingular="has classified" subjunctiveSingular="might classify"
+        presentPlural="classify" pastPlural="classified" pastContinuousPlural="were classifying" futurePlural="will classify" continuousPlural="are classifying" perfectPlural="have classified" subjunctivePlural="might classify"/>
+  <verb presentSingular="negates" pastSingular="negated" pastContinuousSingular="was negating" futureSingular="will negate" continuousSingular="is negating" perfectSingular="has negated" subjunctiveSingular="might negate"
+        presentPlural="negate" pastPlural="negated" pastContinuousPlural="were negating" futurePlural="will negate" continuousPlural="are negating" perfectPlural="have negated" subjunctivePlural="might negate"/>
+  <verb presentSingular="ships" pastSingular="shipped" pastContinuousSingular="was shipping" futureSingular="will ship" continuousSingular="is shipping" perfectSingular="has shipped" subjunctiveSingular="might ship"
+        presentPlural="ship" pastPlural="shipped" pastContinuousPlural="were shipping" futurePlural="will ship" continuousPlural="are shipping" perfectPlural="have shipped" subjunctivePlural="might ship"/>
 </dictionary>
