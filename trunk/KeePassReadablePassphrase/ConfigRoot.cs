@@ -42,7 +42,7 @@ namespace KeePassReadablePassphrase
         private void ConfigRoot_Load(object sender, EventArgs e)
         {
             var ver = ((System.Reflection.AssemblyFileVersionAttribute)typeof(ConfigRoot).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyFileVersionAttribute), true).GetValue(0)).Version;
-            var idx = ver.IndexOf('.', ver.IndexOf('.')+1);
+            var idx = ver.IndexOf('.', ver.IndexOf('.', ver.IndexOf('.')+1) +1);
             this.lblVersion.Text = "Version " + ver.Substring(0, idx);
 
             // Load up the config.
