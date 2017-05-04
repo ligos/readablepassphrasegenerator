@@ -3513,7 +3513,7 @@ limitations under the License.
   <noun singular="panther" plural="panthers"/>
   <noun singular="entourage" plural="entourages"/>
   <noun singular="digest" plural="digests"/>
-  <noun singular="viewpoint" plural="viewpoint"/>
+  <noun singular="viewpoint" plural="viewpoints"/>
   <noun singular="decoration" plural="decorations"/>
   <noun singular="leg" plural="legs"/>
   <noun singular="crayfish" plural="crayfish"/>
@@ -4233,4 +4233,60 @@ limitations under the License.
   <noun singular="kiln" plural="kilns"/>
   <noun singular="hob" plural="hobs"/>
   <noun singular="jerkin" plural="jerkins"/>
+  <noun singular="puzzle" plural="puzzles"/>
+  <noun singular="lesion" plural="lesions"/>
+  <noun singular="psychic" plural="psychics"/>
+  <noun singular="diamond" plural="diamonds"/>
+  <noun singular="doublet" plural="doublets"/>
+  <noun singular="flagpole" plural="flagpoles"/>
+  <noun singular="cellar" plural="cellars"/>
+  <noun singular="crowbar" plural="crowbars"/>
+  <noun singular="slab" plural="slabs"/>
+  <noun singular="pioneer" plural="pioneers"/>
+  <noun singular="midpoint" plural="midpoints"/>
+  <noun singular="point" plural="points"/>
+  <noun singular="leaflet" plural="leaflets"/>
+  <noun singular="header" plural="headers"/>
+  <noun singular="phoenix" plural="phoenixes"/>
+  <noun singular="scud" plural="scuds"/>
+  <noun singular="mango" plural="mangos"/>
+  <noun singular="sled" plural="sleds"/>
+  <noun singular="hijacker" plural="hijackers"/>
+  <noun singular="crucifix" plural="crucifixes"/>
+  <noun singular="lookalike" plural="lookalikes"/>
+  <noun singular="condiment" plural="condiments"/>
+  <noun plural="bamboo"/>
+  <noun singular="eruption" plural="eruptions"/>
+  <noun singular="microbe" plural="microbes"/>
+  <noun singular="figment" plural="figments"/>
+  <noun plural="legalese"/>
+  <noun singular="dredge" plural="dredges"/>
+  <noun singular="defender" plural="defenders"/>
+  <noun singular="polisher" plural="polishers"/>
+  <noun singular="highball" plural="highballs"/>
+  <noun singular="shamrock" plural="shamrocks"/>
+  <noun plural="moss"/>
+  <noun singular="accident" plural="accidents"/>
+  <noun singular="scorecard" plural="scorecards"/>
+  <noun singular="sacrifice" plural="sacrifices"/>
+  <noun singular="fishtail" plural="fishtails"/>
+  <noun plural="time"/>
+  <noun singular="riddle" plural="riddles"/>
+  <noun singular="bookmark" plural="bookmarks"/>
+  <noun singular="oboe" plural="oboes"/>
+  <noun singular="slug" plural="slugs"/>
+  <noun singular="luminary" plural="luminaries"/>
+  <noun singular="slicer" plural="slicers"/>
+  <noun singular="slice" plural="slices"/>
+  <noun singular="warning" plural="warnings"/>
+  <noun singular="alley" plural="alleys"/>
+  <noun singular="tyrant" plural="tyrants"/>
+  <noun singular="library" plural="libraries"/>
+  <noun singular="punk" plural="punks"/>
+  <noun singular="balloon" plural="balloons"/>
+  <noun singular="spell" plural="spells"/>
+  <noun singular="cider" plural="ciders"/>
+  <noun singular="satrap" plural="satraps"/>
+  <noun singular="mimic" plural="mimics"/>
+  <noun singular="intercom" plural="intercoms"/>
 </dictionary>
