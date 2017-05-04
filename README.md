@@ -26,6 +26,12 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Home).
 
 ## Recent Changes ##
+* Version 1.0.0
+	* Fix bug where None word separator can still include some spaces.
+	* Fix bug where Space and None word separators were swapped.
+	* Add .NET 4.0 SKU as supported runtime (to fix Mono warning).
+	* Migrated all links to BitBucket from Codeplex.
+	* 15,020 words in the default dictionary (~900 more than 0.17 release).
 * Version 0.17
 	* Fix serious [non-random password bug](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/0.17.0-Fix-for-Non-Random-Passphrases). 
 	* All users should upgrade to this version as soon as possible
