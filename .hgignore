@@ -19,3 +19,4 @@ ReadablePassphrase.Words.*
 trunk/ReadablePassphrase.build/*
 *.suo
 ReadablePassphrase.build/*
+releases/*
