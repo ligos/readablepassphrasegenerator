@@ -20,3 +20,4 @@ trunk/ReadablePassphrase.build/*
 *.suo
 ReadablePassphrase.build/*
 releases/*
+trunk/.vs
