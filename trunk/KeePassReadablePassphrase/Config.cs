@@ -158,7 +158,7 @@ namespace KeePassReadablePassphrase
             sb.AppendLine();
             sb.AppendLine("<ReadablePassphraseConfig>");
             sb.AppendFormat("<WordSeparator value=\"{0}\"/>\n", this.WordSeparator);
-            sb.AppendFormat("<CustomSeparator value=\"{0}\"/>\n", this.CustomSeparator);
+            sb.AppendFormat("<CustomSeparator value=\"{0}\"/>\n", EncodeForXml(this.CustomSeparator));
             sb.AppendFormat("<PhraseStrength value=\"{0}\"/>\n", this.PhraseStrength);
             sb.AppendLine("<PhraseDescription>");
             if (!Clause.RandomMappings.ContainsKey(this.PhraseStrength))
@@ -170,7 +170,7 @@ namespace KeePassReadablePassphrase
             }
             sb.AppendLine("</PhraseDescription>");
             sb.AppendFormat("<UseCustomDictionary value=\"{0}\"/>\n", this.UseCustomDictionary);
-            sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", this.PathOfCustomDictionary);
+            sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", EncodeForXml(this.PathOfCustomDictionary));
             sb.AppendFormat("<MinLength value=\"{0}\"/>\n", this.MinLength);
             sb.AppendFormat("<MaxLength value=\"{0}\"/>\n", this.MaxLength);
             sb.AppendFormat("<Mutator value=\"{0}\"/>\n", this.Mutator);
@@ -187,6 +187,18 @@ namespace KeePassReadablePassphrase
         {
             if (this.PhraseStrength != PhraseStrength.Custom && !Clause.RandomMappings.ContainsKey(this.PhraseStrength))
                 this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength, null);
+        }
+
+        private static string EncodeForXml(string xml)
+        {
+            if (string.IsNullOrEmpty(xml))
+                return xml;
+            var result = xml.Replace("\"", "&quot;")
+                            .Replace("&", "&amp;")
+                            .Replace("'", "&apos;")
+                            .Replace("<", "&lt;")
+                            .Replace(">", "&gt;");
+            return result;
         }
     }
 
