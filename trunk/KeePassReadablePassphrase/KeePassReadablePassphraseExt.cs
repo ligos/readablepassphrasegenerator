@@ -25,7 +25,7 @@ namespace KeePassReadablePassphrase
         private IPluginHost _Host;
         private PassphraseGenerator _Generator;
 
-        public override string UpdateUrl => "https://makemeapassword.ligos.net/keepass_plugins.version.txt";
+        public override string UpdateUrl { get { return "https://makemeapassword.ligos.net/keepass_plugins.version.txt"; } }
 
         public override bool Initialize(IPluginHost host)
         {
