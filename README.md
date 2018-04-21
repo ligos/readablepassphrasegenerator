@@ -8,7 +8,7 @@ Runs wherever .NET or Mono is available.
 
 --- 
 
-See [MakeMeAPassword](https://makemeapassword.org/generate/ReadablePassphrase) to generate readable passphrases online (without KeePass).
+See [MakeMeAPassword](https://makemeapassword.ligos.net/generate/ReadablePassphrase) to generate readable passphrases online (without KeePass).
 
 **[Click here for step-by-step instructions to install the KeePass plugin](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/KeePass-Plugin-Step-By-Step-Guide).**
 
@@ -26,6 +26,13 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Home).
 
 ## Recent Changes ##
+* Version 1.1.1
+    * Change update site to [makemeapassword.ligos.net](https://makemeapassword.ligos.net).
+	* Add KeyBase site as contact info.
+	* Enforce requirement for KeePass 2.36 or newer.
+* Version 1.1.0
+    * Update to target .NET 4.0.
+	* Fix bug where [KeePass plugin crashes when using `&` as a word separator](https://bitbucket.org/ligos/readablepassphrasegenerator/issues/11/crash-when-entering-multiple-characters-in).
 * Version 1.0.0
 	* Fix bug where None word separator can still include some spaces.
 	* Fix bug where Space and None word separators were swapped.
