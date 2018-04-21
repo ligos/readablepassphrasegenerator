@@ -90,6 +90,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtCustomSeparator = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.lnkKeyBase = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).BeginInit();
@@ -365,7 +366,7 @@
             // 
             this.label4.Location = new System.Drawing.Point(12, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(458, 32);
+            this.label4.Size = new System.Drawing.Size(361, 32);
             this.label4.TabIndex = 9;
             this.label4.Text = "This plugin generates passphrases which are grammatically correct (mostly), thoug" +
     "h non-sensical, from a dictionary of words. An example:";
@@ -374,7 +375,7 @@
             // 
             this.lnkWebsite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkWebsite.AutoSize = true;
-            this.lnkWebsite.Location = new System.Drawing.Point(393, 41);
+            this.lnkWebsite.Location = new System.Drawing.Point(385, 41);
             this.lnkWebsite.Name = "lnkWebsite";
             this.lnkWebsite.Size = new System.Drawing.Size(58, 13);
             this.lnkWebsite.TabIndex = 16;
@@ -482,7 +483,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(394, 63);
+            this.lblVersion.Location = new System.Drawing.Point(386, 63);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(52, 13);
             this.lblVersion.TabIndex = 23;
@@ -759,6 +760,18 @@
             this.label19.TabIndex = 52;
             this.label19.Text = "Custom Separator:";
             // 
+            // lnkKeyBase
+            // 
+            this.lnkKeyBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnkKeyBase.AutoSize = true;
+            this.lnkKeyBase.Location = new System.Drawing.Point(384, 18);
+            this.lnkKeyBase.Name = "lnkKeyBase";
+            this.lnkKeyBase.Size = new System.Drawing.Size(89, 13);
+            this.lnkKeyBase.TabIndex = 53;
+            this.lnkKeyBase.TabStop = true;
+            this.lnkKeyBase.Text = "KeyBase Contact";
+            this.lnkKeyBase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkKeyBase_LinkClicked);
+            // 
             // ConfigRoot
             // 
             this.AcceptButton = this.btnOK;
@@ -766,6 +779,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(485, 581);
+            this.Controls.Add(this.lnkKeyBase);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtCustomSeparator);
             this.Controls.Add(this.cboWordSeparator);
@@ -897,5 +911,6 @@
         private System.Windows.Forms.ComboBox cboWordSeparator;
         private System.Windows.Forms.TextBox txtCustomSeparator;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.LinkLabel lnkKeyBase;
     }
 }

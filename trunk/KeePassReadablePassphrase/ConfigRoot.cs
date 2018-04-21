@@ -114,6 +114,11 @@ namespace KeePassReadablePassphrase
             // Browse to bitbucket site.
             this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.BitBucketHomepage);            
         }
+        private void lnkKeyBase_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Browse to my KeyBase page.
+            this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.KeyBaseContact);
+        }
         private void lnkPhraseHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to doco page for phrases.

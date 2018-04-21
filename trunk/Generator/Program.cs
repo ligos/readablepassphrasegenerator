@@ -440,6 +440,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -q --quiet            Does not display any status messages (default: {0})", quiet ? "hide" : "show");
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.BitBucketHomepage);
+            Console.WriteLine("Contact Murray via BitBucket or at " + ReadablePassphraseGenerator.KeyBaseContact);
         }
     }
 }

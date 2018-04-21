@@ -127,7 +127,7 @@ namespace Test
             // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
-            //TestConfigForm(generator);
+            TestConfigForm(generator);
 
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });

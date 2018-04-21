@@ -36,6 +36,7 @@ namespace MurrayGrant.ReadablePassphrase
         public WordDictionary Dictionary { get; private set; }
         public RandomSourceBase Randomness { get; private set; }
 
+        public readonly static Uri KeyBaseContact = new Uri("https://keybase.io/ligos");
         public readonly static Uri BitBucketHomepage = new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator");
         [Obsolete("Migrated to BitBucket in 2017")]
         public readonly static Uri CodeplexHomepage = new Uri("http://readablepassphrase.codeplex.com");
