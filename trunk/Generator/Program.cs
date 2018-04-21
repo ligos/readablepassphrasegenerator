@@ -81,7 +81,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             if (!quiet)
             {
                 var ver = ((System.Reflection.AssemblyFileVersionAttribute)typeof(Program).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyFileVersionAttribute), true).GetValue(0)).Version;
-                var idx = ver.IndexOf('.', ver.IndexOf('.') + 1);
+                var idx = ver.IndexOf('.', ver.IndexOf('.', ver.IndexOf('.') + 1) + 1);
                 Console.WriteLine("Readable Passphrase Generator {0}", ver.Substring(0, idx));
             }
             if (!quiet && anyLength > 0)
