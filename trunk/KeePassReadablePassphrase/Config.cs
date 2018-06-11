@@ -68,7 +68,9 @@ namespace KeePassReadablePassphrase
         private void LoadDefaults()
         {
             // Defaults.
+#pragma warning disable CS0618
             SpacesBetweenWords = true;
+#pragma warning restore
             WordSeparator = WordSeparatorOption.Space;
             CustomSeparator = "";
             PhraseStrength = PhraseStrength.Random;
@@ -91,7 +93,9 @@ namespace KeePassReadablePassphrase
                 if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "readablepassphraseconfig")
                     { }// NoOp
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "spacesbetweenwords")
+#pragma warning disable CS0618
                     this.SpacesBetweenWords = Boolean.Parse(reader.GetAttribute("value"));
+#pragma warning restore
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "wordseparator")
                     this.WordSeparator = (WordSeparatorOption)Enum.Parse(typeof(WordSeparatorOption), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "customseparator")
@@ -146,10 +150,12 @@ namespace KeePassReadablePassphrase
             if (NumericCount > 999)
                 NumericCount = 999;
 
+#pragma warning disable CS0618
             if (WordSeparator == WordSeparatorOption.Unknown && SpacesBetweenWords)
                 WordSeparator = WordSeparatorOption.Space;
             else if (WordSeparator == WordSeparatorOption.Unknown && !SpacesBetweenWords)
                 WordSeparator = WordSeparatorOption.None;
+#pragma warning restore
         }
         public string ToConfigString()
         {

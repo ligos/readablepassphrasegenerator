@@ -63,7 +63,6 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public IEnumerable<Clause> Object { get; set; }
 
         private readonly IEnumerable<TenseData> _TenseData;
-        private bool _IsSecondCall = false;
         private int _LastVerbTemplateIndex = -1;
 
         public VerbClause()
@@ -120,7 +119,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 // This probably shouldn't happen, but if it does, we'll take the noun.
                 subjectIsPlural = ntemp.IsPlural;
             else
-                throw new ApplicationException("Unexpected state.");
+                throw new Exception("Unexpected state.");
             var verbFormToBePlural = subjectIsPlural;
 
             // Choose how to handle intransitive verbs.
@@ -216,7 +215,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 if (x.Range.Within(choice))
                     return x.Tense;
             }
-            throw new ApplicationException("Unexpected state for choice " + choice);
+            throw new Exception("Unexpected state for choice " + choice);
         }
         private class RangeToTense
         {

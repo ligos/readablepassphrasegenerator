@@ -1,156 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{60C9ECF7-95D4-48E4-8E8C-F7A2029F443D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <Company>Murray Grant</Company>
+    <Product>ReadablePassphrase</Product>
+    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <Authors>Murray Grant</Authors>
+    <Version>1.1.2</Version>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
-    <AssemblyName>ReadablePassphrase</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <LangVersion>default</LangVersion>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>ReadablePassphrase.xml</DocumentationFile>
-    <NoWarn>CS1591</NoWarn>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>ReadablePassphrase.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup>
+
+   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>ReadablePassphrase.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>ReadablePassphrase.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
+
+   <ItemGroup>
+     <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj" />
+   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="System.Security.SecureString" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Dictionaries\DictionaryExtensions.cs" />
-    <Compile Include="Dictionaries\EmptyDictionary.cs" />
-    <Compile Include="Dictionaries\ExplicitXmlDictionary.cs" />
-    <Compile Include="Dictionaries\ExplicitXmlDictionaryLoader.cs" />
-    <Compile Include="Helpers\CollectionHelpers.cs" />
-    <Compile Include="MaterialisedWords\Adjective.cs" />
-    <Compile Include="MaterialisedWords\Adverb.cs" />
-    <Compile Include="MaterialisedWords\Article.cs" />
-    <Compile Include="MaterialisedWords\Conjunction.cs" />
-    <Compile Include="MaterialisedWords\Number.cs" />
-    <Compile Include="MaterialisedWords\IndefinitePronoun.cs" />
-    <Compile Include="MaterialisedWords\SpeachVerb.cs" />
-    <Compile Include="MaterialisedWords\ProperNoun.cs" />
-    <Compile Include="MaterialisedWords\Interrogative.cs" />
-    <Compile Include="MaterialisedWords\Demonstrative.cs" />
-    <Compile Include="MaterialisedWords\Noun.cs" />
-    <Compile Include="MaterialisedWords\PersonalPronoun.cs" />
-    <Compile Include="MaterialisedWords\Preposition.cs" />
-    <Compile Include="MaterialisedWords\Verb.cs" />
-    <Compile Include="Mutators\ICombinations.cs" />
-    <Compile Include="Mutators\NullMutator.cs" />
-    <Compile Include="Mutators\NumericMutator.cs" />
-    <Compile Include="Mutators\UppercaseRunMutator.cs" />
-    <Compile Include="Mutators\UppercaseWordMutator.cs" />
-    <Compile Include="Mutators\UppercaseMutator.cs" />
-    <Compile Include="PhraseCombinations.cs" />
-    <Compile Include="PhraseDescription\Clause.cs" />
-    <Compile Include="PhraseDescription\ConjunctionClause.cs" />
-    <Compile Include="PhraseDescription\AnyWordClause.cs" />
-    <Compile Include="PhraseDescription\DirectSpeachClause.cs" />
-    <Compile Include="PhraseDescription\NounClause.cs" />
-    <Compile Include="PhraseDescription\PhraseDescriptionParseException.cs" />
-    <Compile Include="PhraseDescription\TagInConfigurationAttribute.cs" />
-    <Compile Include="PhraseDescription\VerbClause.cs" />
-    <Compile Include="PhraseStrength.cs" />
-    <Compile Include="Random\ExternalRandomSource.cs" />
-    <Compile Include="Random\CryptoRandomSource.cs" />
-    <Compile Include="Random\RandomSource.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadablePassphraseGenerator.cs" />
-    <Compile Include="WordTemplate\AdjectiveTemplate.cs" />
-    <Compile Include="WordTemplate\ArticleTemplate.cs" />
-    <Compile Include="WordTemplate\AdverbTemplate.cs" />
-    <Compile Include="WordTemplate\AnyTemplate.cs" />
-    <Compile Include="WordTemplate\NumberTemplate.cs" />
-    <Compile Include="WordTemplate\IndefinitePronounTemplate.cs" />
-    <Compile Include="WordTemplate\SpeachVerbTemplate.cs" />
-    <Compile Include="WordTemplate\PhraseConjunctionTemplate.cs" />
-    <Compile Include="WordTemplate\NounConjunctionTemplate.cs" />
-    <Compile Include="WordTemplate\ProperNounTemplate.cs" />
-    <Compile Include="WordTemplate\InterrogativeTemplate.cs" />
-    <Compile Include="WordTemplate\PersonalPronounTemplate.cs" />
-    <Compile Include="WordTemplate\PrepositionTemplate.cs" />
-    <Compile Include="WordTemplate\DemonstrativeTemplate.cs" />
-    <Compile Include="WordTemplate\VerbTemplate.cs" />
-    <Compile Include="WordTemplate\NounTemplate.cs" />
-    <Compile Include="WordTemplate\Template.cs" />
-    <Compile Include="WordTemplate\WordAndString.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MurrayGrant.snk" />
-    <Compile Include="Mutators\IMutator.cs" />
-    <None Include="NotMurrayGrant.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj">
-      <Project>{ce0eec1c-f997-4b6b-97c8-909474ed6970}</Project>
-      <Name>ReadablePassphrase.Words</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy /y "$(SolutionDir)MergePartsOfSpeech\bin\$(ConfigurationName)\dictionary.xml" "$(TargetDir)"
-copy /y "$(TargetPath)" "$(SolutionDir)KeePassReadablePassphrase"
-copy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)KeePassReadablePassphrase"</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

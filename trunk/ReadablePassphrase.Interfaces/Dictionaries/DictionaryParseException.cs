@@ -22,15 +22,19 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     /// <summary>
     /// Thrown if a parsing error occurs within a dictionary.
     /// </summary>
+#if !NETSTANDARD
     [Serializable]
+#endif
     public class DictionaryParseException : UnableToLoadDictionaryException
     {
         public DictionaryParseException() { }
         public DictionaryParseException(string message) : base(message) { }
         public DictionaryParseException(string message, Exception inner) : base(message, inner) { }
+#if !NETSTANDARD
         protected DictionaryParseException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
+#endif
     }
 }

@@ -25,6 +25,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 { 
     public class ExplicitXmlDictionaryLoader : IDictionaryLoader
     {
+        private static readonly string[] _DefaultFilenames = new[] { "dictionary.xml", "dictionary.xml.gz", "dictionary.gz" };
+
         private ExplicitXmlWordDictionary _Dict;
         private readonly Dictionary<string, Action<XmlReader>> _NodeLookup;
         private long _StreamSize;
@@ -62,6 +64,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
             // See what's been set in the arguments.
             FileInfo fileLocation = null;
+            DirectoryInfo dirLocation = null;
             Uri urlLocation = null;
             bool isCompressedTemp;
             bool? isCompressed = null;
@@ -69,6 +72,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             bool? useDefaultDictionary = null;
             if (args.ContainsKey("file") && !String.IsNullOrEmpty(args["file"]))
                 fileLocation = new FileInfo(args["file"]);
+            else if (args.ContainsKey("dir") && !String.IsNullOrEmpty(args["dir"]))
+                dirLocation = new DirectoryInfo(args["dir"]);
             else if (args.ContainsKey("url") && !String.IsNullOrEmpty(args["url"]))
                 urlLocation = new Uri(args["url"]);
             if (args.ContainsKey("isCompressed") && Boolean.TryParse(args["isCompressed"], out isCompressedTemp)) 
@@ -79,12 +84,20 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             // Based on what was passed in, call an appropriate LoadFrom() overload.
             if (fileLocation != null)
                 return this.LoadFrom(fileLocation);
+            else if (dirLocation != null)
+                return this.LoadFrom(dirLocation);
             else if (urlLocation != null && !isCompressed.HasValue)
                 throw new InvalidDictionaryLoaderArgumentException("If you are loading from a url, you must specify 'isCompressed=true|false'.");
             else if (urlLocation != null)
+#if NETSTANDARD
+                throw new InvalidDictionaryLoaderArgumentException("Loading from a URL is not supported in .NET Core; use System.Net.Http and pass your Stream / XmlReader to a LoadFrom() overload.");
+#else
                 return this.LoadFrom(urlLocation, isCompressed.Value);
+#endif
             else if (useDefaultDictionary == true)
+#pragma warning disable CS0618
                 return this.LoadFrom();
+#pragma warning restore
             else
                 throw new InvalidDictionaryLoaderArgumentException("Neither 'url' or 'file' parameters were specified. If you with to look for and load a defult dictionary.xml file in the current directory, specify 'useDefaultDictionary=true'.");
         }
@@ -94,18 +107,22 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// </summary>
         /// <remarks>
         /// This will attempt to load 'dictionary.xml, .xml.gz and .gz' from
-        /// the folder of the exe (<c>Assembly.GetEntryAssembly()</c>) or the current directory (<c>Environment.CurrentDirectory</c>).
+        /// the folder of the exe (<c>Assembly.GetEntryAssembly()</c>; Windows only) or the current directory (<c>Environment.CurrentDirectory</c>; all platforms).
         /// 
         /// For information about the dictionary schema definition see the default xml file or bitbucket website.
         /// </remarks>
+        [Obsolete("Recommend using LoadFrom(DirectoryInfo) or LoadFrom(FileInfo) for consistancy across platforms.")]
         public ExplicitXmlWordDictionary LoadFrom()
         {
             // Check dictionary.xml, dictionary.xml.gz, dictionary.gz in entrypoint and current working directory.
-            var filenames = new string[] { "dictionary.xml", "dictionary.xml.gz", "dictionary.gz" };
-            var allLocationsToCheck = filenames.Select(f => Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), f))
-                .Concat(filenames.Select(f => Path.Combine(Environment.CurrentDirectory, f)))
-                .ToArray();
+            var allLocationsToCheck = Enumerable.Empty<string>();
 
+#if !NETSTANDARD
+            // Assembly.GetEntryAssembly() is only available in NetStandard 1.5
+            allLocationsToCheck = allLocationsToCheck.Concat(_DefaultFilenames.Select(f => Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), f)));
+#endif
+            allLocationsToCheck = allLocationsToCheck.Concat(_DefaultFilenames.Select(f => Path.Combine(Directory.GetCurrentDirectory(), f)));
+            
             foreach (var fileAndPath in allLocationsToCheck)
             {
                 ExplicitXmlWordDictionary result = null;
@@ -146,10 +163,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(string pathToExternalFile)
         {
-            if (!String.IsNullOrEmpty(pathToExternalFile))
-                return this.LoadFrom(new FileInfo(pathToExternalFile));
-            else
-                return this.LoadFrom();
+            if (String.IsNullOrEmpty(pathToExternalFile)) throw new ArgumentNullException(nameof(pathToExternalFile));
+            return this.LoadFrom(new FileInfo(pathToExternalFile));
         }
         /// <summary>
         /// Loads a dictionary from the specified file.
@@ -161,11 +176,36 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// </remarks>
         public ExplicitXmlWordDictionary LoadFrom(FileInfo externalFile)
         {
+            if (externalFile == null) throw new ArgumentNullException(nameof(externalFile));
             using (var s = externalFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
                 return LoadFrom(s);
         }
 
+        /// <summary>
+        /// Loads a dictionary from the specified directory based on common names.
+        /// </summary>
+        /// <remarks>
+        /// This will attempt to load 'dictionary.xml, .xml.gz and .gz' from the specified directory.
+        /// </remarks>
+        public ExplicitXmlWordDictionary LoadFrom(DirectoryInfo searchDirectory)
+        {
+            if (searchDirectory == null) throw new ArgumentNullException(nameof(searchDirectory));
 
+            var allLocationsToCheck = _DefaultFilenames.Select(f => Path.Combine(searchDirectory.FullName, f));
+            foreach (var fileAndPath in allLocationsToCheck)
+            {
+                ExplicitXmlWordDictionary result = null;
+                if (TryLoadDictionaryFromPath(fileAndPath, out result))
+                    return result;
+            }
+
+            throw new UnableToLoadDictionaryException("Unable to load default dictionary. Tried the following locations: " + String.Join(", ", allLocationsToCheck));
+        }
+
+        // System.Net.WebRequest not available in Standard 1.3
+        // Use System.Net.Http to make your http request and then pass the Stream / XmlReader to a LoadFrom() overload.
+        // Not referencing System.Net.Http as it has a long list of dependencies.
+#if !NETSTANDARD    
         /// <summary>
         /// Loads a dictionary from the specified url.
         /// </summary>
@@ -194,7 +234,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             using (var response = request.GetResponse())
                 return LoadFrom(response.GetResponseStream(), isCompressed);
         }
-
+#endif
 
         /// <summary>
         /// Loads a dictionary from the specified stream.
@@ -366,7 +406,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 _Dict.Add(new MaterialisedNumber(i));
         }
 
-        #region Dispose
+#region Dispose
         private bool _IsDisposed = false;
         public void Dispose()
         {
@@ -377,6 +417,6 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             }
             GC.SuppressFinalize(this);
         }
-        #endregion
+#endregion
     }
 }

@@ -88,7 +88,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             else if (NounFromAdjectiveFactor != 0)
                 this.AddAdjectiveAsNoun(randomness, dictionary, currentTemplate);
             else
-                throw new ApplicationException("Unexpected state.");
+                throw new Exception("Unexpected state.");
         }
         public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {

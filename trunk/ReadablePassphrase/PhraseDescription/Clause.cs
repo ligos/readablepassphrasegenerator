@@ -16,7 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
+using MurrayGrant.ReadablePassphrase.Helpers;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
@@ -178,7 +180,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
         public void ToStringBuilder(StringBuilder sb)
         {
-            var rootTag = (TagInConfigurationAttribute)this.GetType().GetCustomAttributes(typeof(TagInConfigurationAttribute), true).First();
+            var rootTag = (TagInConfigurationAttribute)this.GetType().GetAttrs(typeof(TagInConfigurationAttribute), true).First();
             var groupedProperties = this.GetType().GetProperties()
                                             .Select(p => new PropertyAndAttributes { Property = p, Tag = (TagInConfigurationAttribute)p.GetCustomAttributes(typeof(TagInConfigurationAttribute), true).FirstOrDefault() })
                                             .Where(p => p.Tag != null)
@@ -213,7 +215,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             {
                 // Find and create the correct clause instance.
                 var tag = s.Substring(startIdx, equalsIdx - startIdx).Trim().ToLower();
-                var type = AllowedClauseTypes.FirstOrDefault(t => ((TagInConfigurationAttribute)t.GetCustomAttributes(typeof(TagInConfigurationAttribute), true).First()).Name.ToLower() == tag);
+                var type = AllowedClauseTypes.FirstOrDefault(t => ((TagInConfigurationAttribute)t.GetAttrs(typeof(TagInConfigurationAttribute), true).First()).Name.ToLower() == tag);
                 if (type == null)
                     throw new PhraseDescriptionParseException("Unknown clause type: " + tag, startIdx);
                 var clause = (Clause)Activator.CreateInstance(type);
@@ -226,9 +228,9 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 int propStartIdx = s.IndexOf('{', equalsIdx) + 1;
                 int propEndIdx = s.IndexOf('}', propStartIdx);
                 if (propStartIdx == -1)
-                    throw new PhraseDescriptionParseException(String.Format("Cannot find '{' in '{0}' clause.", tag), equalsIdx);
+                    throw new PhraseDescriptionParseException(String.Format("Cannot find '{0}' in '{1}' clause.", "{", tag), equalsIdx);
                 if (propEndIdx == -1)
-                    throw new PhraseDescriptionParseException(String.Format("Cannot find '}' in '{0}' clause.", tag), equalsIdx);
+                    throw new PhraseDescriptionParseException(String.Format("Cannot find '{0}' in '{1}' clause.", "}", tag), equalsIdx);
 
                 foreach (string kvp in s.Substring(propStartIdx, propEndIdx - propStartIdx)
                                         .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))

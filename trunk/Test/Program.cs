@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using MurrayGrant.ReadablePassphrase;
 using MurrayGrant.ReadablePassphrase.Dictionaries;
 using MurrayGrant.ReadablePassphrase.Words;
@@ -36,7 +37,7 @@ namespace Test
             var sw = System.Diagnostics.Stopwatch.StartNew();
             var generator = new ReadablePassphraseGenerator(GetRandomness());
             var loader = new ExplicitXmlDictionaryLoader();
-            var dict = loader.LoadFrom();
+            var dict = loader.LoadFrom(new DirectoryInfo(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)));
             generator.SetDictionary(dict);
             sw.Stop();
             Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
@@ -127,8 +128,9 @@ namespace Test
             // TODO: Test load an alternate dictionary loader.
 
             // Test the config form.
+#if NETFRAMEWORK        // No WinForms in NetCore
             TestConfigForm(generator);
-
+#endif
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
 
@@ -390,6 +392,7 @@ namespace Test
             Console.WriteLine();
         }
 
+#if NETFRAMEWORK        // No WinForms in NetCore
         private static void TestConfigForm(ReadablePassphraseGenerator generator)
         {
             String config;
@@ -406,6 +409,7 @@ namespace Test
                 frm.ShowDialog();
             }
         }
+#endif
 
         private static void WriteStatisticsFor(ReadablePassphraseGenerator generator, PhraseStrength strength, int count, string filename)
         {
@@ -507,7 +511,7 @@ namespace Test
         private static RandomSourceBase SeededRandom()
         {
             var randomness = new KeePassLib.Cryptography.CryptoRandomStream(KeePassLib.Cryptography.CrsAlgorithm.Salsa20, new byte[] { 0x01 });
-            return new KeePassReadablePassphrase.KeePassRandomSource(randomness);
+            return new KeePassTestRandomSource(randomness);
         }
         private static RandomSourceBase CryptoRandom()
         {

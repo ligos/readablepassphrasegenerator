@@ -21,14 +21,14 @@ using System.Security.Cryptography;
 namespace MurrayGrant.ReadablePassphrase.Random
 {
     /// <summary>
-    /// The default random source uses the <c>RNGCryptoServiceProvider</c>.
+    /// The default random source uses the <c>RandomNumberGenerator.Create()</c>.
     /// </summary>
     public class CryptoRandomSource : RandomSourceBase
     {
-        private RNGCryptoServiceProvider _RandomProvider;
+        private RandomNumberGenerator _RandomProvider;
         public CryptoRandomSource()
         {
-            this._RandomProvider = new RNGCryptoServiceProvider();
+            this._RandomProvider = RandomNumberGenerator.Create();
         }
 
         public override byte[] GetRandomBytes(int numberOfBytes)

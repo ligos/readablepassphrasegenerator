@@ -18,23 +18,14 @@ using System.Linq;
 using System.Text;
 using KeePassLib.Cryptography;
 
-namespace KeePassReadablePassphrase
+namespace Test
 {
-    public class KeePassRandomSource : MurrayGrant.ReadablePassphrase.Random.RandomSourceBase
+    // This is the same as one in the KeePassReadablePassphrase project, but without references to WinForms.
+    public class KeePassTestRandomSource : MurrayGrant.ReadablePassphrase.Random.RandomSourceBase
     {
-        private CryptoRandomStream _Crs;
-        public KeePassRandomSource()
-        {
-            var randomness = System.Security.Cryptography.RandomNumberGenerator.Create();
-            var bytes = new byte[32];
-            randomness.GetBytes(bytes);
-            this._Crs = new CryptoRandomStream(CrsAlgorithm.Salsa20, bytes);
-        }
-        public KeePassRandomSource(byte[] seed)
-        {
-            this._Crs = new CryptoRandomStream(CrsAlgorithm.Salsa20, seed);
-        }
-        public KeePassRandomSource(CryptoRandomStream crs)
+        private readonly CryptoRandomStream _Crs;
+
+        public KeePassTestRandomSource(CryptoRandomStream crs)
         {
             this._Crs = crs;
         }

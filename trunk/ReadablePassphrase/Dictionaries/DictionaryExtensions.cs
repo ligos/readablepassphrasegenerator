@@ -51,7 +51,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             var possibleWords = dict.OfType<T>().Where(w => wordPredicate(w) && !alreadyChosen.Contains(w)).ToList();
             var matchingWordCount = possibleWords.Count;
             if (matchingWordCount == 0)
-                throw new ApplicationException(String.Format("Unable to choose a {0} at random. There are no words which match the specified predicate which are not already chosen.", typeof(T).Name));
+                throw new Exception(String.Format("Unable to choose a {0} at random. There are no words which match the specified predicate which are not already chosen.", typeof(T).Name));
             var idx = randomness.Next(matchingWordCount);
             var result = possibleWords[idx];
             return result;

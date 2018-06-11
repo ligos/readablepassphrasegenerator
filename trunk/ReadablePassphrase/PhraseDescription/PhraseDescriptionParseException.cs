@@ -19,7 +19,9 @@ using System.Text;
 
 namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 {
+#if !NETSTANDARD
     [Serializable]
+#endif
     public class PhraseDescriptionParseException : Exception
     {
         public PhraseDescriptionParseException() { }
@@ -27,9 +29,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public PhraseDescriptionParseException(string message, Exception inner) : base(message, inner) { }
         public PhraseDescriptionParseException(string message, int errorIndex) : base(message) { }
         public PhraseDescriptionParseException(string message, int errorIndex, Exception inner) : base(message, inner) { }
+#if !NETSTANDARD
         protected PhraseDescriptionParseException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
+#endif
     }
 }

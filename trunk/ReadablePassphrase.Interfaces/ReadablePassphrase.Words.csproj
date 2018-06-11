@@ -1,90 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CE0EEC1C-F997-4B6B-97C8-909474ED6970}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <Company>Murray Grant</Company>
+    <Product>ReadablePassphrase</Product>
+    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <Authors>Murray Grant</Authors>
+    <Version>1.1.2</Version>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
+Interfaces and Dictionary classes only; you should reference ReadablePassphrase to generate passphrases.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
-    <AssemblyName>ReadablePassphrase.Words</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <LangVersion>default</LangVersion>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>ReadablePassphrase.Words.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.Words.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>ReadablePassphrase.Words.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.Words.xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Dictionaries\DictionaryParseException.cs" />
-    <Compile Include="Dictionaries\IDictionaryLoader.cs" />
-    <Compile Include="Dictionaries\InvalidDictionaryLoaderArgumentsException.cs" />
-    <Compile Include="Dictionaries\UnableToLoadDictionaryException.cs" />
-    <Compile Include="Dictionaries\WordDictionary.cs" />
-    <Compile Include="Words\Adjective.cs" />
-    <Compile Include="Words\Adverb.cs" />
-    <Compile Include="Words\Article.cs" />
-    <Compile Include="Words\Conjunction.cs" />
-    <Compile Include="Words\Number.cs" />
-    <Compile Include="Words\IndefinitePronoun.cs" />
-    <Compile Include="Words\SpeachVerb.cs" />
-    <Compile Include="Words\ProperNoun.cs" />
-    <Compile Include="Words\Demonstrative.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Words\Interrogative.cs" />
-    <Compile Include="Words\Noun.cs" />
-    <Compile Include="Words\PersonalPronoun.cs" />
-    <Compile Include="Words\Preposition.cs" />
-    <Compile Include="Words\Verb.cs" />
-    <Compile Include="Words\Word.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="MurrayGrant.snk" />
-    <None Include="NotMurrayGrant.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetPath)" "$(SolutionDir)KeePassReadablePassphrase"
-copy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)KeePassReadablePassphrase"</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

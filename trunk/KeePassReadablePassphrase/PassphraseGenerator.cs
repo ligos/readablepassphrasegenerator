@@ -85,7 +85,8 @@ namespace KeePassReadablePassphrase
             // Create and cache the dictionary.
             // Important note: do not cache the CryptoRandomStream or ReadablePassphraseGenerator
             //    If you do, the CryptoRandomStream is disposed after the method returns, and you end up with very deterministic random numbers.
-            //    This can manifest itself as the name random words are generated in the Preview tab in KeeyPass's Generate Password form.
+            //    This can manifest itself as the name sandom words are generated in the Preview tab in KeeyPass's Generate Password form.
+            //    OR in more recent version of KeePass, you get an ObjectDisposedException
             var dict = GetDictionary(conf);
             var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(dict, new KeePassRandomSource(crsRandomSource));
 

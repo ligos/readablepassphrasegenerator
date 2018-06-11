@@ -21,3 +21,8 @@ trunk/ReadablePassphrase.build/*
 ReadablePassphrase.build/*
 releases/*
 trunk/.vs
+trunk/Generator/dictionary.xml.gz
+trunk/MergePartsOfSpeech/dictionary.xml
+trunk/PassphraseGenerator.net452.zip
+trunk/PassphraseGenerator.netcoreapp21.zip
+trunk/Test/dictionary.xml

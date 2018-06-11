@@ -22,15 +22,19 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     /// <summary>
     /// Thrown if the arguments dictionary passed to the <c>IDictionaryLoader</c> are invalid.
     /// </summary>
+#if !NETSTANDARD
     [Serializable]
+#endif
     public class InvalidDictionaryLoaderArgumentException : UnableToLoadDictionaryException
     {
         public InvalidDictionaryLoaderArgumentException() { }
         public InvalidDictionaryLoaderArgumentException(string message) : base(message) { }
         public InvalidDictionaryLoaderArgumentException(string message, Exception inner) : base(message, inner) { }
+#if !NETSTANDARD
         protected InvalidDictionaryLoaderArgumentException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
+#endif
     }
 }

@@ -79,7 +79,7 @@ namespace MurrayGrant.ReadablePassphrase.Words
             else if (tense == VerbTense.Subjunctive && isPlural)
                 return this.SubjunctivePlural;
             else
-                throw new ApplicationException(String.Format("Unexpected case of tense ({0}) and isPlural ({1}).", tense, isPlural));
+                throw new Exception(String.Format("Unexpected case of tense ({0}) and isPlural ({1}).", tense, isPlural));
         }
         public override IEnumerable<string> AllForms()
         {

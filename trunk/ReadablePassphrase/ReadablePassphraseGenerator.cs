@@ -168,7 +168,7 @@ namespace MurrayGrant.ReadablePassphrase
                         else if (pair.Length == 0)
                             return new KeyValuePair<string, string>("", "");
                         else
-                            throw new ApplicationException("Unexpected number of items when splitting argument string.");
+                            throw new Exception("Unexpected number of items when splitting argument string.");
                     })
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
