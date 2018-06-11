@@ -11,5 +11,6 @@ rem Build ZIP file for .NET Core 2.1
 del /q PassphraseGenerator.netcoreapp21.zip
 zip.exe -9j PassphraseGenerator.netcoreapp21.zip Generator\bin\Release\netcoreapp2.1\*.* 
 zip.exe -u PassphraseGenerator.netcoreapp21.zip LICENSE.txt NOTICE.txt
+zip.exe -d PassphraseGenerator.netcoreapp21.zip PassphraseGenerator.runtimeconfig.dev.json
 
 pause
