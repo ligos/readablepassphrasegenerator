@@ -38,8 +38,8 @@ limitations under the License.
         transitive="false"/>
   <verb presentSingular="demolishes" pastSingular="demolished" pastContinuousSingular="was demolishing" futureSingular="will demolish" continuousSingular="is demolishing" perfectSingular="has demolished" subjunctiveSingular="might demolish"
         presentPlural="demolish" pastPlural="demolished" pastContinuousPlural="were demolishing" futurePlural="will demolish" continuousPlural="are demolishing" perfectPlural="have demolished" subjunctivePlural="might demolish"/>
-  <verb presentSingular="edits" pastSingular="edited" pastContinuousSingular="was editing" futureSingular="will demolish" continuousSingular="is demolishing" perfectSingular="has demolished" subjunctiveSingular="might demolish"
-        presentPlural="edit" pastPlural="edited" pastContinuousPlural="were demolishing" futurePlural="will demolish" continuousPlural="are demolishing" perfectPlural="have demolished" subjunctivePlural="might demolish"/>
+  <verb presentSingular="edits" pastSingular="edited" pastContinuousSingular="was editing" futureSingular="will edit" continuousSingular="is editing" perfectSingular="has edited" subjunctiveSingular="might edit"
+        presentPlural="edit" pastPlural="edited" pastContinuousPlural="were editing" futurePlural="will edit" continuousPlural="are editing" perfectPlural="have edited" subjunctivePlural="might edit"/>
   <verb presentSingular="scrubs" pastSingular="scrubbed" pastContinuousSingular="was scrubbing" futureSingular="will scrub" continuousSingular="is scrubbing" perfectSingular="has scrubbed" subjunctiveSingular="might scrub"
         presentPlural="scrub" pastPlural="scrubbed" pastContinuousPlural="were scrubbing" futurePlural="will scrub" continuousPlural="are scrubbing" perfectPlural="have scrubbed" subjunctivePlural="might scrub"/>
   <verb presentSingular="invests" pastSingular="invested" pastContinuousSingular="was investing" futureSingular="will invest" continuousSingular="is investing" perfectSingular="has invested" subjunctiveSingular="might invest"
