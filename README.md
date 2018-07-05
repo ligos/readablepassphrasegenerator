@@ -9,6 +9,7 @@ Runs wherever .NET or Mono is available.
 --- 
 
 See [MakeMeAPassword](https://makemeapassword.ligos.net/generate/ReadablePassphrase) to generate readable passphrases online (without KeePass).
+Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/) (runs entirely in your browser).
 
 **[Click here for step-by-step instructions to install the KeePass plugin](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/KeePass-Plugin-Step-By-Step-Guide).**
 
