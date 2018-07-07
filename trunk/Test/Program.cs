@@ -134,6 +134,12 @@ namespace Test
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
 
+            // Test loading the dictionary from the 
+            var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
+            var defaultDict = MurrayGrant.ReadablePassphrase.Dictionaries.Default.Load();
+            defaultDictSw.Stop();
+            Console.WriteLine("Loaded default dictionary from assembly resource with {0:N0} words in {1:N2}ms ({2:N3} words / sec)", defaultDict.Count, defaultDictSw.Elapsed.TotalMilliseconds, defaultDict.Count / defaultDictSw.Elapsed.TotalSeconds);
+
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey(true);

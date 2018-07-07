@@ -7,7 +7,9 @@
     <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
     <Authors>Murray Grant</Authors>
     <Version>1.1.2</Version>
-    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
+
+This is the Core assembly. For normal use, reference the "ReadablePassphrase" package.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <LangVersion>default</LangVersion>
     <NoWarn>1701;1702;1591</NoWarn>

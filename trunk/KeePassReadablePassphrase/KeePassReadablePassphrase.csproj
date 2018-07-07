@@ -35,7 +35,7 @@ Plugin for KeePass.</Description>
 
   <ItemGroup>
     <ProjectReference Include="..\ReadablePassphrase.Interfaces\ReadablePassphrase.Words.csproj" />
-    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
+    <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
+    <PackageId>ReadablePassphrase.DefaultDictionary</PackageId>
+    <Version>1.1.2</Version>
+    <Authors>Murray Grant</Authors>
+    <Product>ReadablePassphrase</Product>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
+
+For normal use, reference the "ReadablePassphrase" package.
+
+This is just the default dictionary as an embedded rsource.</Description>
+    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="dictionary.xml.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="dictionary.xml.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.Core.csproj" />
+  </ItemGroup>
+
+</Project>
