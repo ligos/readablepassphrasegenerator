@@ -18,5 +18,16 @@ namespace MurrayGrant.ReadablePassphrase.Helpers
             return (t.GetCustomAttributes(attrType, inherit) ?? new object[0]).Cast<Attribute>();
 #endif
         }
+
+        public static Assembly GetAssembly(this Type t)
+        {
+            if (t == null) throw new ArgumentNullException(nameof(t));
+
+#if NETSTANDARD
+            return t.GetTypeInfo().Assembly;
+#else
+            return t.Assembly;
+#endif
+        }
     }
 }

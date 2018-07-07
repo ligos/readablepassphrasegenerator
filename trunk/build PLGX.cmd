@@ -14,10 +14,10 @@ cd ../../../..
 
 rem Copy required files to build folder.
 copy /y "KeePassReadablePassphrase\*.*"  "ReadablePassphrase.build"
-copy /y "ReadablePassphrase\bin\Release\net40\ReadablePassphrase.dll" "ReadablePassphrase.build"
-copy /y "ReadablePassphrase\bin\Release\net40\ReadablePassphrase.pdb" "ReadablePassphrase.build"
-copy /y "ReadablePassphrase\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"
-copy /y "ReadablePassphrase\bin\Release\net40\ReadablePassphrase.Words.pdb" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.dll" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.pdb" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.pdb" "ReadablePassphrase.build"
 
 copy /y LICENSE.txt ReadablePassphrase.build
 copy /y NOTICE.txt ReadablePassphrase.build

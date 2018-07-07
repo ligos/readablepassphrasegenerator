@@ -19,11 +19,11 @@ This is the Core assembly. For normal use, reference the "ReadablePassphrase" pa
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.Core.xml</DocumentationFile>
   </PropertyGroup>
 
    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
-    <DocumentationFile>bin\Release\net40\ReadablePassphrase.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.Core.xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>

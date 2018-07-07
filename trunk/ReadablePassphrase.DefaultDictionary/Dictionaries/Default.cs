@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using MurrayGrant.ReadablePassphrase.Helpers;
 
 namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
@@ -26,7 +27,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public static WordDictionary Load()
         {
             var loader = new ExplicitXmlDictionaryLoader();
-            using (var s = typeof(Default).GetTypeInfo().Assembly.GetManifestResourceStream(DictionaryResourceName))
+            using (var s = typeof(Default).GetAssembly().GetManifestResourceStream(DictionaryResourceName))
             {
                 WordDictionary result = loader.LoadFrom(s);
                 return result;
