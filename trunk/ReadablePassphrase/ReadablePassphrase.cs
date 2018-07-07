@@ -25,6 +25,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="words">Use null for the default dictionary, or supply your own.</param>
         /// <param name="randomness">Use null for system crypto random source, or supply your own.</param>
         /// <returns></returns>
+        /// <remarks>For further information see MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator</remarks>
         public static ReadablePassphraseGenerator Create(Dictionaries.WordDictionary words = null, Random.RandomSourceBase randomness = null)
         {
             var ws = words ?? MurrayGrant.ReadablePassphrase.Dictionaries.Default.Load();

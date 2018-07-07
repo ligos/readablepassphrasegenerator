@@ -2,8 +2,34 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <Company>Murray Grant</Company>
+    <Product>ReadablePassphrase</Product>
+    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <Authors>Murray Grant</Authors>
+    <Version>1.1.2</Version>
+    <Description>
+      Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
+
+      To get started: MurrayGrant.ReadablePassphrase.Generator.Create()
+    </Description>
+    <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
+    <LangVersion>default</LangVersion>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.xml</DocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
     <ProjectReference Include="..\ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj" />
