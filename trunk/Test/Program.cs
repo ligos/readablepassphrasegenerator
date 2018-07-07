@@ -140,6 +140,9 @@ namespace Test
             defaultDictSw.Stop();
             Console.WriteLine("Loaded default dictionary from assembly resource with {0:N0} words in {1:N2}ms ({2:N3} words / sec)", defaultDict.Count, defaultDictSw.Elapsed.TotalMilliseconds, defaultDict.Count / defaultDictSw.Elapsed.TotalSeconds);
 
+            var easyCreatedGenerator = MurrayGrant.ReadablePassphrase.Generator.Create();
+            Console.WriteLine("Loaded generator from Generator.Create() with default dictionary of {0:N0} words.", easyCreatedGenerator.Dictionary.Count);
+
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey(true);

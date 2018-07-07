@@ -32,7 +32,7 @@ This is just the default dictionary as an embedded rsource.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.Core.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
+  </ItemGroup>
+
+</Project>
