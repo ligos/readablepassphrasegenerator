@@ -15,7 +15,7 @@ Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/)
 
 **[Download KeePass plugin or console app](https://bitbucket.org/ligos/readablepassphrasegenerator/downloads/)**
 
-**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/1.1.2)** ([and see the API](Public-API))
+**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase)** ([and see the API](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Public-API))
 
 ---
 
