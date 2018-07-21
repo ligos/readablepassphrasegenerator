@@ -30,10 +30,10 @@
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-   <ItemGroup>
-     <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
-     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
-   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
+  </ItemGroup>  
 
    <ItemGroup>
      <None Update="dictionary.xml.gz">

@@ -32,10 +32,10 @@ Plugin for KeePass.</Description>
   <ItemGroup>
     <EmbeddedResource Include="dictionary.xml" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
-    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

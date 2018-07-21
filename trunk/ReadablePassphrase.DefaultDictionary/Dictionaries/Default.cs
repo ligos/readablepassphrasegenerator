@@ -20,10 +20,16 @@ using MurrayGrant.ReadablePassphrase.Helpers;
 
 namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
+    /// <summary>
+    /// Default dictionary.
+    /// </summary>
     public static class Default
     {
         private const string DictionaryResourceName = "MurrayGrant.ReadablePassphrase.dictionary.xml.gz";
 
+        /// <summary>
+        /// Load the default dictionary from the embedded resource.
+        /// </summary>
         public static WordDictionary Load()
         {
             var loader = new ExplicitXmlDictionaryLoader();

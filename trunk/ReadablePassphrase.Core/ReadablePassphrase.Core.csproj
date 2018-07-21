@@ -9,7 +9,9 @@
     <Version>1.1.2</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
 
-This is the Core assembly. For normal use, reference the "ReadablePassphrase" package.</Description>
+This is the Core assembly. For normal use, reference the "ReadablePassphrase" package.
+
+See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <LangVersion>default</LangVersion>
     <NoWarn>1701;1702;1591</NoWarn>
@@ -29,7 +31,7 @@ This is the Core assembly. For normal use, reference the "ReadablePassphrase" pa
   </PropertyGroup>
 
    <ItemGroup>
-     <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
+     <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
    </ItemGroup>
 
   <ItemGroup>

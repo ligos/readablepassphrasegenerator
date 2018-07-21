@@ -11,11 +11,28 @@
 
 For normal use, reference the "ReadablePassphrase" package.
 
-This is just the default dictionary as an embedded rsource.</Description>
+This is just the default dictionary as an embedded resource.
+
+See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.DefaultDictionary.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.DefaultDictionary.xml</DocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="dictionary.xml.gz" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Reflection" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
@@ -24,7 +41,7 @@ This is just the default dictionary as an embedded rsource.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
   </ItemGroup>
 
 </Project>

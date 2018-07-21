@@ -27,3 +27,4 @@ trunk/PassphraseGenerator.net452.zip
 trunk/PassphraseGenerator.netcoreapp21.zip
 trunk/Test/dictionary.xml
 dictionary.xml.gz
+trunk/NuGet.config
