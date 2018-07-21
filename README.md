@@ -4,7 +4,7 @@ The Readable Passphrase Generator generates passphrases which are (mostly) gramm
 These are easy to remember (for humans) but difficult to guess (for humans and computers). 
 
 Developed in C# with a KeePass plugin, console app and public API.
-Runs wherever .NET or Mono is available.
+Runs wherever the .NET Framework, .NET Core or Mono are available.
 
 --- 
 
@@ -14,6 +14,8 @@ Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/)
 **[Click here for step-by-step instructions to install the KeePass plugin](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/KeePass-Plugin-Step-By-Step-Guide).**
 
 **[Download KeePass plugin or console app](https://bitbucket.org/ligos/readablepassphrasegenerator/downloads/)**
+
+**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/1.1.2)** ([and see the API](Public-API))
 
 ---
 
@@ -27,6 +29,9 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Home).
 
 ## Recent Changes ##
+* Version 1.1.2
+    * Add support for .NET Core.
+	* Add NuGet package.
 * Version 1.1.1
     * Change update site to [makemeapassword.ligos.net](https://makemeapassword.ligos.net).
 	* Add KeyBase site as contact info.
