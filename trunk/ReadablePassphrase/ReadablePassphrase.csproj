@@ -18,6 +18,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <RepositoryUrl></RepositoryUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageTags>password security passphrase readable generator random</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
