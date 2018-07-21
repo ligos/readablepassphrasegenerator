@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using MurrayGrant.ReadablePassphrase.Helpers;
+using System.IO;
 
 namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
@@ -39,5 +40,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 return result;
             }
         }
+
+        /// <summary>
+        /// Gets the raw dictionary stream. A gz compressed xml file.
+        /// </summary>
+        public static Stream Stream() => typeof(Default).GetAssembly().GetManifestResourceStream(DictionaryResourceName);
     }
 }
