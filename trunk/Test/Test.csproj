@@ -17,13 +17,22 @@
     <PackageId>ReadablePassphrase.Test</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- Use Nuget packages -->
+  <ItemGroup Condition="'$(RefNugets)'=='True'">
     <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
     <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
     <PackageReference Include="ReadablePassphrase.DefaultDictionary" Version="1.1.2" />
     <PackageReference Include="ReadablePassphrase" Version="1.1.2" />
   </ItemGroup>
-      
+  
+  <!-- Use project references -->
+  <ItemGroup Condition="'$(RefNugets)'!='True'">
+    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj" />
+    <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj" />
+  </ItemGroup>
+  
    <ItemGroup>
      <ProjectReference Include="..\KeePassReadablePassphrase\KeePassReadablePassphrase.csproj" Condition="'$(TargetFramework)'=='net452'" />
    </ItemGroup>

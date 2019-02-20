@@ -41,8 +41,15 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
   </ItemGroup>
 
-  <ItemGroup>
+
+  <!-- Use Nuget packages -->
+  <ItemGroup Condition="'$(RefNugets)'=='True'">
     <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
+  </ItemGroup>
+
+  <!-- Use project references -->
+  <ItemGroup Condition="'$(RefNugets)'!='True'">
+    <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
   </ItemGroup>
 
 </Project>

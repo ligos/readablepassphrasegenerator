@@ -31,13 +31,21 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-   <ItemGroup>
-     <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
-   </ItemGroup>
+
+  <!-- Use Nuget packages -->
+  <ItemGroup Condition="'$(RefNugets)'=='True'">
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
+  </ItemGroup>
+
+  <!-- Use project references -->
+  <ItemGroup Condition="'$(RefNugets)'!='True'">
+    <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Security.SecureString" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
     <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
   </ItemGroup>
+
 </Project>
