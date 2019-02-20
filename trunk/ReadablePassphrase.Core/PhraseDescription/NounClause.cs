@@ -147,7 +147,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             // Include a preposition?
             bool includePreposition = (PrepositionFactor + NoPrepositionFactor > 0)         // Case where neither is specified: assume no preposition.
                                     && randomness.WeightedCoinFlip(PrepositionFactor, NoPrepositionFactor);
-            if (includePreposition && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
+            if (includePreposition && currentTemplate.Any() && currentTemplate.Last().GetType() != typeof(PrepositionTemplate))
                 currentTemplate.Add(new PrepositionTemplate());
 
             // Will this noun be plural?

@@ -110,6 +110,24 @@ namespace Test
             //    }
             //    , generator, 100);
 
+            // Testing Bitbucket Issue #15
+            GenerateCustomSamples(new Clause[]
+                {
+                    // Adjective->1, NoAdjective->1, 
+                    // NoArticle->50, DefiniteArticle->25, IndefiniteArticle->0, Demonstrative->1, PersonalPronoun->0, 
+                    // ProperNoun->1, CommonNoun->5, AdjectiveNoun->0, 
+                    // Number->0, NoNumber->1, 
+                    // Plural->1, Single->1, 
+                    // Preposition->1, NoPreposition->1
+                    new NounClause() { CommonNounFactor = 5, ProperNounFactor = 1, NounFromAdjectiveFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1,
+                                        NoArticleFactor = 50, DefiniteArticleFactor = 25, IndefiniteArticleFactor = 0, DemonstractiveFactor = 1, PersonalPronounFactor = 0,
+                                        NoNumberFactor = 1, NumberFactor = 0,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 1},
+                }
+                , generator, 10);
+
             // Longer benchmarks.
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Normal, 10000);
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Strong, 10000);
