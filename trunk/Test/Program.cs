@@ -43,9 +43,9 @@ namespace Test
             Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
 
             // Basic statistics / samples.
-            GenerateSamples(PhraseStrength.Random, generator);
-            DictionaryCheck(generator);
-            CombinationCount(generator);
+            //GenerateSamples(PhraseStrength.Random, generator);
+            //DictionaryCheck(generator);
+            //CombinationCount(generator);
 
             // Short benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
@@ -54,25 +54,9 @@ namespace Test
             //BenchmarkGeneration(generator, PhraseStrength.Strong, 1000);
             //BenchmarkGeneration(generator, PhraseStrength.Insane, 1000);
             //BenchmarkGeneration(generator, PhraseStrength.Random, 1000);
-            //Console.WriteLine();
 
             // Test all combinations of phrase combinations / textual parsing.
-            var specialStrengths = RandomStrengths.Concat(new [] { PhraseStrength.Custom });
-            var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
-                .Where(x => !specialStrengths.Contains(x));
-            //foreach (var strength in allToTest)
-            //{
-            //    TestTextualParsing(generator, strength);
-            //    TestGeneration(generator, strength, 50);
-            //    TestGenerationAsUtf8(generator, strength, 20);
-            //    TestGenerationAsSecure(generator, strength, 20);
-            //}
-            //foreach (var strength in RandomStrengths)
-            //{
-            //    TestGeneration(generator, Clause.RandomMappings[strength], 10);
-            //    TestGenerationAsUtf8(generator, Clause.RandomMappings[strength], 10);
-            //    TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
-            //}
+            //TestAllStrengthsAndOutputs(generator);
 
             // Test spaces, no spaces and custom delimiter.
             //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, " ");
@@ -81,52 +65,14 @@ namespace Test
             //GenerateDelimiterSamples(PhraseStrength.Random, generator, 5, "✶");
 
             // Generate statistics.
-            //Console.WriteLine();
-            //System.IO.File.Delete(AllStatsCharFilename);
-            //foreach (var strength in allToTest)
-            //    WriteStatisticsFor(generator, strength, 1000000, strength.ToString() + ".csv");
-            //foreach (var strength in RandomStrengths)
-            //    WriteStatisticsFor(generator, strength, 10000000, strength.ToString() + ".csv");
+            //WriteAllStatistics(generator);
 
             // This is used to tinker with custom clauses, probabilities, grammar, etc.
-            //GenerateCustomSamples(new Clause[]
-            //    {
-            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
-            //                            SingularityFactor = 1, PluralityFactor = 1, 
-            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-            //                            NoNumberFactor = 1, NumberFactor = 1,
-            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
-            //        new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
-            //                            NoAdverbFactor = 1, AdverbFactor = 0,
-            //                            NoInterrogativeFactor = 1, InterrogativeFactor = 0,
-            //                            IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
-            //        new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
-            //                            SingularityFactor = 1, PluralityFactor = 1, 
-            //                            NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
-            //                            NoNumberFactor = 1, NumberFactor = 0,
-            //                            NoAdjectiveFactor = 1, AdjectiveFactor = 0,
-            //                            NoPrepositionFactor = 1, PrepositionFactor = 0},
-            //    }
-            //    , generator, 100);
+            //TinkerWithCustomClause(generator);
 
-            // Testing Bitbucket Issue #15
-            GenerateCustomSamples(new Clause[]
-                {
-                    // Adjective->1, NoAdjective->1, 
-                    // NoArticle->50, DefiniteArticle->25, IndefiniteArticle->0, Demonstrative->1, PersonalPronoun->0, 
-                    // ProperNoun->1, CommonNoun->5, AdjectiveNoun->0, 
-                    // Number->0, NoNumber->1, 
-                    // Plural->1, Single->1, 
-                    // Preposition->1, NoPreposition->1
-                    new NounClause() { CommonNounFactor = 5, ProperNounFactor = 1, NounFromAdjectiveFactor = 0,
-                                        SingularityFactor = 1, PluralityFactor = 1,
-                                        NoArticleFactor = 50, DefiniteArticleFactor = 25, IndefiniteArticleFactor = 0, DemonstractiveFactor = 1, PersonalPronounFactor = 0,
-                                        NoNumberFactor = 1, NumberFactor = 0,
-                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
-                                        NoPrepositionFactor = 1, PrepositionFactor = 1},
-                }
-                , generator, 10);
+            // Other test cases.
+            //TestBitbucketIssue15(generator);
+            //TestBitbucketIssue16(generator);
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Normal, 10000);
@@ -147,19 +93,19 @@ namespace Test
 
             // Test the config form.
 #if NETFRAMEWORK        // No WinForms in NetCore
-            TestConfigForm(generator);
+            //TestConfigForm(generator);
 #endif
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
 
-            // Test loading the dictionary from the 
-            var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
-            var defaultDict = MurrayGrant.ReadablePassphrase.Dictionaries.Default.Load();
-            defaultDictSw.Stop();
-            Console.WriteLine("Loaded default dictionary from assembly resource with {0:N0} words in {1:N2}ms ({2:N3} words / sec)", defaultDict.Count, defaultDictSw.Elapsed.TotalMilliseconds, defaultDict.Count / defaultDictSw.Elapsed.TotalSeconds);
+            // Test loading the default dictionary.
+            //var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
+            //var defaultDict = MurrayGrant.ReadablePassphrase.Dictionaries.Default.Load();
+            //defaultDictSw.Stop();
+            //Console.WriteLine("Loaded default dictionary from assembly resource with {0:N0} words in {1:N2}ms ({2:N3} words / sec)", defaultDict.Count, defaultDictSw.Elapsed.TotalMilliseconds, defaultDict.Count / defaultDictSw.Elapsed.TotalSeconds);
 
-            var easyCreatedGenerator = MurrayGrant.ReadablePassphrase.Generator.Create();
-            Console.WriteLine("Loaded generator from Generator.Create() with default dictionary of {0:N0} words.", easyCreatedGenerator.Dictionary.Count);
+            //var easyCreatedGenerator = MurrayGrant.ReadablePassphrase.Generator.Create();
+            //Console.WriteLine("Loaded generator from Generator.Create() with default dictionary of {0:N0} words.", easyCreatedGenerator.Dictionary.Count);
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
@@ -266,6 +212,26 @@ namespace Test
                     Console.WriteLine();
             }
 
+        }
+
+        private static void TestAllStrengthsAndOutputs(ReadablePassphraseGenerator generator)
+        {
+            var specialStrengths = RandomStrengths.Concat(new[] { PhraseStrength.Custom });
+            var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
+                .Where(x => !specialStrengths.Contains(x));
+            foreach (var strength in allToTest)
+            {
+                TestTextualParsing(generator, strength);
+                TestGeneration(generator, strength, 50);
+                TestGenerationAsUtf8(generator, strength, 20);
+                TestGenerationAsSecure(generator, strength, 20);
+            }
+            foreach (var strength in RandomStrengths)
+            {
+                TestGeneration(generator, Clause.RandomMappings[strength], 10);
+                TestGenerationAsUtf8(generator, Clause.RandomMappings[strength], 10);
+                TestGenerationAsSecure(generator, Clause.RandomMappings[strength], 10);
+            }
         }
 
         private static void TestTextualParsing(ReadablePassphraseGenerator generator, PhraseStrength strength)
@@ -419,6 +385,85 @@ namespace Test
             Console.WriteLine();
         }
 
+        private static void TinkerWithCustomClause(ReadablePassphraseGenerator generator)
+        {
+            GenerateCustomSamples(new Clause[]
+                {
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1,
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoNumberFactor = 1, NumberFactor = 1,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                    new VerbClause() { PresentFactor = 1, PastFactor = 1, FutureFactor = 1, ContinuousFactor = 1, ContinuousPastFactor = 1, PerfectFactor = 1, SubjunctiveFactor = 1,
+                                        NoAdverbFactor = 1, AdverbFactor = 0,
+                                        NoInterrogativeFactor = 1, InterrogativeFactor = 0,
+                                        IntransitiveByNoNounClauseFactor = 1, IntransitiveByPrepositionFactor = 1},
+                    new NounClause() { CommonNounFactor = 1, ProperNounFactor = 0, NounFromAdjectiveFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1,
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 1, DemonstractiveFactor = 1, PersonalPronounFactor = 1,
+                                        NoNumberFactor = 1, NumberFactor = 0,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 0},
+                }
+                , generator, 100);
+        }
+        private static void TestBitbucketIssue15(ReadablePassphraseGenerator generator)
+        {
+            // Testing Bitbucket Issue #15 - causes crash.
+            GenerateCustomSamples(new Clause[]
+                {
+                    // Adjective->1, NoAdjective->1, 
+                    // NoArticle->50, DefiniteArticle->25, IndefiniteArticle->0, Demonstrative->1, PersonalPronoun->0, 
+                    // ProperNoun->1, CommonNoun->5, AdjectiveNoun->0, 
+                    // Number->0, NoNumber->1, 
+                    // Plural->1, Single->1, 
+                    // Preposition->1, NoPreposition->1
+                    new NounClause() { CommonNounFactor = 5, ProperNounFactor = 1, NounFromAdjectiveFactor = 0,
+                                        SingularityFactor = 1, PluralityFactor = 1,
+                                        NoArticleFactor = 50, DefiniteArticleFactor = 25, IndefiniteArticleFactor = 0, DemonstractiveFactor = 1, PersonalPronounFactor = 0,
+                                        NoNumberFactor = 1, NumberFactor = 0,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 1,
+                                        NoPrepositionFactor = 1, PrepositionFactor = 1},
+                }
+                , generator, 10);
+        }
+
+        private static void TestBitbucketIssue16(ReadablePassphraseGenerator generator)
+        {
+            // Testing Bitbucket Issue #16 - always generating the definite article.
+            GenerateCustomSamples(new Clause[]
+                {
+                    //Noun = {
+                    //    Adjective->0, NoAdjective->1,
+                    //    NoArticle->100, DefiniteArticle->1, IndefiniteArticle->0, Demonstrative->0, PersonalPronoun->0,
+                    //    ProperNoun->0, CommonNoun->12, AdjectiveNoun->2,
+                    //    Number->0, NoNumber->1,
+                    //    Plural->0, Single->1,
+                    //    Preposition->0, NoPreposition->1,
+                    // }
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 0, NounFromAdjectiveFactor = 2,
+                                        SingularityFactor = 1, PluralityFactor = 0,
+                                        NoArticleFactor = 100, DefiniteArticleFactor = 1, IndefiniteArticleFactor = 0, DemonstractiveFactor = 0, PersonalPronounFactor = 0,
+                                        NoNumberFactor = 1, NumberFactor = 0,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 0, PrepositionFactor = 1},
+                }
+                , generator, 10);
+            // Try with no definite article - much better!
+            // Singular requires an noun prelude, so it ignores the NoArticleFactor.
+            GenerateCustomSamples(new Clause[]
+                {
+                    new NounClause() { CommonNounFactor = 12, ProperNounFactor = 0, NounFromAdjectiveFactor = 2,
+                                        SingularityFactor = 1, PluralityFactor = 0,
+                                        NoArticleFactor = 1, DefiniteArticleFactor = 0, IndefiniteArticleFactor = 0, DemonstractiveFactor = 0, PersonalPronounFactor = 0,
+                                        NoNumberFactor = 1, NumberFactor = 0,
+                                        NoAdjectiveFactor = 1, AdjectiveFactor = 0,
+                                        NoPrepositionFactor = 0, PrepositionFactor = 1},
+                }
+                , generator, 10);
+        }
+
 #if NETFRAMEWORK        // No WinForms in NetCore
         private static void TestConfigForm(ReadablePassphraseGenerator generator)
         {
@@ -438,6 +483,19 @@ namespace Test
         }
 #endif
 
+        private static void WriteAllStatistics(ReadablePassphraseGenerator generator)
+        {
+            System.IO.File.Delete(AllStatsCharFilename);
+            var specialStrengths = RandomStrengths.Concat(new[] { PhraseStrength.Custom });
+            var allToTest = Enum.GetValues(typeof(PhraseStrength)).Cast<PhraseStrength>()
+                .Where(x => !specialStrengths.Contains(x));
+
+            foreach (var strength in allToTest)
+                WriteStatisticsFor(generator, strength, 1000000, strength.ToString() + ".csv");
+            foreach (var strength in RandomStrengths)
+                WriteStatisticsFor(generator, strength, 10000000, strength.ToString() + ".csv");
+
+        }
         private static void WriteStatisticsFor(ReadablePassphraseGenerator generator, PhraseStrength strength, int count, string filename)
         {
             Console.Write("Writing statistics to '{0}'...", filename);
