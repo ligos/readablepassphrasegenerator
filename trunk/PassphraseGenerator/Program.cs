@@ -42,6 +42,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static int numericCount = 2;
         static AllUppercaseStyles upperStyle = AllUppercaseStyles.Never;
         static int upperCount = 2;
+        static ConstantStyles constantStyle = ConstantStyles.Never;
+        static string constantValue = ".";
         static IEnumerable<Clause> phraseDescription = new Clause[] { };
         static int maxLength = 999;
         static int minLength = 1;
@@ -138,22 +140,30 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine("Average combinations ~{0:E3} (~{1:N2} bits)", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
                 Console.WriteLine("Total combinations {0:E3} - {1:E3} ({2:N2} - {3:N2} bits)", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 
-                var upperTypeText = upperStyle == AllUppercaseStyles.RunOfLetters ? "run "
-                                  : upperStyle == AllUppercaseStyles.WholeWord ? "word "
+                var upperTypeText = upperStyle == AllUppercaseStyles.RunOfLetters ? " run"
+                                  : upperStyle == AllUppercaseStyles.WholeWord ? " word"
                                   : "";
                 var upperTypeText2 = upperStyle == AllUppercaseStyles.RunOfLetters ? "run"
                                    : upperStyle == AllUppercaseStyles.WholeWord ? "word"
                                    : "capital"; 
                 if (applyStandardMutators)
-                    Console.WriteLine("Using standard mutators (2 numbers, 2 capitals)");
+                    Console.WriteLine("Using standard mutators (2 numbers, 2 capitals, period at end)");
                 else if (applyAlternativeMutators)
-                    Console.WriteLine("Using alternate mutators (2 numbers, 1 whole capital word)");
-                else if (numericStyle != 0 && upperStyle != 0)
-                    Console.WriteLine("Using upper case {2}and numeric mutators ({0:N0} {3}(s), {1:N0} number(s))", upperCount, numericCount, upperTypeText, upperTypeText2);
-                else if (numericStyle == 0 && upperStyle != 0)
-                    Console.WriteLine("Using upper case {1}mutator only ({0:N0} {2}(s))", upperCount, upperTypeText, upperTypeText2);
-                else if (numericStyle != 0 && upperStyle == 0)
-                    Console.WriteLine("Using numeric mutator only ({0:N0} number(s))", numericCount);
+                    Console.WriteLine("Using alternate mutators (2 numbers, 1 whole capital word, period at end)");
+                else if (numericStyle != 0 && upperStyle != 0 && constantStyle != 0)
+                    Console.WriteLine($"Using upper case{upperTypeText}, numeric and constant mutators ({upperCount:N0} {upperTypeText2}(s), {numericCount:N0} number(s))");
+                else if (numericStyle != 0 && upperStyle != 0 && constantStyle == 0)
+                    Console.WriteLine($"Using upper case{upperTypeText} and numeric mutators ({upperCount:N0} {upperTypeText2}(s), {numericCount:N0} number(s))");
+                else if (numericStyle == 0 && upperStyle != 0 && constantStyle != 0)
+                    Console.WriteLine($"Using upper case{upperTypeText} and constant mutators ({upperCount:N0} {upperTypeText2}(s))");
+                else if (numericStyle == 0 && upperStyle != 0 && constantStyle == 0)
+                    Console.WriteLine($"Using upper case{upperTypeText} mutator only ({upperCount:N0} {upperTypeText2}(s))");
+                else if (numericStyle != 0 && upperStyle == 0 && constantStyle != 0)
+                    Console.WriteLine($"Using numeric and constant mutators ({numericCount:N0} number(s))");
+                else if (numericStyle != 0 && upperStyle == 0 && constantStyle == 0)
+                    Console.WriteLine($"Using numeric mutator only ({numericCount:N0} number(s))");
+                else if (numericStyle == 0 && upperStyle == 0 && constantStyle != 0)
+                    Console.WriteLine($"Using constant mutator only");
                 else
                     Console.WriteLine("Using no mutators");
                 Console.WriteLine();
@@ -164,8 +174,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             int generated = 0;
             int attempts = 0;
             int maxAttempts = count * MaxAttemptsPerCount;
-            var mutators = applyStandardMutators ? new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic } 
-                         : applyAlternativeMutators ? new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic }
+            var mutators = applyStandardMutators ? new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic } 
+                         : applyAlternativeMutators ? new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic }
                          : Enumerable.Empty<IMutator>();
             if (upperStyle > 0 && upperStyle <= AllUppercaseStyles.Anywhere)
                 mutators = mutators.Concat(new IMutator[] { new UppercaseMutator() { When = (UppercaseStyles)upperStyle, NumberOfCharactersToCapitalise = upperCount } });
@@ -175,6 +185,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 mutators = mutators.Concat(new IMutator[] { new UppercaseWordMutator() { NumberOfWordsToCapitalise = upperCount } });
             if (numericStyle != 0)
                 mutators = mutators.Concat(new IMutator[] { new NumericMutator() { When = numericStyle, NumberOfNumbersToAdd = numericCount } });
+            if (constantStyle != 0)
+                mutators = mutators.Concat(new IMutator[] { new ConstantMutator() { When = constantStyle, ValueToAdd = constantValue } });
             while (generated < count)
             {
                 // Generate phrase.
@@ -389,6 +401,21 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     }
                     i++;
                 }
+                else if (arg == "mutconstant")
+                {
+                    if (!Enum.GetNames(typeof(ConstantStyles)).Select(x => x.ToLower()).Contains(args[i + 1]))
+                    {
+                        Console.WriteLine("Unknown 'mutConstant' option '{0}'.", args[i + 1]);
+                        return false;
+                    }
+                    constantStyle = (ConstantStyles)Enum.Parse(typeof(ConstantStyles), args[i + 1], true);
+                    i++;
+                }
+                else if (arg == "mutconstantvalue")
+                {
+                    constantValue = args[i + 1];
+                    i++;
+                }
                 else if (arg == "q" || arg == "quiet")
                 {
                     quiet = true;
@@ -429,6 +456,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  --mutNumeric xxx      Numeric mutator style (default: {0})", numericStyle);
             Console.WriteLine("       xxx =      [startofword|endofword|startorendofword|endofphrase|anywhere]");
             Console.WriteLine("  --mutNumericCount nn  Number of numbers to add (default: {0}", numericCount);
+            Console.WriteLine("  --mutConstant xxx     Constant mutator style (default: {0})", constantStyle);
+            Console.WriteLine("       xxx =      [startofphrase|endofphrase|middleofphrase|anywhere]");
+            Console.WriteLine("  --mutConstantValue x  String to use as constant (default: {0})", constantValue);
             Console.WriteLine(); 
             Console.WriteLine("  -l --loaderdll path   Specifies a custom loader dll");
             Console.WriteLine("  -t --loadertype path  Specifies a custom loader type");

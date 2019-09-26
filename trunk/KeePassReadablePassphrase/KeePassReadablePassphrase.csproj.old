@@ -63,9 +63,9 @@
       <ExecutableExtension>.exe</ExecutableExtension>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
     </Reference>
-    <Reference Include="ReadablePassphrase, Version=0.18.0.0, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
+    <Reference Include="ReadablePassphrase.Core, Version=0.18.0.0, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\ReadablePassphrase.dll</HintPath>
+      <HintPath>.\ReadablePassphrase.Core.dll</HintPath>
     </Reference>
     <Reference Include="ReadablePassphrase.Words, Version=0.18.0.0, Culture=neutral, PublicKeyToken=aacd6bbb302d670a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

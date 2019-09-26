@@ -213,6 +213,9 @@ namespace KeePassReadablePassphrase
                 this.cboNumericStyle.DataSource = Enum.GetNames(typeof(NumericStyles));
                 this.cboNumericStyle.Text = config.NumericStyle.ToString();
                 this.nudNumberCount.Value = config.NumericCount;
+                this.cboConstantStyle.DataSource = Enum.GetNames(typeof(ConstantStyles));
+                this.cboConstantStyle.Text = config.ConstantStyle.ToString();
+                this.txtConstantValue.Text = config.ConstantValue;
 
 
                 this.UpdateDescription(config);
@@ -290,6 +293,8 @@ namespace KeePassReadablePassphrase
             this.nudUpperCount.Enabled = this.radMutatorCustom.Checked;
             this.cboNumericStyle.Enabled = this.radMutatorCustom.Checked;
             this.nudNumberCount.Enabled = this.radMutatorCustom.Checked;
+            this.cboConstantStyle.Enabled = this.radMutatorCustom.Checked;
+            this.txtConstantValue.Enabled = this.radMutatorCustom.Checked;
         }
         public void UpdateCustomSeparatorEnabledStatus()
         {
@@ -338,6 +343,8 @@ namespace KeePassReadablePassphrase
             result.UpperCount = (int)this.nudUpperCount.Value;
             result.NumericStyle = (NumericStyles)Enum.Parse(typeof(NumericStyles), this.cboNumericStyle.Text);
             result.NumericCount = (int)this.nudNumberCount.Value;
+            result.ConstantStyle = (ConstantStyles)Enum.Parse(typeof(ConstantStyles), this.cboConstantStyle.Text);
+            result.ConstantValue = this.txtConstantValue.Text;
             return result;
 
         }

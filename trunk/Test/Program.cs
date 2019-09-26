@@ -97,6 +97,8 @@ namespace Test
 #endif
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
 
             // Test loading the default dictionary.
             //var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();

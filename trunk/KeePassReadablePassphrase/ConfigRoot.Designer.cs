@@ -47,6 +47,7 @@
             this.radMutatorCustom = new System.Windows.Forms.RadioButton();
             this.cboUpperStyle = new System.Windows.Forms.ComboBox();
             this.cboNumericStyle = new System.Windows.Forms.ComboBox();
+            this.cboConstantStyle = new System.Windows.Forms.ComboBox();
             this.cboWordSeparator = new System.Windows.Forms.ComboBox();
             this.lblPhraseDetail = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -90,6 +91,9 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtCustomSeparator = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtConstantValue = new System.Windows.Forms.TextBox();
             this.lnkKeyBase = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
@@ -135,7 +139,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhraseDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 412);
+            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 442);
             this.txtPhraseDescription.Multiline = true;
             this.txtPhraseDescription.Name = "txtPhraseDescription";
             this.txtPhraseDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -149,7 +153,7 @@
             // 
             this.txtDictionaryPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 338);
+            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 368);
             this.txtDictionaryPath.Name = "txtDictionaryPath";
             this.txtDictionaryPath.ReadOnly = true;
             this.txtDictionaryPath.Size = new System.Drawing.Size(339, 20);
@@ -159,7 +163,7 @@
             // chkCustomDictionary
             // 
             this.chkCustomDictionary.AutoSize = true;
-            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 315);
+            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 345);
             this.chkCustomDictionary.Name = "chkCustomDictionary";
             this.chkCustomDictionary.Size = new System.Drawing.Size(145, 17);
             this.chkCustomDictionary.TabIndex = 8;
@@ -171,7 +175,7 @@
             // 
             // txtDictionarySize
             // 
-            this.txtDictionarySize.Location = new System.Drawing.Point(104, 364);
+            this.txtDictionarySize.Location = new System.Drawing.Point(104, 394);
             this.txtDictionarySize.Name = "txtDictionarySize";
             this.txtDictionarySize.ReadOnly = true;
             this.txtDictionarySize.Size = new System.Drawing.Size(87, 20);
@@ -180,7 +184,7 @@
             // 
             // txtCombinationRange
             // 
-            this.txtCombinationRange.Location = new System.Drawing.Point(104, 254);
+            this.txtCombinationRange.Location = new System.Drawing.Point(104, 284);
             this.txtCombinationRange.Name = "txtCombinationRange";
             this.txtCombinationRange.ReadOnly = true;
             this.txtCombinationRange.Size = new System.Drawing.Size(220, 20);
@@ -190,7 +194,7 @@
             // 
             // txtEntropyRange
             // 
-            this.txtEntropyRange.Location = new System.Drawing.Point(382, 254);
+            this.txtEntropyRange.Location = new System.Drawing.Point(382, 284);
             this.txtEntropyRange.Name = "txtEntropyRange";
             this.txtEntropyRange.ReadOnly = true;
             this.txtEntropyRange.Size = new System.Drawing.Size(90, 20);
@@ -201,7 +205,7 @@
             // 
             // txtEntropyAverage
             // 
-            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 280);
+            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 310);
             this.txtEntropyAverage.Name = "txtEntropyAverage";
             this.txtEntropyAverage.ReadOnly = true;
             this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
@@ -212,7 +216,7 @@
             // 
             // txtCombinationAverage
             // 
-            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 280);
+            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 310);
             this.txtCombinationAverage.Name = "txtCombinationAverage";
             this.txtCombinationAverage.ReadOnly = true;
             this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
@@ -248,19 +252,19 @@
             this.radMutatorStandard.AutoSize = true;
             this.radMutatorStandard.Location = new System.Drawing.Point(170, 176);
             this.radMutatorStandard.Name = "radMutatorStandard";
-            this.radMutatorStandard.Size = new System.Drawing.Size(203, 17);
+            this.radMutatorStandard.Size = new System.Drawing.Size(212, 17);
             this.radMutatorStandard.TabIndex = 36;
             this.radMutatorStandard.TabStop = true;
-            this.radMutatorStandard.Text = "Standard (adds numbers and capitals)";
-            this.toolTip1.SetToolTip(this.radMutatorStandard, "Capitalises one word and adds 2 numbers to the final passphrase. Use this to meet" +
-        " minimum password strength requirements.");
+            this.radMutatorStandard.Text = "Standard (numbers, capitals and period)";
+            this.toolTip1.SetToolTip(this.radMutatorStandard, "Capitalises one word, adds 2 numbers and appends a period to the final passphrase" +
+        ". Use this to meet minimum password strength requirements.");
             this.radMutatorStandard.UseVisualStyleBackColor = true;
             this.radMutatorStandard.CheckedChanged += new System.EventHandler(this.radMutator_CheckedChanged);
             // 
             // radMutatorCustom
             // 
             this.radMutatorCustom.AutoSize = true;
-            this.radMutatorCustom.Location = new System.Drawing.Point(383, 176);
+            this.radMutatorCustom.Location = new System.Drawing.Point(393, 176);
             this.radMutatorCustom.Name = "radMutatorCustom";
             this.radMutatorCustom.Size = new System.Drawing.Size(60, 17);
             this.radMutatorCustom.TabIndex = 37;
@@ -295,6 +299,18 @@
         "stom for this option to be available.");
             this.cboNumericStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
             // 
+            // cboConstantStyle
+            // 
+            this.cboConstantStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboConstantStyle.FormattingEnabled = true;
+            this.cboConstantStyle.Location = new System.Drawing.Point(104, 244);
+            this.cboConstantStyle.Name = "cboConstantStyle";
+            this.cboConstantStyle.Size = new System.Drawing.Size(220, 21);
+            this.cboConstantStyle.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.cboConstantStyle, "Determines when an additional constant string is added.\r\nYou must set Mutators to" +
+        " Custom for this option to be available.");
+            this.cboConstantStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
+            // 
             // cboWordSeparator
             // 
             this.cboWordSeparator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -311,7 +327,7 @@
             // lblPhraseDetail
             // 
             this.lblPhraseDetail.AutoSize = true;
-            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 394);
+            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 424);
             this.lblPhraseDetail.Name = "lblPhraseDetail";
             this.lblPhraseDetail.Size = new System.Drawing.Size(73, 13);
             this.lblPhraseDetail.TabIndex = 3;
@@ -321,7 +337,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(397, 527);
+            this.btnCancel.Location = new System.Drawing.Point(397, 557);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 15;
@@ -332,7 +348,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(307, 527);
+            this.btnOK.Location = new System.Drawing.Point(307, 557);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 14;
@@ -344,7 +360,7 @@
             // 
             this.lnkPhraseHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkPhraseHelp.AutoSize = true;
-            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 393);
+            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 423);
             this.lnkPhraseHelp.Name = "lnkPhraseHelp";
             this.lnkPhraseHelp.Size = new System.Drawing.Size(155, 13);
             this.lnkPhraseHelp.TabIndex = 19;
@@ -387,7 +403,7 @@
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Enabled = false;
-            this.btnBrowse.Location = new System.Drawing.Point(449, 337);
+            this.btnBrowse.Location = new System.Drawing.Point(449, 367);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(24, 23);
             this.btnBrowse.TabIndex = 10;
@@ -398,7 +414,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 342);
+            this.label5.Location = new System.Drawing.Point(12, 372);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 12;
@@ -408,7 +424,7 @@
             // 
             this.lnkDictionaryHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkDictionaryHelp.AutoSize = true;
-            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 316);
+            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 346);
             this.lnkDictionaryHelp.Name = "lnkDictionaryHelp";
             this.lnkDictionaryHelp.Size = new System.Drawing.Size(175, 13);
             this.lnkDictionaryHelp.TabIndex = 18;
@@ -423,7 +439,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 368);
+            this.label6.Location = new System.Drawing.Point(12, 398);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 16;
@@ -432,7 +448,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 257);
+            this.label7.Location = new System.Drawing.Point(12, 287);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 18;
@@ -441,7 +457,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(330, 257);
+            this.label8.Location = new System.Drawing.Point(330, 287);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 20;
@@ -449,7 +465,7 @@
             // 
             // btnDictionarySizeDetail
             // 
-            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 362);
+            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 392);
             this.btnDictionarySizeDetail.Name = "btnDictionarySizeDetail";
             this.btnDictionarySizeDetail.Size = new System.Drawing.Size(24, 23);
             this.btnDictionarySizeDetail.TabIndex = 12;
@@ -467,7 +483,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(485, 22);
             this.statusStrip1.TabIndex = 22;
@@ -492,7 +508,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 283);
+            this.label2.Location = new System.Drawing.Point(330, 313);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 27;
@@ -501,7 +517,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 283);
+            this.label9.Location = new System.Drawing.Point(12, 313);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 26;
@@ -699,7 +715,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(17, 247);
+            this.panel3.Location = new System.Drawing.Point(17, 277);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 1);
             this.panel3.TabIndex = 47;
@@ -720,7 +736,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(17, 309);
+            this.panel5.Location = new System.Drawing.Point(17, 339);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(450, 1);
             this.panel5.TabIndex = 48;
@@ -760,6 +776,32 @@
             this.label19.TabIndex = 52;
             this.label19.Text = "Custom Separator:";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(14, 248);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 13);
+            this.label20.TabIndex = 39;
+            this.label20.Text = "Constant Style:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(334, 248);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(37, 13);
+            this.label21.TabIndex = 44;
+            this.label21.Text = "Value:";
+            // 
+            // txtConstantValue
+            // 
+            this.txtConstantValue.Location = new System.Drawing.Point(382, 245);
+            this.txtConstantValue.Name = "txtConstantValue";
+            this.txtConstantValue.Size = new System.Drawing.Size(90, 20);
+            this.txtConstantValue.TabIndex = 51;
+            this.txtConstantValue.Text = ".";
+            // 
             // lnkKeyBase
             // 
             this.lnkKeyBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -778,8 +820,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(485, 581);
+            this.ClientSize = new System.Drawing.Size(485, 611);
             this.Controls.Add(this.lnkKeyBase);
+            this.Controls.Add(this.txtConstantValue);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtCustomSeparator);
             this.Controls.Add(this.cboWordSeparator);
@@ -790,6 +835,7 @@
             this.Controls.Add(this.nudNumberCount);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.cboNumericStyle);
+            this.Controls.Add(this.cboConstantStyle);
             this.Controls.Add(this.nudUpperCount);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.cboUpperStyle);
@@ -912,5 +958,9 @@
         private System.Windows.Forms.TextBox txtCustomSeparator;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.LinkLabel lnkKeyBase;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox cboConstantStyle;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtConstantValue;
     }
 }

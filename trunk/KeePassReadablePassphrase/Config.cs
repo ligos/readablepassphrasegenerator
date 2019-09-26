@@ -42,6 +42,8 @@ namespace KeePassReadablePassphrase
         public int UpperCount { get; set; }
         public NumericStyles NumericStyle { get; set; }
         public int NumericCount { get; set; }
+        public ConstantStyles ConstantStyle { get; set; }
+        public string ConstantValue { get; set; }
 
         public string ActualSeparator
         {
@@ -82,6 +84,8 @@ namespace KeePassReadablePassphrase
             this.UpperCount = UppercaseWordMutator.Basic.NumberOfWordsToCapitalise;
             this.NumericStyle = NumericMutator.Basic.When;
             this.NumericCount = NumericMutator.Basic.NumberOfNumbersToAdd;
+            this.ConstantStyle = ConstantMutator.Basic.When;
+            this.ConstantValue = ConstantMutator.Basic.ValueToAdd;
         }
         private void ParseConfig(string configFromKeePass)
         {
@@ -127,6 +131,10 @@ namespace KeePassReadablePassphrase
                     this.NumericStyle = (NumericStyles)Enum.Parse(typeof(NumericStyles), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "numericcount")
                     this.NumericCount = Int32.Parse(reader.GetAttribute("value"));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "constantstyle")
+                    this.ConstantStyle = (ConstantStyles)Enum.Parse(typeof(ConstantStyles), reader.GetAttribute("value").Replace(" ", ""));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "constantvalue")
+                    this.ConstantValue = reader.GetAttribute("value");
             }
 
             if (this.PhraseStrength != PhraseStrength.Custom)
@@ -184,6 +192,8 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<UpperCount value=\"{0}\"/>\n", this.UpperCount);
             sb.AppendFormat("<NumericStyle value=\"{0}\"/>\n", this.NumericStyle);
             sb.AppendFormat("<NumericCount value=\"{0}\"/>\n", this.NumericCount);
+            sb.AppendFormat("<ConstantStyle value=\"{0}\"/>\n", this.ConstantStyle);
+            sb.AppendFormat("<ConstantValue value=\"{0}\"/>\n", EncodeForXml(this.ConstantValue));
             sb.AppendLine("</ReadablePassphraseConfig>");
             return sb.ToString();
         }

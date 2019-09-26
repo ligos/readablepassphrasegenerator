@@ -200,21 +200,24 @@ namespace KeePassReadablePassphrase
             if (conf.Mutator == MutatorOption.None)
                 return Enumerable.Empty<IMutator>();
             else if (conf.Mutator == MutatorOption.Standard)
-                return new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic };
+                return new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic };
             else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle > 0 && conf.UpperStyle <= AllUppercaseStyles.Anywhere)
                 return new IMutator[] {
                     new UppercaseMutator() { When = (UppercaseStyles)conf.UpperStyle, NumberOfCharactersToCapitalise = conf.UpperCount },
                     new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
+                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
                 };
             else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle == AllUppercaseStyles.RunOfLetters)
                 return new IMutator[] {
                     new UppercaseRunMutator() { NumberOfRuns = conf.UpperCount },
                     new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
+                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
                 };
             else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle == AllUppercaseStyles.WholeWord)
                 return new IMutator[] {
                     new UppercaseWordMutator() { NumberOfWordsToCapitalise = conf.UpperCount },
                     new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
+                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
                 };
             else
                 return Enumerable.Empty<IMutator>();
