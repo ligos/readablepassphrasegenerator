@@ -1,12 +1,10 @@
-syntax: glob
-.vs/*
-*.user
-*/bin/*
-*/obj/*
 *.suo
-MurrayGrant.snk
-ReadablePassphrase.build/*
 releases/*
+*.user
+bin/
+obj/
+.vs/
+MurrayGrant.snk
 
 trunk/KeePassReadablePassphrase/ReadablePassphrase.dll
 trunk/KeePassReadablePassphrase/ReadablePassphrase.pdb
@@ -14,10 +12,10 @@ trunk/KeePassReadablePassphrase/dictionary.xml
 trunk/PassphraseGenerator.zip
 trunk/RandomTests.xlsx
 trunk/ReadablePassphrase.plgx
-trunk/ReadablePassphrase/MurrayGrant.snk
-trunk/ReadablePassphrase/ReadablePassphrase.xml
 trunk/randomised scowl list.txt
 ReadablePassphrase.Words.*
+trunk/ReadablePassphrase.build/
+
 trunk/Generator/dictionary.xml.gz
 trunk/MergePartsOfSpeech/dictionary.xml
 trunk/PassphraseGenerator.net452.zip
