@@ -1,5 +1,7 @@
 Readable Passphrase Generator
-Copyright 2011 Murray Grant
+Copyright 2011-2019 Murray Grant
+https://github.com/ligos/readablepassphrasegenerator
+https://bitbucket.org/ligos/readablepassphrasegenerator
 http://readablepassphrase.codeplex.com
 
 This product includes software developed by Murray Grant
