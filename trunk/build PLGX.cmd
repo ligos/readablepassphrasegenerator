@@ -19,8 +19,8 @@ copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Core.pdb" 
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.pdb" "ReadablePassphrase.build"
 
-copy /y LICENSE.txt ReadablePassphrase.build
-copy /y NOTICE.txt ReadablePassphrase.build
+copy /y ..\LICENSE.txt ReadablePassphrase.build
+copy /y ..\NOTICE.txt ReadablePassphrase.build
 
 rem Replace the new Microsoft.NET.Sdk based project file with the old one, because KeePass only supports the old one.
 del /q ReadablePassphrase.build\KeePassReadablePassphrase.csproj
