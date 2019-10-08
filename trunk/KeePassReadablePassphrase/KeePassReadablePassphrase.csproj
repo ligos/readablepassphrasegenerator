@@ -16,7 +16,7 @@ Plugin for KeePass.</Description>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
     <RepositoryUrl></RepositoryUrl>
-    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageId>Readable Passphrase Plugin</PackageId>
   </PropertyGroup>

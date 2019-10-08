@@ -111,8 +111,8 @@ namespace KeePassReadablePassphrase
 
         private void lnkWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Browse to bitbucket site.
-            this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.BitBucketHomepage);            
+            // Browse to github site.
+            this.bgwWorker.RunWorkerAsync(ReadablePassphraseGenerator.GitHubHomepage);            
         }
         private void lnkKeyBase_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -122,18 +122,18 @@ namespace KeePassReadablePassphrase
         private void lnkPhraseHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to doco page for phrases.
-            this.bgwWorker.RunWorkerAsync(new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Custom-Phrase-Description"));
+            this.bgwWorker.RunWorkerAsync(new Uri("https://github.com/ligos/readablepassphrasegenerator/wiki/Custom-Phrase-Description"));
         }
         private void lnkCombinationsHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to doco page for combination counting.
-            this.bgwWorker.RunWorkerAsync(new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Combination-Counting"));
+            this.bgwWorker.RunWorkerAsync(new Uri("https://github.com/ligos/readablepassphrasegenerator/wiki/Combination-Counting"));
         }
 
         private void lnkDictionaryHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Browse to doco page for dictionary definition.
-            this.bgwWorker.RunWorkerAsync(new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Make-Your-Own-Dictionary"));
+            this.bgwWorker.RunWorkerAsync(new Uri("https://github.com/ligos/readablepassphrasegenerator/wiki/Make-Your-Own-Dictionary"));
         }
 
         private void chkCustomDictionary_CheckedChanged(object sender, EventArgs e)

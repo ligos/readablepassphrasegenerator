@@ -12,7 +12,7 @@
     <NoWarn>1701;1702;1591</NoWarn>
     <RepositoryUrl></RepositoryUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageId>ReadablePassphrase.Generator</PackageId>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>

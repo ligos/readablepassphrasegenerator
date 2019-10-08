@@ -16,7 +16,7 @@ This is just the default dictionary as an embedded resource.
 See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageTags>password security passphrase readable generator random</PackageTags>
   </PropertyGroup>
 

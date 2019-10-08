@@ -10,7 +10,7 @@
     <RootNamespace>Test</RootNamespace>
     <NoWarn>1701;1702;1591</NoWarn>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />

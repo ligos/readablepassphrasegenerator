@@ -37,6 +37,8 @@ namespace MurrayGrant.ReadablePassphrase
         public RandomSourceBase Randomness { get; private set; }
 
         public readonly static Uri KeyBaseContact = new Uri("https://keybase.io/ligos");
+        public readonly static Uri GitHubHomepage = new Uri("https://github.com/ligos/readablepassphrasegenerator");
+        [Obsolete("Migrated to GitHub in 2019")]
         public readonly static Uri BitBucketHomepage = new Uri("https://bitbucket.org/ligos/readablepassphrasegenerator");
         [Obsolete("Migrated to BitBucket in 2017")]
         public readonly static Uri CodeplexHomepage = new Uri("http://readablepassphrase.codeplex.com");
