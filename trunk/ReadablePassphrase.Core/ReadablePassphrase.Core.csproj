@@ -4,9 +4,9 @@
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase</Product>
-    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2019</Copyright>
     <Authors>Murray Grant</Authors>
-    <Version>1.1.2</Version>
+    <Version>1.2.0</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
 
 This is the Core assembly. For normal use, reference the "ReadablePassphrase" package.
@@ -34,7 +34,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
 
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.2.0" />
   </ItemGroup>
 
   <!-- Use project references -->
