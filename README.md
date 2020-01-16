@@ -26,7 +26,7 @@ If you like the Readable Passphrase Generator you can donate to support developm
 
 ## Getting Started ##
 
-[Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](wiki).
+[Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
 * Version 1.1.2
