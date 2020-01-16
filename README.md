@@ -11,11 +11,11 @@ Runs wherever the .NET Framework, .NET Core or Mono are available.
 See [MakeMeAPassword](https://makemeapassword.ligos.net/generate/ReadablePassphrase) to generate readable passphrases online (without KeePass).
 Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/) (runs entirely in your browser).
 
-**[Click here for step-by-step instructions to install the KeePass plugin](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/KeePass-Plugin-Step-By-Step-Guide).**
+**[Click here for step-by-step instructions to install the KeePass plugin](wiki/KeePass-Plugin-Step-By-Step-Guide).**
 
-**[Download KeePass plugin or console app](https://bitbucket.org/ligos/readablepassphrasegenerator/downloads/)**
+**[Download KeePass plugin or console app](releases)**
 
-**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/)** ([and see the API](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Public-API))
+**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/)** ([and see the API](wiki/Public-API))
 
 ---
 
@@ -26,7 +26,7 @@ If you like the Readable Passphrase Generator you can donate to support developm
 
 ## Getting Started ##
 
-[Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/Home).
+[Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](wiki).
 
 ## Recent Changes ##
 * Version 1.1.2
