@@ -11,11 +11,11 @@ Runs wherever the .NET Framework, .NET Core or Mono are available.
 See [MakeMeAPassword](https://makemeapassword.ligos.net/generate/ReadablePassphrase) to generate readable passphrases online (without KeePass).
 Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/) (runs entirely in your browser).
 
-**[Click here for step-by-step instructions to install the KeePass plugin](wiki/KeePass-Plugin-Step-By-Step-Guide).**
+**[Click here for step-by-step instructions to install the KeePass plugin](https://github.com/ligos/readablepassphrasegenerator/wiki/KeePass-Plugin-Step-By-Step-Guide).**
 
-**[Download KeePass plugin or console app](releases)**
+**[Download KeePass plugin or console app](https://github.com/ligos/readablepassphrasegenerator/releases)**
 
-**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/)** ([and see the API](wiki/Public-API))
+**[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/)** ([and see the API](https://github.com/ligos/readablepassphrasegenerator/wiki/Public-API))
 
 ---
 
@@ -46,7 +46,7 @@ If you like the Readable Passphrase Generator you can donate to support developm
 	* Migrated all links to BitBucket from Codeplex.
 	* 15,020 words in the default dictionary (~900 more than 0.17 release).
 * Version 0.17
-	* Fix serious [non-random password bug](https://bitbucket.org/ligos/readablepassphrasegenerator/wiki/0.17.0-Fix-for-Non-Random-Passphrases). 
+	* Fix serious [non-random password bug](https://github.com/ligos/readablepassphrasegenerator/wiki/0.17.0-Fix-for-Non-Random-Passphrases). 
 	* All users should upgrade to this version as soon as possible
 	* **It is highly recommended to reset any passphrases generated in the last 4 years**
 	* Versions of the plugin affected by this bug will crash KeePass 2.36+, you must upgrade to 0.17 or newer.
