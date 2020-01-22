@@ -34,7 +34,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
         public virtual Article TheArticle { get { return this.GetWordAtIndex<Article>(0); } }
 
-        protected Dictionary<Type, List<Word>> WordsByType { get; private set; }
+        protected Dictionary<Type, List<Word>> WordsByType { get; private set; } = new Dictionary<Type, List<Word>>();
         protected int TransitiveVerbCount { get; private set; }
         protected int IntransitiveVerbCount { get; private set; }
 

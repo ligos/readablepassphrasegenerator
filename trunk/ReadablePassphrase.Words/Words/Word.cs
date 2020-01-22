@@ -32,28 +32,15 @@ namespace MurrayGrant.ReadablePassphrase.Words
             return this.GetType().Name + ": " + DictionaryEntry;
         }
         public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            if (!(obj is Word))
-                return false;
-            return Equals((Word)obj);
-        }
-        public virtual bool Equals(Word obj)
-        {
-            if (obj == null)
-                return false;
-            return String.Equals(obj.DictionaryEntry, this.DictionaryEntry, StringComparison.OrdinalIgnoreCase);
-        }
+            => obj is Word w && Equals(w);
+        public virtual bool Equals(Word w)
+            => w != null && String.Equals(w.DictionaryEntry, this.DictionaryEntry, StringComparison.OrdinalIgnoreCase);
         public override int GetHashCode()
-        {
-            return StringComparer.OrdinalIgnoreCase.GetHashCode(this.DictionaryEntry) ^ this.GetType().GetHashCode();
-        }
+            => StringComparer.OrdinalIgnoreCase.GetHashCode(this.DictionaryEntry) ^ this.GetType().GetHashCode();
 
         public int CompareTo(Word other)
-        {
-            return StringComparer.OrdinalIgnoreCase.Compare(this.DictionaryEntry, other.DictionaryEntry);
-        }
+            => other == null ? 1
+            : StringComparer.OrdinalIgnoreCase.Compare(this.DictionaryEntry, other.DictionaryEntry);
 
         // Returns all the forms a word can take.
         public abstract IEnumerable<string> AllForms();

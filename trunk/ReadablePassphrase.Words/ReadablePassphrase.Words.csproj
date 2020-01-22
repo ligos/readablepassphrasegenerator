@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <Company>Murray Grant</Company>
+    <Product>ReadablePassphrase</Product>
+    <Copyright>Copyright © Murray Grant 2011-2019</Copyright>
+    <Authors>Murray Grant</Authors>
+    <Version>1.2.0</Version>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
+
+For normal use, reference the "ReadablePassphrase" package.
+
+This is the Words assembly containing base interfaces and Dictionary classes only. Unless you are making your own Dictionary Loader, you shouldn't directly use this package.
+
+See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
+    <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageTags>password security passphrase readable generator random</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\ReadablePassphrase.Words.xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\ReadablePassphrase.Words.xml</DocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+</Project>
