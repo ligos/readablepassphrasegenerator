@@ -12,7 +12,7 @@ namespace MergePartsOfSpeech
         {
             // Base must be first.
             string[] files = new string[] { "base.xml", "nouns.xml", "properNouns.xml", "prepositions.xml", "adjectives.xml", "verbs.xml", "adverbs.xml" };
-            string output = "dictionary.xml";
+            string output = @".\bin\dictionary.xml";
 
             // The dictionary is too hard to edit / append to in a monolithic form.
             // This takes the various components and glues them into a single dictionary file for use by all other components.
@@ -28,18 +28,15 @@ namespace MergePartsOfSpeech
                         while (!inStream.EndOfStream)
                         {
                             var line = inStream.ReadLine();
+                            if (line == null)
+                                break;
+
                             if (first && !line.StartsWith("</dictionary>", StringComparison.CurrentCultureIgnoreCase))
-                            {
                                 dictionaryStream.WriteLine(line);
-                            }
                             else if (!first && !inDictionaryElement && line.StartsWith("<dictionary", StringComparison.CurrentCultureIgnoreCase))
-                            {
                                 inDictionaryElement = true;
-                            }
                             else if (!first && inDictionaryElement && !line.StartsWith("</dictionary>", StringComparison.CurrentCultureIgnoreCase))
-                            {
                                 dictionaryStream.WriteLine(line);
-                            }
                         }
                     }
 
