@@ -21,6 +21,6 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
     public interface IDictionaryLoader : IDisposable
     {
-        WordDictionary Load(IDictionary<string, string> arguments);
+        WordDictionary Load(IDictionary<string, string>? arguments);
     }
 }

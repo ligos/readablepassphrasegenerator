@@ -77,6 +77,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         public int CountOf<T>(Func<T, bool> predicate)
         {
+            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
             return this.OfType<T>().Count(predicate);
         }
         public int CountOfTransitiveVerbs()
@@ -98,6 +99,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
         public void AddMany(IEnumerable<Word> words)
         {
+            _ = words ?? throw new ArgumentNullException(nameof(words));
+
             var asList = this.Items as List<Word>;
             if (asList != null)
                 asList.AddRange(words);
