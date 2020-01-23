@@ -75,9 +75,9 @@ namespace Test
             //TestBitbucketIssue16(generator);
 
             // Longer benchmarks.
-            //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Normal, 10000);
-            //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Strong, 10000);
-            //BenchmarkGeneration(generator, ReadablePassphrase.PhraseStrength.Insane, 10000);            
+            //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
+            //BenchmarkGeneration(generator, PhraseStrength.Strong, 10000);
+            //BenchmarkGeneration(generator, PhraseStrength.Insane, 10000);
 
             // Random function distribution tests.
             //TestCoinFlip(SeededRandom());
@@ -108,10 +108,6 @@ namespace Test
 
             //var easyCreatedGenerator = MurrayGrant.ReadablePassphrase.Generator.Create();
             //Console.WriteLine("Loaded generator from Generator.Create() with default dictionary of {0:N0} words.", easyCreatedGenerator.Dictionary.Count);
-
-            Console.WriteLine();
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey(true);
         }
 
         private static void DictionaryCheck(ReadablePassphraseGenerator generator)
