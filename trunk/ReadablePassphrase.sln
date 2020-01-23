@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomiseWordList", "RandomiseWordList\RandomiseWordList.csproj", "{7A482545-2586-4152-9EA9-B2D09AD2ED80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeePassReadablePassphrase", "KeePassReadablePassphrase\KeePassReadablePassphrase.csproj", "{EE49DD2F-8815-4090-8F78-06851D77CE3B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassphraseGenerator", "PassphraseGenerator\PassphraseGenerator.csproj", "{1D28A217-9425-49BB-8708-3F5C178FE0AF}"
 EndProject
@@ -20,8 +23,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{72238245-81DB-40D6-856A-AD741FDA2790}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase.DefaultDictionary", "ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj", "{949446B0-BC44-4347-900C-0AFAFB4CDB45}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{C4A94454-521F-41FC-9C52-8C8DCE621A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{C4A94454-521F-41FC-9C52-8C8DCE621A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
