@@ -40,6 +40,9 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
 
         public void Mutate(StringBuilder passphrase, RandomSourceBase random)
         {
+            _ = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
+            _ = random ?? throw new ArgumentNullException(nameof(random));
+
             if (this.When == UppercaseStyles.Never || this.NumberOfCharactersToCapitalise <= 0)
                 return;
 

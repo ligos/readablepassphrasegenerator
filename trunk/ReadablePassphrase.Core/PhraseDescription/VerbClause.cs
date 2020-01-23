@@ -55,12 +55,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         [TagInConfiguration("IntransitiveByPreposition", "Intransitive")]
         public int IntransitiveByPrepositionFactor { get; set; }
 
-        private List<RangeToTense> DistributionTable;
+        private List<RangeToTense>? DistributionTable;
         private int DistributionMax;
 
         public bool SubjectIsPlural { get; set; }
-        public IEnumerable<Clause> Subject { get; set; }
-        public IEnumerable<Clause> Object { get; set; }
+        public IEnumerable<Clause> Subject { get; set; } = Enumerable.Empty<Clause>();
+        public IEnumerable<Clause> Object { get; set; } = Enumerable.Empty<Clause>();
 
         private readonly IEnumerable<TenseData> _TenseData;
         private int _LastVerbTemplateIndex = -1;
@@ -81,6 +81,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void InitialiseRelationships(IEnumerable<Clause> clause)
         {
+            _ = clause ?? throw new ArgumentNullException(nameof(clause));
+
             // TODO: support more than one verb?? Or zero verbs?
             // Find the noun before and after this verb.
             var beforeMe = clause.TakeWhile(x => x != this);
@@ -93,6 +95,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             this._LastVerbTemplateIndex = -1;
             
             // Figuring out if the verb will be plural or not is... well... complicated.
@@ -186,6 +192,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
         public override void SecondPassOfWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             // If we deal with intransitive by having no object, remove the object!
             if (this._LastVerbTemplateIndex >= 0)
             {
@@ -210,7 +220,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
         private VerbTense LookupTenseFromChoice(int choice)
         {
-            foreach (var x in this.DistributionTable)
+            foreach (var x in this.DistributionTable ?? Enumerable.Empty<RangeToTense>())
             {
                 if (x.Range.Within(choice))
                     return x.Tense;
@@ -245,6 +255,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+
             var result = PhraseCombinations.One;
 
             // Adverbs.
@@ -296,11 +308,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         private static class CollectionHelper
         {
-            public static int IndexOfType<T>(IList<T> collection, Type t)
+            public static int IndexOfType<T>(IList<T> collection, Type t) where T : class
             {
                 for (int i = 0; i < collection.Count; i++)
                 {
-                    if (collection[i].GetType() == t)
+                    var item = collection[i];
+                    if (item != null && item.GetType() == t)
                         return i;
                 }
                 return -1;

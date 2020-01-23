@@ -28,6 +28,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         public TagInConfigurationAttribute(string name)
         {
             this.Name = name;
+            this.Group = "";
         }
         public TagInConfigurationAttribute(string name, string group)
         {

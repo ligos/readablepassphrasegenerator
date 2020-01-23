@@ -32,10 +32,14 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
         }
         public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
+            _ = words ?? throw new ArgumentNullException(nameof(words));
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
+
             if (this._NounIsSingular)
             {
-                var w = words.First(x => x.OfType == typeof(Number) && (x as Number).RequiresSingularNoun);
-                return new WordAndString(w, (w as Number).Value);
+                var w = (Number)words.First(x => x is Number n && n.RequiresSingularNoun);
+                return new WordAndString(w, w.Value);
             }
             else
             {

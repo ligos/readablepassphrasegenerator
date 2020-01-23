@@ -34,6 +34,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             // Simply select an AnyTemplate.
             // No fancy logic here at all.
             currentTemplate.Add(new AnyTemplate());
@@ -46,6 +48,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+
             // Simply count all word forms.
             var allFormCount = dictionary.CountOfAllDistinctForms();
             return new PhraseCombinations(allFormCount, allFormCount, allFormCount);

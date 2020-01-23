@@ -23,10 +23,9 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedPreposition : Preposition
     {
-        private string _Value;
+        private readonly string _Value;
         public override string Value { get { return _Value; } }
 
-        private MaterialisedPreposition() { }
         public MaterialisedPreposition(string value)
         {
             _Value = value;

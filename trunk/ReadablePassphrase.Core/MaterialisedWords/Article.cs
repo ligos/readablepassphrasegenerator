@@ -23,15 +23,14 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedArticle : Article
     {
-        private string _Definite;
-        private string _Indefinite;
-        private string _IndefiniteBeforeVowel;
+        private readonly string _Definite;
+        private readonly string _Indefinite;
+        private readonly string _IndefiniteBeforeVowel;
 
         public override string Definite { get { return _Definite; } }
         public override string Indefinite { get { return _Indefinite; } }
         public override string IndefiniteBeforeVowel { get { return _IndefiniteBeforeVowel; } }
 
-        private MaterialisedArticle() { }
         public MaterialisedArticle(string definite, string indefinite, string indefiniteBeforeVowel)
         {
             _Definite = definite;

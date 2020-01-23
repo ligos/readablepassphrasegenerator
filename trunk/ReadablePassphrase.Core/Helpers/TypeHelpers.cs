@@ -11,6 +11,7 @@ namespace MurrayGrant.ReadablePassphrase.Helpers
         public static IEnumerable<Attribute> GetAttrs(this Type t, Type attrType, bool inherit)
         {
             if (t == null) throw new ArgumentNullException(nameof(t));
+            if (attrType == null) throw new ArgumentNullException(nameof(attrType));
 
 #if NETSTANDARD
             return t.GetTypeInfo().GetCustomAttributes(attrType, inherit);

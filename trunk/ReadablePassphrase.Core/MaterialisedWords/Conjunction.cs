@@ -23,15 +23,14 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedConjunction : Conjunction
     {
-        private string _Value;
-        private bool _SeparatesNouns;
-        private bool _SeparatesPhrases;
+        private readonly string _Value;
+        private readonly bool _SeparatesNouns;
+        private readonly bool _SeparatesPhrases;
 
         public override string Value { get { return _Value; } }
         public override bool SeparatesNouns { get { return _SeparatesNouns; } }
         public override bool SeparatesPhrases { get { return _SeparatesPhrases; } }
 
-        private MaterialisedConjunction() { }
         public MaterialisedConjunction(string value, bool separatesNouns, bool separatesPhrases)
         {
             _Value = value;

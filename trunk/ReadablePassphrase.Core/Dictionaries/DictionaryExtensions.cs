@@ -28,6 +28,11 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         public static T ChooseWord<T>(this WordDictionary dict, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<T, bool> wordPredicate) where T : Word
         {
+            _ = dict ?? throw new ArgumentNullException(nameof(dict));
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
+            _ = wordPredicate ?? throw new ArgumentNullException(nameof(wordPredicate));
+
             var count = dict.CountOf<T>();
             T result;
             int attempts = 0;

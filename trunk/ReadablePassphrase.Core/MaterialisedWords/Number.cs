@@ -23,11 +23,10 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedNumber : Number
     {
-        private int _Value;
+        private readonly int _Value;
         public override string Value { get { return _Value.ToString(); } }
         public override bool RequiresSingularNoun { get { return _Value == 1; } }
 
-        private MaterialisedNumber() { }
         public MaterialisedNumber(int value)
         {
             _Value = value;

@@ -96,7 +96,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </remarks>
         public void LoadDictionary(IDictionaryLoader loader, string arguments)
         {
-            this.LoadDictionary(loader, this.ParseArgumentString(arguments));
+            _ = loader ?? throw new ArgumentNullException(nameof(loader));
+
+            this.LoadDictionary(loader, this.ParseArgumentString(arguments ?? ""));
         }
         /// <summary>
         /// Loads a dictionary using the <c>IDictionaryLoader</c> and the given arguments.
@@ -105,6 +107,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="arguments">The arguments to pass to the IDictionaryLoader.</param>
         public void LoadDictionary(IDictionaryLoader loader, IDictionary<string, string> arguments)
         {
+            _ = loader ?? throw new ArgumentNullException(nameof(loader));
+            _ = arguments ?? throw new ArgumentNullException(nameof(arguments));
+
             this.Dictionary = loader.Load(arguments);
         }
 
@@ -118,11 +123,13 @@ namespace MurrayGrant.ReadablePassphrase
         /// <remarks>
         /// See <c>LoadDictionary</c> for details of how <c>arguments</c> is parsed.
         /// </remarks>
-        public bool TryLoadDictionary(IDictionaryLoader loader, string arguments, out Exception error)
+        public bool TryLoadDictionary(IDictionaryLoader loader, string arguments, out Exception? error)
         {
+            _ = loader ?? throw new ArgumentNullException(nameof(loader));
+
             try
             {
-                this.Dictionary = loader.Load(this.ParseArgumentString(arguments));
+                this.Dictionary = loader.Load(this.ParseArgumentString(arguments ?? ""));
                 error = null;
                 return true;
             }
@@ -141,8 +148,11 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="arguments">The arguments to pass to the IDictionaryLoader.</param>
         /// <param name="error">The error which occured while loading the dictionary (if any).</param>
         /// <returns>True if the dictionary loaded successfully, false otherwise (and sets the <c>error</c> out parameter to the error).</returns>
-        public bool TryLoadDictionary(IDictionaryLoader loader, IDictionary<string, string> arguments, out Exception error)
+        public bool TryLoadDictionary(IDictionaryLoader loader, IDictionary<string, string> arguments, out Exception? error)
         {
+            _ = loader ?? throw new ArgumentNullException(nameof(loader));
+            _ = arguments ?? throw new ArgumentNullException(nameof(arguments));
+
             try
             {
                 this.Dictionary = loader.Load(arguments);
@@ -199,6 +209,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
 
@@ -220,6 +232,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription)
         {
+            _ = phraseDescription ?? throw new ArgumentNullException(nameof(phraseDescription));
+
             // Multiply all the combinations together.
             if (phraseDescription == null || !phraseDescription.Any())
                 return PhraseCombinations.Zero;
@@ -290,6 +304,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
@@ -303,6 +319,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
         public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
@@ -348,7 +366,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members (default: Random).</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(PhraseStrength strength = PhraseStrength.Random, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
+        public String Generate(PhraseStrength strength = PhraseStrength.Random, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
             return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators);
         }
@@ -359,8 +377,10 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(IEnumerable<PhraseStrength> strengths, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
+        public String Generate(IEnumerable<PhraseStrength> strengths, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
@@ -373,7 +393,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        public String Generate(IEnumerable<Clause> phraseDescription, string wordDelimiter = " ", IEnumerable<IMutator> mutators = null)
+        public String Generate(IEnumerable<Clause> phraseDescription, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
@@ -384,9 +404,7 @@ namespace MurrayGrant.ReadablePassphrase
             var anyMutators = (mutators != null && mutators.Any());
             this.GenerateInternal(phraseDescription, anyMutators ? " " : wordDelimiter, str);
 
-            if (mutators == null)
-                mutators = Enumerable.Empty<IMutator>();
-            foreach (var m in mutators)
+            foreach (var m in mutators ?? Enumerable.Empty<IMutator>())
                 m.Mutate(str.Target, this.Randomness);
             var result = str.Target.ToString();
 
@@ -452,6 +470,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
@@ -465,6 +485,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
         public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
         {
+            _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
+
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
@@ -570,7 +592,7 @@ namespace MurrayGrant.ReadablePassphrase
         private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, string wordDelimiter)
         {
             var chosenWords = new HashSet<Word>();
-            ArticleTemplate previousArticle = null;
+            ArticleTemplate? previousArticle = null;
             foreach (var t in template)
             {
                 if (t.GetType() == typeof(ArticleTemplate))

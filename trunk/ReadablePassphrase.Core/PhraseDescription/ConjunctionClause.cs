@@ -36,6 +36,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             // Conjunctions are very simple: they either join noun clauses or entire phrases (which will require another verb clause).
             // I'm not allowing a conjunction to be either though.
 
@@ -58,6 +62,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+
             if (JoiningNounFactor > 0 && JoiningPhraseFactor > 0)
                 throw new Exception("Conjunctions may join noun clauses or entire phrases, but not both. Set one of JoinsNoun and JoinsPhrase to 0.");
             if (JoiningNounFactor <= 0 && JoiningPhraseFactor <= 0)

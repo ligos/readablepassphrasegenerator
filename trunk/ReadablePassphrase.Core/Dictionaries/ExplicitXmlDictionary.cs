@@ -25,19 +25,17 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     /// </summary>
     public class ExplicitXmlWordDictionary : WordDictionary
     {
-        private string _LanguageCode;
-        private string _Name;
-        private int _Version;
+        private readonly string _LanguageCode;
+        private readonly string _Name;
+        private readonly int _Version;
 
         public override string LanguageCode { get { return _LanguageCode; } }
         public override string Name { get { return _Name; } }
         public override int Version { get { return _Version; } }
 
-        public ExplicitXmlWordDictionary() : base() { }
-        public ExplicitXmlWordDictionary(string name, string languageCode) : base() { SetNameAndLanguageCodeAndVersion(name, languageCode, 1); }
-        public ExplicitXmlWordDictionary(string name, string languageCode, int version) : base() { SetNameAndLanguageCodeAndVersion(name, languageCode, version); }
-
-        public void SetNameAndLanguageCodeAndVersion(string name, string languageCode, int version)
+        public ExplicitXmlWordDictionary() : this("EMPTY", "en", 1) { }
+        public ExplicitXmlWordDictionary(string name, string languageCode) : this(name, languageCode, 1) { }
+        public ExplicitXmlWordDictionary(string name, string languageCode, int version) : base() 
         {
             _Name = name;
             _LanguageCode = languageCode;
@@ -46,8 +44,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
         protected internal void ExpandCapacityTo(int count)
         {
-            var asList = this.Items as List<Word>;
-            if (asList != null && count > 100 && asList.Capacity < count)
+            if (this.Items is List<Word> asList && count > 100 && asList.Capacity < count)
                 asList.Capacity = count;
         }
     }

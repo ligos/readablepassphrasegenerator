@@ -24,23 +24,23 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedVerb : Verb
     {
-        private string _PresentSingular;
-        private string _PastSingular;
-        private string _PastContinuousSingular;
-        private string _FutureSingular;
-        private string _ContinuousSingular;
-        private string _PerfectSingular;
-        private string _SubjunctiveSingular;
+        private readonly string _PresentSingular;
+        private readonly string _PastSingular;
+        private readonly string _PastContinuousSingular;
+        private readonly string _FutureSingular;
+        private readonly string _ContinuousSingular;
+        private readonly string _PerfectSingular;
+        private readonly string _SubjunctiveSingular;
 
-        private string _PresentPlural;
-        private string _PastPlural;
-        private string _PastContinuousPlural;
-        private string _FuturePlural;
-        private string _ContinuousPlural;
-        private string _PerfectPlural;
-        private string _SubjunctivePlural;
+        private readonly string _PresentPlural;
+        private readonly string _PastPlural;
+        private readonly string _PastContinuousPlural;
+        private readonly string _FuturePlural;
+        private readonly string _ContinuousPlural;
+        private readonly string _PerfectPlural;
+        private readonly string _SubjunctivePlural;
 
-        private bool _IsTransitive;
+        private readonly bool _IsTransitive;
 
         public override string PresentSingular { get { return _PresentSingular; } }
         public override string PastSingular { get { return _PastSingular; } }
@@ -60,7 +60,6 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 
         public override bool IsTransitive { get { return _IsTransitive; } }
 
-        private MaterialisedVerb() { }
         public MaterialisedVerb(IDictionary<string, string> forms)
         {
             _PresentSingular = GetOrDefault(forms, "presentSingular");
@@ -102,12 +101,7 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
             _IsTransitive = isTransitive;
         }
 
-        private U GetOrDefault<T, U>(IDictionary<T, U> dict, T key)
-        {
-            U result = default(U);
-            dict.TryGetValue(key, out result);
-            return result;
-
-        }
+        private string GetOrDefault(IDictionary<string, string> dict, string key)
+            => dict.TryGetValue(key, out var result) ? result : "";
     }
 }

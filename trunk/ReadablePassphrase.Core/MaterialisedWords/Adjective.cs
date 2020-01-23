@@ -23,10 +23,9 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedAdjective : Adjective
     {
-        private string _Value;
+        private readonly string _Value;
         public override string Value { get { return _Value; } }
 
-        private MaterialisedAdjective() { }
         public MaterialisedAdjective(string value)
         {
             _Value = value;

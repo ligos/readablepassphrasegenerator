@@ -73,6 +73,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             if (CommonNounFactor + ProperNounFactor + NounFromAdjectiveFactor <= 0)
                 // No noun clause at all!
                 return;
@@ -105,7 +109,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             if (NumberFactor + NoNumberFactor > 0 && (isPlural || PluralityFactor == 0))
             {
                 if (!isPlural
-                        && !(currentTemplate.Any() && currentTemplate.Last() is ArticleTemplate && !(currentTemplate.Last() as ArticleTemplate).IsDefinite)
+                        && !(currentTemplate.Any() && currentTemplate.Last() is ArticleTemplate at && !at.IsDefinite)
                         && randomness.WeightedCoinFlip(NumberFactor, NoNumberFactor))
                     // Singulars cannot have an indifinite article.
                     currentTemplate.Add(new NumberTemplate(!isPlural));
@@ -195,6 +199,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+
             var baseCombinations = this.CountBase(dictionary);
             PhraseCombinations resultCommon = PhraseCombinations.One, resultProper = PhraseCombinations.One, resultAdjective = PhraseCombinations.One, resultCommonAndAdjective = PhraseCombinations.One;
 

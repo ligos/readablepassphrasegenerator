@@ -23,10 +23,9 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedSpeechVerb : SpeechVerb
     {
-        private string _Past;
+        private readonly string _Past;
         public override string Past { get { return _Past; } }
 
-        private MaterialisedSpeechVerb() { }
         public MaterialisedSpeechVerb(string past)
         {
             _Past = past;

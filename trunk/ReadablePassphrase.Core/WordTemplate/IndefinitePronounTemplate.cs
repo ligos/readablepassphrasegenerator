@@ -35,6 +35,10 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
         public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
+            _ = words ?? throw new ArgumentNullException(nameof(words));
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
+
             var word = words.ChooseWord<IndefinitePronoun>(randomness, alreadyChosen, x => x.IsPersonal == _IsPersonal);
             if (!this._IsPlural)
                 return new WordAndString(word, word.Singular);

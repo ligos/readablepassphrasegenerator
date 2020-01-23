@@ -28,6 +28,8 @@ namespace MurrayGrant.ReadablePassphrase.Random
         private readonly Func<int, byte[]> _RandomProvider;
         public ExternalRandomSource(Func<int, byte[]> source)
         {
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+
             if (source == null)
                 throw new ArgumentNullException("source");
             this._RandomProvider = source;

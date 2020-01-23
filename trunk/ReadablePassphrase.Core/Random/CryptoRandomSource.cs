@@ -25,7 +25,7 @@ namespace MurrayGrant.ReadablePassphrase.Random
     /// </summary>
     public class CryptoRandomSource : RandomSourceBase
     {
-        private RandomNumberGenerator _RandomProvider;
+        private readonly RandomNumberGenerator _RandomProvider;
         public CryptoRandomSource()
         {
             this._RandomProvider = RandomNumberGenerator.Create();

@@ -23,13 +23,12 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedNoun : Noun
     {
-        private string _Singular;
-        private string _Plural;
+        private readonly string _Singular;
+        private readonly string _Plural;
 
         public override string Singular { get { return _Singular; } }
         public override string Plural { get { return _Plural; } }
 
-        private MaterialisedNoun() { }
         public MaterialisedNoun(string singular, string plural)
         {
             _Singular = singular;

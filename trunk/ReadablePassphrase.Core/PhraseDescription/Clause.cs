@@ -182,7 +182,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         {
             var rootTag = (TagInConfigurationAttribute)this.GetType().GetAttrs(typeof(TagInConfigurationAttribute), true).First();
             var groupedProperties = this.GetType().GetProperties()
-                                            .Select(p => new PropertyAndAttributes { Property = p, Tag = (TagInConfigurationAttribute)p.GetCustomAttributes(typeof(TagInConfigurationAttribute), true).FirstOrDefault() })
+                                            .Select(p => new PropertyAndAttributes(p))
                                             .Where(p => p.Tag != null)
                                             .GroupBy(p => p.Tag.Group)
                                             .OrderBy(p => p.Key);
@@ -197,8 +197,13 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
         private class PropertyAndAttributes
         {
-            public System.Reflection.PropertyInfo Property { get; set; }
-            public TagInConfigurationAttribute Tag { get; set; }
+            public PropertyAndAttributes(PropertyInfo property)
+            {
+                this.Property = property;
+                this.Tag = (TagInConfigurationAttribute)property.GetCustomAttributes(typeof(TagInConfigurationAttribute), true).FirstOrDefault();
+            }
+            public PropertyInfo Property { get; }
+            public TagInConfigurationAttribute Tag { get; }
         }
 
         private static readonly Type[] AllowedClauseTypes = new Type[] { typeof(NounClause), typeof(VerbClause), typeof(ConjunctionClause), typeof(DirectSpeechClause) };
@@ -222,7 +227,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
                 
                 // Assign properties.
                 var properties = type.GetProperties()
-                                    .Select(p => new PropertyAndAttributes { Property = p, Tag = (TagInConfigurationAttribute)p.GetCustomAttributes(typeof(TagInConfigurationAttribute), true).FirstOrDefault() })
+                                    .Select(p => new PropertyAndAttributes(p))
                                     .Where(p => p.Tag != null)
                                     .ToDictionary(p => p.Tag.Name.ToLower());
                 int propStartIdx = s.IndexOf('{', equalsIdx) + 1;

@@ -22,8 +22,8 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 {
     public class WordAndString
     {
-        public string FinalWord { get; private set; }
-        public Word Word { get; private set; }
+        public string FinalWord { get; }
+        public Word Word { get; }
         public WordAndString(Word w, string fw)
         {
             Word = w;

@@ -23,12 +23,11 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedInterrogative : Interrogative
     {
-        private string _Singular;
+        private readonly string _Singular;
         public override string Singular { get { return _Singular; } }
-        private string _Plural;
+        private readonly string _Plural;
         public override string Plural { get { return _Plural; } }
 
-        private MaterialisedInterrogative() { }
         public MaterialisedInterrogative(string singular, string plural)
         {
             _Singular = singular;

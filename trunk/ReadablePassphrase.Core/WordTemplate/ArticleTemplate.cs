@@ -33,6 +33,10 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
         public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
+            _ = words ?? throw new ArgumentNullException(nameof(words));
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
+
             // This won't always produce the correct result.
             if (this.IsDefinite)
                 return new WordAndString(words.TheArticle, words.TheArticle.Definite);
@@ -42,6 +46,9 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
         public string ChooseBasedOnFollowingWord(WordDictionary words, string nextWord)
         {
+            _ = words ?? throw new ArgumentNullException(nameof(words));
+            _ = nextWord ?? throw new ArgumentNullException(nameof(nextWord));
+
             if (this.IsDefinite)
                 return words.TheArticle.Definite;
             else if (VowelSounds.Contains(nextWord[0]))

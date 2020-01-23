@@ -36,6 +36,10 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override void AddWordTemplate(Random.RandomSourceBase randomness, WordDictionary dictionary, IList<WordTemplate.Template> currentTemplate)
         {
+            _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            _ = currentTemplate ?? throw new ArgumentNullException(nameof(currentTemplate));
+
             // Direct speech verbs are very simple cases of verbs. They rely on a preceeding noun clause to make sense.
             var chosenDirectSpeech = (DirectSpeechFactor + NoDirectSpeechFactor > 0)  // Case where neither is specified: assume no direct speech.
                                    && randomness.WeightedCoinFlip(DirectSpeechFactor, NoDirectSpeechFactor);
@@ -70,6 +74,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
 
         public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+
             var result = this.CountSingleFactor<Words.SpeechVerb>(dictionary, this.DirectSpeechFactor, this.NoDirectSpeechFactor);
             return result;
         }
