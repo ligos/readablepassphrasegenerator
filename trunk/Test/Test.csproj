@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net452</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase.Test</Product>
     <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
@@ -15,6 +15,7 @@
     <OutputType>Exe</OutputType>
     <StartupObject />
     <PackageId>ReadablePassphrase.Test</PackageId>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <!-- Use Nuget packages -->
@@ -51,5 +52,10 @@
        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
      </None>
    </ItemGroup>
+
+
+   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+     <Exec Command="copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(TargetDir)&quot;" />
+   </Target>
    
 </Project>
