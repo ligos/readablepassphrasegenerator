@@ -30,7 +30,15 @@ namespace KeePassReadablePassphrase
         public WordSeparatorOption WordSeparator { get; set; }
         public string CustomSeparator { get; set; }
         private PhraseStrength _PhraseSelection;
-        public PhraseStrength PhraseStrength { get { return this._PhraseSelection; } set { this._PhraseSelection = value; this.UpdatePhraseDescription(); } }
+        public PhraseStrength PhraseStrength 
+        {
+            get { return this._PhraseSelection; }
+            set 
+            { 
+                this._PhraseSelection = value; 
+                this.PhraseDescription = this.GetPhraseDescription(); 
+            } 
+        }
         public IEnumerable<Clause> PhraseDescription { get; set; }
         public bool UseCustomDictionary { get; set; }
         public string PathOfCustomDictionary { get; set; }
@@ -56,18 +64,9 @@ namespace KeePassReadablePassphrase
             }
         }
 
-        public Config()
-        {
-            this.LoadDefaults();
-        }
-        public Config(string configFromKeePass)
-        {
-            this.LoadDefaults();
-            if (!String.IsNullOrEmpty(configFromKeePass))
-                this.ParseConfig(configFromKeePass);
-        }
+        public static readonly Config Default = new Config();
 
-        private void LoadDefaults()
+        public Config()
         {
             // Defaults.
 #pragma warning disable CS0618
@@ -78,7 +77,7 @@ namespace KeePassReadablePassphrase
             PhraseStrength = PhraseStrength.Random;
             MinLength = 1;
             MaxLength = 999;
-            this.UpdatePhraseDescription();
+            this.PhraseDescription = this.GetPhraseDescription();
             this.Mutator = MutatorOption.None;
             this.UpperStyle = AllUppercaseStyles.WholeWord;
             this.UpperCount = UppercaseWordMutator.Basic.NumberOfWordsToCapitalise;
@@ -86,7 +85,15 @@ namespace KeePassReadablePassphrase
             this.NumericCount = NumericMutator.Basic.NumberOfNumbersToAdd;
             this.ConstantStyle = ConstantMutator.Basic.When;
             this.ConstantValue = ConstantMutator.Basic.ValueToAdd;
+            this.PathOfCustomDictionary = "";
         }
+        public Config(string configFromKeePass)
+            : this()
+        {
+            if (!String.IsNullOrEmpty(configFromKeePass))
+                this.ParseConfig(configFromKeePass);
+        }
+
         private void ParseConfig(string configFromKeePass)
         {
             // Load the config up from ToConfigString().
@@ -138,7 +145,7 @@ namespace KeePassReadablePassphrase
             }
 
             if (this.PhraseStrength != PhraseStrength.Custom)
-                this.UpdatePhraseDescription();
+                this.PhraseDescription = this.GetPhraseDescription();
 
             if (MinLength < 1)
                 MinLength = 1;
@@ -199,10 +206,12 @@ namespace KeePassReadablePassphrase
         }
 
 
-        private void UpdatePhraseDescription()
+        private IEnumerable<Clause> GetPhraseDescription()
         {
             if (this.PhraseStrength != PhraseStrength.Custom && !Clause.RandomMappings.ContainsKey(this.PhraseStrength))
-                this.PhraseDescription = MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.CreatePhraseDescription(this.PhraseStrength, null);
+                return Clause.CreatePhraseDescription(this.PhraseStrength, new KeePassRandomSource());
+            else
+                return Enumerable.Empty<Clause>();
         }
 
         private static string EncodeForXml(string xml)

@@ -29,6 +29,8 @@ namespace KeePassReadablePassphrase
 
         public override bool Initialize(IPluginHost host)
         {
+            if (host == null) throw new ArgumentNullException("host");
+
             this._Host = host;
             this._Generator = new PassphraseGenerator(host);
             this._Host.PwGeneratorPool.Add(this._Generator);
@@ -39,7 +41,8 @@ namespace KeePassReadablePassphrase
         {
             if (this._Host != null)
             {
-                this._Host.PwGeneratorPool.Remove(this._Generator.Uuid);
+                if (this._Generator != null)
+                    this._Host.PwGeneratorPool.Remove(this._Generator.Uuid);
                 this._Host = null;
             }
             if (this._Generator != null)

@@ -46,7 +46,7 @@ namespace KeePassReadablePassphrase
             this.lblVersion.Text = "Version " + ver.Substring(0, idx);
 
             // Load up the config.
-            Config config = null;
+            Config config;
             try
             {
                 config = new Config(this.ConfigForKeePass);
@@ -220,7 +220,7 @@ namespace KeePassReadablePassphrase
 
                 this.UpdateDescription(config);
                 this.UpdateCombinations(config);
-                this.UpdateDictionarySize(config);
+                this.UpdateDictionarySize();
                 this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
                 this.UpdateCustomDictionaryVisibility();
                 this.UpdateCustomSeparatorEnabledStatus();
@@ -262,7 +262,7 @@ namespace KeePassReadablePassphrase
                 this.txtEntropyAverage.Text = "?";
             }
         }
-        private void UpdateDictionarySize(Config config)
+        private void UpdateDictionarySize()
         {
             var total = this._Generator.Dictionary.Count;
             this.txtDictionarySize.Text = total.ToString("N0");
@@ -313,7 +313,7 @@ namespace KeePassReadablePassphrase
         private Config FormToConfigObject()
         {
             if (_IsLoading)
-                return null;
+                return Config.Default;
 
             var result = new Config();
             result.PhraseStrength = (PhraseStrength)Enum.Parse(typeof(PhraseStrength), this.cboPhraseSelection.Text);

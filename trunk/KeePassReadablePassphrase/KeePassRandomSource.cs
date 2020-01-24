@@ -22,7 +22,7 @@ namespace KeePassReadablePassphrase
 {
     public class KeePassRandomSource : MurrayGrant.ReadablePassphrase.Random.RandomSourceBase
     {
-        private CryptoRandomStream _Crs;
+        private readonly CryptoRandomStream _Crs;
         public KeePassRandomSource()
         {
             var randomness = System.Security.Cryptography.RandomNumberGenerator.Create();

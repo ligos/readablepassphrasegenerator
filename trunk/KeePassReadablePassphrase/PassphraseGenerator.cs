@@ -53,7 +53,6 @@ namespace KeePassReadablePassphrase
             get { return true; }
         }
 
-        public PassphraseGenerator() { }
         public PassphraseGenerator(KeePass.Plugins.IPluginHost host)
         {
             this.Host = host;
@@ -64,6 +63,9 @@ namespace KeePassReadablePassphrase
 
         public override string GetOptions(string strCurrentOptions)
         {
+            if (Host == null)
+                return "";
+
             using (var frm = new ConfigRoot(strCurrentOptions, new KeePassRandomSource()))
             {
                 frm.ShowDialog(this.Host.MainWindow);

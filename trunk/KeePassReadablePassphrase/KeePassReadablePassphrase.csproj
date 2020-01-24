@@ -10,6 +10,11 @@
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
 Plugin for KeePass.</Description>
     <RootNamespace>KeePassReadablePassphrase</RootNamespace>
+    <!--
+    For nullable ref types (but will generate code which cannot be consumed by KeePass itself in a plugin)
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    -->
     <LangVersion>5</LangVersion>
     <NoWarn>1701;1702;1591</NoWarn>
     <DocumentationFile>bin\Release\net40\ReadablePassphrase.Words.xml</DocumentationFile>
@@ -24,10 +29,6 @@ Plugin for KeePass.</Description>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET40</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="dictionary.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="dictionary.xml" />
@@ -75,5 +76,9 @@ Plugin for KeePass.</Description>
     </EmbeddedResource>
 
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="del &quot;$(SolutionDir)KeePassReadablePassphrase\dictionary.xml&quot;&#xD;&#xA;copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(SolutionDir)KeePassReadablePassphrase\dictionary.xml&quot;" />
+  </Target>
 
 </Project>

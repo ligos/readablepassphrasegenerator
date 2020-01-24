@@ -6,18 +6,12 @@ rem Clean the build folder
 rmdir /s /q "ReadablePassphrase.build"
 mkdir "ReadablePassphrase.build"
 
-rem Ensure dictionary is up to date.
-cd MergePartsOfSpeech\bin\Release\net471
-MergePartsOfSpeech.exe
-copy /y dictionary.xml "../../../../KeePassReadablePassphrase/dictionary.xml"
-cd ../../../..
-
 rem Copy required files to build folder.
 copy /y "KeePassReadablePassphrase\*.*"  "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Core.dll" "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Core.pdb" "ReadablePassphrase.build"
-copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"
-copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Words.pdb" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Words\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"
+copy /y "ReadablePassphrase.Words\bin\Release\net40\ReadablePassphrase.Words.pdb" "ReadablePassphrase.build"
 
 copy /y ..\LICENSE.txt ReadablePassphrase.build
 copy /y ..\NOTICE.txt ReadablePassphrase.build
