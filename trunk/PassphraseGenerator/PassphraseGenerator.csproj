@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net452</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase</Product>
     <Copyright>Copyright © Murray Grant 2011-2019</Copyright>
@@ -18,6 +18,8 @@
     <OutputType>Exe</OutputType>
     <StartupObject />
     <AssemblyName>PassphraseGenerator</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp2.1|AnyCPU'">
@@ -48,5 +50,9 @@
        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
      </None>
    </ItemGroup>
+
+   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+     <Exec Command="copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;del &quot;$(TargetDir)dictionary.xml.gz&quot;&#xD;&#xA;&quot;$(SolutionDir)gzip.exe&quot; -9 &quot;$(TargetDir)dictionary.xml&quot;&#xD;&#xA;" />
+   </Target>
 
 </Project>

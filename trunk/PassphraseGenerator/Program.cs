@@ -82,7 +82,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             // Generate and print phrases.
             if (!quiet)
             {
-                var ver = ((System.Reflection.AssemblyFileVersionAttribute)typeof(Program).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyFileVersionAttribute), true).GetValue(0)).Version;
+                var ver = GetProgramVersion();
                 var idx = ver.IndexOf('.', ver.IndexOf('.', ver.IndexOf('.') + 1) + 1);
                 Console.WriteLine("Readable Passphrase Generator {0}", ver.Substring(0, idx));
             }
@@ -99,29 +99,16 @@ namespace MurrayGrant.ReadablePassphrase.Generator
 
             // Must load dictionary before trying to generate.
             var dictSw = System.Diagnostics.Stopwatch.StartNew();
-            System.Reflection.Assembly loaderAsm = null;
-            if (useCustomLoader && !String.IsNullOrEmpty(loaderDll))
-                loaderAsm = System.Reflection.Assembly.LoadFrom(loaderDll);
-            Type loaderT;
-            if (!String.IsNullOrEmpty(loaderType) && loaderAsm != null)
-                loaderT = loaderAsm.GetTypes().FirstOrDefault(t => t.FullName.IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
-            else if (!String.IsNullOrEmpty(loaderType) && loaderAsm == null)
-                loaderT = AppDomain.CurrentDomain.GetAssemblies()
-                            .Where(a => a.FullName.IndexOf("ReadablePassphrase", StringComparison.CurrentCultureIgnoreCase) >= 0)
-                            .SelectMany(a => a.GetTypes())
-                            .FirstOrDefault(t => t.FullName.IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
-            else if (String.IsNullOrEmpty(loaderType) && loaderAsm == null)
-                loaderT = typeof(ExplicitXmlDictionaryLoader);
-            else
-                throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
-            
+            var loaderT = GetDictionaryLoaderType();
             // If the internal dictionary loader is being used and no other arguments are specified, tell it to use the default dictionary.
             if (loaderT == typeof(ExplicitXmlDictionaryLoader) && String.IsNullOrEmpty(loaderArguments.Trim()))
                 loaderArguments = "useDefaultDictionary=true";
 
             // And load our dictionary!
-            using (var loader = (IDictionaryLoader)Activator.CreateInstance(loaderT))
+            using (var loader = Activator.CreateInstance(loaderT) as IDictionaryLoader) 
             {
+                if (loader == null)
+                    throw new Exception($"Unable to create instance of dictionary loader {loaderT.FullName}");
                 generator.LoadDictionary(loader, loaderArguments);
             }
             dictSw.Stop();
@@ -223,6 +210,33 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 if (attempts >= maxAttempts)
                     Console.WriteLine("But unable to generate requested {0:N0} phrase(s) after {1:N0} attempts." + Environment.NewLine + "Perhaps try changing the minimum or maximum phrase length.", count, attempts);
             }
+        }
+
+        static string GetProgramVersion()
+        {
+            var fileVersionAttrs = typeof(Program).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyFileVersionAttribute), true);
+            var fileVersionAttr = (System.Reflection.AssemblyFileVersionAttribute)fileVersionAttrs[0];
+            return fileVersionAttr.Version;
+        }
+
+        static Type GetDictionaryLoaderType()
+        {
+            System.Reflection.Assembly? loaderAsm = null;
+            if (useCustomLoader && !String.IsNullOrEmpty(loaderDll))
+                loaderAsm = System.Reflection.Assembly.LoadFrom(loaderDll);
+            Type loaderT;
+            if (!String.IsNullOrEmpty(loaderType) && loaderAsm != null)
+                loaderT = loaderAsm.GetTypes().FirstOrDefault(t => (t.FullName ?? "").IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
+            else if (!String.IsNullOrEmpty(loaderType) && loaderAsm == null)
+                loaderT = AppDomain.CurrentDomain.GetAssemblies()
+                            .Where(a => (a.FullName ?? "").IndexOf("ReadablePassphrase", StringComparison.CurrentCultureIgnoreCase) >= 0)
+                            .SelectMany(a => a.GetTypes())
+                            .FirstOrDefault(t => (t.FullName ?? "").IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
+            else if (String.IsNullOrEmpty(loaderType) && loaderAsm == null)
+                loaderT = typeof(ExplicitXmlDictionaryLoader);
+            else
+                throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
+            return loaderT;
         }
 
         static IEnumerable<Clause> NonGrammaticalClause(int count)
