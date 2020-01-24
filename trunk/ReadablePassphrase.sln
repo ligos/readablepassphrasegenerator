@@ -11,6 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeePassReadablePassphrase",
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassphraseGenerator", "PassphraseGenerator\PassphraseGenerator.csproj", "{1D28A217-9425-49BB-8708-3F5C178FE0AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergePartsOfSpeech", "MergePartsOfSpeech\MergePartsOfSpeech.csproj", "{A9A16D25-23D6-4865-8353-41927998CE03}"
 EndProject
@@ -21,6 +24,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4157BC1-ECA6-4EF0-A2B2-2BFEEAD89762}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{72238245-81DB-40D6-856A-AD741FDA2790}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9A16D25-23D6-4865-8353-41927998CE03} = {A9A16D25-23D6-4865-8353-41927998CE03}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase.DefaultDictionary", "ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj", "{949446B0-BC44-4347-900C-0AFAFB4CDB45}"
 	ProjectSection(ProjectDependencies) = postProject
