@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase</Product>
-    <Copyright>Copyright © Murray Grant 2011-2019</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
     <Authors>Murray Grant</Authors>
     <Version>1.2.0</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
@@ -18,6 +18,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1591</NoWarn>
+    <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageTags>password security passphrase readable generator random</PackageTags>

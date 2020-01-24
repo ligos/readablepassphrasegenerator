@@ -4,7 +4,7 @@
     <TargetFrameworks>net40;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>KeePass Plugin</Product>
-    <Copyright>Copyright © Murray Grant 2011-2019</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
     <Authors>Murray Grant</Authors>
     <Version>1.2.0</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
@@ -20,7 +20,7 @@ Plugin for KeePass.</Description>
     <DocumentationFile>bin\Release\net40\ReadablePassphrase.Words.xml</DocumentationFile>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageId>Readable Passphrase Plugin</PackageId>

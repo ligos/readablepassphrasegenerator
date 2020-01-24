@@ -4,11 +4,12 @@
     <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase.Test</Product>
-    <Copyright>Copyright © Murray Grant 2011-2018</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
     <Authors>Murray Grant</Authors>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
     <RootNamespace>Test</RootNamespace>
     <NoWarn>1701;1702;1591</NoWarn>
+    <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <ApplicationIcon />

@@ -34,7 +34,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public static WordDictionary Load()
         {
             var loader = new ExplicitXmlDictionaryLoader();
-            using (var s = typeof(Default).GetAssembly().GetManifestResourceStream(DictionaryResourceName))
+            using (var s = Stream())
             {
                 WordDictionary result = loader.LoadFrom(s);
                 return result;
