@@ -8,6 +8,7 @@ mkdir "ReadablePassphrase.build"
 
 rem Copy required files to build folder.
 copy /y "KeePassReadablePassphrase\*.*"  "ReadablePassphrase.build"
+copy /y "KeePassReadablePassphrase\bin\Release\net40\dictionary.xml"  "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Core.dll" "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Core\bin\Release\net40\ReadablePassphrase.Core.pdb" "ReadablePassphrase.build"
 copy /y "ReadablePassphrase.Words\bin\Release\net40\ReadablePassphrase.Words.dll" "ReadablePassphrase.build"

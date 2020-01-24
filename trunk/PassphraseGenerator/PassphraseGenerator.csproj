@@ -25,8 +25,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp2.1|AnyCPU'">
     <DocumentationFile>bin\Release\netcoreapp2.1\PassphraseGenerator.xml</DocumentationFile>
   </PropertyGroup>
-
-   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
+    <DocumentationFile>bin\Release\netcoreapp3.1\PassphraseGenerator.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
     <DocumentationFile>bin\Release\net452\PassphraseGenerator.xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
@@ -44,15 +46,10 @@
     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
     <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
   </ItemGroup>
-
-   <ItemGroup>
-     <None Update="dictionary.xml.gz">
-       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-     </None>
-   </ItemGroup>
-
-   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-     <Exec Command="copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;del &quot;$(TargetDir)dictionary.xml.gz&quot;&#xD;&#xA;&quot;$(SolutionDir)gzip.exe&quot; -9 &quot;$(TargetDir)dictionary.xml&quot;&#xD;&#xA;" />
-   </Target>
+  <ItemGroup>
+    <None Include="..\MergePartsOfSpeech\bin\dictionary.xml.gz" Link="dictionary.xml.gz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

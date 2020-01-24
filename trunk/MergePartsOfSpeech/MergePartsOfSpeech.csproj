@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(TargetPath)&quot;" />
+    <Exec Command="dotnet &quot;$(TargetPath)&quot;&#xD;&#xA;&#xD;&#xA;copy /y &quot;$(ProjectDir)\bin\dictionary.xml&quot; &quot;$(ProjectDir)\bin\dictionary.xml2&quot;&#xD;&#xA;del /q &quot;$(ProjectDir)\bin\dictionary.xml.gz&quot;&#xD;&#xA;&quot;$(ProjectDir)..\gzip.exe&quot; -9 &quot;$(ProjectDir)\bin\dictionary.xml&quot;&#xD;&#xA;move /y &quot;$(ProjectDir)\bin\dictionary.xml2&quot; &quot;$(ProjectDir)\bin\dictionary.xml&quot;" />
   </Target>
 
 </Project>

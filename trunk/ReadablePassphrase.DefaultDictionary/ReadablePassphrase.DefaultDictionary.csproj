@@ -32,9 +32,10 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <AssemblyOriginatorKeyFile>MurrayGrant.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <EmbeddedResource Include="dictionary.xml.gz" />
+    <EmbeddedResource Include="..\MergePartsOfSpeech\bin\dictionary.xml.gz" Link="dictionary.xml.gz">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

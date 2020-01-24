@@ -5,7 +5,7 @@ Generates gramatically correct passphrases that are easy for human to remember a
 By Murray Grant
 
 For further details see
-https://bitbucket.org/ligos/readablepassphrasegenerator
+https://github.com/ligos/readablepassphrasegenerator
 
 To run try:
 

@@ -30,10 +30,6 @@ Plugin for KeePass.</Description>
     <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET40</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="dictionary.xml" />
-  </ItemGroup>
-
 
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
@@ -45,6 +41,11 @@ Plugin for KeePass.</Description>
   <ItemGroup Condition="'$(RefNugets)'!='True'">
     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
     <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\MergePartsOfSpeech\bin\dictionary.xml" Link="dictionary.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -76,9 +77,5 @@ Plugin for KeePass.</Description>
     </EmbeddedResource>
 
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="del &quot;$(SolutionDir)KeePassReadablePassphrase\dictionary.xml&quot;&#xD;&#xA;copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(SolutionDir)KeePassReadablePassphrase\dictionary.xml&quot;" />
-  </Target>
 
 </Project>

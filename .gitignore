@@ -20,3 +20,4 @@ trunk/NuGet.config
 dictionary.xml
 dictionary.xml.gz
 trunk/RandomiseWordList/diceware.wordlist.sig
+trunk/PassphraseGenerator.netcoreapp31.zip
