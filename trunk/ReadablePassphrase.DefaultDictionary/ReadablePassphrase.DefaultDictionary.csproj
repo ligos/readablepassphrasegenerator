@@ -56,8 +56,5 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
   <ItemGroup Condition="'$(RefNugets)'!='True'">
     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy /y &quot;$(SolutionDir)MergePartsOfSpeech\bin\dictionary.xml&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;del &quot;$(TargetDir)dictionary.xml.gz&quot;&#xD;&#xA;&quot;$(SolutionDir)gzip.exe&quot; -9 &quot;$(TargetDir)dictionary.xml&quot;&#xD;&#xA;move /y &quot;$(TargetDir)dictionary.xml.gz&quot; &quot;$(SolutionDir)ReadablePassphrase.DefaultDictionary\dictionary.xml.gz&quot;" />
-  </Target>
 
 </Project>
