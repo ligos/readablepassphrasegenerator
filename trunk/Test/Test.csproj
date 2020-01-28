@@ -35,7 +35,9 @@
     <ProjectReference Include="..\ReadablePassphrase\ReadablePassphrase.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\MergePartsOfSpeech\bin\dictionary.xml" Link="dictionary.xml" />
+    <Content Include="..\MergePartsOfSpeech\bin\dictionary.xml" Link="dictionary.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   
    <ItemGroup>
