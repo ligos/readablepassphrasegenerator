@@ -3134,7 +3134,7 @@ limitations under the License.
   <noun singular="highboy" plural="highboys"/>
   <noun singular="ponytail" plural="ponytails"/>
   <noun singular="sling" plural="slings"/>
-  <noun singular="patch" plural="patchs"/>
+  <noun singular="patch" plural="patches"/>
   <noun singular="collage" plural="collages"/>
   <noun singular="soybean" plural="soybeans"/>
   <noun singular="strata" plural="stratas"/>
@@ -4203,7 +4203,7 @@ limitations under the License.
   <noun singular="mudguard" plural="mudguards"/>
   <noun singular="guard" plural="guards"/>
   <noun singular="digit" plural="digits"/>
-  <noun singular="policies" plural="policy"/>
+  <noun singular="policy" plural="policies"/>
   <noun singular="phase" plural="phases"/>
   <noun singular="stylus" plural="styluses"/>
   <noun plural="murk"/>
@@ -4289,4 +4289,43 @@ limitations under the License.
   <noun singular="satrap" plural="satraps"/>
   <noun singular="mimic" plural="mimics"/>
   <noun singular="intercom" plural="intercoms"/>
+  <noun singular="mocha" plural="mochas"/>
+  <noun singular="lodging" plural="lodgings"/>
+  <noun singular="dairyman" plural="dairymen"/>
+  <noun singular="stairway" plural="stairways"/>
+  <noun singular="dwelling" plural="dwellings"/>
+  <noun singular="vampire" plural="vampires"/>
+  <noun singular="mite" plural="mites"/>
+  <noun singular="cricket" plural="crickets"/>
+  <noun singular="cricketer" plural="cricketers"/>
+  <noun singular="shooter" plural="shooters"/>
+  <noun singular="anode" plural="anodes"/>
+  <noun singular="lobby" plural="lobbies"/>
+  <noun singular="grocer" plural="grocers"/>
+  <noun singular="grocery" plural="groceries"/>
+  <noun singular="pinafore" plural="pinafore"/>
+  <noun singular="portico" plural="porticos"/>
+  <noun singular="dolphin" plural="dolphins"/>
+  <noun singular="jingo" plural="jingos"/>
+  <noun plural="gall"/>
+  <noun singular="tassel" plural="tassels"/>
+  <noun singular="solid" plural="solids"/>
+  <noun singular="fuzz" plural="fuzz"/>
+  <noun singular="campsite" plural="campsites"/>
+  <noun singular="backer" plural="backers"/>
+  <noun singular="recital" plural="recitals"/>
+  <noun singular="ombudsman" plural="ombudsmen"/>
+  <noun singular="roof" plural="roofs"/>
+  <noun singular="killjoy" plural="killjoys"/>
+  <noun singular="gunner" plural="gunners"/>
+  <noun singular="blob" plural="blob"/>
+  <noun singular="midland" plural="midlands"/>
+  <noun singular="whip" plural="whips"/>
+  <noun singular="tarpaulin" plural="tarpaulins"/>
+  <noun singular="tarp" plural="tarps"/>
+  <noun singular="buffer" plural="buffers"/>
+  <noun singular="lowdown" plural="lowdowns"/>
+  <noun singular="address" plural="addresses"/>
+  <noun singular="scroll" plural="scrolls"/>
+  <noun singular="albatross" plural="albatrosses"/>
 </dictionary>
