@@ -5517,4 +5517,21 @@ limitations under the License.
   <verb presentSingular="flies" pastSingular="flew" pastContinuousSingular="was flying" futureSingular="will fly" continuousSingular="is flying" perfectSingular="has flown" subjunctiveSingular="might fly"
         presentPlural="fly" pastPlural="flew" pastContinuousPlural="were flying" futurePlural="will fly" continuousPlural="are flying" perfectPlural="have flown" subjunctivePlural="might fly"
         transitive="false"/>
+  <verb presentSingular="enshrines" pastSingular="enshrined" pastContinuousSingular="was enshrining" futureSingular="will enshrine" continuousSingular="is enshrining" perfectSingular="has enshrined" subjunctiveSingular="might enshrine"
+        presentPlural="enshrine" pastPlural="enshrined" pastContinuousPlural="were enshrining" futurePlural="will enshrine" continuousPlural="are enshrining" perfectPlural="have enshrine" subjunctivePlural="might enshrine"/>
+  <verb presentSingular="loosens" pastSingular="loosened" pastContinuousSingular="was loosening" futureSingular="will loosen" continuousSingular="is loosening" perfectSingular="has loosened" subjunctiveSingular="might loosen"
+        presentPlural="loosen" pastPlural="loosened" pastContinuousPlural="were loosening" futurePlural="will loosen" continuousPlural="are loosening" perfectPlural="have loosened" subjunctivePlural="might loosen"/>
+  <verb presentSingular="slathers" pastSingular="slathered" pastContinuousSingular="was slathering" futureSingular="will slather" continuousSingular="is slathering" perfectSingular="has slathered" subjunctiveSingular="might slather"
+        presentPlural="slather" pastPlural="slathered" pastContinuousPlural="were slathering" futurePlural="will slather" continuousPlural="are slathering" perfectPlural="have slathered" subjunctivePlural="might slather"/>
+  <verb presentSingular="illuminates" pastSingular="illuminated" pastContinuousSingular="was illuminating" futureSingular="will illuminate" continuousSingular="is illuminating" perfectSingular="has illuminated" subjunctiveSingular="might illuminate"
+        presentPlural="illuminate" pastPlural="illuminated" pastContinuousPlural="were illuminating" futurePlural="will illuminate" continuousPlural="are illuminating" perfectPlural="have illuminated" subjunctivePlural="might illuminate"/>
+  <verb presentSingular="overrules" pastSingular="overruled" pastContinuousSingular="was overruling" futureSingular="will overrule" continuousSingular="is overruling" perfectSingular="has overruled" subjunctiveSingular="might overrule"
+        presentPlural="overrule" pastPlural="overruled" pastContinuousPlural="were overruling" futurePlural="will overrule" continuousPlural="are overruling" perfectPlural="have overruled" subjunctivePlural="might overrule"/>
+  <verb presentSingular="retrains" pastSingular="retrained" pastContinuousSingular="was retraining" futureSingular="will retrain" continuousSingular="is retraining" perfectSingular="has retrained" subjunctiveSingular="might retrain"
+        presentPlural="retrain" pastPlural="retrained" pastContinuousPlural="were retraining" futurePlural="will retrain" continuousPlural="are retraining" perfectPlural="have retrained" subjunctivePlural="might retrain"/>
+  <verb presentSingular="boycotts" pastSingular="boycotted" pastContinuousSingular="was boycotting" futureSingular="will boycott" continuousSingular="is boycotting" perfectSingular="has boycotted" subjunctiveSingular="might boycott"
+        presentPlural="boycott" pastPlural="boycotted" pastContinuousPlural="were boycotting" futurePlural="will boycott" continuousPlural="are boycotting" perfectPlural="have boycotted" subjunctivePlural="might boycott"/>
+  <verb presentSingular="browses" pastSingular="browsed" pastContinuousSingular="was browsing" futureSingular="will browse" continuousSingular="is browsing" perfectSingular="has browsed" subjunctiveSingular="might browse"
+        presentPlural="browse" pastPlural="browsed" pastContinuousPlural="were browsing" futurePlural="will browse" continuousPlural="are browsing" perfectPlural="have browsed" subjunctivePlural="might browse"
+        transitive="false"/>
 </dictionary>
