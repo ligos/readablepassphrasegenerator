@@ -5534,4 +5534,36 @@ limitations under the License.
   <verb presentSingular="browses" pastSingular="browsed" pastContinuousSingular="was browsing" futureSingular="will browse" continuousSingular="is browsing" perfectSingular="has browsed" subjunctiveSingular="might browse"
         presentPlural="browse" pastPlural="browsed" pastContinuousPlural="were browsing" futurePlural="will browse" continuousPlural="are browsing" perfectPlural="have browsed" subjunctivePlural="might browse"
         transitive="false"/>
+  <verb presentSingular="lets" pastSingular="let" pastContinuousSingular="was letting" futureSingular="will let" continuousSingular="is letting" perfectSingular="has let" subjunctiveSingular="might let"
+        presentPlural="let" pastPlural="let" pastContinuousPlural="were letting" futurePlural="will let" continuousPlural="are letting" perfectPlural="have let" subjunctivePlural="might let"/>
+  <verb presentSingular="simmers" pastSingular="simmered" pastContinuousSingular="was simmering" futureSingular="will simmer" continuousSingular="is simmering" perfectSingular="has simmered" subjunctiveSingular="might simmer"
+        presentPlural="simmer" pastPlural="simmered" pastContinuousPlural="were simmering" futurePlural="will simmer" continuousPlural="are simmering" perfectPlural="have simmered" subjunctivePlural="might simmer"/>
+  <verb presentSingular="sucks" pastSingular="sucked" pastContinuousSingular="was sucking" futureSingular="will suck" continuousSingular="is sucking" perfectSingular="has sucked" subjunctiveSingular="might suck"
+        presentPlural="suck" pastPlural="sucked" pastContinuousPlural="were sucking" futurePlural="will suck" continuousPlural="are sucking" perfectPlural="have sucked" subjunctivePlural="might suck"/>
+  <verb presentSingular="stuns" pastSingular="stunned" pastContinuousSingular="was stunning" futureSingular="will stun" continuousSingular="is stunning" perfectSingular="has stunned" subjunctiveSingular="might stun"
+        presentPlural="stun" pastPlural="stunned" pastContinuousPlural="were stunning" futurePlural="will stun" continuousPlural="are stunning" perfectPlural="have stunned" subjunctivePlural="might stun"/>
+  <verb presentSingular="interviews" pastSingular="interviewed" pastContinuousSingular="was interviewing" futureSingular="will interview" continuousSingular="is interviewing" perfectSingular="has interviewed" subjunctiveSingular="might interview"
+        presentPlural="interview" pastPlural="interviewed" pastContinuousPlural="were interviewing" futurePlural="will interview" continuousPlural="are interviewing" perfectPlural="have interviewed" subjunctivePlural="might interview"/>
+  <verb presentSingular="percolates" pastSingular="percolated" pastContinuousSingular="was percolating" futureSingular="will percolate" continuousSingular="is percolating" perfectSingular="has percolated" subjunctiveSingular="might percolate"
+        presentPlural="percolate" pastPlural="percolated" pastContinuousPlural="were percolating" futurePlural="will percolate" continuousPlural="are percolating" perfectPlural="have percolated" subjunctivePlural="might percolate"
+        transitive="false"/>
+  <verb presentSingular="slogs" pastSingular="slogged" pastContinuousSingular="was slogging" futureSingular="will slog" continuousSingular="is slogging" perfectSingular="has slogged" subjunctiveSingular="might slog"
+        presentPlural="slog" pastPlural="slogged" pastContinuousPlural="were slogging" futurePlural="will slog" continuousPlural="are slogging" perfectPlural="have slogged" subjunctivePlural="might slog"
+        transitive="false"/>
+  <verb presentSingular="warns" pastSingular="warned" pastContinuousSingular="was warning" futureSingular="will warn" continuousSingular="is warning" perfectSingular="has warned" subjunctiveSingular="might warn"
+        presentPlural="warn" pastPlural="warned" pastContinuousPlural="were warning" futurePlural="will warn" continuousPlural="are warning" perfectPlural="have warned" subjunctivePlural="might warn"/>
+  <verb presentSingular="wobbles" pastSingular="wobbled" pastContinuousSingular="was wobbling" futureSingular="will wobble" continuousSingular="is wobbling" perfectSingular="has wobbled" subjunctiveSingular="might wobble"
+        presentPlural="wobble" pastPlural="wobbled" pastContinuousPlural="were wobbling" futurePlural="will wobble" continuousPlural="are wobbling" perfectPlural="have wobbled" subjunctivePlural="might wobble"
+        transitive="false"/>
+  <verb presentSingular="ticks" pastSingular="ticked" pastContinuousSingular="was ticking" futureSingular="will tick" continuousSingular="is ticking" perfectSingular="has ticked" subjunctiveSingular="might tick"
+        presentPlural="tick" pastPlural="ticked" pastContinuousPlural="were ticking" futurePlural="will tick" continuousPlural="are ticking" perfectPlural="have ticked" subjunctivePlural="might tick"/>
+  <verb presentSingular="taints" pastSingular="tainted" pastContinuousSingular="was tainting" futureSingular="will taint" continuousSingular="is tainting" perfectSingular="has tainted" subjunctiveSingular="might taint"
+        presentPlural="taint" pastPlural="tainted" pastContinuousPlural="were tainting" futurePlural="will taint" continuousPlural="are tainting" perfectPlural="have tainted" subjunctivePlural="might taint"/>
+  <verb presentSingular="chews" pastSingular="chewed" pastContinuousSingular="was chewing" futureSingular="will chew" continuousSingular="is chewing" perfectSingular="has chewed" subjunctiveSingular="might chew"
+        presentPlural="chew" pastPlural="chewed" pastContinuousPlural="were chewing" futurePlural="will chew" continuousPlural="are chewing" perfectPlural="have chewed" subjunctivePlural="might chew"/>
+  <verb presentSingular="juggles" pastSingular="juggled" pastContinuousSingular="was juggling" futureSingular="will juggle" continuousSingular="is juggling" perfectSingular="has juggled" subjunctiveSingular="might juggle"
+        presentPlural="juggle" pastPlural="juggled" pastContinuousPlural="were juggling" futurePlural="will juggle" continuousPlural="are juggling" perfectPlural="have juggled" subjunctivePlural="might juggle"/>
+  <verb presentSingular="bleeps" pastSingular="bleeped" pastContinuousSingular="was bleeping" futureSingular="will bleep" continuousSingular="is bleeping" perfectSingular="has bleeped" subjunctiveSingular="might bleep"
+        presentPlural="bleep" pastPlural="bleeped" pastContinuousPlural="were bleeping" futurePlural="will bleep" continuousPlural="are bleeping" perfectPlural="have bleeped" subjunctivePlural="might bleep"
+        transitive="false"/>
 </dictionary>
