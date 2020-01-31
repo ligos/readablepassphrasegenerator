@@ -5566,4 +5566,30 @@ limitations under the License.
   <verb presentSingular="bleeps" pastSingular="bleeped" pastContinuousSingular="was bleeping" futureSingular="will bleep" continuousSingular="is bleeping" perfectSingular="has bleeped" subjunctiveSingular="might bleep"
         presentPlural="bleep" pastPlural="bleeped" pastContinuousPlural="were bleeping" futurePlural="will bleep" continuousPlural="are bleeping" perfectPlural="have bleeped" subjunctivePlural="might bleep"
         transitive="false"/>
+  <verb presentSingular="cripples" pastSingular="crippled" pastContinuousSingular="was crippling" futureSingular="will cripple" continuousSingular="is crippling" perfectSingular="has crippled" subjunctiveSingular="might cripple"
+        presentPlural="cripple" pastPlural="crippled" pastContinuousPlural="were crippling" futurePlural="will cripple" continuousPlural="are crippling" perfectPlural="have crippled" subjunctivePlural="might cripple"/>
+  <verb presentSingular="inducts" pastSingular="inducted" pastContinuousSingular="was inducting" futureSingular="will induct" continuousSingular="is inducting" perfectSingular="has inducted" subjunctiveSingular="might induct"
+        presentPlural="induct" pastPlural="inducted" pastContinuousPlural="were inducting" futurePlural="will induct" continuousPlural="are inducting" perfectPlural="have inducted" subjunctivePlural="might induct"/>
+  <verb presentSingular="staples" pastSingular="stapled" pastContinuousSingular="was stapling" futureSingular="will staple" continuousSingular="is stapling" perfectSingular="has stapled" subjunctiveSingular="might staple"
+        presentPlural="staple" pastPlural="stapled" pastContinuousPlural="were stapling" futurePlural="will staple" continuousPlural="are stapling" perfectPlural="have stapled" subjunctivePlural="might staple"/>
+  <verb presentSingular="lacks" pastSingular="lacked" pastContinuousSingular="was lacking" futureSingular="will lack" continuousSingular="is lacking" perfectSingular="has lacked" subjunctiveSingular="might lack"
+        presentPlural="lack" pastPlural="lacked" pastContinuousPlural="were lacking" futurePlural="will lack" continuousPlural="are lacking" perfectPlural="have lacked" subjunctivePlural="might lack"
+        transitive="false"/>
+  <verb presentSingular="ingests" pastSingular="ingested" pastContinuousSingular="was ingesting" futureSingular="will ingest" continuousSingular="is ingesting" perfectSingular="has ingested" subjunctiveSingular="might ingest"
+        presentPlural="ingest" pastPlural="ingested" pastContinuousPlural="were ingesting" futurePlural="will ingest" continuousPlural="are ingesting" perfectPlural="have ingested" subjunctivePlural="might ingest"/>
+  <verb presentSingular="disables" pastSingular="disabled" pastContinuousSingular="was disabling" futureSingular="will disable" continuousSingular="is disabling" perfectSingular="has disabled" subjunctiveSingular="might disable"
+        presentPlural="disable" pastPlural="disabled" pastContinuousPlural="were disabling" futurePlural="will disable" continuousPlural="are disabling" perfectPlural="have disabled" subjunctivePlural="might disable"/>
+  <verb presentSingular="documents" pastSingular="documented" pastContinuousSingular="was documenting" futureSingular="will document" continuousSingular="is documenting" perfectSingular="has documented" subjunctiveSingular="might document"
+        presentPlural="document" pastPlural="documented" pastContinuousPlural="were documenting" futurePlural="will document" continuousPlural="are documenting" perfectPlural="have documented" subjunctivePlural="might document"/>
+  <verb presentSingular="selects" pastSingular="selected" pastContinuousSingular="was selecting" futureSingular="will select" continuousSingular="is selecting" perfectSingular="has selected" subjunctiveSingular="might select"
+        presentPlural="select" pastPlural="selected" pastContinuousPlural="were selecting" futurePlural="will select" continuousPlural="are selecting" perfectPlural="have selected" subjunctivePlural="might select"/>
+  <verb presentSingular="softens" pastSingular="softened" pastContinuousSingular="was softening" futureSingular="will soften" continuousSingular="is softening" perfectSingular="has softened" subjunctiveSingular="might soften"
+        presentPlural="soften" pastPlural="softened" pastContinuousPlural="were softening" futurePlural="will soften" continuousPlural="are softening" perfectPlural="have softened" subjunctivePlural="might soften"/>
+  <verb presentSingular="whirs" pastSingular="whirred" pastContinuousSingular="was whirring" futureSingular="will whir" continuousSingular="is whirring" perfectSingular="has whirred" subjunctiveSingular="might whir"
+        presentPlural="whir" pastPlural="whirred" pastContinuousPlural="were whirring" futurePlural="will whir" continuousPlural="are whirring" perfectPlural="have whirred" subjunctivePlural="might whir"
+        transitive="false"/>
+  <verb presentSingular="overwhelms" pastSingular="overwhelmed" pastContinuousSingular="was overwhelming" futureSingular="will overwhelm" continuousSingular="is overwhelming" perfectSingular="has overwhelmed" subjunctiveSingular="might overwhelm"
+        presentPlural="overwhelm" pastPlural="overwhelmed" pastContinuousPlural="were overwhelming" futurePlural="will overwhelm" continuousPlural="are overwhelming" perfectPlural="have overwhelmed" subjunctivePlural="might overwhelm"/>
+  <verb presentSingular="overtakes" pastSingular="overtook" pastContinuousSingular="was overtaking" futureSingular="will overtake" continuousSingular="is overtaking" perfectSingular="has overtaken" subjunctiveSingular="might overtake"
+        presentPlural="overtake" pastPlural="overtook" pastContinuousPlural="were overtaking" futurePlural="will overtake" continuousPlural="are overtaking" perfectPlural="have overtaken" subjunctivePlural="might overtake"/>
 </dictionary>

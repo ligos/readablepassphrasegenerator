@@ -3780,7 +3780,7 @@ limitations under the License.
   <noun singular="snapshot" plural="snapshots"/>
   <noun singular="country" plural="countries"/>
   <noun singular="dumpling" plural="dumplings"/>
-  <noun singular="dump" plural="dump"/>
+  <noun singular="dump" plural="dumps"/>
   <noun singular="toolbar" plural="toolbars"/>
   <noun singular="corpse" plural="corpses"/>
   <noun singular="partner" plural="partners"/>
@@ -4407,4 +4407,51 @@ limitations under the License.
   <noun singular="tensor" plural="tensors"/>
   <noun singular="cliff" plural="cliffs"/>
   <noun singular="boner" plural="boners"/>
+  <noun singular="cripple" plural="cripples"/>
+  <noun singular="utensil" plural="utensils"/>
+  <noun singular="artist" plural="artists"/>
+  <noun singular="massage" plural="massages"/>
+  <noun plural="induction"/>
+  <noun singular="landlady" plural="landladies"/>
+  <noun singular="staple" plural="staples"/>
+  <noun plural="heather"/>
+  <noun singular="rabble" plural="rabbles"/>
+  <noun singular="pariah" plural="pariahs"/>
+  <noun plural="apparel"/>
+  <noun singular="bogie" plural="bogies"/>
+  <noun singular="berth" plural="berths"/>
+  <noun singular="rivet" plural="rivets"/>
+  <noun singular="kinfolk" plural="kinfolks"/>
+  <noun singular="sextant" plural="sextants"/>
+  <noun singular="document" plural="documents"/>
+  <noun singular="baroness" plural="baronesses"/>
+  <noun plural="desire"/>
+  <noun singular="chock" plural="chocks"/>
+  <noun singular="bung" plural="bungs"/>
+  <noun singular="lifesaver" plural="lifesavers"/>
+  <noun singular="babbler" plural="babblers"/>
+  <noun singular="titan" plural="titans"/>
+  <noun singular="vagina" plural="vaginas"/>
+  <noun singular="fork" plural="forks"/>
+  <noun singular="pinhole" plural="pinholes"/>
+  <noun plural="fluid"/>
+  <noun singular="bedtime" plural="bedtimes"/>
+  <noun singular="cavalry" plural="cavalries"/>
+  <noun plural="moonlight"/>
+  <noun plural="usage"/>
+  <noun singular="skate" plural="skates"/>
+  <noun singular="scallop" plural="scallops"/>
+  <noun singular="harp" plural="harps"/>
+  <noun singular="bully" plural="bullies"/>
+  <noun singular="playhouse" plural="playhouses"/>
+  <noun singular="pitfall" plural="pitfalls"/>
+  <noun singular="aquarium" plural="aquariums"/>
+  <noun singular="seaport" plural="seaports"/>
+  <noun singular="ordinal" plural="ordinals"/>
+  <noun singular="wife" plural="wives"/>
+  <noun singular="bumpkin" plural="bumpkins"/>
+  <noun plural="feta"/>
+  <noun singular="incisor" plural="incisors"/>
+  <noun singular="legion" plural="legions"/>
+  <noun singular="offender" plural="offenders"/>
 </dictionary>
