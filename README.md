@@ -29,6 +29,13 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.2.0
+    * Add constant mutator to improve chances of meeting password requirements.
+	* Fix issue with some custom phrase definitions ([BitBucket issue 15](https://bitbucket.org/ligos/readablepassphrasegenerator/issues/15/custom-phrase-description-unhanded-error))
+	* 15,346 words in the default dictionary (~300 more than 1.0.0)
+	* Add support for .NET Core 3.1.
+	* Migration from BitBucket to GitHub.
+	* Add support for C# 8 [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) (for developers).
 * Version 1.1.2
     * Add support for .NET Core.
 	* Add NuGet package.
