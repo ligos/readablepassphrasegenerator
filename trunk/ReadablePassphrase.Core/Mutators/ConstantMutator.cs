@@ -91,7 +91,12 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 toInsertAt = possibleInsertIndexes[idx];
             }
 
-            if (toInsertAt >= 0)
+            if (toInsertAt == passphrase.Length)
+            {
+                // Actually insert the constant at the end of the phrase (without whitespace).
+                passphrase.Insert(toInsertAt-1, this.ValueToAdd);
+            }
+            else if (toInsertAt >= 0)
             {
                 // Actually insert the constant (plus whitespace, in reverse order).
                 passphrase.Insert(toInsertAt, this.Whitespace)
