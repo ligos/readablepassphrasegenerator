@@ -38,7 +38,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         public int NumberOfWordsToCapitalise { get; set; }
         public int MinimumWordLength { get; set; }
 
-        public void Mutate(StringBuilder passphrase, RandomSourceBase random)
+        public void Mutate(StringBuilder passphrase, IRandomSourceBase random)
         {
             _ = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
             _ = random ?? throw new ArgumentNullException(nameof(random));

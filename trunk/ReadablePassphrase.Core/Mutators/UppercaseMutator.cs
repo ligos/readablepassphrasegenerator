@@ -38,7 +38,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         public UppercaseStyles When { get; set; }
         public int NumberOfCharactersToCapitalise { get; set; }
 
-        public void Mutate(StringBuilder passphrase, RandomSourceBase random)
+        public void Mutate(StringBuilder passphrase, IRandomSourceBase random)
         {
             _ = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
             _ = random ?? throw new ArgumentNullException(nameof(random));

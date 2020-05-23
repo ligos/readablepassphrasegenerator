@@ -41,7 +41,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             this.NumberOfNumbersToAdd = 2;
         }
 
-        public void Mutate(StringBuilder passphrase, RandomSourceBase random)
+        public void Mutate(StringBuilder passphrase, IRandomSourceBase random)
         {
             _ = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
             _ = random ?? throw new ArgumentNullException(nameof(random));

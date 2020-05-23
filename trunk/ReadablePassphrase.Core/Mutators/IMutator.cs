@@ -26,6 +26,6 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         /// <summary>
         /// Makes changes to an existing passphrase like capitalising or adding numbers.
         /// </summary>
-        void Mutate(StringBuilder passphrase, RandomSourceBase random);
+        void Mutate(StringBuilder passphrase, IRandomSourceBase random);
     }
 }

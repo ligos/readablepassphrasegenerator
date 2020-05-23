@@ -25,7 +25,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
     /// </summary>
     public sealed class NullMutator : ICombinations, IMutator
     {
-        public void Mutate(StringBuilder passphrase, RandomSourceBase random)
+        public void Mutate(StringBuilder passphrase, IRandomSourceBase random)
         {
             return;
         }

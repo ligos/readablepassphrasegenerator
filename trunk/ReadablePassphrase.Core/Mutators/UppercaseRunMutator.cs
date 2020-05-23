@@ -39,7 +39,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         public int NumberOfCharactersInRun { get; set; }
         public int NumberOfRuns { get; set; }
 
-        public void Mutate(StringBuilder passphrase, RandomSourceBase random)
+        public void Mutate(StringBuilder passphrase, IRandomSourceBase random)
         {
             _ = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
             _ = random ?? throw new ArgumentNullException(nameof(random));
