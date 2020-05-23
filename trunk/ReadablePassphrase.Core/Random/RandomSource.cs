@@ -26,7 +26,7 @@ namespace MurrayGrant.ReadablePassphrase.Random
     /// <summary>
     /// An abstract source of random bytes (with various easier to use methods)
     /// </summary>
-    public abstract class RandomSourceBase
+    public abstract class RandomSourceBase : IRandomSourceBase
     {
         public abstract byte[] GetRandomBytes(int numberOfBytes);
 
