@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase.DefaultD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{C4A94454-521F-41FC-9C52-8C8DCE621A2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadablePassphrase.Core.Test.Unit", "ReadablePassphrase.Core.Test.Unit\ReadablePassphrase.Core.Test.Unit.csproj", "{C3433601-C0A1-445C-8CD9-8BEA172AF1D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3433601-C0A1-445C-8CD9-8BEA172AF1D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3433601-C0A1-445C-8CD9-8BEA172AF1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3433601-C0A1-445C-8CD9-8BEA172AF1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3433601-C0A1-445C-8CD9-8BEA172AF1D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
