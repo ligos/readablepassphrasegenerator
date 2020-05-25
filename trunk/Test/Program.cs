@@ -472,8 +472,13 @@ namespace Test
             var mutatorArray = new[] { mutator };
             var phrase = generator.Generate(wordDelimiter: "__", mutators: mutatorArray);
             Console.WriteLine(phrase);
-            if (phrase.EndsWith("__"))
-                throw new Exception("Should not be any trailing whitespace.");
+            if (!phrase.EndsWith(mutator.ValueToAdd))
+                throw new Exception("Should not be any trailing whitespace; final character should be the '.' from ConstantMutator");
+
+            phrase = generator.Generate(wordDelimiter: "", mutators: mutatorArray);
+            Console.WriteLine(phrase);
+            if (!phrase.EndsWith(mutator.ValueToAdd))
+                throw new Exception("Should not be any trailing whitespace; final character should be the '.' from ConstantMutator");
 
             var sb = new StringBuilder("some passphrase without trailing whitespace");
             mutator.Mutate(sb, GetRandomness());
