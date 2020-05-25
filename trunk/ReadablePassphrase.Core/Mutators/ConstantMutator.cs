@@ -58,6 +58,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 possibleInsertIndexes.Add(0);
             }
 
+            int endOfPhraseIndex = Int32.MaxValue;
             if (this.When == ConstantStyles.EndOfPhrase || this.When == ConstantStyles.Anywhere)
             {
                 // End of passphrase is an easy case.
@@ -66,11 +67,12 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 {
                     if (passphrase[i] != this.Whitespace)
                     {
-                        possibleInsertIndexes.Add(i + 2);
+                        endOfPhraseIndex = i + 1;
+                        possibleInsertIndexes.Add(endOfPhraseIndex);
                         break;
                     }
                 }
-            } 
+            }
 
             if (this.When == ConstantStyles.MiddleOfPhrase || this.When == ConstantStyles.Anywhere)
             {
@@ -78,7 +80,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 for (int i = 1; i <= passphrase.Length - 2; i++)
                 {
                     if (passphrase[i] == this.Whitespace && Char.IsLetterOrDigit(passphrase[i - 1]))
-                        possibleInsertIndexes.Add(i+1);
+                        possibleInsertIndexes.Add(i + 1);
                 }
             }
 
@@ -91,10 +93,10 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
                 toInsertAt = possibleInsertIndexes[idx];
             }
 
-            if (toInsertAt == passphrase.Length)
+            if (toInsertAt >= endOfPhraseIndex)
             {
                 // Actually insert the constant at the end of the phrase (without whitespace).
-                passphrase.Insert(toInsertAt-1, this.ValueToAdd);
+                passphrase.Insert(toInsertAt, this.ValueToAdd);
             }
             else if (toInsertAt >= 0)
             {
@@ -110,7 +112,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             return Double.NaN;
         }
     }
-    
+
     [Flags]
     public enum ConstantStyles
     {
