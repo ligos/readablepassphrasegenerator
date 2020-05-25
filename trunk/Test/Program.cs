@@ -23,6 +23,7 @@ using MurrayGrant.ReadablePassphrase.Words;
 using MurrayGrant.ReadablePassphrase.Random;
 using MurrayGrant.ReadablePassphrase.PhraseDescription;
 using MurrayGrant.ReadablePassphrase.Mutators;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Test
 {
@@ -73,6 +74,7 @@ namespace Test
             // Other test cases.
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
+            TestGithubIssue3(generator);
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -98,7 +100,7 @@ namespace Test
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() });
-            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
+            GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
 
             // Test loading the default dictionary.
             //var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
@@ -195,9 +197,9 @@ namespace Test
             }
             Console.WriteLine();
 
-            var predefined = new PhraseStrength[] 
-            { 
-                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalSpeech, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalEqualSpeech, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, PhraseStrength.NormalRequiredSpeech, 
+            var predefined = new PhraseStrength[]
+            {
+                PhraseStrength.Normal, PhraseStrength.NormalAnd, PhraseStrength.NormalSpeech, PhraseStrength.NormalEqual, PhraseStrength.NormalEqualAnd, PhraseStrength.NormalEqualSpeech, PhraseStrength.NormalRequired, PhraseStrength.NormalRequiredAnd, PhraseStrength.NormalRequiredSpeech,
                 PhraseStrength.Strong, PhraseStrength.StrongAnd, PhraseStrength.StrongSpeech, PhraseStrength.StrongEqual, PhraseStrength.StrongEqualAnd, PhraseStrength.StrongEqualSpeech, PhraseStrength.StrongRequired, PhraseStrength.StrongRequiredAnd, PhraseStrength.StrongRequiredSpeech,
                 PhraseStrength.Insane, PhraseStrength.InsaneAnd, PhraseStrength.InsaneSpeech, PhraseStrength.InsaneEqual, PhraseStrength.InsaneEqualAnd, PhraseStrength.InsaneEqualSpeech, PhraseStrength.InsaneRequired, PhraseStrength.InsaneRequiredAnd, PhraseStrength.InsaneRequiredSpeech,
             };
@@ -206,7 +208,7 @@ namespace Test
                 var strength = predefined[i];
                 var combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
-                if ((i+1) % 9 == 0)
+                if ((i + 1) % 9 == 0)
                     Console.WriteLine();
             }
 
@@ -378,7 +380,7 @@ namespace Test
             }
             sw.Stop();
             Console.WriteLine("{0} choices in {1:N3}ms", trials, sw.Elapsed.TotalMilliseconds);
-            for(int i = 0; i < max; i++)
+            for (int i = 0; i < max; i++)
                 Console.WriteLine("{0}, {1}", i, distributionTable[i]);
             Console.WriteLine();
         }
@@ -462,6 +464,26 @@ namespace Test
                 , generator, 10);
         }
 
+        private static void TestGithubIssue3(ReadablePassphraseGenerator generator)
+        {
+            // No trailing whitespace causes ArgumentOutOfRangeException in ConstantMutator
+            // https://github.com/ligos/readablepassphrasegenerator/issues/3
+            var mutator = new ConstantMutator() { When = ConstantStyles.EndOfPhrase };
+            var mutatorArray = new[] { mutator };
+            var phrase = generator.Generate(wordDelimiter: "__", mutators: mutatorArray);
+            Console.WriteLine(phrase);
+            if (phrase.EndsWith("__"))
+                throw new Exception("Should not be any trailing whitespace.");
+
+            var sb = new StringBuilder("some passphrase without trailing whitespace");
+            mutator.Mutate(sb, GetRandomness());
+            Console.WriteLine(sb.ToString());
+
+            sb = new StringBuilder("some passphrase with extra trailing whitespace   ");
+            mutator.Mutate(sb, GetRandomness());
+            Console.WriteLine(sb.ToString());
+        }
+
 #if NETFRAMEWORK        // No WinForms in NetCore
         private static void TestConfigForm(ReadablePassphraseGenerator generator)
         {
@@ -509,7 +531,7 @@ namespace Test
                 if (!charHistogram.ContainsKey(phrase.Length))
                     charHistogram.Add(phrase.Length, 0);
                 charHistogram[phrase.Length] = charHistogram[phrase.Length] + 1;
-                
+
                 var wordCount = phrase.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length;
                 if (!wordHistogram.ContainsKey(wordCount))
                     wordHistogram.Add(wordCount, 0);
@@ -520,16 +542,16 @@ namespace Test
                     keepassQualityHistogram.Add(keePassQualityEst, 0);
                 keepassQualityHistogram[keePassQualityEst] = keepassQualityHistogram[keePassQualityEst] + 1;
             }
-            
+
             using (var writer = new System.IO.StreamWriter(filename, false, Encoding.UTF8))
             {
                 writer.WriteLine("Word histogram");
-                for (int i = wordHistogram.Keys.Min(); i < wordHistogram.Keys.Max()+1; i++)
+                for (int i = wordHistogram.Keys.Min(); i < wordHistogram.Keys.Max() + 1; i++)
                     writer.WriteLine("{0},{1}", i, wordHistogram.ContainsKey(i) ? wordHistogram[i] : 0);
                 writer.WriteLine();
-                
+
                 writer.WriteLine("Character histogram");
-                for (int i = charHistogram.Keys.Min(); i < charHistogram.Keys.Max()+1; i++)
+                for (int i = charHistogram.Keys.Min(); i < charHistogram.Keys.Max() + 1; i++)
                     writer.WriteLine("{0},{1}", i, charHistogram.ContainsKey(i) ? charHistogram[i] : 0);
                 writer.WriteLine();
 
@@ -568,7 +590,7 @@ namespace Test
         private static int GetMedian(IDictionary<int, int> histogram)
         {
             var copy = histogram.ToDictionary(x => x.Key, x => x.Value);
-            
+
             var total = copy.Values.Sum();
             while (total > 2)
             {
