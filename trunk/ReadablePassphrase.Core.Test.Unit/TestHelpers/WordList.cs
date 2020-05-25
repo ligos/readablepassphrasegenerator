@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 
 namespace MurrayGrant.ReadablePassphrase.TestHelpers
@@ -19,7 +20,9 @@ namespace MurrayGrant.ReadablePassphrase.TestHelpers
             var bytesForULong = new byte[8];
             var random = new RNGCryptoServiceProvider();
             var words = new List<(string word, ulong sortOrder)>();
-            using (var inStream = File.OpenText(InputWordList))
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            using (var fs = File.Open(InputWordList, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var inStream = new StreamReader(fs, Encoding.GetEncoding(1252)))
             {
                 while (!inStream.EndOfStream)
                 {
