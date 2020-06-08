@@ -405,7 +405,13 @@ namespace MurrayGrant.ReadablePassphrase
             this.GenerateInternal(phraseDescription, anyMutators ? " " : wordDelimiter, str);
 
             foreach (var m in mutators ?? Enumerable.Empty<IMutator>())
+            {
                 m.Mutate(str.Target, this.Randomness);
+                // We assume trailing whitespace when applying mutators, and in a few lines.
+                // A buggy mutator may remove that whitespace, so ensure its there.
+                if (str.Target[str.Target.Length - 1] != ' ')
+                    str.Target.Append(" ");
+            }
             var result = str.Target.ToString();
 
             // Now we replace the space with the actual delimiter.

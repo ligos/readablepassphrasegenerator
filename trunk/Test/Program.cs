@@ -100,7 +100,8 @@ namespace Test
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() });
-            GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
+            GenerateMutatedSamples(PhraseStrength.Random, generator, 100, new IMutator[] { new UppercaseRunMutator(), new NumericMutator(), new ConstantMutator() });
 
             // Test loading the default dictionary.
             //var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
@@ -467,25 +468,29 @@ namespace Test
         private static void TestGithubIssue3(ReadablePassphraseGenerator generator)
         {
             // No trailing whitespace causes ArgumentOutOfRangeException in ConstantMutator
+            // Caused with combination of numeric mutator at end of phrase, then constant mutator at end of phrase
             // https://github.com/ligos/readablepassphrasegenerator/issues/3
-            var mutator = new ConstantMutator() { When = ConstantStyles.EndOfPhrase };
-            var mutatorArray = new[] { mutator };
+            var numericMutator = new NumericMutator() { When = NumericStyles.EndOfPhrase };
+            var constantMutator = new ConstantMutator() { When = ConstantStyles.EndOfPhrase };
+            var mutatorArray = new IMutator[] { numericMutator, constantMutator };
             var phrase = generator.Generate(wordDelimiter: "__", mutators: mutatorArray);
             Console.WriteLine(phrase);
-            if (!phrase.EndsWith(mutator.ValueToAdd))
+            if (!phrase.EndsWith(constantMutator.ValueToAdd))
                 throw new Exception("Should not be any trailing whitespace; final character should be the '.' from ConstantMutator");
 
             phrase = generator.Generate(wordDelimiter: "", mutators: mutatorArray);
             Console.WriteLine(phrase);
-            if (!phrase.EndsWith(mutator.ValueToAdd))
+            if (!phrase.EndsWith(constantMutator.ValueToAdd))
                 throw new Exception("Should not be any trailing whitespace; final character should be the '.' from ConstantMutator");
 
             var sb = new StringBuilder("some passphrase without trailing whitespace");
-            mutator.Mutate(sb, GetRandomness());
+            numericMutator.Mutate(sb, GetRandomness());
+            constantMutator.Mutate(sb, GetRandomness());
             Console.WriteLine(sb.ToString());
 
             sb = new StringBuilder("some passphrase with extra trailing whitespace   ");
-            mutator.Mutate(sb, GetRandomness());
+            numericMutator.Mutate(sb, GetRandomness());
+            constantMutator.Mutate(sb, GetRandomness());
             Console.WriteLine(sb.ToString());
         }
 
