@@ -74,7 +74,7 @@ namespace Test
             // Other test cases.
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
-            TestGithubIssue3(generator);
+            //TestGithubIssue3(generator);
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -101,7 +101,7 @@ namespace Test
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
-            GenerateMutatedSamples(PhraseStrength.Random, generator, 100, new IMutator[] { new UppercaseRunMutator(), new NumericMutator(), new ConstantMutator() });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 100, new IMutator[] { new UppercaseRunMutator(), new NumericMutator(), new ConstantMutator() });
 
             // Test loading the default dictionary.
             //var defaultDictSw = System.Diagnostics.Stopwatch.StartNew();
