@@ -6,7 +6,7 @@
     <Product>ReadablePassphrase</Product>
     <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
     <Authors>Murray Grant</Authors>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
 
 To get started: MurrayGrant.ReadablePassphrase.Generator.Create()
@@ -37,7 +37,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
 
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Core" Version="1.2.0" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.2.1" />
     <PackageReference Include="ReadablePassphrase.Words" Version="1.2.0" />
     <PackageReference Include="ReadablePassphrase.DefaultDictionary" Version="1.2.0" />
   </ItemGroup>
