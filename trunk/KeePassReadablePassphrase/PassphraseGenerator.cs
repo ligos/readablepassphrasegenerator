@@ -171,9 +171,9 @@ namespace KeePassReadablePassphrase
                     // We use a space delimiter as the constant because the mutators depend on actual whitespace between words.
                     var passphrase = "";
                     if (conf.PhraseStrength == PhraseStrength.Custom)
-                        passphrase = generator.Generate(conf.PhraseDescription, " ", GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseDescription, " ", GetMutators(conf).ToList());
                     else
-                        passphrase = generator.Generate(conf.PhraseStrength, " ", GetMutators(conf));
+                        passphrase = generator.Generate(conf.PhraseStrength, " ", GetMutators(conf).ToList());
 
                     // It's now safe to remove whitespace.
                     if (conf.WordSeparator == WordSeparatorOption.None)
@@ -200,30 +200,30 @@ namespace KeePassReadablePassphrase
         private IEnumerable<IMutator> GetMutators(Config conf)
         {
             if (conf.Mutator == MutatorOption.None)
-                return Enumerable.Empty<IMutator>();
+                yield break;
             else if (conf.Mutator == MutatorOption.Standard)
-                return new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic };
-            else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle > 0 && conf.UpperStyle <= AllUppercaseStyles.Anywhere)
-                return new IMutator[] {
-                    new UppercaseMutator() { When = (UppercaseStyles)conf.UpperStyle, NumberOfCharactersToCapitalise = conf.UpperCount },
-                    new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
-                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
-                };
-            else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle == AllUppercaseStyles.RunOfLetters)
-                return new IMutator[] {
-                    new UppercaseRunMutator() { NumberOfRuns = conf.UpperCount },
-                    new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
-                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
-                };
-            else if (conf.Mutator == MutatorOption.Custom && conf.UpperStyle == AllUppercaseStyles.WholeWord)
-                return new IMutator[] {
-                    new UppercaseWordMutator() { NumberOfWordsToCapitalise = conf.UpperCount },
-                    new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount },
-                    new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue },
-                };
-            else
-                return Enumerable.Empty<IMutator>();
+            {
+                yield return UppercaseWordMutator.Basic;
+                yield return NumericMutator.Basic;
+                yield return ConstantMutator.Basic;
+            }
+            else if (conf.Mutator == MutatorOption.Custom)
+            {
+                if (conf.UpperStyle == AllUppercaseStyles.Anywhere || conf.UpperStyle == AllUppercaseStyles.StartOfWord)
+                    yield return new UppercaseMutator() { When = (UppercaseStyles)conf.UpperStyle, NumberOfCharactersToCapitalise = conf.UpperCount };
+                else if (conf.UpperStyle == AllUppercaseStyles.RunOfLetters)
+                    yield return new UppercaseRunMutator() { NumberOfRuns = conf.UpperCount };
+                else if (conf.UpperStyle == AllUppercaseStyles.WholeWord)
+                    yield return new UppercaseWordMutator() { NumberOfWordsToCapitalise = conf.UpperCount };
+
+                if (conf.NumericStyle != NumericStyles.Never)
+                    yield return new NumericMutator() { When = conf.NumericStyle, NumberOfNumbersToAdd = conf.NumericCount };
+
+                if (conf.ConstantStyle != ConstantStyles.Never)
+                    yield return new ConstantMutator() { When = conf.ConstantStyle, ValueToAdd = conf.ConstantValue };
+            }
         }
+
         public void Dispose()
         {
             this._CachedDictionary = null;
