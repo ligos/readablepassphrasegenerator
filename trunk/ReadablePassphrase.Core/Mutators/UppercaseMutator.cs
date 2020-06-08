@@ -84,8 +84,8 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
     public enum UppercaseStyles
     {
         Never = 0,
-        StartOfWord,
-        Anywhere,
+        StartOfWord = 1,
+        Anywhere = 2,
     }
 
     public enum AllUppercaseStyles
