@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Copyright 2011-2020 Murray Grant
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+Schema version 2 adds:
+- An optional boolean 'transitive' attribute on verbs.
+- The 'interrogative' element.
+Schema version 3 adds:
+- The 'properNoun' element.
+- The 'conjunction' element.
+Schema version 4 adds:
+- The 'speechVerb' element.
+Schema version 5 adds:
+- The 'indefinitePronoun' element.
+- The 'numberRange' element.
+-->
+<dictionary schemaVersion="5" language="en-au" name="Default">
+	<article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
+  <demonstrative singular="this" plural="these" />
+  <demonstrative singular="that" plural="those" />
+  <personalPronoun singular="my" plural="our" />
+  <personalPronoun singular="your" plural="your" />
+  <personalPronoun singular="their" plural="their" />
+  <personalPronoun singular="his" plural="his" />
+  <personalPronoun singular="her" plural="her" />
+  <personalPronoun singular="its" plural="its" />
+  <interrogative singular="why does" plural="why do" />
+  <interrogative singular="how does" plural="how do" />
+  <interrogative singular="when does" plural="when did" />
+  <interrogative singular="can" plural="can" />
+  <interrogative singular="will" plural="will" />
+  <interrogative singular="should" plural="should" />
+  <conjunction value="and" separates="nounsandphrases"/>
+  <conjunction value="or" separates="nounsandphrases"/>
+  <conjunction value="but not" separates="nounsandphrases"/>
+  <conjunction value="after" separates="nounsandphrases"/>
+  <conjunction value="before" separates="nounsandphrases"/>
+  <conjunction value="because of" separates="nounsandphrases"/>
+  <conjunction value="and even" separates="nounsandphrases"/>
+  <speechVerb past="said"/>
+  <speechVerb past="spoke"/>
+  <speechVerb past="uttered"/>
+  <speechVerb past="yelled"/>
+  <speechVerb past="stated"/>
+  <speechVerb past="declared"/>
+  <speechVerb past="announced"/>
+  <speechVerb past="proclaimed"/>
+  <speechVerb past="commented"/>
+  <speechVerb past="remarked"/>
+  <speechVerb past="voiced"/>
+  <speechVerb past="sung"/>
+  <speechVerb past="squeaked"/>
+  <speechVerb past="whispered"/>
+  <speechVerb past="thought"/>
+  <speechVerb past="cried out"/>
+  <speechVerb past="mumbled"/>
+  <speechVerb past="muttered"/>
+  <speechVerb past="shouted"/>
+  <speechVerb past="asserted"/>
+  <speechVerb past="prayed"/>
+  <speechVerb past="replied"/>
+  <speechVerb past="ranted"/>
+  <speechVerb past="reasoned"/>
+  <speechVerb past="yammered"/>
+  <speechVerb past="chanted"/>
+  <speechVerb past="wondered"/>
+  <speechVerb past="stuttered"/>
+  <speechVerb past="drawled"/>
+  <speechVerb past="intoned"/>
+  <speechVerb past="bragged"/>
+  <speechVerb past="croaked"/>
+  <speechVerb past="jested"/>
+  <speechVerb past="spluttered"/>
+  <speechVerb past="scoffed"/>
+  <speechVerb past="expounded"/>
+  <speechVerb past="babbled"/>
+  <speechVerb past="stipulated"/>
+  <speechVerb past="swore"/>
+  <speechVerb past="slured"/>
+  <speechVerb past="discussed"/>
+  <speechVerb past="tattled"/>
+  <speechVerb past="quipped"/>
+  <speechVerb past="rephrased"/>
+  <speechVerb past="whined"/>
+  <speechVerb past="moaned"/>
+  <speechVerb past="rambled"/>
+  <speechVerb past="vented"/>
+  <speechVerb past="bellowed"/>
+  <speechVerb past="quacked"/>
+  <speechVerb past="brayed"/>
+  <speechVerb past="advised"/>
+  <speechVerb past="snorted"/>
+  <speechVerb past="cackled"/>
+  <speechVerb past="chuckled"/>
+  <speechVerb past="decreed"/>
+  <indefinitePronoun singular="one" plural="ones" personal="true"/>
+  <indefinitePronoun singular="thing" plural="things" personal="false"/>
+  <numberRange start="1" end="999"/>
+</dictionary>

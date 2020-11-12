@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <Company>Murray Grant;drVenture</Company>
+    <Product>ReadablePassphrase</Product>
+    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
+    <Authors>Murray Grant; drVenture</Authors>
+    <Version>1.0.0</Version>
+    <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
+    <RootNamespace>BuildDictionary</RootNamespace>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/ligos/readablepassphrasegenerator</PackageProjectUrl>
+    <PackageId>BuildDictionary</PackageId>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject>BuildDictionary.Program</StartupObject>
+    <AssemblyName>BuildDictionary</AssemblyName>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\release</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="resources\adjectives.xml" />
+    <None Remove="resources\adverbs.xml" />
+    <None Remove="resources\base.xml" />
+    <None Remove="resources\nouns.xml" />
+    <None Remove="resources\numbers.xml" />
+    <None Remove="resources\prepositions.xml" />
+    <None Remove="resources\properNouns.xml" />
+    <None Remove="resources\verbs.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\adjectives.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\adverbs.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\base.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\nouns.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\numbers.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\prepositions.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\properNouns.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\verbs.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net48\GenerateAdjectives.xml" />
+    <None Include="bin\Debug\net48\GeneratedAdverbs.xml" />
+    <None Include="bin\Debug\net48\GeneratedNouns.xml" />
+    <None Include="bin\Debug\net48\GeneratedPluralNouns.xml" />
+    <None Include="bin\Debug\net48\GeneratedVerbs.xml" />
+    <None Include="bin\Debug\net48\GeneratedWords.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+  </ItemGroup>
+
+</Project>
