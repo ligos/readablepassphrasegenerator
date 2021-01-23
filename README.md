@@ -17,6 +17,14 @@ Or [Steven Zeck's Javascript port](https://saintly.zeck.net/readablepassphrase/)
 
 **[Developers can install from NuGet](https://www.nuget.org/packages/ReadablePassphrase/)** ([and see the API](https://github.com/ligos/readablepassphrasegenerator/wiki/Public-API))
 
+
+Use [Scoop](https://scoop.sh/) to install (from [scoop-extras](https://github.com/lukesampson/scoop-extras/blob/master/bucket/keepass-plugin-readable-passphrase.json)):
+
+```
+PS> scoop install keepass
+PS> scoop install keepass-plugin-readable-passphrase
+```
+
 ---
 
 If you like the Readable Passphrase Generator you can donate to support development, or just say thanks.
