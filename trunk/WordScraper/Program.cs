@@ -33,6 +33,11 @@ namespace MurrayGrant.WordScraper
         static int maxLength = 10;
         static string source = "";
 
+        static HashSet<string> SupportedSources = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
+        {
+            "ThisWordDoesNotExist.com"
+        };
+
         static CancellationTokenSource CancellationSource = new CancellationTokenSource();
 
         public async static Task Main(string[] args)
@@ -80,11 +85,34 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine();
             Console.WriteLine($"Scraping {wordCount:N0} words from {source}...");
             Console.WriteLine($"Must be between {minLength:N0} and {maxLength:N0} characters.");
+            CancellationSource.Token.ThrowIfCancellationRequested();
 
             // Load current dictionary, so we can avoid duplicates.
             var defaultDictionary = ReadablePassphrase.Dictionaries.Default.Load();
             var allUniqueForms = defaultDictionary.SelectMany(w => w.AllForms()).ToHashSet(StringComparer.CurrentCultureIgnoreCase);
             Console.WriteLine($"Default dictionary contains {defaultDictionary.Count:N0} words and {allUniqueForms.Count:N0} unique forms.");
+            CancellationSource.Token.ThrowIfCancellationRequested();
+
+            Console.WriteLine("Starting scraping...");
+            var scrapedWords = await ReadWords(allUniqueForms);
+            Console.WriteLine("Scraping complete.");
+        }
+
+        private static Task<IReadOnlyList<(string root, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
+        {
+            switch (source.ToLower())
+            {
+                case "thisworddoesnotexist.com":
+                    return ReadWordsFromThisWordDoesNotExist(uniqueForms);
+                default:
+                    throw new ApplicationException("Unknown source: " + source);
+            }
+        }
+
+        private static Task<IReadOnlyList<(string root, string partOfSpeech)>> ReadWordsFromThisWordDoesNotExist(IReadOnlySet<string> uniqueForms)
+        {
+            var result = new List<(string, string)>();
+            return Task.FromResult((IReadOnlyList<(string, string)>)result);
         }
 
         static bool ParseCommandLine(string[] args)
@@ -103,6 +131,15 @@ namespace MurrayGrant.WordScraper
 
                 if (i == 0)
                 {
+                    if (!SupportedSources.Contains(arg))
+                    {
+                        Console.WriteLine("Source '{0}' is not supported. Supported sources:", arg);
+                        foreach (var source in SupportedSources.OrderBy(x => x))
+                        {
+                            Console.WriteLine("  " + source);
+                        }
+                        return false;
+                    }
                     source = arg;
                 }
                 else if (arg == "c" || arg == "count")
@@ -155,7 +192,10 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine("  --max xxx             Specifies a maximum length for words (def: {0})", maxLength);
             Console.WriteLine();
             Console.WriteLine("  Supported sources:");
-            Console.WriteLine("    thisworddoesnotexist.com");
+            foreach (var source in SupportedSources.OrderBy(x => x))
+            {
+                Console.WriteLine("    " + source);
+            }
             Console.WriteLine();
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphrase.ReadablePassphraseGenerator.GitHubHomepage);
