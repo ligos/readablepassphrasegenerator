@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomiseWordList", "RandomiseWordList\RandomiseWordList.csproj", "{7A482545-2586-4152-9EA9-B2D09AD2ED80}"
 EndProject
@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase.DefaultD
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadablePassphrase", "ReadablePassphrase\ReadablePassphrase.csproj", "{C4A94454-521F-41FC-9C52-8C8DCE621A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordScraper", "WordScraper\WordScraper.csproj", "{232157FD-B896-4CA6-9C33-2DB3C0CAB824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,10 @@ Global
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4A94454-521F-41FC-9C52-8C8DCE621A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232157FD-B896-4CA6-9C33-2DB3C0CAB824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232157FD-B896-4CA6-9C33-2DB3C0CAB824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232157FD-B896-4CA6-9C33-2DB3C0CAB824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232157FD-B896-4CA6-9C33-2DB3C0CAB824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

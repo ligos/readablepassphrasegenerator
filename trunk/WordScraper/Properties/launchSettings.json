@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordScraper": {
+      "commandName": "Project",
+      "commandLineArgs": "thisworddoesnotexist.com"
+    }
+  }
+}
