@@ -21,10 +21,10 @@
 
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Core" Version="1.1.2" />
-    <PackageReference Include="ReadablePassphrase.Words" Version="1.1.2" />
-    <PackageReference Include="ReadablePassphrase.DefaultDictionary" Version="1.1.2" />
-    <PackageReference Include="ReadablePassphrase" Version="1.1.2" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase.DefaultDictionary" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase" Version="1.3.0" />
   </ItemGroup>
   
   <!-- Use project references -->

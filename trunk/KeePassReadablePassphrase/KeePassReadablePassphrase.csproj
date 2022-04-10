@@ -4,9 +4,9 @@
     <TargetFrameworks>net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>KeePass Plugin</Product>
-    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2022</Copyright>
     <Authors>Murray Grant</Authors>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
 Plugin for KeePass.</Description>
     <RootNamespace>KeePassReadablePassphrase</RootNamespace>
@@ -33,8 +33,8 @@ Plugin for KeePass.</Description>
 
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Core" Version="1.2.1" />
-    <PackageReference Include="ReadablePassphrase.Words" Version="1.2.0" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="1.3.0" />
   </ItemGroup>
 
   <!-- Use project references -->
