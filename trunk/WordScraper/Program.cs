@@ -125,16 +125,19 @@ namespace MurrayGrant.WordScraper
             var result = new List<(string, string)>(WordCount);
             var httpClient = CreateHttpClient();
             var attemptCounter = 0;
+            var uniqueFormsFromThisRun = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
 
             while (result.Count < WordCount && attemptCounter < Attempts)
             {
                 CancellationSource.Token.ThrowIfCancellationRequested();
 
+                // Download webpage.
                 var partOfSpeech = "";
                 var wordRoot = "";
                 var page = await httpClient.GetStringAsync("https://www.thisworddoesnotexist.com");
                 ++attemptCounter;
 
+                // Parse
                 var mark = "class=\"pos\">";
                 var posPos = page.IndexOf(mark, 0, StringComparison.CurrentCultureIgnoreCase);
                 if (posPos > 0)
@@ -166,6 +169,7 @@ namespace MurrayGrant.WordScraper
                     }
                 }
 
+                // Various reasons to exclude this word:
                 if (string.IsNullOrWhiteSpace(wordRoot) || string.IsNullOrWhiteSpace(partOfSpeech))
                     goto ReportProgressAndNext;
 
@@ -174,7 +178,11 @@ namespace MurrayGrant.WordScraper
 
                 if (wordRoot.Length < MinLength || wordRoot.Length > MaxLength)
                     goto ReportProgressAndNext;
+                
+                if (!uniqueFormsFromThisRun.Add(wordRoot))
+                    goto ReportProgressAndNext;
 
+                // This one is OK!
                 result.Add((wordRoot, partOfSpeech));
 
 ReportProgressAndNext:
