@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -33,7 +34,8 @@ namespace MurrayGrant.WordScraper
         static int MaxLength = 10;
         static int Attempts = 1000;
         static string Source = "";
-        static int DelayMs = 100;
+        static int DelayMs = 250;
+        static bool Show = false;
 
         static HashSet<string> SupportedSources = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
         {
@@ -98,9 +100,13 @@ namespace MurrayGrant.WordScraper
 
             Console.WriteLine("Starting scraping...");
             NextProgressUpdate = DateTime.UtcNow.AddSeconds(1);
+            var sw = Stopwatch.StartNew();
             var scrapedWords = await ReadWords(allUniqueForms);
-            Console.WriteLine("Scraping complete.");
+            sw.Stop();
+            Console.WriteLine($"Scraping complete. {scrapedWords.Count} words found in {sw.Elapsed.TotalSeconds:N1} seconds");
 
+            if (Show) 
+                ShowWords(scrapedWords);
         }
 
         private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
@@ -160,17 +166,13 @@ namespace MurrayGrant.WordScraper
                     }
                 }
 
-                //if (Regex.IsMatch(word, "[^a-z&^ ]+"))
-                //{
-                //    //if any non-alpha char detected, just through this one out
-                //    pos = string.Empty;
-                //    word = string.Empty;
-                //}
-
                 if (string.IsNullOrWhiteSpace(wordRoot) || string.IsNullOrWhiteSpace(partOfSpeech))
                     goto ReportProgressAndNext;
 
                 if (uniqueForms.Contains(wordRoot))
+                    goto ReportProgressAndNext;
+
+                if (wordRoot.Length < MinLength || wordRoot.Length > MaxLength)
                     goto ReportProgressAndNext;
 
                 result.Add((wordRoot, partOfSpeech));
@@ -182,6 +184,15 @@ ReportProgressAndNext:
             }
 
             return result;
+        }
+
+        private static void ShowWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
+        {
+            Console.WriteLine();
+            foreach (var word in words.OrderBy(x => x.wordRoot))
+            {
+                Console.WriteLine("  {0} ({1})", word.wordRoot, word.partOfSpeech);
+            }
         }
 
         private static HttpClient CreateHttpClient()
@@ -272,6 +283,10 @@ ReportProgressAndNext:
                     }
                     i++;
                 }
+                else if (arg == "show")
+                {
+                    Show = true;
+                }
                 else if (arg == "h" || arg == "help")
                 {
                     PrintUsage();
@@ -295,6 +310,7 @@ ReportProgressAndNext:
             Console.WriteLine("  --max xxx             Specifies a maximum length for words (def: {0})", MaxLength);
             Console.WriteLine("  -a --attempts nnn     Maximum attempts to scrape (default: {0})", Attempts);
             Console.WriteLine("  -d --delayMs nnn      Milliseconds of delay after each attempt (default: {0})", DelayMs);
+            Console.WriteLine("  --show                Show list of words after scraping (default: {0})", Show);
             Console.WriteLine();
             Console.WriteLine("  Supported sources:");
             foreach (var source in SupportedSources.OrderBy(x => x))
