@@ -2,7 +2,7 @@
   "profiles": {
     "WordScraper": {
       "commandName": "Project",
-      "commandLineArgs": "thisworddoesnotexist.com -c 25"
+      "commandLineArgs": "thisworddoesnotexist.com"
     }
   }
 }

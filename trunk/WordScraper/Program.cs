@@ -31,7 +31,7 @@ namespace MurrayGrant.WordScraper
     public class Program
     {
         // This is a bit of a cheats way of doing command line arguments. Please don't consider it good practice!
-        static int WordCount = 100;
+        static int WordCount = 10;
         static int MinLength = 3;
         static int MaxLength = 10;
         static int Attempts = 1000;
@@ -114,7 +114,9 @@ namespace MurrayGrant.WordScraper
                 ShowWords(scrapedWords);
 
             // And save as compatible XML files.
+            Console.WriteLine("Writing to XML...");
             await SaveWords(scrapedWords);
+            Console.WriteLine("Finished writing to XML.");
         }
 
         private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
