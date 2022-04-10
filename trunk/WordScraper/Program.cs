@@ -39,10 +39,20 @@ namespace MurrayGrant.WordScraper
         static int DelayMs = 250;
         static int ShowCount = 10;
 
-        static HashSet<string> SupportedSources = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
+        static readonly Dictionary<string, SourceDefinition> SupportedSources = new []
         {
-            "ThisWordDoesNotExist.com"
-        };
+            new SourceDefinition() 
+            { 
+                Name = "ThisWordDoesNotExist.com",
+                Tags = "fake",
+            } 
+        }.ToDictionary(x => x.Name!, x => x, StringComparer.CurrentCultureIgnoreCase);
+
+        public class SourceDefinition
+        {
+            public string? Name { get; init; }
+            public string? Tags { get; init; }
+        }
 
         static Encoding Utf8WithoutBOM = new UTF8Encoding(false);
         static CancellationTokenSource CancellationSource = new CancellationTokenSource();
@@ -93,6 +103,7 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine();
             Console.WriteLine($"Scraping {WordCount:N0} words from {Source}...");
             Console.WriteLine($"Must be between {MinLength:N0} and {MaxLength:N0} characters.");
+            var sourceDef = SupportedSources[Source];
             CancellationSource.Token.ThrowIfCancellationRequested();
 
             // Load current dictionary, so we can avoid duplicates.
@@ -115,7 +126,7 @@ namespace MurrayGrant.WordScraper
 
             // And save as compatible XML files.
             Console.WriteLine("Writing to XML...");
-            await SaveWords(scrapedWords);
+            await SaveWords(scrapedWords, sourceDef);
             Console.WriteLine("Finished writing to XML.");
         }
 
@@ -220,24 +231,29 @@ ReportProgressAndNext:
             Console.WriteLine();
         }
 
-        private static async Task SaveWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
+        private static async Task SaveWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words, SourceDefinition sourceDef)
         {
             var wordsByPartOfSpeech = words.ToLookup(x => x.partOfSpeech, x => x.wordRoot);
 
             CheckForUnsupportedPartsOfSpeech(wordsByPartOfSpeech);
+            CancellationSource.Token.ThrowIfCancellationRequested();
 
             var nouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "noun") ?? Enumerable.Empty<string>();
             var pluralNouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "plural noun") ?? Enumerable.Empty<string>();
-            await SaveNouns(nouns, pluralNouns);
+            await SaveNouns(nouns, pluralNouns, sourceDef);
+            CancellationSource.Token.ThrowIfCancellationRequested();
 
             var adjectives = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adjective") ?? Enumerable.Empty<string>();
-            await SaveAdjectives(adjectives);
+            await SaveAdjectives(adjectives, sourceDef);
+            CancellationSource.Token.ThrowIfCancellationRequested();
 
             var adverbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adverb") ?? Enumerable.Empty<string>();
-            await SaveAdverbs(adverbs);
+            await SaveAdverbs(adverbs, sourceDef);
+            CancellationSource.Token.ThrowIfCancellationRequested();
 
             var verbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "verb") ?? Enumerable.Empty<string>();
-            await SaveVerbs(verbs);
+            await SaveVerbs(verbs, sourceDef);
+            CancellationSource.Token.ThrowIfCancellationRequested();
         }
 
         private static void CheckForUnsupportedPartsOfSpeech(ILookup<string, string> wordsByPartOfSpeech)
@@ -266,7 +282,7 @@ ReportProgressAndNext:
             }
         }
 
-        private static async Task SaveNouns(IEnumerable<string> nouns, IEnumerable<string> pluralNouns)
+        private static async Task SaveNouns(IEnumerable<string> nouns, IEnumerable<string> pluralNouns, SourceDefinition sourceDef)
         {
             if (!nouns.Any() && !pluralNouns.Any())
             {
@@ -274,6 +290,7 @@ ReportProgressAndNext:
                 return;
             }
 
+            var tags = XmlTagsAttribute(sourceDef);
             using (var stream = new FileStream("ScrapedNouns.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16*1024, true))
             using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
             {
@@ -299,20 +316,20 @@ ReportProgressAndNext:
                     else if (!noun.EndsWith("s"))
                         plural = noun + "s";
 
-                    await writer.WriteLineAsync($"  <noun singular=\"{EncodeForXml(noun)}\"	plural=\"{EncodeForXml(plural)}\" />");
+                    await writer.WriteLineAsync($"  <noun singular=\"{EncodeForXml(noun)}\"	plural=\"{EncodeForXml(plural)}\" {tags}/>");
                 }
 
                 foreach (var plural in pluralNouns)
                 {
                     var xmlSafePlural = EncodeForXml(plural);
-                    await writer.WriteLineAsync($"  <noun plural=\"{xmlSafePlural}\" />");
+                    await writer.WriteLineAsync($"  <noun plural=\"{xmlSafePlural}\" {tags}/>");
                 }
 
                 await writer.WriteLineAsync("</dictionary>");
             }
         }
 
-        private static async Task SaveAdjectives(IEnumerable<string> adjectives)
+        private static async Task SaveAdjectives(IEnumerable<string> adjectives, SourceDefinition sourceDef)
         {
             if (!adjectives.Any())
             {
@@ -320,6 +337,7 @@ ReportProgressAndNext:
                 return;
             }
 
+            var tags = XmlTagsAttribute(sourceDef);
             using (var stream = new FileStream("ScrapedAdjectives.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
             using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
             {
@@ -327,13 +345,13 @@ ReportProgressAndNext:
 
                 foreach (var adjective in adjectives)
                 {
-                    await writer.WriteLineAsync($"  <adjective value=\"{EncodeForXml(adjective)}\" />");
+                    await writer.WriteLineAsync($"  <adjective value=\"{EncodeForXml(adjective)}\" {tags}/>");
                 }
                 await writer.WriteLineAsync("</dictionary>");
             }
         }
 
-        private static async Task SaveAdverbs(IEnumerable<string> adverbs)
+        private static async Task SaveAdverbs(IEnumerable<string> adverbs, SourceDefinition sourceDef)
         {
             if (!adverbs.Any())
             {
@@ -341,6 +359,7 @@ ReportProgressAndNext:
                 return;
             }
 
+            var tags = XmlTagsAttribute(sourceDef);
             using (var stream = new FileStream("ScrapedAdverbs.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
             using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
             {
@@ -348,13 +367,13 @@ ReportProgressAndNext:
 
                 foreach (var adverb in adverbs)
                 {
-                    await writer.WriteLineAsync($"  <adverb value=\"{EncodeForXml(adverb)}\" />");
+                    await writer.WriteLineAsync($"  <adverb value=\"{EncodeForXml(adverb)}\" {tags}/>");
                 }
                 await writer.WriteLineAsync("</dictionary>");
             }
         }
 
-        private static async Task SaveVerbs(IEnumerable<string> verbs)
+        private static async Task SaveVerbs(IEnumerable<string> verbs, SourceDefinition sourceDef)
         {
             if (!verbs.Any())
             {
@@ -362,6 +381,7 @@ ReportProgressAndNext:
                 return;
             }
 
+            var tags = "\r\n        " + XmlTagsAttribute(sourceDef);
             using (var stream = new FileStream("ScrapedVerbs.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
             using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
             {
@@ -381,7 +401,7 @@ ReportProgressAndNext:
                     var toING = verb.EndsWith("e") ? $"{verb.Substring(0, verb.Length - 1)}ing" : $"{verb}ing";
 
                     var line = $@"  <verb presentSingular=""{toES}"" pastSingular=""{toED}"" pastContinuousSingular=""was {toING}"" futureSingular=""will {verb}"" continuousSingular=""is {toING}"" perfectSingular=""has {toED}"" subjunctiveSingular=""might {verb}""
-        presentPlural = ""{verb}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {verb}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {verb}"" />";
+        presentPlural = ""{verb}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {verb}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {verb}"" {tags}/>";
                     await writer.WriteLineAsync(line);
                 }
                 
@@ -408,6 +428,10 @@ ReportProgressAndNext:
             return result;
         }
 
+        private static string XmlTagsAttribute(SourceDefinition sourceDef)
+            => string.IsNullOrEmpty(sourceDef.Tags) ? ""
+            : $"tags=\"{sourceDef.Tags}\" ";
+
         static void ReportProgress(int wordCount, int attempts)
         {
             if (DateTime.UtcNow < NextProgressUpdate)
@@ -433,7 +457,7 @@ ReportProgressAndNext:
 
                 if (i == 0)
                 {
-                    if (!SupportedSources.Contains(arg))
+                    if (!SupportedSources.ContainsKey(arg))
                     {
                         Console.WriteLine("Source '{0}' is not supported. Supported sources:", arg);
                         foreach (var source in SupportedSources.OrderBy(x => x))
