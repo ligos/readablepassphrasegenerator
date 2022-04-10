@@ -33,7 +33,7 @@ namespace MurrayGrant.WordScraper
         static int maxLength = 10;
         static string source = "";
 
-        static CancellationTokenSource CancellationSource;
+        static CancellationTokenSource CancellationSource = new CancellationTokenSource();
 
         public async static Task Main(string[] args)
         {
@@ -47,7 +47,6 @@ namespace MurrayGrant.WordScraper
                 }
 
                 Console.CancelKeyPress += Console_CancelKeyPress;
-                CancellationSource = new CancellationTokenSource();
                 await RunMain();
                 Environment.Exit(0);
             }
