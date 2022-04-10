@@ -18,11 +18,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MurrayGrant.WordScraper
 {
@@ -35,13 +37,14 @@ namespace MurrayGrant.WordScraper
         static int Attempts = 1000;
         static string Source = "";
         static int DelayMs = 250;
-        static bool Show = false;
+        static int ShowCount = 10;
 
         static HashSet<string> SupportedSources = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
         {
             "ThisWordDoesNotExist.com"
         };
 
+        static Encoding Utf8WithoutBOM = new UTF8Encoding(false);
         static CancellationTokenSource CancellationSource = new CancellationTokenSource();
         static DateTime NextProgressUpdate = DateTime.MinValue;
 
@@ -98,6 +101,7 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine($"Default dictionary contains {defaultDictionary.Count:N0} words and {allUniqueForms.Count:N0} unique forms.");
             CancellationSource.Token.ThrowIfCancellationRequested();
 
+            // Let the scraping begin!
             Console.WriteLine("Starting scraping...");
             NextProgressUpdate = DateTime.UtcNow.AddSeconds(1);
             var sw = Stopwatch.StartNew();
@@ -105,8 +109,12 @@ namespace MurrayGrant.WordScraper
             sw.Stop();
             Console.WriteLine($"Scraping complete. {scrapedWords.Count} words found in {sw.Elapsed.TotalSeconds:N1} seconds");
 
-            if (Show) 
+            // Show samples.
+            if (ShowCount > 0) 
                 ShowWords(scrapedWords);
+
+            // And save as compatible XML files.
+            await SaveWords(scrapedWords);
         }
 
         private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
@@ -183,7 +191,7 @@ namespace MurrayGrant.WordScraper
                     goto ReportProgressAndNext;
 
                 // This one is OK!
-                result.Add((wordRoot, partOfSpeech));
+                result.Add((wordRoot, partOfSpeech.ToLowerInvariant()));
 
 ReportProgressAndNext:
                 ReportProgress(result.Count, attemptCounter);
@@ -196,10 +204,185 @@ ReportProgressAndNext:
 
         private static void ShowWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
         {
+            var random = new Random();
+            var randomisedWords = words
+                .OrderBy(x => random.NextDouble())
+                .Take(ShowCount);
+
             Console.WriteLine();
-            foreach (var word in words.OrderBy(x => x.wordRoot))
+            Console.WriteLine("Sample of Scraped Words:");
+            foreach (var word in randomisedWords.OrderBy(x => x.wordRoot))
             {
                 Console.WriteLine("  {0} ({1})", word.wordRoot, word.partOfSpeech);
+            }
+        }
+
+        private static async Task SaveWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
+        {
+            var wordsByPartOfSpeech = words.ToLookup(x => x.partOfSpeech, x => x.wordRoot);
+
+            CheckForUnsupportedPartsOfSpeech(wordsByPartOfSpeech);
+
+            var nouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "noun") ?? Enumerable.Empty<string>();
+            var pluralNouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "plural noun") ?? Enumerable.Empty<string>();
+            await SaveNouns(nouns, pluralNouns);
+
+            var adjectives = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adjective") ?? Enumerable.Empty<string>();
+            await SaveAdjectives(adjectives);
+
+            var adverbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adverb") ?? Enumerable.Empty<string>();
+            await SaveAdverbs(adverbs);
+
+            var verbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "verb") ?? Enumerable.Empty<string>();
+            await SaveVerbs(verbs);
+        }
+
+        private static void CheckForUnsupportedPartsOfSpeech(ILookup<string, string> wordsByPartOfSpeech)
+        {
+            var supportedPartsOfSpeech = new[]
+{
+                "verb",
+                "noun",
+                "plural noun",
+                "adjective",
+                "adverb",
+            }; 
+            
+            var unsupportedWords = wordsByPartOfSpeech.Where(x => !supportedPartsOfSpeech.Contains(x.Key));
+            if (unsupportedWords.Any())
+            {
+                Console.WriteLine("WARNING: unsupported parts of speech found in scraped words.");
+                foreach (var g in unsupportedWords)
+                {
+                    Console.WriteLine("  " + g.Key);
+                    foreach (var w in g.OrderBy(w => w))
+                    {
+                        Console.WriteLine("    " + w);
+                    }
+                }
+            }
+        }
+
+        private static async Task SaveNouns(IEnumerable<string> nouns, IEnumerable<string> pluralNouns)
+        {
+            if (!nouns.Any() && !pluralNouns.Any())
+            {
+                File.Delete("ScrapedNouns.xml");
+                return;
+            }
+
+            using (var stream = new FileStream("ScrapedNouns.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16*1024, true))
+            using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
+            {
+                await writer.WriteLineAsync("<dictionary>");
+                
+                foreach (var noun in nouns)
+                {
+                    var plural = noun;
+                    if (noun.EndsWith("man"))
+                        plural = noun.Substring(0, noun.Length - 3) + "men";
+                    if (noun.EndsWith("ch"))
+                        plural = noun.Substring(0, noun.Length - 2) + "ches";
+                    else if (noun.EndsWith("sh"))
+                        plural = noun;
+                    else if (noun.EndsWith("y"))
+                        plural = noun.Substring(0, noun.Length - 1) + "ies";
+                    else if (noun.EndsWith("u"))
+                        plural = noun.Substring(0, noun.Length - 1) + "s";
+                    else if (noun.EndsWith("o") || noun.EndsWith("x"))
+                        plural = noun + "es";
+                    else if (noun.EndsWith("a") || noun.EndsWith("e") || noun.EndsWith("i"))
+                        plural = noun + "s";
+                    else if (!noun.EndsWith("s"))
+                        plural = noun + "s";
+
+                    await writer.WriteLineAsync($"  <noun singular=\"{EncodeForXml(noun)}\"	plural=\"{EncodeForXml(plural)}\" />");
+                }
+
+                foreach (var plural in pluralNouns)
+                {
+                    var xmlSafePlural = EncodeForXml(plural);
+                    await writer.WriteLineAsync($"  <noun plural=\"{xmlSafePlural}\" />");
+                }
+
+                await writer.WriteLineAsync("</dictionary>");
+            }
+        }
+
+        private static async Task SaveAdjectives(IEnumerable<string> adjectives)
+        {
+            if (!adjectives.Any())
+            {
+                File.Delete("ScrapedAdjectives.xml");
+                return;
+            }
+
+            using (var stream = new FileStream("ScrapedAdjectives.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
+            using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
+            {
+                await writer.WriteLineAsync("<dictionary>");
+
+                foreach (var adjective in adjectives)
+                {
+                    await writer.WriteLineAsync($"  <adjective value=\"{EncodeForXml(adjective)}\" />");
+                }
+                await writer.WriteLineAsync("</dictionary>");
+            }
+        }
+
+        private static async Task SaveAdverbs(IEnumerable<string> adverbs)
+        {
+            if (!adverbs.Any())
+            {
+                File.Delete("ScrapedAdverbs.xml");
+                return;
+            }
+
+            using (var stream = new FileStream("ScrapedAdverbs.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
+            using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
+            {
+                await writer.WriteLineAsync("<dictionary>");
+
+                foreach (var adverb in adverbs)
+                {
+                    await writer.WriteLineAsync($"  <adverb value=\"{EncodeForXml(adverb)}\" />");
+                }
+                await writer.WriteLineAsync("</dictionary>");
+            }
+        }
+
+        private static async Task SaveVerbs(IEnumerable<string> verbs)
+        {
+            if (!verbs.Any())
+            {
+                File.Delete("ScrapedVerbs.xml");
+                return;
+            }
+
+            using (var stream = new FileStream("ScrapedVerbs.xml", FileMode.Create, FileAccess.Write, FileShare.None, 16 * 1024, true))
+            using (var writer = new StreamWriter(stream, Utf8WithoutBOM))
+            {
+                await writer.WriteLineAsync("<dictionary>");
+
+                foreach (var verb in verbs)
+                {
+                    var toES = verb.EndsWith("s") ? $"{verb}es" : $"{verb}s";
+                    toES = verb.EndsWith("x") ? $"{verb}es" : toES;
+                    toES = verb.EndsWith("e") ? $"{verb}s" : toES;
+                    toES = verb.EndsWith("y") ? $"{verb.Substring(0, verb.Length - 1)}ies" : toES;
+                    toES = verb.EndsWith("ch") || verb.EndsWith("sh") ? $"{verb}es" : toES;
+
+                    var toED = verb.EndsWith("e") ? $"{verb}d" : $"{verb}ed";
+                    toED = verb.EndsWith("y") ? $"{verb.Substring(0, verb.Length - 1)}ied" : toED;
+
+                    var toING = verb.EndsWith("e") ? $"{verb.Substring(0, verb.Length - 1)}ing" : $"{verb}ing";
+
+                    var line = $@"  <verb presentSingular=""{toES}"" pastSingular=""{toED}"" pastContinuousSingular=""was {toING}"" futureSingular=""will {verb}"" continuousSingular=""is {toING}"" perfectSingular=""has {toED}"" subjunctiveSingular=""might {verb}""
+        presentPlural = ""{verb}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {verb}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {verb}"" />";
+                    await writer.WriteLineAsync(line);
+                }
+                
+                await writer.WriteLineAsync("</dictionary>");
             }
         }
 
@@ -208,6 +391,18 @@ ReportProgressAndNext:
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "makemeapassword.ligos.net (Batch Process)");
             return client;
+        }
+
+        private static string EncodeForXml(string xml)
+        {
+            if (string.IsNullOrEmpty(xml))
+                return xml;
+            var result = xml.Replace("\"", "&quot;")
+                            .Replace("&", "&amp;")
+                            .Replace("'", "&apos;")
+                            .Replace("<", "&lt;")
+                            .Replace(">", "&gt;");
+            return result;
         }
 
         static void ReportProgress(int wordCount, int attempts)
@@ -291,9 +486,14 @@ ReportProgressAndNext:
                     }
                     i++;
                 }
-                else if (arg == "show")
+                else if (arg == "d" || arg == "show")
                 {
-                    Show = true;
+                    if (!Int32.TryParse(args[i + 1].Trim(), out ShowCount))
+                    {
+                        Console.WriteLine("Unable to parse number '{0}' for 'show' option.", args[i + 1]);
+                        return false;
+                    }
+                    i++;
                 }
                 else if (arg == "h" || arg == "help")
                 {
@@ -318,7 +518,7 @@ ReportProgressAndNext:
             Console.WriteLine("  --max xxx             Specifies a maximum length for words (def: {0})", MaxLength);
             Console.WriteLine("  -a --attempts nnn     Maximum attempts to scrape (default: {0})", Attempts);
             Console.WriteLine("  -d --delayMs nnn      Milliseconds of delay after each attempt (default: {0})", DelayMs);
-            Console.WriteLine("  --show                Show list of words after scraping (default: {0})", Show);
+            Console.WriteLine("  --show nnn            Show sample list of words after scraping (default: {0})", ShowCount);
             Console.WriteLine();
             Console.WriteLine("  Supported sources:");
             foreach (var source in SupportedSources.OrderBy(x => x))
