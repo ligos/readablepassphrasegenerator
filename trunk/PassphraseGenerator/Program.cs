@@ -224,7 +224,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             System.Reflection.Assembly? loaderAsm = null;
             if (useCustomLoader && !String.IsNullOrEmpty(loaderDll))
                 loaderAsm = System.Reflection.Assembly.LoadFrom(loaderDll);
-            Type loaderT;
+            Type? loaderT;
             if (!String.IsNullOrEmpty(loaderType) && loaderAsm != null)
                 loaderT = loaderAsm.GetTypes().FirstOrDefault(t => (t.FullName ?? "").IndexOf(loaderType, StringComparison.CurrentCultureIgnoreCase) >= 0);
             else if (!String.IsNullOrEmpty(loaderType) && loaderAsm == null)
@@ -235,6 +235,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             else if (String.IsNullOrEmpty(loaderType) && loaderAsm == null)
                 loaderT = typeof(ExplicitXmlDictionaryLoader);
             else
+                throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
+
+            if (loaderT == null)
                 throw new ApplicationException(String.Format("Unable to find type '{0}' in {1} assembly.", loaderType, String.IsNullOrEmpty(loaderDll) ? "<default>" : loaderDll));
             return loaderT;
         }
