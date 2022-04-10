@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <PackageId>ReadablePassphrase.DefaultDictionary</PackageId>
     <Version>1.2.0</Version>
