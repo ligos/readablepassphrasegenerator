@@ -28,10 +28,12 @@ namespace MurrayGrant.WordScraper
     public class Program
     {
         // This is a bit of a cheats way of doing command line arguments. Please don't consider it good practice!
-        static int wordCount = 100;
-        static int minLength = 3;
-        static int maxLength = 10;
-        static string source = "";
+        static int WordCount = 100;
+        static int MinLength = 3;
+        static int MaxLength = 10;
+        static int Attempts = 1000;
+        static string Source = "";
+        static int DelayMs = 100;
 
         static HashSet<string> SupportedSources = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
         {
@@ -39,6 +41,7 @@ namespace MurrayGrant.WordScraper
         };
 
         static CancellationTokenSource CancellationSource = new CancellationTokenSource();
+        static DateTime NextProgressUpdate = DateTime.MinValue;
 
         public async static Task Main(string[] args)
         {
@@ -55,7 +58,7 @@ namespace MurrayGrant.WordScraper
                 await RunMain();
                 Environment.Exit(0);
             }
-            catch (TaskCanceledException)
+            catch (OperationCanceledException)
             {
                 Environment.Exit(1);
             }
@@ -83,8 +86,8 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine("Pulls AI generated words from thisworddoesnotexist.com and conjugates them.");
             Console.WriteLine("drventure 2020 & Murray Grant 2022");
             Console.WriteLine();
-            Console.WriteLine($"Scraping {wordCount:N0} words from {source}...");
-            Console.WriteLine($"Must be between {minLength:N0} and {maxLength:N0} characters.");
+            Console.WriteLine($"Scraping {WordCount:N0} words from {Source}...");
+            Console.WriteLine($"Must be between {MinLength:N0} and {MaxLength:N0} characters.");
             CancellationSource.Token.ThrowIfCancellationRequested();
 
             // Load current dictionary, so we can avoid duplicates.
@@ -94,25 +97,107 @@ namespace MurrayGrant.WordScraper
             CancellationSource.Token.ThrowIfCancellationRequested();
 
             Console.WriteLine("Starting scraping...");
+            NextProgressUpdate = DateTime.UtcNow.AddSeconds(1);
             var scrapedWords = await ReadWords(allUniqueForms);
             Console.WriteLine("Scraping complete.");
+
         }
 
-        private static Task<IReadOnlyList<(string root, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
+        private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
         {
-            switch (source.ToLower())
+            switch (Source.ToLower())
             {
                 case "thisworddoesnotexist.com":
                     return ReadWordsFromThisWordDoesNotExist(uniqueForms);
                 default:
-                    throw new ApplicationException("Unknown source: " + source);
+                    throw new ApplicationException("Unknown source: " + Source);
             }
         }
 
-        private static Task<IReadOnlyList<(string root, string partOfSpeech)>> ReadWordsFromThisWordDoesNotExist(IReadOnlySet<string> uniqueForms)
+        private static async Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWordsFromThisWordDoesNotExist(IReadOnlySet<string> uniqueForms)
         {
-            var result = new List<(string, string)>();
-            return Task.FromResult((IReadOnlyList<(string, string)>)result);
+            var result = new List<(string, string)>(WordCount);
+            var httpClient = CreateHttpClient();
+            var attemptCounter = 0;
+
+            while (result.Count < WordCount && attemptCounter < Attempts)
+            {
+                CancellationSource.Token.ThrowIfCancellationRequested();
+
+                var partOfSpeech = "";
+                var wordRoot = "";
+                var page = await httpClient.GetStringAsync("https://www.thisworddoesnotexist.com");
+                ++attemptCounter;
+
+                var mark = "class=\"pos\">";
+                var posPos = page.IndexOf(mark, 0, StringComparison.CurrentCultureIgnoreCase);
+                if (posPos > 0)
+                {
+                    var endMark = "</div>";
+                    var posEnd = page.IndexOf(endMark, posPos);
+                    if (posEnd > 0)
+                    {
+                        partOfSpeech = page.Substring(posPos + mark.Length, posEnd - posPos - mark.Length);
+                        partOfSpeech = partOfSpeech.Replace(".", "");
+                        posEnd = partOfSpeech.IndexOf("[");
+                        if (posEnd > 0) 
+                            partOfSpeech = partOfSpeech.Substring(0, posEnd - 1);
+                        partOfSpeech = partOfSpeech.Trim();
+                    }
+                }
+
+                mark = "class=\"word\">";
+                var posWord = page.IndexOf(mark);
+                if (posWord > 0)
+                {
+                    var endMark = "</div>";
+                    var posEnd = page.IndexOf(endMark, posWord);
+                    if (posEnd > 0)
+                    {
+                        wordRoot = page.Substring(posWord + mark.Length, posEnd - posWord - mark.Length);
+                        wordRoot = wordRoot.Replace(".", "");
+                        wordRoot = wordRoot.Trim();
+                    }
+                }
+
+                //if (Regex.IsMatch(word, "[^a-z&^ ]+"))
+                //{
+                //    //if any non-alpha char detected, just through this one out
+                //    pos = string.Empty;
+                //    word = string.Empty;
+                //}
+
+                if (string.IsNullOrWhiteSpace(wordRoot) || string.IsNullOrWhiteSpace(partOfSpeech))
+                    goto ReportProgressAndNext;
+
+                if (uniqueForms.Contains(wordRoot))
+                    goto ReportProgressAndNext;
+
+                result.Add((wordRoot, partOfSpeech));
+
+ReportProgressAndNext:
+                ReportProgress(result.Count, attemptCounter);
+                if (DelayMs > 0)
+                    await Task.Delay(DelayMs);
+            }
+
+            return result;
+        }
+
+        private static HttpClient CreateHttpClient()
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "makemeapassword.ligos.net (Batch Process)");
+            return client;
+        }
+
+        static void ReportProgress(int wordCount, int attempts)
+        {
+            if (DateTime.UtcNow < NextProgressUpdate)
+                return;
+
+            Console.WriteLine($"[{attempts:N0} of {Attempts:N0} attempts, {wordCount:N0} words scraped successfully]");
+            NextProgressUpdate = DateTime.UtcNow.AddSeconds(2);
         }
 
         static bool ParseCommandLine(string[] args)
@@ -140,20 +225,29 @@ namespace MurrayGrant.WordScraper
                         }
                         return false;
                     }
-                    source = arg;
+                    Source = arg;
                 }
                 else if (arg == "c" || arg == "count")
                 {
-                    if (!Int32.TryParse(args[i + 1].Trim(), out wordCount))
+                    if (!Int32.TryParse(args[i + 1].Trim(), out WordCount))
                     {
                         Console.WriteLine("Unable to parse number '{0}' for 'count' option.", args[i + 1]);
                         return false;
                     }
                     i++;
                 }
+                else if (arg == "a" || arg == "attempts")
+                {
+                    if (!Int32.TryParse(args[i + 1].Trim(), out Attempts))
+                    {
+                        Console.WriteLine("Unable to parse number '{0}' for 'attempts' option.", args[i + 1]);
+                        return false;
+                    }
+                    i++;
+                }
                 else if (arg == "min")
                 {
-                    if (!Int32.TryParse(args[i + 1].Trim(), out minLength))
+                    if (!Int32.TryParse(args[i + 1].Trim(), out MinLength))
                     {
                         Console.WriteLine("Unable to parse number '{0}' for 'min' option.", args[i + 1]);
                         return false;
@@ -162,9 +256,18 @@ namespace MurrayGrant.WordScraper
                 }
                 else if (arg == "max")
                 {
-                    if (!Int32.TryParse(args[i + 1].Trim(), out maxLength))
+                    if (!Int32.TryParse(args[i + 1].Trim(), out MaxLength))
                     {
                         Console.WriteLine("Unable to parse number '{0}' for 'max' option.", args[i + 1]);
+                        return false;
+                    }
+                    i++;
+                }
+                else if (arg == "d" || arg == "delayms")
+                {
+                    if (!Int32.TryParse(args[i + 1].Trim(), out DelayMs))
+                    {
+                        Console.WriteLine("Unable to parse number '{0}' for 'delayMs' option.", args[i + 1]);
                         return false;
                     }
                     i++;
@@ -187,9 +290,11 @@ namespace MurrayGrant.WordScraper
         static void PrintUsage()
         {
             Console.WriteLine("Usage: WordScraper.exe source [options]");
-            Console.WriteLine("  -c --count nnn        Scrapes nnn words (default: {0})", wordCount);
-            Console.WriteLine("  --min xxx             Specifies a minimum length for words (def: {0})", minLength);
-            Console.WriteLine("  --max xxx             Specifies a maximum length for words (def: {0})", maxLength);
+            Console.WriteLine("  -c --count nnn        Scrapes nnn words (default: {0})", WordCount);
+            Console.WriteLine("  --min xxx             Specifies a minimum length for words (def: {0})", MinLength);
+            Console.WriteLine("  --max xxx             Specifies a maximum length for words (def: {0})", MaxLength);
+            Console.WriteLine("  -a --attempts nnn     Maximum attempts to scrape (default: {0})", Attempts);
+            Console.WriteLine("  -d --delayMs nnn      Milliseconds of delay after each attempt (default: {0})", DelayMs);
             Console.WriteLine();
             Console.WriteLine("  Supported sources:");
             foreach (var source in SupportedSources.OrderBy(x => x))
