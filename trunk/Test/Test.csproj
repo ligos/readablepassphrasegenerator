@@ -4,7 +4,7 @@
     <TargetFrameworks>net60;netcoreapp3.1;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase.Test</Product>
-    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2022</Copyright>
     <Authors>Murray Grant</Authors>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
     <RootNamespace>Test</RootNamespace>

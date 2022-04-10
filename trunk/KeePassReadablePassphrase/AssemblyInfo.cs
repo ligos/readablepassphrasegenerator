@@ -12,7 +12,7 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Murray Grant")]
 [assembly: AssemblyProduct("KeePass Plugin")]
-[assembly: AssemblyCopyright("Copyright © Murray Grant 2011-2020")]
+[assembly: AssemblyCopyright("Copyright © Murray Grant 2011-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

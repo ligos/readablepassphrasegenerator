@@ -14,7 +14,7 @@ For normal use, reference the "ReadablePassphrase" package.
 This is just the default dictionary as an embedded resource.
 
 See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
-    <Copyright>Copyright © Murray Grant 2011-2020</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2022</Copyright>
     <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
