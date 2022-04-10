@@ -203,6 +203,7 @@ namespace KeePassReadablePassphrase
                 this.txtDictionaryPath.Text = config.PathOfCustomDictionary;
                 this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
                 this.nudMaxLength.Value = Math.Min(config.MaxLength, (int)this.nudMaxLength.Maximum);
+                this.cboCountBy.Text = config.CountBy.ToString();
 
                 this.radMutatorNone.Checked = config.Mutator == MutatorOption.None;
                 this.radMutatorStandard.Checked = config.Mutator == MutatorOption.Standard;
@@ -335,6 +336,7 @@ namespace KeePassReadablePassphrase
             result.MinLength = (int)this.nudMinLength.Value;
             result.MaxLength = (int)this.nudMaxLength.Value;
 
+            result.CountBy = (CountByOption)Enum.Parse(typeof(CountByOption), this.cboCountBy.Text);
             result.Mutator = this.radMutatorNone.Checked ? MutatorOption.None 
                                 : this.radMutatorStandard.Checked ? MutatorOption.Standard
                                 : this.radMutatorCustom.Checked ? MutatorOption.Custom

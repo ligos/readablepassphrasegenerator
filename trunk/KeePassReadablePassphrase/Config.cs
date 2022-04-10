@@ -30,14 +30,14 @@ namespace KeePassReadablePassphrase
         public WordSeparatorOption WordSeparator { get; set; }
         public string CustomSeparator { get; set; }
         private PhraseStrength _PhraseSelection;
-        public PhraseStrength PhraseStrength 
+        public PhraseStrength PhraseStrength
         {
             get { return this._PhraseSelection; }
-            set 
-            { 
-                this._PhraseSelection = value; 
-                this.PhraseDescription = this.GetPhraseDescription(); 
-            } 
+            set
+            {
+                this._PhraseSelection = value;
+                this.PhraseDescription = this.GetPhraseDescription();
+            }
         }
         public IEnumerable<Clause> PhraseDescription { get; set; }
         public bool UseCustomDictionary { get; set; }
@@ -45,6 +45,7 @@ namespace KeePassReadablePassphrase
         public int MinLength { get; set; }
         public int MaxLength { get; set; }
 
+        public CountByOption CountBy { get; set; }
         public MutatorOption Mutator { get; set; }
         public AllUppercaseStyles UpperStyle { get; set; }
         public int UpperCount { get; set; }
@@ -77,6 +78,7 @@ namespace KeePassReadablePassphrase
             PhraseStrength = PhraseStrength.Random;
             MinLength = 1;
             MaxLength = 999;
+            this.CountBy = CountByOption.Letters;
             this.PhraseDescription = this.GetPhraseDescription();
             this.Mutator = MutatorOption.None;
             this.UpperStyle = AllUppercaseStyles.WholeWord;
@@ -123,6 +125,8 @@ namespace KeePassReadablePassphrase
                     this.MaxLength = Int32.Parse(reader.GetAttribute("value"));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "minlength")
                     this.MinLength = Int32.Parse(reader.GetAttribute("value"));
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "countby")
+                    this.CountBy = (CountByOption)Enum.Parse(typeof(CountByOption), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.CDATA && inPhraseDescription)
                 {
                     this.PhraseDescription = Clause.CreateCollectionFromTextString(reader.Value);
@@ -165,6 +169,9 @@ namespace KeePassReadablePassphrase
             if (NumericCount > 999)
                 NumericCount = 999;
 
+            if (CountBy == CountByOption.None)
+                CountBy = CountByOption.Letters;
+
 #pragma warning disable CS0618
             if (WordSeparator == WordSeparatorOption.Unknown && SpacesBetweenWords)
                 WordSeparator = WordSeparatorOption.Space;
@@ -194,6 +201,7 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<PathOfCustomDictionary value=\"{0}\"/>\n", EncodeForXml(this.PathOfCustomDictionary));
             sb.AppendFormat("<MinLength value=\"{0}\"/>\n", this.MinLength);
             sb.AppendFormat("<MaxLength value=\"{0}\"/>\n", this.MaxLength);
+            sb.AppendFormat("<CountBy value=\"{0}\"/>\n", this.CountBy);
             sb.AppendFormat("<Mutator value=\"{0}\"/>\n", this.Mutator);
             sb.AppendFormat("<UpperStyle value=\"{0}\"/>\n", this.UpperStyle);
             sb.AppendFormat("<UpperCount value=\"{0}\"/>\n", this.UpperCount);
@@ -240,5 +248,12 @@ namespace KeePassReadablePassphrase
         None,
         Space,
         Custom,
+    }
+
+    public enum CountByOption
+    {
+        None,
+        Letters,
+        Words,
     }
 }

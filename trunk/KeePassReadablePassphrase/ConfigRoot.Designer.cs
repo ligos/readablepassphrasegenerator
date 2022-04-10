@@ -95,6 +95,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtConstantValue = new System.Windows.Forms.TextBox();
             this.lnkKeyBase = new System.Windows.Forms.LinkLabel();
+            this.cboCountBy = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).BeginInit();
@@ -112,7 +113,7 @@
             this.cboPhraseSelection.Location = new System.Drawing.Point(104, 143);
             this.cboPhraseSelection.Name = "cboPhraseSelection";
             this.cboPhraseSelection.Size = new System.Drawing.Size(167, 21);
-            this.cboPhraseSelection.TabIndex = 3;
+            this.cboPhraseSelection.TabIndex = 5;
             this.toolTip1.SetToolTip(this.cboPhraseSelection, "Determines the complexity of the generated phrases. \r\nStronger phrases have more " +
         "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
         " additional verb tenses.");
@@ -144,7 +145,7 @@
             this.txtPhraseDescription.Name = "txtPhraseDescription";
             this.txtPhraseDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtPhraseDescription.Size = new System.Drawing.Size(461, 109);
-            this.txtPhraseDescription.TabIndex = 13;
+            this.txtPhraseDescription.TabIndex = 23;
             this.toolTip1.SetToolTip(this.txtPhraseDescription, resources.GetString("txtPhraseDescription.ToolTip"));
             this.txtPhraseDescription.TextChanged += new System.EventHandler(this.txtPhraseDescription_TextChanged);
             this.txtPhraseDescription.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPhraseDescription_KeyUp);
@@ -157,7 +158,7 @@
             this.txtDictionaryPath.Name = "txtDictionaryPath";
             this.txtDictionaryPath.ReadOnly = true;
             this.txtDictionaryPath.Size = new System.Drawing.Size(339, 20);
-            this.txtDictionaryPath.TabIndex = 9;
+            this.txtDictionaryPath.TabIndex = 19;
             this.toolTip1.SetToolTip(this.txtDictionaryPath, "The path and filename for your custom dictionary.");
             // 
             // chkCustomDictionary
@@ -179,7 +180,7 @@
             this.txtDictionarySize.Name = "txtDictionarySize";
             this.txtDictionarySize.ReadOnly = true;
             this.txtDictionarySize.Size = new System.Drawing.Size(87, 20);
-            this.txtDictionarySize.TabIndex = 11;
+            this.txtDictionarySize.TabIndex = 21;
             this.toolTip1.SetToolTip(this.txtDictionarySize, "The total number of words in the selected dictionary.");
             // 
             // txtCombinationRange
@@ -188,7 +189,7 @@
             this.txtCombinationRange.Name = "txtCombinationRange";
             this.txtCombinationRange.ReadOnly = true;
             this.txtCombinationRange.Size = new System.Drawing.Size(220, 20);
-            this.txtCombinationRange.TabIndex = 4;
+            this.txtCombinationRange.TabIndex = 15;
             this.toolTip1.SetToolTip(this.txtCombinationRange, "The total combinations of words based on your selected dictionary and phrase stre" +
         "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
@@ -198,7 +199,7 @@
             this.txtEntropyRange.Name = "txtEntropyRange";
             this.txtEntropyRange.ReadOnly = true;
             this.txtEntropyRange.Size = new System.Drawing.Size(90, 20);
-            this.txtEntropyRange.TabIndex = 5;
+            this.txtEntropyRange.TabIndex = 16;
             this.toolTip1.SetToolTip(this.txtEntropyRange, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
         "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
         "n KeePass.");
@@ -209,7 +210,7 @@
             this.txtEntropyAverage.Name = "txtEntropyAverage";
             this.txtEntropyAverage.ReadOnly = true;
             this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
-            this.txtEntropyAverage.TabIndex = 7;
+            this.txtEntropyAverage.TabIndex = 18;
             this.toolTip1.SetToolTip(this.txtEntropyAverage, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
         "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
         "n KeePass.");
@@ -220,7 +221,7 @@
             this.txtCombinationAverage.Name = "txtCombinationAverage";
             this.txtCombinationAverage.ReadOnly = true;
             this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
-            this.txtCombinationAverage.TabIndex = 6;
+            this.txtCombinationAverage.TabIndex = 17;
             this.toolTip1.SetToolTip(this.txtCombinationAverage, "The total combinations of words based on your selected dictionary and phrase stre" +
         "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
@@ -240,7 +241,7 @@
             this.radMutatorNone.Location = new System.Drawing.Point(104, 176);
             this.radMutatorNone.Name = "radMutatorNone";
             this.radMutatorNone.Size = new System.Drawing.Size(51, 17);
-            this.radMutatorNone.TabIndex = 35;
+            this.radMutatorNone.TabIndex = 6;
             this.radMutatorNone.TabStop = true;
             this.radMutatorNone.Text = "None";
             this.toolTip1.SetToolTip(this.radMutatorNone, "Makes no changes to the final passphrase");
@@ -253,7 +254,7 @@
             this.radMutatorStandard.Location = new System.Drawing.Point(170, 176);
             this.radMutatorStandard.Name = "radMutatorStandard";
             this.radMutatorStandard.Size = new System.Drawing.Size(212, 17);
-            this.radMutatorStandard.TabIndex = 36;
+            this.radMutatorStandard.TabIndex = 7;
             this.radMutatorStandard.TabStop = true;
             this.radMutatorStandard.Text = "Standard (numbers, capitals and period)";
             this.toolTip1.SetToolTip(this.radMutatorStandard, "Capitalises one word, adds 2 numbers and appends a period to the final passphrase" +
@@ -267,7 +268,7 @@
             this.radMutatorCustom.Location = new System.Drawing.Point(393, 176);
             this.radMutatorCustom.Name = "radMutatorCustom";
             this.radMutatorCustom.Size = new System.Drawing.Size(60, 17);
-            this.radMutatorCustom.TabIndex = 37;
+            this.radMutatorCustom.TabIndex = 8;
             this.radMutatorCustom.TabStop = true;
             this.radMutatorCustom.Text = "Custom";
             this.toolTip1.SetToolTip(this.radMutatorCustom, "Lets you configure how numbers and capitals are added to the passphrase in detail" +
@@ -282,7 +283,7 @@
             this.cboUpperStyle.Location = new System.Drawing.Point(104, 196);
             this.cboUpperStyle.Name = "cboUpperStyle";
             this.cboUpperStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboUpperStyle.TabIndex = 40;
+            this.cboUpperStyle.TabIndex = 9;
             this.toolTip1.SetToolTip(this.cboUpperStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
         "stom for this option to be available.");
             this.cboUpperStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -294,7 +295,7 @@
             this.cboNumericStyle.Location = new System.Drawing.Point(104, 220);
             this.cboNumericStyle.Name = "cboNumericStyle";
             this.cboNumericStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboNumericStyle.TabIndex = 43;
+            this.cboNumericStyle.TabIndex = 11;
             this.toolTip1.SetToolTip(this.cboNumericStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
         "stom for this option to be available.");
             this.cboNumericStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -306,7 +307,7 @@
             this.cboConstantStyle.Location = new System.Drawing.Point(104, 244);
             this.cboConstantStyle.Name = "cboConstantStyle";
             this.cboConstantStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboConstantStyle.TabIndex = 43;
+            this.cboConstantStyle.TabIndex = 13;
             this.toolTip1.SetToolTip(this.cboConstantStyle, "Determines when an additional constant string is added.\r\nYou must set Mutators to" +
         " Custom for this option to be available.");
             this.cboConstantStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -318,7 +319,7 @@
             this.cboWordSeparator.Location = new System.Drawing.Point(104, 118);
             this.cboWordSeparator.Name = "cboWordSeparator";
             this.cboWordSeparator.Size = new System.Drawing.Size(167, 21);
-            this.cboWordSeparator.TabIndex = 50;
+            this.cboWordSeparator.TabIndex = 3;
             this.toolTip1.SetToolTip(this.cboWordSeparator, "Determines the complexity of the generated phrases. \r\nStronger phrases have more " +
         "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
         " additional verb tenses.");
@@ -340,7 +341,7 @@
             this.btnCancel.Location = new System.Drawing.Point(397, 557);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -351,7 +352,7 @@
             this.btnOK.Location = new System.Drawing.Point(307, 557);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 14;
+            this.btnOK.TabIndex = 24;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -406,7 +407,7 @@
             this.btnBrowse.Location = new System.Drawing.Point(449, 367);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(24, 23);
-            this.btnBrowse.TabIndex = 10;
+            this.btnBrowse.TabIndex = 20;
             this.btnBrowse.Text = "...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -468,7 +469,7 @@
             this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 392);
             this.btnDictionarySizeDetail.Name = "btnDictionarySizeDetail";
             this.btnDictionarySizeDetail.Size = new System.Drawing.Size(24, 23);
-            this.btnDictionarySizeDetail.TabIndex = 12;
+            this.btnDictionarySizeDetail.TabIndex = 22;
             this.btnDictionarySizeDetail.Text = "...";
             this.btnDictionarySizeDetail.UseVisualStyleBackColor = true;
             this.btnDictionarySizeDetail.Click += new System.EventHandler(this.btnDictionarySizeDetail_Click);
@@ -559,7 +560,7 @@
             0});
             this.nudMinLength.Name = "nudMinLength";
             this.nudMinLength.Size = new System.Drawing.Size(56, 20);
-            this.nudMinLength.TabIndex = 1;
+            this.nudMinLength.TabIndex = 0;
             this.nudMinLength.Value = new decimal(new int[] {
             1,
             0,
@@ -581,7 +582,7 @@
             0});
             this.nudMaxLength.Name = "nudMaxLength";
             this.nudMaxLength.Size = new System.Drawing.Size(55, 20);
-            this.nudMaxLength.TabIndex = 2;
+            this.nudMaxLength.TabIndex = 1;
             this.nudMaxLength.Value = new decimal(new int[] {
             1,
             0,
@@ -600,11 +601,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(330, 94);
+            this.label12.Location = new System.Drawing.Point(436, 93);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 13);
+            this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 33;
-            this.label12.Text = "Letters Long (inc spaces)";
+            this.label12.Text = "Long";
             // 
             // label14
             // 
@@ -648,7 +649,7 @@
             0});
             this.nudUpperCount.Name = "nudUpperCount";
             this.nudUpperCount.Size = new System.Drawing.Size(55, 20);
-            this.nudUpperCount.TabIndex = 42;
+            this.nudUpperCount.TabIndex = 10;
             this.nudUpperCount.Value = new decimal(new int[] {
             2,
             0,
@@ -671,7 +672,7 @@
             0});
             this.nudNumberCount.Name = "nudNumberCount";
             this.nudNumberCount.Size = new System.Drawing.Size(55, 20);
-            this.nudNumberCount.TabIndex = 45;
+            this.nudNumberCount.TabIndex = 12;
             this.nudNumberCount.Value = new decimal(new int[] {
             2,
             0,
@@ -765,7 +766,7 @@
             this.txtCustomSeparator.Location = new System.Drawing.Point(382, 118);
             this.txtCustomSeparator.Name = "txtCustomSeparator";
             this.txtCustomSeparator.Size = new System.Drawing.Size(90, 20);
-            this.txtCustomSeparator.TabIndex = 51;
+            this.txtCustomSeparator.TabIndex = 4;
             // 
             // label19
             // 
@@ -799,7 +800,7 @@
             this.txtConstantValue.Location = new System.Drawing.Point(382, 245);
             this.txtConstantValue.Name = "txtConstantValue";
             this.txtConstantValue.Size = new System.Drawing.Size(90, 20);
-            this.txtConstantValue.TabIndex = 51;
+            this.txtConstantValue.TabIndex = 14;
             this.txtConstantValue.Text = ".";
             // 
             // lnkKeyBase
@@ -814,6 +815,18 @@
             this.lnkKeyBase.Text = "KeyBase Contact";
             this.lnkKeyBase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkKeyBase_LinkClicked);
             // 
+            // cboCountBy
+            // 
+            this.cboCountBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCountBy.FormattingEnabled = true;
+            this.cboCountBy.Items.AddRange(new object[] {
+            "Letters",
+            "Words"});
+            this.cboCountBy.Location = new System.Drawing.Point(337, 90);
+            this.cboCountBy.Name = "cboCountBy";
+            this.cboCountBy.Size = new System.Drawing.Size(93, 21);
+            this.cboCountBy.TabIndex = 2;
+            // 
             // ConfigRoot
             // 
             this.AcceptButton = this.btnOK;
@@ -821,6 +834,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(485, 611);
+            this.Controls.Add(this.cboCountBy);
             this.Controls.Add(this.lnkKeyBase);
             this.Controls.Add(this.txtConstantValue);
             this.Controls.Add(this.label21);
@@ -962,5 +976,6 @@
         private System.Windows.Forms.ComboBox cboConstantStyle;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtConstantValue;
+        private System.Windows.Forms.ComboBox cboCountBy;
     }
 }
