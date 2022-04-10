@@ -48,6 +48,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static int maxLength = 999;
         static int minLength = 1;
         static int anyLength = 0;       // Used to indicate a non-gramatic, totally random selection of word forms.
+        static CountBy countBy = CountBy.Char;
 
         static readonly int MaxAttemptsPerCount = 1000;
 
@@ -86,6 +87,9 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 var idx = ver.IndexOf('.', ver.IndexOf('.', ver.IndexOf('.') + 1) + 1);
                 Console.WriteLine("Readable Passphrase Generator {0}", ver.Substring(0, idx));
             }
+            var countByDescription = countBy == CountBy.Char ? "characters"
+                                   : countBy == CountBy.Word ? "words"
+                                   : "characters";
             if (!quiet && anyLength > 0)
                 Console.WriteLine("Generating {0:N0} non-grammatic phrase(s) of length '{1}'...", count, anyLength);
             else if (!quiet && String.IsNullOrEmpty(customPhrasePath))
@@ -93,7 +97,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             else if (!quiet && !String.IsNullOrEmpty(customPhrasePath))
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
             if (!quiet && (maxLength < Int32.MaxValue || minLength > 1))
-                Console.WriteLine("Must be between {0:N0} and {1} characters.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N0"));
+                Console.WriteLine("Must be between {0:N0} and {1} {2}.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N0"), countByDescription);
 
             var generator = new ReadablePassphraseGenerator();
 
@@ -192,7 +196,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     phrase = phrase.Replace(" ", wordSeparator);
 
                 // Clamp the length.
-                if (phrase.Length >= minLength && phrase.Length <= maxLength)
+                if (PhraseWithinLengthCriteria(phrase))
                 {
                     Console.WriteLine(phrase);
                     generated++;
@@ -247,6 +251,21 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             for (int i = 0; i < count; i++)
                 yield return new AnyWordClause();
         }
+
+        static bool PhraseWithinLengthCriteria(string phrase)
+        {
+            if (countBy == CountBy.Word && wordSeparator == "")
+                return true;
+            else if (countBy == CountBy.Word && wordSeparator != "")
+            {
+                var separator = new[] { wordSeparator };
+                var words = phrase.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                return words.Length >= minLength && words.Length <= maxLength;
+            }
+            else
+                return phrase.Length >= minLength && phrase.Length <= maxLength;
+        }
+
         static bool ParseCommandLine(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
@@ -372,6 +391,16 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     }
                     i++;
                 }
+                else if (arg == "countby")
+                {
+                    if (!Enum.GetNames(typeof(CountBy)).Select(x => x.ToLower()).Contains(args[i + 1]))
+                    {
+                        Console.WriteLine("Unknown 'countBy' option '{0}'.", args[i + 1]);
+                        return false;
+                    }
+                    countBy = (CountBy)Enum.Parse(typeof(CountBy), args[i + 1], true);
+                    i++;
+                }
                 else if (arg == "m" || arg == "stdMutators")
                 {
                     applyStandardMutators = true;
@@ -461,6 +490,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("                          or 'custom' or 'random[short|long|forever]'");
             Console.WriteLine("  --min xxx             Specifies a minimum length for phrases (def: {0})", minLength);
             Console.WriteLine("  --max xxx             Specifies a maximum length for phrases (def: {0})", maxLength);
+            Console.WriteLine("  --countBy xxx         Min & max by [char|word] (def: {0})", countBy);
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
             Console.WriteLine("  --separator x         Character(s) to separate words (default: {0})", wordSeparator);
             Console.WriteLine("  -n --nongrammar nn    Creates non-grammatical passphrases of length nn");
@@ -488,6 +518,12 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphraseGenerator.GitHubHomepage);
             Console.WriteLine("Contact Murray via GitHub or at " + ReadablePassphraseGenerator.KeyBaseContact);
+        }
+
+        public enum CountBy
+        {
+            Char = 1,
+            Word,
         }
     }
 }
