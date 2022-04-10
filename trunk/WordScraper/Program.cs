@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MurrayGrant.WordScraper
@@ -32,6 +33,7 @@ namespace MurrayGrant.WordScraper
         static int maxLength = 10;
         static string source = "";
 
+        static CancellationTokenSource CancellationSource;
 
         public async static Task Main(string[] args)
         {
@@ -44,8 +46,14 @@ namespace MurrayGrant.WordScraper
                     Environment.Exit(1);
                 }
 
+                Console.CancelKeyPress += Console_CancelKeyPress;
+                CancellationSource = new CancellationTokenSource();
                 await RunMain();
                 Environment.Exit(0);
+            }
+            catch (TaskCanceledException)
+            {
+                Environment.Exit(1);
             }
             catch (Exception ex)
             {
@@ -57,6 +65,13 @@ namespace MurrayGrant.WordScraper
             }
         }
 
+        private static void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
+        {
+            e.Cancel = true;
+            CancellationSource.Cancel();
+            Console.WriteLine("Received CTRL+C, stopping...");
+        }
+
         async static Task RunMain()
         {
             // Show what we're about to do.
@@ -66,6 +81,11 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine();
             Console.WriteLine($"Scraping {wordCount:N0} words from {source}...");
             Console.WriteLine($"Must be between {minLength:N0} and {maxLength:N0} characters.");
+
+            // Load current dictionary, so we can avoid duplicates.
+            var defaultDictionary = ReadablePassphrase.Dictionaries.Default.Load();
+            var allUniqueForms = defaultDictionary.SelectMany(w => w.AllForms()).ToHashSet(StringComparer.CurrentCultureIgnoreCase);
+            Console.WriteLine($"Default dictionary contains {defaultDictionary.Count:N0} words and {allUniqueForms.Count:N0} unique forms.");
         }
 
         static bool ParseCommandLine(string[] args)
