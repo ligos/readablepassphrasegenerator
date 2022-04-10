@@ -92,7 +92,8 @@ namespace KeePassReadablePassphrase
             var dict = GetDictionary(conf);
             var generator = new MurrayGrant.ReadablePassphrase.ReadablePassphraseGenerator(dict, new KeePassRandomSource(crsRandomSource));
 
-            if (conf.Mutator != MutatorOption.None)
+            if (conf.Mutator != MutatorOption.None
+                || conf.CountBy == CountByOption.Words)
                 return GenerateForMutators(generator, conf);
             else if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 return GenerateSecure(generator, conf);
@@ -183,7 +184,7 @@ namespace KeePassReadablePassphrase
                     } else if (conf.WordSeparator == WordSeparatorOption.Custom)
                         passphrase = passphrase.Replace(" ", conf.CustomSeparator);
 
-                    if (passphrase.Length >= conf.MinLength && passphrase.Length <= conf.MaxLength)
+                    if (PhraseIsWithinLengthCriteria(passphrase, conf))
                         return new ProtectedString(true, passphrase);
                     // Bail out if we've tried lots of times.
                     if (attempts <= 0)
@@ -263,6 +264,20 @@ namespace KeePassReadablePassphrase
                 }
             }
             return result;
+        }
+
+        static bool PhraseIsWithinLengthCriteria(string phrase, Config conf)
+        {
+            if (conf.CountBy == CountByOption.Words && conf.ActualSeparator == "")
+                return true;
+            else if (conf.CountBy == CountByOption.Words && conf.ActualSeparator != "")
+            {
+                var separator = new[] { conf.ActualSeparator };
+                var words = phrase.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                return words.Length >= conf.MinLength && words.Length <= conf.MaxLength;
+            }
+            else
+                return phrase.Length >= conf.MinLength && phrase.Length <= conf.MaxLength;
         }
     }
 }
