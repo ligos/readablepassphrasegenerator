@@ -438,7 +438,7 @@ ReportProgressAndNext:
                 return;
 
             Console.WriteLine($"[{attempts:N0} of {Attempts:N0} attempts, {wordCount:N0} words scraped successfully]");
-            NextProgressUpdate = DateTime.UtcNow.AddSeconds(2);
+            NextProgressUpdate = DateTime.UtcNow.Add(TimeSpan.FromSeconds(2).Add(TimeSpan.FromMilliseconds(DelayMs)));
         }
 
         static bool ParseCommandLine(string[] args)
