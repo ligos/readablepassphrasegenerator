@@ -25,6 +25,19 @@ PS> scoop install keepass
 PS> scoop install keepass-plugin-readable-passphrase
 ```
 
+#### Chocolatey 📦 
+Or you can [use Chocolatey to install](https://community.chocolatey.org/packages/keepass-plugin-readablepassphrasegen#install) it in a more automated manner:
+
+```
+choco install keepass-plugin-readablepassphrasegen
+```
+
+To [upgrade KeePass Plugin Readable Passphrase Generator](https://community.chocolatey.org/packages/keepass-plugin-readablepassphrasegen#upgrade) to the [latest release version](https://community.chocolatey.org/packages/keepass-plugin-readablepassphrasegen#versionhistory) for enjoying the newest features, run the following command from the command line or from PowerShell:
+
+```
+choco upgrade keepass-plugin-readablepassphrasegen
+```
+
 ---
 
 If you like the Readable Passphrase Generator you can donate to support development, or just say thanks.
