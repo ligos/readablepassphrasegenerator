@@ -217,6 +217,7 @@ ReportProgressAndNext:
             {
                 Console.WriteLine("  {0} ({1})", word.wordRoot, word.partOfSpeech);
             }
+            Console.WriteLine();
         }
 
         private static async Task SaveWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
