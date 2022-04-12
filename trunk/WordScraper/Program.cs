@@ -548,7 +548,7 @@ ReportProgressAndNext:
             Console.WriteLine("  --show nnn            Show sample list of words after scraping (default: {0})", ShowCount);
             Console.WriteLine();
             Console.WriteLine("  Supported sources:");
-            foreach (var source in SupportedSources.OrderBy(x => x))
+            foreach (var source in SupportedSources.Select(x => x.Value.Name).OrderBy(x => x))
             {
                 Console.WriteLine("    " + source);
             }
