@@ -312,7 +312,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         private void ParseDictionaryRoot(XmlReader reader)
         {
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 5)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 6)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
             // Root element must be parsed first.
