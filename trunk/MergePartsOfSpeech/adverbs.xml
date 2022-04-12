@@ -221,4 +221,12 @@ limitations under the License.
   <adverb value="savagely"/>
   <adverb value="forlornly"/>
   <adverb value="unjustly"/>
+  <adverb value="faultly" tags="fake" />
+  <adverb value="materally" tags="fake" />
+  <adverb value="lacernally" tags="fake" />
+  <adverb value="tussily" tags="fake" />
+  <adverb value="neasily" tags="fake" />
+  <adverb value="terafly" tags="fake" />
+  <adverb value="stingly" tags="fake" />
+  <adverb value="seriacally" tags="fake" />
 </dictionary>

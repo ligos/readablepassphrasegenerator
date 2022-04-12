@@ -5592,4 +5592,211 @@ limitations under the License.
         presentPlural="overwhelm" pastPlural="overwhelmed" pastContinuousPlural="were overwhelming" futurePlural="will overwhelm" continuousPlural="are overwhelming" perfectPlural="have overwhelmed" subjunctivePlural="might overwhelm"/>
   <verb presentSingular="overtakes" pastSingular="overtook" pastContinuousSingular="was overtaking" futureSingular="will overtake" continuousSingular="is overtaking" perfectSingular="has overtaken" subjunctiveSingular="might overtake"
         presentPlural="overtake" pastPlural="overtook" pastContinuousPlural="were overtaking" futurePlural="will overtake" continuousPlural="are overtaking" perfectPlural="have overtaken" subjunctivePlural="might overtake"/>
+  <verb presentSingular="backgags" pastSingular="backgaged" pastContinuousSingular="was backgaging" futureSingular="will backgag" continuousSingular="is backgaging" perfectSingular="has backgaged" subjunctiveSingular="might backgag"
+        presentPlural = "backgag" pastPlural = "backgaged" pastContinuousPlural = "were backgaging" futurePlural = "will backgag" continuousPlural = "are backgaging" perfectPlural = "have backgaged" subjunctivePlural = "might backgag" 
+        tags="fake" />
+  <verb presentSingular="excedes" pastSingular="exceded" pastContinuousSingular="was exceding" futureSingular="will excede" continuousSingular="is exceding" perfectSingular="has exceded" subjunctiveSingular="might excede"
+        presentPlural = "excede" pastPlural = "exceded" pastContinuousPlural = "were exceding" futurePlural = "will excede" continuousPlural = "are exceding" perfectPlural = "have exceded" subjunctivePlural = "might excede" 
+        tags="fake" />
+  <verb presentSingular="lunarizes" pastSingular="lunarized" pastContinuousSingular="was lunarizing" futureSingular="will lunarize" continuousSingular="is lunarizing" perfectSingular="has lunarized" subjunctiveSingular="might lunarize"
+        presentPlural = "lunarize" pastPlural = "lunarized" pastContinuousPlural = "were lunarizing" futurePlural = "will lunarize" continuousPlural = "are lunarizing" perfectPlural = "have lunarized" subjunctivePlural = "might lunarize" 
+        tags="fake" />
+  <verb presentSingular="trimcoats" pastSingular="trimcoated" pastContinuousSingular="was trimcoating" futureSingular="will trimcoat" continuousSingular="is trimcoating" perfectSingular="has trimcoated" subjunctiveSingular="might trimcoat"
+        presentPlural = "trimcoat" pastPlural = "trimcoated" pastContinuousPlural = "were trimcoating" futurePlural = "will trimcoat" continuousPlural = "are trimcoating" perfectPlural = "have trimcoated" subjunctivePlural = "might trimcoat" 
+        tags="fake" />
+  <verb presentSingular="outhustles" pastSingular="outhustled" pastContinuousSingular="was outhustling" futureSingular="will outhustle" continuousSingular="is outhustling" perfectSingular="has outhustled" subjunctiveSingular="might outhustle"
+        presentPlural = "outhustle" pastPlural = "outhustled" pastContinuousPlural = "were outhustling" futurePlural = "will outhustle" continuousPlural = "are outhustling" perfectPlural = "have outhustled" subjunctivePlural = "might outhustle" 
+        tags="fake" />
+  <verb presentSingular="poeks" pastSingular="poeked" pastContinuousSingular="was poeking" futureSingular="will poek" continuousSingular="is poeking" perfectSingular="has poeked" subjunctiveSingular="might poek"
+        presentPlural = "poek" pastPlural = "poeked" pastContinuousPlural = "were poeking" futurePlural = "will poek" continuousPlural = "are poeking" perfectPlural = "have poeked" subjunctivePlural = "might poek" 
+        tags="fake" />
+  <verb presentSingular="grags" pastSingular="graged" pastContinuousSingular="was graging" futureSingular="will grag" continuousSingular="is graging" perfectSingular="has graged" subjunctiveSingular="might grag"
+        presentPlural = "grag" pastPlural = "graged" pastContinuousPlural = "were graging" futurePlural = "will grag" continuousPlural = "are graging" perfectPlural = "have graged" subjunctivePlural = "might grag" 
+        tags="fake" />
+  <verb presentSingular="beguails" pastSingular="beguailed" pastContinuousSingular="was beguailing" futureSingular="will beguail" continuousSingular="is beguailing" perfectSingular="has beguailed" subjunctiveSingular="might beguail"
+        presentPlural = "beguail" pastPlural = "beguailed" pastContinuousPlural = "were beguailing" futurePlural = "will beguail" continuousPlural = "are beguailing" perfectPlural = "have beguailed" subjunctivePlural = "might beguail" 
+        tags="fake" />
+  <verb presentSingular="sibilizes" pastSingular="sibilized" pastContinuousSingular="was sibilizing" futureSingular="will sibilize" continuousSingular="is sibilizing" perfectSingular="has sibilized" subjunctiveSingular="might sibilize"
+        presentPlural = "sibilize" pastPlural = "sibilized" pastContinuousPlural = "were sibilizing" futurePlural = "will sibilize" continuousPlural = "are sibilizing" perfectPlural = "have sibilized" subjunctivePlural = "might sibilize" 
+        tags="fake" />
+  <verb presentSingular="duffups" pastSingular="duffuped" pastContinuousSingular="was duffuping" futureSingular="will duffup" continuousSingular="is duffuping" perfectSingular="has duffuped" subjunctiveSingular="might duffup"
+        presentPlural = "duffup" pastPlural = "duffuped" pastContinuousPlural = "were duffuping" futurePlural = "will duffup" continuousPlural = "are duffuping" perfectPlural = "have duffuped" subjunctivePlural = "might duffup" 
+        tags="fake" />
+  <verb presentSingular="reemends" pastSingular="reemended" pastContinuousSingular="was reemending" futureSingular="will reemend" continuousSingular="is reemending" perfectSingular="has reemended" subjunctiveSingular="might reemend"
+        presentPlural = "reemend" pastPlural = "reemended" pastContinuousPlural = "were reemending" futurePlural = "will reemend" continuousPlural = "are reemending" perfectPlural = "have reemended" subjunctivePlural = "might reemend" 
+        tags="fake" />
+  <verb presentSingular="skimlocks" pastSingular="skimlocked" pastContinuousSingular="was skimlocking" futureSingular="will skimlock" continuousSingular="is skimlocking" perfectSingular="has skimlocked" subjunctiveSingular="might skimlock"
+        presentPlural = "skimlock" pastPlural = "skimlocked" pastContinuousPlural = "were skimlocking" futurePlural = "will skimlock" continuousPlural = "are skimlocking" perfectPlural = "have skimlocked" subjunctivePlural = "might skimlock" 
+        tags="fake" />
+  <verb presentSingular="jismeds" pastSingular="jismeded" pastContinuousSingular="was jismeding" futureSingular="will jismed" continuousSingular="is jismeding" perfectSingular="has jismeded" subjunctiveSingular="might jismed"
+        presentPlural = "jismed" pastPlural = "jismeded" pastContinuousPlural = "were jismeding" futurePlural = "will jismed" continuousPlural = "are jismeding" perfectPlural = "have jismeded" subjunctivePlural = "might jismed" 
+        tags="fake" />
+  <verb presentSingular="blooches" pastSingular="blooched" pastContinuousSingular="was blooching" futureSingular="will blooch" continuousSingular="is blooching" perfectSingular="has blooched" subjunctiveSingular="might blooch"
+        presentPlural = "blooch" pastPlural = "blooched" pastContinuousPlural = "were blooching" futurePlural = "will blooch" continuousPlural = "are blooching" perfectPlural = "have blooched" subjunctivePlural = "might blooch" 
+        tags="fake" />
+  <verb presentSingular="dragnates" pastSingular="dragnated" pastContinuousSingular="was dragnating" futureSingular="will dragnate" continuousSingular="is dragnating" perfectSingular="has dragnated" subjunctiveSingular="might dragnate"
+        presentPlural = "dragnate" pastPlural = "dragnated" pastContinuousPlural = "were dragnating" futurePlural = "will dragnate" continuousPlural = "are dragnating" perfectPlural = "have dragnated" subjunctivePlural = "might dragnate" 
+        tags="fake" />
+  <verb presentSingular="crossens" pastSingular="crossened" pastContinuousSingular="was crossening" futureSingular="will crossen" continuousSingular="is crossening" perfectSingular="has crossened" subjunctiveSingular="might crossen"
+        presentPlural = "crossen" pastPlural = "crossened" pastContinuousPlural = "were crossening" futurePlural = "will crossen" continuousPlural = "are crossening" perfectPlural = "have crossened" subjunctivePlural = "might crossen" 
+        tags="fake" />
+  <verb presentSingular="paraguets" pastSingular="paragueted" pastContinuousSingular="was paragueting" futureSingular="will paraguet" continuousSingular="is paragueting" perfectSingular="has paragueted" subjunctiveSingular="might paraguet"
+        presentPlural = "paraguet" pastPlural = "paragueted" pastContinuousPlural = "were paragueting" futurePlural = "will paraguet" continuousPlural = "are paragueting" perfectPlural = "have paragueted" subjunctivePlural = "might paraguet" 
+        tags="fake" />
+  <verb presentSingular="misgrasps" pastSingular="misgrasped" pastContinuousSingular="was misgrasping" futureSingular="will misgrasp" continuousSingular="is misgrasping" perfectSingular="has misgrasped" subjunctiveSingular="might misgrasp"
+        presentPlural = "misgrasp" pastPlural = "misgrasped" pastContinuousPlural = "were misgrasping" futurePlural = "will misgrasp" continuousPlural = "are misgrasping" perfectPlural = "have misgrasped" subjunctivePlural = "might misgrasp" 
+        tags="fake" />
+  <verb presentSingular="chryses" pastSingular="chrysed" pastContinuousSingular="was chrysing" futureSingular="will chryse" continuousSingular="is chrysing" perfectSingular="has chrysed" subjunctiveSingular="might chryse"
+        presentPlural = "chryse" pastPlural = "chrysed" pastContinuousPlural = "were chrysing" futurePlural = "will chryse" continuousPlural = "are chrysing" perfectPlural = "have chrysed" subjunctivePlural = "might chryse" 
+        tags="fake" />
+  <verb presentSingular="enambles" pastSingular="enambled" pastContinuousSingular="was enambling" futureSingular="will enamble" continuousSingular="is enambling" perfectSingular="has enambled" subjunctiveSingular="might enamble"
+        presentPlural = "enamble" pastPlural = "enambled" pastContinuousPlural = "were enambling" futurePlural = "will enamble" continuousPlural = "are enambling" perfectPlural = "have enambled" subjunctivePlural = "might enamble" 
+        tags="fake" />
+  <verb presentSingular="ecees" pastSingular="eceed" pastContinuousSingular="was eceing" futureSingular="will ecee" continuousSingular="is eceing" perfectSingular="has eceed" subjunctiveSingular="might ecee"
+        presentPlural = "ecee" pastPlural = "eceed" pastContinuousPlural = "were eceing" futurePlural = "will ecee" continuousPlural = "are eceing" perfectPlural = "have eceed" subjunctivePlural = "might ecee" 
+        tags="fake" />
+  <verb presentSingular="extrascopies" pastSingular="extrascopied" pastContinuousSingular="was extrascopying" futureSingular="will extrascopy" continuousSingular="is extrascopying" perfectSingular="has extrascopied" subjunctiveSingular="might extrascopy"
+        presentPlural = "extrascopy" pastPlural = "extrascopied" pastContinuousPlural = "were extrascopying" futurePlural = "will extrascopy" continuousPlural = "are extrascopying" perfectPlural = "have extrascopied" subjunctivePlural = "might extrascopy" 
+        tags="fake" />
+  <verb presentSingular="shooches" pastSingular="shooched" pastContinuousSingular="was shooching" futureSingular="will shooch" continuousSingular="is shooching" perfectSingular="has shooched" subjunctiveSingular="might shooch"
+        presentPlural = "shooch" pastPlural = "shooched" pastContinuousPlural = "were shooching" futurePlural = "will shooch" continuousPlural = "are shooching" perfectPlural = "have shooched" subjunctivePlural = "might shooch" 
+        tags="fake" />
+  <verb presentSingular="gambotes" pastSingular="gamboted" pastContinuousSingular="was gamboting" futureSingular="will gambote" continuousSingular="is gamboting" perfectSingular="has gamboted" subjunctiveSingular="might gambote"
+        presentPlural = "gambote" pastPlural = "gamboted" pastContinuousPlural = "were gamboting" futurePlural = "will gambote" continuousPlural = "are gamboting" perfectPlural = "have gamboted" subjunctivePlural = "might gambote" 
+        tags="fake" />
+  <verb presentSingular="thillifies" pastSingular="thillified" pastContinuousSingular="was thillifying" futureSingular="will thillify" continuousSingular="is thillifying" perfectSingular="has thillified" subjunctiveSingular="might thillify"
+        presentPlural = "thillify" pastPlural = "thillified" pastContinuousPlural = "were thillifying" futurePlural = "will thillify" continuousPlural = "are thillifying" perfectPlural = "have thillified" subjunctivePlural = "might thillify" 
+        tags="fake" />
+  <verb presentSingular="carnwells" pastSingular="carnwelled" pastContinuousSingular="was carnwelling" futureSingular="will carnwell" continuousSingular="is carnwelling" perfectSingular="has carnwelled" subjunctiveSingular="might carnwell"
+        presentPlural = "carnwell" pastPlural = "carnwelled" pastContinuousPlural = "were carnwelling" futurePlural = "will carnwell" continuousPlural = "are carnwelling" perfectPlural = "have carnwelled" subjunctivePlural = "might carnwell" 
+        tags="fake" />
+  <verb presentSingular="salaizes" pastSingular="salaized" pastContinuousSingular="was salaizing" futureSingular="will salaize" continuousSingular="is salaizing" perfectSingular="has salaized" subjunctiveSingular="might salaize"
+        presentPlural = "salaize" pastPlural = "salaized" pastContinuousPlural = "were salaizing" futurePlural = "will salaize" continuousPlural = "are salaizing" perfectPlural = "have salaized" subjunctivePlural = "might salaize" 
+        tags="fake" />
+  <verb presentSingular="vulcines" pastSingular="vulcined" pastContinuousSingular="was vulcining" futureSingular="will vulcine" continuousSingular="is vulcining" perfectSingular="has vulcined" subjunctiveSingular="might vulcine"
+        presentPlural = "vulcine" pastPlural = "vulcined" pastContinuousPlural = "were vulcining" futurePlural = "will vulcine" continuousPlural = "are vulcining" perfectPlural = "have vulcined" subjunctivePlural = "might vulcine" 
+        tags="fake" />
+  <verb presentSingular="voxidizes" pastSingular="voxidized" pastContinuousSingular="was voxidizing" futureSingular="will voxidize" continuousSingular="is voxidizing" perfectSingular="has voxidized" subjunctiveSingular="might voxidize"
+        presentPlural = "voxidize" pastPlural = "voxidized" pastContinuousPlural = "were voxidizing" futurePlural = "will voxidize" continuousPlural = "are voxidizing" perfectPlural = "have voxidized" subjunctivePlural = "might voxidize" 
+        tags="fake" />
+  <verb presentSingular="dupoises" pastSingular="dupoised" pastContinuousSingular="was dupoising" futureSingular="will dupoise" continuousSingular="is dupoising" perfectSingular="has dupoised" subjunctiveSingular="might dupoise"
+        presentPlural = "dupoise" pastPlural = "dupoised" pastContinuousPlural = "were dupoising" futurePlural = "will dupoise" continuousPlural = "are dupoising" perfectPlural = "have dupoised" subjunctivePlural = "might dupoise" 
+        tags="fake" />
+  <verb presentSingular="enragirls" pastSingular="enragirled" pastContinuousSingular="was enragirling" futureSingular="will enragirl" continuousSingular="is enragirling" perfectSingular="has enragirled" subjunctiveSingular="might enragirl"
+        presentPlural = "enragirl" pastPlural = "enragirled" pastContinuousPlural = "were enragirling" futurePlural = "will enragirl" continuousPlural = "are enragirling" perfectPlural = "have enragirled" subjunctivePlural = "might enragirl" 
+        tags="fake" />
+  <verb presentSingular="swights" pastSingular="swighted" pastContinuousSingular="was swighting" futureSingular="will swight" continuousSingular="is swighting" perfectSingular="has swighted" subjunctiveSingular="might swight"
+        presentPlural = "swight" pastPlural = "swighted" pastContinuousPlural = "were swighting" futurePlural = "will swight" continuousPlural = "are swighting" perfectPlural = "have swighted" subjunctivePlural = "might swight" 
+        tags="fake" />
+  <verb presentSingular="demogrifies" pastSingular="demogrified" pastContinuousSingular="was demogrifying" futureSingular="will demogrify" continuousSingular="is demogrifying" perfectSingular="has demogrified" subjunctiveSingular="might demogrify"
+        presentPlural = "demogrify" pastPlural = "demogrified" pastContinuousPlural = "were demogrifying" futurePlural = "will demogrify" continuousPlural = "are demogrifying" perfectPlural = "have demogrified" subjunctivePlural = "might demogrify" 
+        tags="fake" />
+  <verb presentSingular="warshes" pastSingular="warshed" pastContinuousSingular="was warshing" futureSingular="will warsh" continuousSingular="is warshing" perfectSingular="has warshed" subjunctiveSingular="might warsh"
+        presentPlural = "warsh" pastPlural = "warshed" pastContinuousPlural = "were warshing" futurePlural = "will warsh" continuousPlural = "are warshing" perfectPlural = "have warshed" subjunctivePlural = "might warsh" 
+        tags="fake" />
+  <verb presentSingular="chafaps" pastSingular="chafaped" pastContinuousSingular="was chafaping" futureSingular="will chafap" continuousSingular="is chafaping" perfectSingular="has chafaped" subjunctiveSingular="might chafap"
+        presentPlural = "chafap" pastPlural = "chafaped" pastContinuousPlural = "were chafaping" futurePlural = "will chafap" continuousPlural = "are chafaping" perfectPlural = "have chafaped" subjunctivePlural = "might chafap" 
+        tags="fake" />
+  <verb presentSingular="enwulfs" pastSingular="enwulfed" pastContinuousSingular="was enwulfing" futureSingular="will enwulf" continuousSingular="is enwulfing" perfectSingular="has enwulfed" subjunctiveSingular="might enwulf"
+        presentPlural = "enwulf" pastPlural = "enwulfed" pastContinuousPlural = "were enwulfing" futurePlural = "will enwulf" continuousPlural = "are enwulfing" perfectPlural = "have enwulfed" subjunctivePlural = "might enwulf" 
+        tags="fake" />
+  <verb presentSingular="manchos" pastSingular="manchoed" pastContinuousSingular="was manchoing" futureSingular="will mancho" continuousSingular="is manchoing" perfectSingular="has manchoed" subjunctiveSingular="might mancho"
+        presentPlural = "mancho" pastPlural = "manchoed" pastContinuousPlural = "were manchoing" futurePlural = "will mancho" continuousPlural = "are manchoing" perfectPlural = "have manchoed" subjunctivePlural = "might mancho" 
+        tags="fake" />
+  <verb presentSingular="tribates" pastSingular="tribated" pastContinuousSingular="was tribating" futureSingular="will tribate" continuousSingular="is tribating" perfectSingular="has tribated" subjunctiveSingular="might tribate"
+        presentPlural = "tribate" pastPlural = "tribated" pastContinuousPlural = "were tribating" futurePlural = "will tribate" continuousPlural = "are tribating" perfectPlural = "have tribated" subjunctivePlural = "might tribate" 
+        tags="fake" />
+  <verb presentSingular="nastrunks" pastSingular="nastrunked" pastContinuousSingular="was nastrunking" futureSingular="will nastrunk" continuousSingular="is nastrunking" perfectSingular="has nastrunked" subjunctiveSingular="might nastrunk"
+        presentPlural = "nastrunk" pastPlural = "nastrunked" pastContinuousPlural = "were nastrunking" futurePlural = "will nastrunk" continuousPlural = "are nastrunking" perfectPlural = "have nastrunked" subjunctivePlural = "might nastrunk" 
+        tags="fake" />
+  <verb presentSingular="oblogs" pastSingular="obloged" pastContinuousSingular="was obloging" futureSingular="will oblog" continuousSingular="is obloging" perfectSingular="has obloged" subjunctiveSingular="might oblog"
+        presentPlural = "oblog" pastPlural = "obloged" pastContinuousPlural = "were obloging" futurePlural = "will oblog" continuousPlural = "are obloging" perfectPlural = "have obloged" subjunctivePlural = "might oblog" 
+        tags="fake" />
+  <verb presentSingular="shoepakes" pastSingular="shoepaked" pastContinuousSingular="was shoepaking" futureSingular="will shoepake" continuousSingular="is shoepaking" perfectSingular="has shoepaked" subjunctiveSingular="might shoepake"
+        presentPlural = "shoepake" pastPlural = "shoepaked" pastContinuousPlural = "were shoepaking" futurePlural = "will shoepake" continuousPlural = "are shoepaking" perfectPlural = "have shoepaked" subjunctivePlural = "might shoepake" 
+        tags="fake" />
+  <verb presentSingular="relaxates" pastSingular="relaxated" pastContinuousSingular="was relaxating" futureSingular="will relaxate" continuousSingular="is relaxating" perfectSingular="has relaxated" subjunctiveSingular="might relaxate"
+        presentPlural = "relaxate" pastPlural = "relaxated" pastContinuousPlural = "were relaxating" futurePlural = "will relaxate" continuousPlural = "are relaxating" perfectPlural = "have relaxated" subjunctivePlural = "might relaxate" 
+        tags="fake" />
+  <verb presentSingular="stropheizes" pastSingular="stropheized" pastContinuousSingular="was stropheizing" futureSingular="will stropheize" continuousSingular="is stropheizing" perfectSingular="has stropheized" subjunctiveSingular="might stropheize"
+        presentPlural = "stropheize" pastPlural = "stropheized" pastContinuousPlural = "were stropheizing" futurePlural = "will stropheize" continuousPlural = "are stropheizing" perfectPlural = "have stropheized" subjunctivePlural = "might stropheize" 
+        tags="fake" />
+  <verb presentSingular="frussies" pastSingular="frussied" pastContinuousSingular="was frussying" futureSingular="will frussy" continuousSingular="is frussying" perfectSingular="has frussied" subjunctiveSingular="might frussy"
+        presentPlural = "frussy" pastPlural = "frussied" pastContinuousPlural = "were frussying" futurePlural = "will frussy" continuousPlural = "are frussying" perfectPlural = "have frussied" subjunctivePlural = "might frussy" 
+        tags="fake" />
+  <verb presentSingular="prosecrates" pastSingular="prosecrated" pastContinuousSingular="was prosecrating" futureSingular="will prosecrate" continuousSingular="is prosecrating" perfectSingular="has prosecrated" subjunctiveSingular="might prosecrate"
+        presentPlural = "prosecrate" pastPlural = "prosecrated" pastContinuousPlural = "were prosecrating" futurePlural = "will prosecrate" continuousPlural = "are prosecrating" perfectPlural = "have prosecrated" subjunctivePlural = "might prosecrate" 
+        tags="fake" />
+  <verb presentSingular="peckfeeds" pastSingular="peckfeeded" pastContinuousSingular="was peckfeeding" futureSingular="will peckfeed" continuousSingular="is peckfeeding" perfectSingular="has peckfeeded" subjunctiveSingular="might peckfeed"
+        presentPlural = "peckfeed" pastPlural = "peckfeeded" pastContinuousPlural = "were peckfeeding" futurePlural = "will peckfeed" continuousPlural = "are peckfeeding" perfectPlural = "have peckfeeded" subjunctivePlural = "might peckfeed" 
+        tags="fake" />
+  <verb presentSingular="unwenches" pastSingular="unwenched" pastContinuousSingular="was unwenching" futureSingular="will unwench" continuousSingular="is unwenching" perfectSingular="has unwenched" subjunctiveSingular="might unwench"
+        presentPlural = "unwench" pastPlural = "unwenched" pastContinuousPlural = "were unwenching" futurePlural = "will unwench" continuousPlural = "are unwenching" perfectPlural = "have unwenched" subjunctivePlural = "might unwench" 
+        tags="fake" />
+  <verb presentSingular="rescotts" pastSingular="rescotted" pastContinuousSingular="was rescotting" futureSingular="will rescott" continuousSingular="is rescotting" perfectSingular="has rescotted" subjunctiveSingular="might rescott"
+        presentPlural = "rescott" pastPlural = "rescotted" pastContinuousPlural = "were rescotting" futurePlural = "will rescott" continuousPlural = "are rescotting" perfectPlural = "have rescotted" subjunctivePlural = "might rescott" 
+        tags="fake" />
+  <verb presentSingular="resummates" pastSingular="resummated" pastContinuousSingular="was resummating" futureSingular="will resummate" continuousSingular="is resummating" perfectSingular="has resummated" subjunctiveSingular="might resummate"
+        presentPlural = "resummate" pastPlural = "resummated" pastContinuousPlural = "were resummating" futurePlural = "will resummate" continuousPlural = "are resummating" perfectPlural = "have resummated" subjunctivePlural = "might resummate" 
+        tags="fake" />
+  <verb presentSingular="stoises" pastSingular="stoised" pastContinuousSingular="was stoising" futureSingular="will stoise" continuousSingular="is stoising" perfectSingular="has stoised" subjunctiveSingular="might stoise"
+        presentPlural = "stoise" pastPlural = "stoised" pastContinuousPlural = "were stoising" futurePlural = "will stoise" continuousPlural = "are stoising" perfectPlural = "have stoised" subjunctivePlural = "might stoise" 
+        tags="fake" />
+  <verb presentSingular="blimkeies" pastSingular="blimkeied" pastContinuousSingular="was blimkeying" futureSingular="will blimkey" continuousSingular="is blimkeying" perfectSingular="has blimkeied" subjunctiveSingular="might blimkey"
+        presentPlural = "blimkey" pastPlural = "blimkeied" pastContinuousPlural = "were blimkeying" futurePlural = "will blimkey" continuousPlural = "are blimkeying" perfectPlural = "have blimkeied" subjunctivePlural = "might blimkey" 
+        tags="fake" />
+  <verb presentSingular="zombecks" pastSingular="zombecked" pastContinuousSingular="was zombecking" futureSingular="will zombeck" continuousSingular="is zombecking" perfectSingular="has zombecked" subjunctiveSingular="might zombeck"
+        presentPlural = "zombeck" pastPlural = "zombecked" pastContinuousPlural = "were zombecking" futurePlural = "will zombeck" continuousPlural = "are zombecking" perfectPlural = "have zombecked" subjunctivePlural = "might zombeck" 
+        tags="fake" />
+  <verb presentSingular="democodes" pastSingular="democoded" pastContinuousSingular="was democoding" futureSingular="will democode" continuousSingular="is democoding" perfectSingular="has democoded" subjunctiveSingular="might democode"
+        presentPlural = "democode" pastPlural = "democoded" pastContinuousPlural = "were democoding" futurePlural = "will democode" continuousPlural = "are democoding" perfectPlural = "have democoded" subjunctivePlural = "might democode" 
+        tags="fake" />
+  <verb presentSingular="chakrasizes" pastSingular="chakrasized" pastContinuousSingular="was chakrasizing" futureSingular="will chakrasize" continuousSingular="is chakrasizing" perfectSingular="has chakrasized" subjunctiveSingular="might chakrasize"
+        presentPlural = "chakrasize" pastPlural = "chakrasized" pastContinuousPlural = "were chakrasizing" futurePlural = "will chakrasize" continuousPlural = "are chakrasizing" perfectPlural = "have chakrasized" subjunctivePlural = "might chakrasize" 
+        tags="fake" />
+  <verb presentSingular="pallunges" pastSingular="pallunged" pastContinuousSingular="was pallunging" futureSingular="will pallunge" continuousSingular="is pallunging" perfectSingular="has pallunged" subjunctiveSingular="might pallunge"
+        presentPlural = "pallunge" pastPlural = "pallunged" pastContinuousPlural = "were pallunging" futurePlural = "will pallunge" continuousPlural = "are pallunging" perfectPlural = "have pallunged" subjunctivePlural = "might pallunge" 
+        tags="fake" />
+  <verb presentSingular="blooghs" pastSingular="blooghed" pastContinuousSingular="was blooghing" futureSingular="will bloogh" continuousSingular="is blooghing" perfectSingular="has blooghed" subjunctiveSingular="might bloogh"
+        presentPlural = "bloogh" pastPlural = "blooghed" pastContinuousPlural = "were blooghing" futurePlural = "will bloogh" continuousPlural = "are blooghing" perfectPlural = "have blooghed" subjunctivePlural = "might bloogh" 
+        tags="fake" />
+  <verb presentSingular="meganizes" pastSingular="meganized" pastContinuousSingular="was meganizing" futureSingular="will meganize" continuousSingular="is meganizing" perfectSingular="has meganized" subjunctiveSingular="might meganize"
+        presentPlural = "meganize" pastPlural = "meganized" pastContinuousPlural = "were meganizing" futurePlural = "will meganize" continuousPlural = "are meganizing" perfectPlural = "have meganized" subjunctivePlural = "might meganize" 
+        tags="fake" />
+  <verb presentSingular="tendles" pastSingular="tendled" pastContinuousSingular="was tendling" futureSingular="will tendle" continuousSingular="is tendling" perfectSingular="has tendled" subjunctiveSingular="might tendle"
+        presentPlural = "tendle" pastPlural = "tendled" pastContinuousPlural = "were tendling" futurePlural = "will tendle" continuousPlural = "are tendling" perfectPlural = "have tendled" subjunctivePlural = "might tendle" 
+        tags="fake" />
+  <verb presentSingular="pierrates" pastSingular="pierrated" pastContinuousSingular="was pierrating" futureSingular="will pierrate" continuousSingular="is pierrating" perfectSingular="has pierrated" subjunctiveSingular="might pierrate"
+        presentPlural = "pierrate" pastPlural = "pierrated" pastContinuousPlural = "were pierrating" futurePlural = "will pierrate" continuousPlural = "are pierrating" perfectPlural = "have pierrated" subjunctivePlural = "might pierrate" 
+        tags="fake" />
+  <verb presentSingular="recolises" pastSingular="recolised" pastContinuousSingular="was recolising" futureSingular="will recolise" continuousSingular="is recolising" perfectSingular="has recolised" subjunctiveSingular="might recolise"
+        presentPlural = "recolise" pastPlural = "recolised" pastContinuousPlural = "were recolising" futurePlural = "will recolise" continuousPlural = "are recolising" perfectPlural = "have recolised" subjunctivePlural = "might recolise" 
+        tags="fake" />
+  <verb presentSingular="batterhorns" pastSingular="batterhorned" pastContinuousSingular="was batterhorning" futureSingular="will batterhorn" continuousSingular="is batterhorning" perfectSingular="has batterhorned" subjunctiveSingular="might batterhorn"
+        presentPlural = "batterhorn" pastPlural = "batterhorned" pastContinuousPlural = "were batterhorning" futurePlural = "will batterhorn" continuousPlural = "are batterhorning" perfectPlural = "have batterhorned" subjunctivePlural = "might batterhorn" 
+        tags="fake" />
+  <verb presentSingular="manuculates" pastSingular="manuculated" pastContinuousSingular="was manuculating" futureSingular="will manuculate" continuousSingular="is manuculating" perfectSingular="has manuculated" subjunctiveSingular="might manuculate"
+        presentPlural = "manuculate" pastPlural = "manuculated" pastContinuousPlural = "were manuculating" futurePlural = "will manuculate" continuousPlural = "are manuculating" perfectPlural = "have manuculated" subjunctivePlural = "might manuculate" 
+        tags="fake" />
+  <verb presentSingular="lucinates" pastSingular="lucinated" pastContinuousSingular="was lucinating" futureSingular="will lucinate" continuousSingular="is lucinating" perfectSingular="has lucinated" subjunctiveSingular="might lucinate"
+        presentPlural = "lucinate" pastPlural = "lucinated" pastContinuousPlural = "were lucinating" futurePlural = "will lucinate" continuousPlural = "are lucinating" perfectPlural = "have lucinated" subjunctivePlural = "might lucinate" 
+        tags="fake" />
+  <verb presentSingular="steepples" pastSingular="steeppled" pastContinuousSingular="was steeppling" futureSingular="will steepple" continuousSingular="is steeppling" perfectSingular="has steeppled" subjunctiveSingular="might steepple"
+        presentPlural = "steepple" pastPlural = "steeppled" pastContinuousPlural = "were steeppling" futurePlural = "will steepple" continuousPlural = "are steeppling" perfectPlural = "have steeppled" subjunctivePlural = "might steepple" 
+        tags="fake" />
+  <verb presentSingular="lacertates" pastSingular="lacertated" pastContinuousSingular="was lacertating" futureSingular="will lacertate" continuousSingular="is lacertating" perfectSingular="has lacertated" subjunctiveSingular="might lacertate"
+        presentPlural = "lacertate" pastPlural = "lacertated" pastContinuousPlural = "were lacertating" futurePlural = "will lacertate" continuousPlural = "are lacertating" perfectPlural = "have lacertated" subjunctivePlural = "might lacertate" 
+        tags="fake" />
+  <verb presentSingular="mahwists" pastSingular="mahwisted" pastContinuousSingular="was mahwisting" futureSingular="will mahwist" continuousSingular="is mahwisting" perfectSingular="has mahwisted" subjunctiveSingular="might mahwist"
+        presentPlural = "mahwist" pastPlural = "mahwisted" pastContinuousPlural = "were mahwisting" futurePlural = "will mahwist" continuousPlural = "are mahwisting" perfectPlural = "have mahwisted" subjunctivePlural = "might mahwist" 
+        tags="fake" />
+  <verb presentSingular="perbs" pastSingular="perbed" pastContinuousSingular="was perbing" futureSingular="will perb" continuousSingular="is perbing" perfectSingular="has perbed" subjunctiveSingular="might perb"
+        presentPlural = "perb" pastPlural = "perbed" pastContinuousPlural = "were perbing" futurePlural = "will perb" continuousPlural = "are perbing" perfectPlural = "have perbed" subjunctivePlural = "might perb" 
+        tags="fake" />
+  <verb presentSingular="stoakes" pastSingular="stoaked" pastContinuousSingular="was stoaking" futureSingular="will stoake" continuousSingular="is stoaking" perfectSingular="has stoaked" subjunctiveSingular="might stoake"
+        presentPlural = "stoake" pastPlural = "stoaked" pastContinuousPlural = "were stoaking" futurePlural = "will stoake" continuousPlural = "are stoaking" perfectPlural = "have stoaked" subjunctivePlural = "might stoake" 
+        tags="fake" />
+  <verb presentSingular="decroils" pastSingular="decroiled" pastContinuousSingular="was decroiling" futureSingular="will decroil" continuousSingular="is decroiling" perfectSingular="has decroiled" subjunctiveSingular="might decroil"
+        presentPlural = "decroil" pastPlural = "decroiled" pastContinuousPlural = "were decroiling" futurePlural = "will decroil" continuousPlural = "are decroiling" perfectPlural = "have decroiled" subjunctivePlural = "might decroil" 
+        tags="fake" />
 </dictionary>

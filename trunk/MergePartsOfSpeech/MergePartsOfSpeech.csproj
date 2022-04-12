@@ -18,7 +18,7 @@
     <PackageId>ReadablePassphrase.MergePartsOfSpeech</PackageId>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <StartupObject />
+    <StartupObject>MergePartsOfSpeech.Program</StartupObject>
     <AssemblyName>MergePartsOfSpeech</AssemblyName>
   </PropertyGroup>
 
