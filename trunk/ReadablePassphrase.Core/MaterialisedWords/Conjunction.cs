@@ -23,19 +23,17 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedConjunction : Conjunction
     {
-        private readonly string _Value;
-        private readonly bool _SeparatesNouns;
-        private readonly bool _SeparatesPhrases;
+        public override string Value { get; }
+        public override bool SeparatesNouns { get; }
+        public override bool SeparatesPhrases { get; }
+        public override IReadOnlyList<string> Tags { get; }
 
-        public override string Value { get { return _Value; } }
-        public override bool SeparatesNouns { get { return _SeparatesNouns; } }
-        public override bool SeparatesPhrases { get { return _SeparatesPhrases; } }
-
-        public MaterialisedConjunction(string value, bool separatesNouns, bool separatesPhrases)
+        public MaterialisedConjunction(string value, bool separatesNouns, bool separatesPhrases, IReadOnlyList<string> tags)
         {
-            _Value = value;
-            _SeparatesNouns = separatesNouns;
-            _SeparatesPhrases = separatesPhrases;
+            Value = value;
+            SeparatesNouns = separatesNouns;
+            SeparatesPhrases = separatesPhrases;
+            Tags = tags;
         }
     }
 }

@@ -24,81 +24,72 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedVerb : Verb
     {
-        private readonly string _PresentSingular;
-        private readonly string _PastSingular;
-        private readonly string _PastContinuousSingular;
-        private readonly string _FutureSingular;
-        private readonly string _ContinuousSingular;
-        private readonly string _PerfectSingular;
-        private readonly string _SubjunctiveSingular;
+        public override string PresentSingular { get; }
+        public override string PastSingular { get; }
+        public override string PastContinuousSingular { get; }
+        public override string FutureSingular { get; }
+        public override string ContinuousSingular { get; }
+        public override string PerfectSingular { get; }
+        public override string SubjunctiveSingular { get; }
 
-        private readonly string _PresentPlural;
-        private readonly string _PastPlural;
-        private readonly string _PastContinuousPlural;
-        private readonly string _FuturePlural;
-        private readonly string _ContinuousPlural;
-        private readonly string _PerfectPlural;
-        private readonly string _SubjunctivePlural;
+        public override string PresentPlural { get; }
+        public override string PastPlural { get; }
+        public override string PastContinuousPlural { get; }
+        public override string FuturePlural { get; }
+        public override string ContinuousPlural { get; }
+        public override string PerfectPlural { get; }
+        public override string SubjunctivePlural { get; }
 
-        private readonly bool _IsTransitive;
+        public override bool IsTransitive { get; }
 
-        public override string PresentSingular { get { return _PresentSingular; } }
-        public override string PastSingular { get { return _PastSingular; } }
-        public override string PastContinuousSingular { get { return _PastContinuousSingular; } }
-        public override string FutureSingular { get { return _FutureSingular; } }
-        public override string ContinuousSingular { get { return _ContinuousSingular; } }
-        public override string PerfectSingular { get { return _PerfectSingular; } }
-        public override string SubjunctiveSingular { get { return _SubjunctiveSingular; } }
-
-        public override string PresentPlural { get { return _PresentPlural; } }
-        public override string PastPlural { get { return _PastPlural; } }
-        public override string PastContinuousPlural { get { return _PastContinuousPlural; } }
-        public override string FuturePlural { get { return _FuturePlural; } }
-        public override string ContinuousPlural { get { return _ContinuousPlural; } }
-        public override string PerfectPlural { get { return _PerfectPlural; } }
-        public override string SubjunctivePlural { get { return _SubjunctivePlural; } }
-
-        public override bool IsTransitive { get { return _IsTransitive; } }
+        public override IReadOnlyList<string> Tags { get; }
 
         public MaterialisedVerb(IDictionary<string, string> forms)
         {
-            _PresentSingular = GetOrDefault(forms, "presentSingular");
-            _PastSingular = GetOrDefault(forms, "pastSingular");
-            _PastContinuousSingular = GetOrDefault(forms, "pastContinuousSingular");
-            _FutureSingular = GetOrDefault(forms, "futureSingular");
-            _ContinuousSingular = GetOrDefault(forms, "continuousSingular");
-            _PerfectSingular = GetOrDefault(forms, "perfectSingular");
-            _SubjunctiveSingular = GetOrDefault(forms, "subjunctiveSingular");
+            PresentSingular = GetOrDefault(forms, "presentSingular");
+            PastSingular = GetOrDefault(forms, "pastSingular");
+            PastContinuousSingular = GetOrDefault(forms, "pastContinuousSingular");
+            FutureSingular = GetOrDefault(forms, "futureSingular");
+            ContinuousSingular = GetOrDefault(forms, "continuousSingular");
+            PerfectSingular = GetOrDefault(forms, "perfectSingular");
+            SubjunctiveSingular = GetOrDefault(forms, "subjunctiveSingular");
 
-            _PresentPlural = GetOrDefault(forms, "presentPlural");
-            _PastPlural = GetOrDefault(forms, "pastPlural");
-            _PastContinuousPlural = GetOrDefault(forms, "pastContinuousPlural");
-            _FuturePlural = GetOrDefault(forms, "futurePlural");
-            _ContinuousPlural = GetOrDefault(forms, "continuousPlural");
-            _PerfectPlural = GetOrDefault(forms, "perfectPlural");
-            _SubjunctivePlural = GetOrDefault(forms, "subjunctivePlural");
+            PresentPlural = GetOrDefault(forms, "presentPlural");
+            PastPlural = GetOrDefault(forms, "pastPlural");
+            PastContinuousPlural = GetOrDefault(forms, "pastContinuousPlural");
+            FuturePlural = GetOrDefault(forms, "futurePlural");
+            ContinuousPlural = GetOrDefault(forms, "continuousPlural");
+            PerfectPlural = GetOrDefault(forms, "perfectPlural");
+            SubjunctivePlural = GetOrDefault(forms, "subjunctivePlural");
+
+            IsTransitive = GetOrDefault(forms, "transitive") == ""
+                         || GetOrDefault(forms, "transitive").ToLowerInvariant() == "true";
+
+            Tags = SplitTags(GetOrDefault(forms, "tags"));
         }
         public MaterialisedVerb(string presentSingular, string pastSingular, string pastContinuousSingular, string futureSingular, string continuousSingular, string perfectSingular, string subjunctiveSingular,
                                 string presentPlural, string pastPlural, string pastContinuousPlural, string futurePlural, string continuousPlural, string perfectPlural, string subjunctivePlural,
-                                bool isTransitive)
+                                bool isTransitive, 
+                                IReadOnlyList<string> tags)
         {
-            _PresentSingular = presentSingular;
-            _PastSingular = pastSingular;
-            _PastContinuousSingular = pastContinuousSingular;
-            _FutureSingular = futureSingular;
-            _ContinuousSingular = continuousSingular;
-            _PerfectSingular = perfectSingular;
-            _SubjunctiveSingular = subjunctiveSingular;
+            PresentSingular = presentSingular;
+            PastSingular = pastSingular;
+            PastContinuousSingular = pastContinuousSingular;
+            FutureSingular = futureSingular;
+            ContinuousSingular = continuousSingular;
+            PerfectSingular = perfectSingular;
+            SubjunctiveSingular = subjunctiveSingular;
 
-            _PresentPlural = presentPlural;
-            _PastPlural = pastPlural;
-            _PastContinuousPlural = pastContinuousPlural;
-            _FuturePlural = futurePlural;
-            _ContinuousPlural = continuousPlural;
-            _PerfectPlural = perfectPlural;
-            _SubjunctivePlural = subjunctivePlural;
+            PresentPlural = presentPlural;
+            PastPlural = pastPlural;
+            PastContinuousPlural = pastContinuousPlural;
+            FuturePlural = futurePlural;
+            ContinuousPlural = continuousPlural;
+            PerfectPlural = perfectPlural;
+            SubjunctivePlural = subjunctivePlural;
 
-            _IsTransitive = isTransitive;
+            IsTransitive = isTransitive;
+            Tags = tags;
         }
 
         private string GetOrDefault(IDictionary<string, string> dict, string key)

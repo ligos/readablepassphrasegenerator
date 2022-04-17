@@ -26,6 +26,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
     public class ExplicitXmlDictionaryLoader : IDictionaryLoader
     {
         private static readonly string[] _DefaultFilenames = new[] { "dictionary.xml", "dictionary.xml.gz", "dictionary.gz" };
+        private static readonly IReadOnlyList<string> EmptyTags = new string[0];
 
         private ExplicitXmlWordDictionary? _Dict;
         private readonly Dictionary<string, Action<XmlReader>> _NodeLookup;
@@ -322,50 +323,50 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private void ParseArticle(XmlReader reader)
         {
             // This and all subsequent accesses of _Dict should not be null, as ParseDictionaryRoot() sets it.
-            _Dict!.Add(new MaterialisedArticle(reader.GetAttribute("definite"), reader.GetAttribute("indefinite"), reader.GetAttribute("indefiniteBeforeVowel")));
+            _Dict!.Add(new MaterialisedArticle(reader.GetAttribute("definite"), reader.GetAttribute("indefinite"), reader.GetAttribute("indefiniteBeforeVowel"), ReadTags(reader)));
         }
         private void ParseDemonstrative(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedDemonstrative(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+            _Dict!.Add(new MaterialisedDemonstrative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
         }
         private void ParseAdverb(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedAdverb(reader.GetAttribute("value")));
+            _Dict!.Add(new MaterialisedAdverb(reader.GetAttribute("value"), ReadTags(reader)));
         }
         private void ParsePersonalPronoun(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+            _Dict!.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
         }
         private void ParseIndefinitePronoun(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal"))));
+            _Dict!.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal")), ReadTags(reader)));
         }
         private void ParseNoun(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+            _Dict!.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
         }
         private void ParseProperNoun(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedProperNoun(reader.GetAttribute("value")));
+            _Dict!.Add(new MaterialisedProperNoun(reader.GetAttribute("value"), ReadTags(reader)));
         }
         private void ParsePreposition(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedPreposition(reader.GetAttribute("value")));
+            _Dict!.Add(new MaterialisedPreposition(reader.GetAttribute("value"), ReadTags(reader)));
         }
         private void ParseAdjective(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedAdjective(reader.GetAttribute("value")));
+            _Dict!.Add(new MaterialisedAdjective(reader.GetAttribute("value"), ReadTags(reader)));
         }
         private void ParseSpeechVerb(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past")));
+            _Dict!.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past"), ReadTags(reader)));
         }
         private void ParseConjunction(XmlReader reader)
         {
             var separates = reader.GetAttribute("separates");
             var separatesNouns = separates.IndexOf("noun", StringComparison.OrdinalIgnoreCase) != -1;
             var separatesPhrases = separates.IndexOf("phrase", StringComparison.OrdinalIgnoreCase) != -1;
-            _Dict!.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases));
+            _Dict!.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases, ReadTags(reader)));
         }
         private void ParseVerb(XmlReader reader)
         {
@@ -388,20 +389,30 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                         reader.GetAttribute("subjunctivePlural"),
 
                         // The 'transitive' attribute is new and optional, verbs are assumed to be transitive by default (as most are).
-                        String.IsNullOrEmpty(reader.GetAttribute("transitive")) ? true : Boolean.Parse(reader.GetAttribute("transitive"))
+                        String.IsNullOrEmpty(reader.GetAttribute("transitive")) ? true : Boolean.Parse(reader.GetAttribute("transitive")),
+                        
+                        ReadTags(reader)
                         )
                      );
         }
         private void ParseInterrogative(XmlReader reader)
         {
-            _Dict!.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural")));
+            _Dict!.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
         }
         private void ParseNumberRange(XmlReader reader)
         {
             var start = Int32.Parse(reader.GetAttribute("start"));
             var end = Int32.Parse(reader.GetAttribute("end"));
             for (int i = start; i <= end; i++)
-                _Dict!.Add(new MaterialisedNumber(i));
+                _Dict!.Add(new MaterialisedNumber(i, ReadTags(reader)));
+        }
+
+        private IReadOnlyList<string> ReadTags(XmlReader reader)
+        {
+            var tagsCsv = reader.GetAttribute("tags") ?? "";
+            if (tagsCsv == "")
+                return EmptyTags;
+            return tagsCsv.Split(Word.CommaArray, StringSplitOptions.RemoveEmptyEntries);
         }
 
 #region Dispose

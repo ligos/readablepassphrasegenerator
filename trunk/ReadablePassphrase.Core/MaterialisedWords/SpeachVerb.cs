@@ -23,12 +23,13 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedSpeechVerb : SpeechVerb
     {
-        private readonly string _Past;
-        public override string Past { get { return _Past; } }
+        public override string Past { get; }
+        public override IReadOnlyList<string> Tags { get; }
 
-        public MaterialisedSpeechVerb(string past)
+        public MaterialisedSpeechVerb(string past, IReadOnlyList<string> tags)
         {
-            _Past = past;
+            Past = past;
+            Tags = tags;
         }
     }
 }

@@ -27,6 +27,9 @@ namespace MurrayGrant.ReadablePassphrase.Words
         public abstract string DictionaryEntry { get; }
         public abstract Type OfType { get; }
 
+        public static readonly char[] CommaArray = new char[] { ',' };
+        public abstract IReadOnlyList<string> Tags { get; }
+
         public override string ToString()
         {
             return this.GetType().Name + ": " + DictionaryEntry;
@@ -44,5 +47,8 @@ namespace MurrayGrant.ReadablePassphrase.Words
 
         // Returns all the forms a word can take.
         public abstract IEnumerable<string> AllForms();
+
+        protected IReadOnlyList<string> SplitTags(string tagsCsv)
+            => (tagsCsv ?? "").Split(CommaArray, StringSplitOptions.RemoveEmptyEntries);
     }
 }

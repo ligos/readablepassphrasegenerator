@@ -23,13 +23,13 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedProperNoun : ProperNoun
     {
-        private readonly string _Value;
+        public override string Value { get; }
+        public override IReadOnlyList<string> Tags { get; }
 
-        public override string Value { get { return _Value; } }
-
-        public MaterialisedProperNoun(string value)
+        public MaterialisedProperNoun(string value, IReadOnlyList<string> tags)
         {
-            _Value = value;
+            Value = value;
+            Tags = tags;
         }
     }
 }

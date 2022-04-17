@@ -23,16 +23,15 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedPersonalPronoun : PersonalPronoun
     {
-        private readonly string _Singular;
-        private readonly string _Plural;
+        public override string Singular { get; }
+        public override string Plural { get; }
+        public override IReadOnlyList<string> Tags { get; }
 
-        public override string Singular { get { return _Singular; } }
-        public override string Plural { get { return _Plural; } }
-
-        public MaterialisedPersonalPronoun(string singular, string plural)
+        public MaterialisedPersonalPronoun(string singular, string plural, IReadOnlyList<string> tags)
         {
-            _Singular = singular;
-            _Plural = plural;
+            Singular = singular;
+            Plural = plural;
+            Tags = tags;
         }
     }
 }

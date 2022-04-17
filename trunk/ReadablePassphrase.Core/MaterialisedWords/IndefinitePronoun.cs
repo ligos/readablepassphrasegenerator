@@ -23,19 +23,17 @@ namespace MurrayGrant.ReadablePassphrase.MaterialisedWords
 {
     public sealed class MaterialisedIndefinitePronoun : IndefinitePronoun
     {
-        private readonly string _Singular;
-        private readonly string _Plural;
-        private readonly bool _IsPersonal;
+        public override string Singular { get; }
+        public override string Plural { get; }
+        public override bool IsPersonal  { get; }
+        public override IReadOnlyList<string> Tags { get; }
 
-        public override string Singular { get { return _Singular; } }
-        public override string Plural { get { return _Plural; } }
-        public override bool IsPersonal  { get { return _IsPersonal; } }
-
-        public MaterialisedIndefinitePronoun(string singular, string plural, bool isPersonal)
+        public MaterialisedIndefinitePronoun(string singular, string plural, bool isPersonal, IReadOnlyList<string> tags)
         {
-            _Singular = singular;
-            _Plural = plural;
-            _IsPersonal = isPersonal;
+            Singular = singular;
+            Plural = plural;
+            IsPersonal = isPersonal;
+            Tags = tags;
         }
     }
 }
