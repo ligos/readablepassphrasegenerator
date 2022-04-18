@@ -22,10 +22,6 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 {
     public static class DictionaryExtensions
     {
-        public static T ChooseWord<T>(this WordDictionary dict, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen) where T : Word
-        {
-            return ChooseWord<T>(dict, randomness, alreadyChosen, (w) => true);
-        }
         public static T ChooseWord<T>(this WordDictionary dict, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<T, bool> wordPredicate) where T : Word
         {
             _ = dict ?? throw new ArgumentNullException(nameof(dict));

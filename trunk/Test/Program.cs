@@ -75,6 +75,7 @@ namespace Test
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
             //TestGithubIssue3(generator);
+            GenerateSamples(PhraseStrength.Random, generator, excludeTags: new[] { Tags.Fake });
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -149,16 +150,16 @@ namespace Test
             }
         }
 
-        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator)
+        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count = 20, IReadOnlyList<string> excludeTags = null)
         {
-            GenerateSamples(strength, generator, 20);
-        }
-        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count)
-        {
+            var excludeTagsDescription = 
+                excludeTags == null || excludeTags.Count == 0 
+                ? "any word" 
+                : "not " + String.Join(",", excludeTags);
             Console.WriteLine();
-            Console.WriteLine("Samples:");
+            Console.WriteLine("Samples ({0}, {1}):", strength, excludeTagsDescription);
             for (int i = 0; i < count; i++)
-                Console.WriteLine(generator.Generate(strength));
+                Console.WriteLine(generator.Generate(strength, mustExcludeTheseTags: excludeTags));
         }
         private static void GenerateMutatedSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count, IEnumerable<IMutator> mutators)
         {

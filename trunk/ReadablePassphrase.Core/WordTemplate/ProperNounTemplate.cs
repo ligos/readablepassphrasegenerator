@@ -25,13 +25,13 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
     {
         public override bool IncludeInAlreadyUsedList { get { return true; } }
 
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
             _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
 
-            var word = words.ChooseWord<ProperNoun>(randomness, alreadyChosen);
+            var word = words.ChooseWord<ProperNoun>(randomness, alreadyChosen, wordPredicate);
             return new WordAndString (word, word.Value);
         }
     }

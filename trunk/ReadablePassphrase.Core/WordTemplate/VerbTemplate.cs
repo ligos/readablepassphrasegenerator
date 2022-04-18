@@ -35,13 +35,13 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
             this.SubjectIsPlural = subjectIsPlural;
             this.SelectTransitive = selectTransitive;
         }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
             _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
 
-            var word = words.ChooseWord<Verb>(randomness, alreadyChosen, w => w.HasForm(this.Tense, this.SubjectIsPlural) && w.IsTransitive == this.SelectTransitive);
+            var word = words.ChooseWord<Verb>(randomness, alreadyChosen, w => w.HasForm(this.Tense, this.SubjectIsPlural) && w.IsTransitive == this.SelectTransitive && wordPredicate(w));
             return new WordAndString(word, word.GetForm(this.Tense, this.SubjectIsPlural));
         }
     }

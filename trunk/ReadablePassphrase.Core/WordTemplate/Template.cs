@@ -28,6 +28,11 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
     public abstract class Template
     {
         public abstract bool IncludeInAlreadyUsedList { get; }
-        public abstract WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen);
+        public abstract WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate);
+
+        public static bool ExcludeTags(Word w, IReadOnlyList<string>? mustExcludeTheseTags)
+            => mustExcludeTheseTags == null 
+            || mustExcludeTheseTags.Count == 0 
+            || !w.Tags.Any(x => mustExcludeTheseTags.Contains(x));
     }
 }

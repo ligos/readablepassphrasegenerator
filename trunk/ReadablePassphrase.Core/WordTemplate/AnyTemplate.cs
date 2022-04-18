@@ -27,19 +27,14 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
     public class AnyTemplate : Template
     {
         public override bool IncludeInAlreadyUsedList { get { return true; } }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
             _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
 
             // Select a word.
-            Word word;
-            do
-            {
-                var idx = randomness.Next(words.Count);
-                word = words[idx];
-            } while (word == null || alreadyChosen.Contains(word));
+            var word = words.ChooseWord(randomness, alreadyChosen, wordPredicate);
             
             // Select a form.
             var forms = word.AllForms().ToList();

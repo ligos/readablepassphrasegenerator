@@ -30,18 +30,21 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
             this.IsPlural = isPlural;
         }
 
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
             _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
 
-            var word = words.ChooseWord<Noun>(randomness, alreadyChosen, w => (!this.IsPlural && w.HasSingular) || (this.IsPlural && w.HasPlural));
+            var word = words.ChooseWord<Noun>(randomness, alreadyChosen, w => wordPredicate(w) && PluralityPredicate(w));
             if (!this.IsPlural)
                 return new WordAndString (word, word.Singular);
             else
                 return new WordAndString (word, word.Plural);
-                
         }
+
+        bool PluralityPredicate(Noun word)
+            => (!this.IsPlural && word.HasSingular)
+            || (this.IsPlural && word.HasPlural);
     }
 }
