@@ -75,7 +75,7 @@ namespace Test
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
             //TestGithubIssue3(generator);
-            GenerateSamples(PhraseStrength.Random, generator, excludeTags: new[] { Tags.Fake });
+            //GenerateSamples(PhraseStrength.Random, generator, excludeTags: new[] { Tags.Fake });
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
