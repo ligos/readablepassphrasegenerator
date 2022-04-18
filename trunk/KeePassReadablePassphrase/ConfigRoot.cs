@@ -110,6 +110,7 @@ namespace KeePassReadablePassphrase
         {
             var newConf = this.FormToConfigObject();
             this.UpdateCombinations(newConf);
+            this.UpdateDictionarySize(newConf);
         }
 
 
@@ -226,7 +227,7 @@ namespace KeePassReadablePassphrase
 
                 this.UpdateDescription(config);
                 this.UpdateCombinations(config);
-                this.UpdateDictionarySize();
+                this.UpdateDictionarySize(config);
                 this.UpdateCustomStrengthVisibility(this.IsCurrentPhraseStrengthCustom);
                 this.UpdateCustomDictionaryVisibility();
                 this.UpdateCustomSeparatorEnabledStatus();
@@ -269,9 +270,13 @@ namespace KeePassReadablePassphrase
                 this.txtEntropyAverage.Text = "?";
             }
         }
-        private void UpdateDictionarySize()
+        private void UpdateDictionarySize(Config config)
         {
-            var total = this._Generator.Dictionary.Count;
+            var total = 0;
+            if (config.ExcludeFakeWords)
+                total = this._Generator.Dictionary.CountAll(w => !w.Tags.Contains(MurrayGrant.ReadablePassphrase.Words.Tags.Fake));
+            else
+                total = this._Generator.Dictionary.Count;
             this.txtDictionarySize.Text = total.ToString("N0");
         }
         private void UpdateCustomStrengthVisibility(bool isCustomSelected)
