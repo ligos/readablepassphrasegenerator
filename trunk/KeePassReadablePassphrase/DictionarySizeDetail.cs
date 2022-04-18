@@ -36,43 +36,24 @@ namespace KeePassReadablePassphrase
 
         private void DictionarySizeDetail_Load(object sender, EventArgs e)
         {
-            this.txtNouns.Text = this._Dictionary.CountOf<Noun>().ToString("N0");
-            this.txtProperNouns.Text = this._Dictionary.CountOf<ProperNoun>().ToString("N0");
-            this.txtVerbs.Text = this._Dictionary.CountOf<Verb>().ToString("N0");
-            this.txtSpeechVerbs.Text = this._Dictionary.CountOf<SpeechVerb>().ToString("N0");
-            this.txtAdjectives.Text = this._Dictionary.CountOf<Adjective>().ToString("N0");
-            this.txtAdverbs.Text = this._Dictionary.CountOf<Adverb>().ToString("N0");
-            this.txtPrepositions.Text = this._Dictionary.CountOf<Preposition>().ToString("N0");
-            this.txtDemonstratives.Text = this._Dictionary.CountOf<Demonstrative>().ToString("N0");
-            this.txtTheArticle.Text = this._Dictionary.CountOf<Article>().ToString("N0");
-            this.txtPersonalPronouns.Text = this._Dictionary.CountOf<PersonalPronoun>().ToString("N0");
-            this.txtIndefinitePronouns.Text = this._Dictionary.CountOf<IndefinitePronoun>().ToString("N0");
-            this.txtInterrogatives.Text = this._Dictionary.CountOf<Interrogative>().ToString("N0");
-            this.txtConjunctions.Text = this._Dictionary.CountOf<Conjunction>().ToString("N0");
-            this.txtNumbers.Text = this._Dictionary.CountOf<Number>().ToString("N0");
-
-            this.txtTotal.Text = (this._Dictionary.CountOf<Noun>()
-                                 + this._Dictionary.CountOf<ProperNoun>()
-                                 + this._Dictionary.CountOf<Verb>()
-                                 + this._Dictionary.CountOf<SpeechVerb>()
-                                 + this._Dictionary.CountOf<Adjective>()
-                                 + this._Dictionary.CountOf<Adverb>()
-                                 + this._Dictionary.CountOf<Preposition>()
-                                 + this._Dictionary.CountOf<Demonstrative>()
-                                 + this._Dictionary.CountOf<Article>()
-                                 + this._Dictionary.CountOf<PersonalPronoun>()
-                                 + this._Dictionary.CountOf<Interrogative>()
-                                 + this._Dictionary.CountOf<Conjunction>()
-                                 + this._Dictionary.CountOf<IndefinitePronoun>()
-                                 + this._Dictionary.CountOf<Number>()
-                                 ).ToString("N0");
-            this.txtReconciledTotal.Text = this._Dictionary.Count.ToString("N0");
-            this.txtTotalForms.Text = this._Dictionary.CountOfAllDistinctForms().ToString("N0");
+            cboFilter.Text = "ALL";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cboFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (cboFilter.Text == "ALL")
+                UpdateTotals(AllWordsPredicate);
+            else if (cboFilter.Text == "Regular")
+                UpdateTotals(RegularWordsPredicate);
+            else if (cboFilter.Text == "Fake")
+                UpdateTotals(FakeWordsPredicate);
+            else
+                UpdateTotals(AllWordsPredicate);
         }
 
         private void lnkTotals_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -89,5 +70,58 @@ namespace KeePassReadablePassphrase
                 System.Diagnostics.Process.Start(url.ToString());
             }
         }
+
+        private void UpdateTotals(Func<Word, bool> wordPredicate)
+        {
+            this.txtNouns.Text = this._Dictionary.CountOf<Noun>(wordPredicate).ToString("N0");
+            this.txtProperNouns.Text = this._Dictionary.CountOf<ProperNoun>(wordPredicate).ToString("N0");
+            this.txtVerbs.Text = this._Dictionary.CountOf<Verb>(wordPredicate).ToString("N0");
+            this.txtSpeechVerbs.Text = this._Dictionary.CountOf<SpeechVerb>(wordPredicate).ToString("N0");
+            this.txtAdjectives.Text = this._Dictionary.CountOf<Adjective>(wordPredicate).ToString("N0");
+            this.txtAdverbs.Text = this._Dictionary.CountOf<Adverb>(wordPredicate).ToString("N0");
+            this.txtPrepositions.Text = this._Dictionary.CountOf<Preposition>(wordPredicate).ToString("N0");
+            this.txtDemonstratives.Text = this._Dictionary.CountOf<Demonstrative>(wordPredicate).ToString("N0");
+            this.txtTheArticle.Text = this._Dictionary.CountOf<Article>(wordPredicate).ToString("N0");
+            this.txtPersonalPronouns.Text = this._Dictionary.CountOf<PersonalPronoun>(wordPredicate).ToString("N0");
+            this.txtIndefinitePronouns.Text = this._Dictionary.CountOf<IndefinitePronoun>(wordPredicate).ToString("N0");
+            this.txtInterrogatives.Text = this._Dictionary.CountOf<Interrogative>(wordPredicate).ToString("N0");
+            this.txtConjunctions.Text = this._Dictionary.CountOf<Conjunction>(wordPredicate).ToString("N0");
+            this.txtNumbers.Text = this._Dictionary.CountOf<Number>(wordPredicate).ToString("N0");
+
+            this.txtTotal.Text = (this._Dictionary.CountOf<Noun>(wordPredicate)
+                                 + this._Dictionary.CountOf<ProperNoun>(wordPredicate)
+                                 + this._Dictionary.CountOf<Verb>(wordPredicate)
+                                 + this._Dictionary.CountOf<SpeechVerb>(wordPredicate)
+                                 + this._Dictionary.CountOf<Adjective>(wordPredicate)
+                                 + this._Dictionary.CountOf<Adverb>(wordPredicate)
+                                 + this._Dictionary.CountOf<Preposition>(wordPredicate)
+                                 + this._Dictionary.CountOf<Demonstrative>(wordPredicate)
+                                 + this._Dictionary.CountOf<Article>(wordPredicate)
+                                 + this._Dictionary.CountOf<PersonalPronoun>(wordPredicate)
+                                 + this._Dictionary.CountOf<Interrogative>(wordPredicate)
+                                 + this._Dictionary.CountOf<Conjunction>(wordPredicate)
+                                 + this._Dictionary.CountOf<IndefinitePronoun>(wordPredicate)
+                                 + this._Dictionary.CountOf<Number>(wordPredicate)
+                                 ).ToString("N0");
+            this.txtReconciledTotal.Text = this._Dictionary.CountAll(wordPredicate).ToString("N0");
+            this.txtTotalForms.Text = this._Dictionary.CountOfAllDistinctForms(wordPredicate).ToString("N0");
+        }
+
+
+        private static bool AllWordsPredicate(Word w)
+        {
+            return true;
+        }
+
+        private static bool FakeWordsPredicate(Word w)
+        {
+            return w.Tags.Contains(Tags.Fake);
+        }
+
+        private static bool RegularWordsPredicate(Word w)
+        {
+            return w.Tags.Count == 0;
+        }
+
     }
 }
