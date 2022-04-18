@@ -96,6 +96,8 @@
             this.txtConstantValue = new System.Windows.Forms.TextBox();
             this.lnkKeyBase = new System.Windows.Forms.LinkLabel();
             this.cboCountBy = new System.Windows.Forms.ComboBox();
+            this.chkExcludeFake = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxLength)).BeginInit();
@@ -140,12 +142,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhraseDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 442);
+            this.txtPhraseDescription.Location = new System.Drawing.Point(11, 462);
             this.txtPhraseDescription.Multiline = true;
             this.txtPhraseDescription.Name = "txtPhraseDescription";
             this.txtPhraseDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtPhraseDescription.Size = new System.Drawing.Size(461, 109);
-            this.txtPhraseDescription.TabIndex = 23;
+            this.txtPhraseDescription.TabIndex = 28;
             this.toolTip1.SetToolTip(this.txtPhraseDescription, resources.GetString("txtPhraseDescription.ToolTip"));
             this.txtPhraseDescription.TextChanged += new System.EventHandler(this.txtPhraseDescription_TextChanged);
             this.txtPhraseDescription.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPhraseDescription_KeyUp);
@@ -154,20 +156,20 @@
             // 
             this.txtDictionaryPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 368);
+            this.txtDictionaryPath.Location = new System.Drawing.Point(104, 388);
             this.txtDictionaryPath.Name = "txtDictionaryPath";
             this.txtDictionaryPath.ReadOnly = true;
             this.txtDictionaryPath.Size = new System.Drawing.Size(339, 20);
-            this.txtDictionaryPath.TabIndex = 19;
+            this.txtDictionaryPath.TabIndex = 23;
             this.toolTip1.SetToolTip(this.txtDictionaryPath, "The path and filename for your custom dictionary.");
             // 
             // chkCustomDictionary
             // 
             this.chkCustomDictionary.AutoSize = true;
-            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 345);
+            this.chkCustomDictionary.Location = new System.Drawing.Point(12, 365);
             this.chkCustomDictionary.Name = "chkCustomDictionary";
             this.chkCustomDictionary.Size = new System.Drawing.Size(145, 17);
-            this.chkCustomDictionary.TabIndex = 8;
+            this.chkCustomDictionary.TabIndex = 21;
             this.chkCustomDictionary.Text = "Use Your Own Dictionary";
             this.toolTip1.SetToolTip(this.chkCustomDictionary, "If ticked, you select your own dictionary.\r\nIf unticked, an internal dictionary i" +
         "s used.");
@@ -176,52 +178,52 @@
             // 
             // txtDictionarySize
             // 
-            this.txtDictionarySize.Location = new System.Drawing.Point(104, 394);
+            this.txtDictionarySize.Location = new System.Drawing.Point(104, 414);
             this.txtDictionarySize.Name = "txtDictionarySize";
             this.txtDictionarySize.ReadOnly = true;
             this.txtDictionarySize.Size = new System.Drawing.Size(87, 20);
-            this.txtDictionarySize.TabIndex = 21;
+            this.txtDictionarySize.TabIndex = 25;
             this.toolTip1.SetToolTip(this.txtDictionarySize, "The total number of words in the selected dictionary.");
             // 
             // txtCombinationRange
             // 
-            this.txtCombinationRange.Location = new System.Drawing.Point(104, 284);
+            this.txtCombinationRange.Location = new System.Drawing.Point(104, 304);
             this.txtCombinationRange.Name = "txtCombinationRange";
             this.txtCombinationRange.ReadOnly = true;
             this.txtCombinationRange.Size = new System.Drawing.Size(220, 20);
-            this.txtCombinationRange.TabIndex = 15;
+            this.txtCombinationRange.TabIndex = 17;
             this.toolTip1.SetToolTip(this.txtCombinationRange, "The total combinations of words based on your selected dictionary and phrase stre" +
         "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
             // txtEntropyRange
             // 
-            this.txtEntropyRange.Location = new System.Drawing.Point(382, 284);
+            this.txtEntropyRange.Location = new System.Drawing.Point(382, 304);
             this.txtEntropyRange.Name = "txtEntropyRange";
             this.txtEntropyRange.ReadOnly = true;
             this.txtEntropyRange.Size = new System.Drawing.Size(90, 20);
-            this.txtEntropyRange.TabIndex = 16;
+            this.txtEntropyRange.TabIndex = 18;
             this.toolTip1.SetToolTip(this.txtEntropyRange, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
         "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
         "n KeePass.");
             // 
             // txtEntropyAverage
             // 
-            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 310);
+            this.txtEntropyAverage.Location = new System.Drawing.Point(382, 330);
             this.txtEntropyAverage.Name = "txtEntropyAverage";
             this.txtEntropyAverage.ReadOnly = true;
             this.txtEntropyAverage.Size = new System.Drawing.Size(90, 20);
-            this.txtEntropyAverage.TabIndex = 18;
+            this.txtEntropyAverage.TabIndex = 20;
             this.toolTip1.SetToolTip(this.txtEntropyAverage, "An estimate of the number of bits of entropy this passphrase contains, based on t" +
         "he number of combinations.\r\nYou can compare this number to the \"Quality\" field i" +
         "n KeePass.");
             // 
             // txtCombinationAverage
             // 
-            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 310);
+            this.txtCombinationAverage.Location = new System.Drawing.Point(104, 330);
             this.txtCombinationAverage.Name = "txtCombinationAverage";
             this.txtCombinationAverage.ReadOnly = true;
             this.txtCombinationAverage.Size = new System.Drawing.Size(220, 20);
-            this.txtCombinationAverage.TabIndex = 17;
+            this.txtCombinationAverage.TabIndex = 19;
             this.toolTip1.SetToolTip(this.txtCombinationAverage, "The total combinations of words based on your selected dictionary and phrase stre" +
         "ngth.\r\nBigger is better (harder to guess)! But may also be harder to remember.");
             // 
@@ -241,7 +243,7 @@
             this.radMutatorNone.Location = new System.Drawing.Point(104, 176);
             this.radMutatorNone.Name = "radMutatorNone";
             this.radMutatorNone.Size = new System.Drawing.Size(51, 17);
-            this.radMutatorNone.TabIndex = 6;
+            this.radMutatorNone.TabIndex = 7;
             this.radMutatorNone.TabStop = true;
             this.radMutatorNone.Text = "None";
             this.toolTip1.SetToolTip(this.radMutatorNone, "Makes no changes to the final passphrase");
@@ -254,7 +256,7 @@
             this.radMutatorStandard.Location = new System.Drawing.Point(170, 176);
             this.radMutatorStandard.Name = "radMutatorStandard";
             this.radMutatorStandard.Size = new System.Drawing.Size(212, 17);
-            this.radMutatorStandard.TabIndex = 7;
+            this.radMutatorStandard.TabIndex = 8;
             this.radMutatorStandard.TabStop = true;
             this.radMutatorStandard.Text = "Standard (numbers, capitals and period)";
             this.toolTip1.SetToolTip(this.radMutatorStandard, "Capitalises one word, adds 2 numbers and appends a period to the final passphrase" +
@@ -268,7 +270,7 @@
             this.radMutatorCustom.Location = new System.Drawing.Point(393, 176);
             this.radMutatorCustom.Name = "radMutatorCustom";
             this.radMutatorCustom.Size = new System.Drawing.Size(60, 17);
-            this.radMutatorCustom.TabIndex = 8;
+            this.radMutatorCustom.TabIndex = 9;
             this.radMutatorCustom.TabStop = true;
             this.radMutatorCustom.Text = "Custom";
             this.toolTip1.SetToolTip(this.radMutatorCustom, "Lets you configure how numbers and capitals are added to the passphrase in detail" +
@@ -283,7 +285,7 @@
             this.cboUpperStyle.Location = new System.Drawing.Point(104, 196);
             this.cboUpperStyle.Name = "cboUpperStyle";
             this.cboUpperStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboUpperStyle.TabIndex = 9;
+            this.cboUpperStyle.TabIndex = 10;
             this.toolTip1.SetToolTip(this.cboUpperStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
         "stom for this option to be available.");
             this.cboUpperStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -295,7 +297,7 @@
             this.cboNumericStyle.Location = new System.Drawing.Point(104, 220);
             this.cboNumericStyle.Name = "cboNumericStyle";
             this.cboNumericStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboNumericStyle.TabIndex = 11;
+            this.cboNumericStyle.TabIndex = 12;
             this.toolTip1.SetToolTip(this.cboNumericStyle, "Determines when letters are converted to upper case.\r\nYou must set Mutators to Cu" +
         "stom for this option to be available.");
             this.cboNumericStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -307,7 +309,7 @@
             this.cboConstantStyle.Location = new System.Drawing.Point(104, 244);
             this.cboConstantStyle.Name = "cboConstantStyle";
             this.cboConstantStyle.Size = new System.Drawing.Size(220, 21);
-            this.cboConstantStyle.TabIndex = 13;
+            this.cboConstantStyle.TabIndex = 14;
             this.toolTip1.SetToolTip(this.cboConstantStyle, "Determines when an additional constant string is added.\r\nYou must set Mutators to" +
         " Custom for this option to be available.");
             this.cboConstantStyle.SelectedIndexChanged += new System.EventHandler(this.mutatorStyleOrCountChanged);
@@ -328,7 +330,7 @@
             // lblPhraseDetail
             // 
             this.lblPhraseDetail.AutoSize = true;
-            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 424);
+            this.lblPhraseDetail.Location = new System.Drawing.Point(12, 444);
             this.lblPhraseDetail.Name = "lblPhraseDetail";
             this.lblPhraseDetail.Size = new System.Drawing.Size(73, 13);
             this.lblPhraseDetail.TabIndex = 3;
@@ -338,10 +340,10 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(397, 557);
+            this.btnCancel.Location = new System.Drawing.Point(397, 577);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 25;
+            this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -349,10 +351,10 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(307, 557);
+            this.btnOK.Location = new System.Drawing.Point(307, 577);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 24;
+            this.btnOK.TabIndex = 29;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -361,10 +363,10 @@
             // 
             this.lnkPhraseHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkPhraseHelp.AutoSize = true;
-            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 423);
+            this.lnkPhraseHelp.Location = new System.Drawing.Point(318, 443);
             this.lnkPhraseHelp.Name = "lnkPhraseHelp";
             this.lnkPhraseHelp.Size = new System.Drawing.Size(155, 13);
-            this.lnkPhraseHelp.TabIndex = 19;
+            this.lnkPhraseHelp.TabIndex = 27;
             this.lnkPhraseHelp.TabStop = true;
             this.lnkPhraseHelp.Text = "How to Make your Own Phrase";
             this.lnkPhraseHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPhraseHelp_LinkClicked);
@@ -395,7 +397,7 @@
             this.lnkWebsite.Location = new System.Drawing.Point(385, 41);
             this.lnkWebsite.Name = "lnkWebsite";
             this.lnkWebsite.Size = new System.Drawing.Size(58, 13);
-            this.lnkWebsite.TabIndex = 16;
+            this.lnkWebsite.TabIndex = 32;
             this.lnkWebsite.TabStop = true;
             this.lnkWebsite.Text = "Web Page";
             this.lnkWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebsite_LinkClicked);
@@ -404,10 +406,10 @@
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Enabled = false;
-            this.btnBrowse.Location = new System.Drawing.Point(449, 367);
+            this.btnBrowse.Location = new System.Drawing.Point(449, 387);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(24, 23);
-            this.btnBrowse.TabIndex = 20;
+            this.btnBrowse.TabIndex = 24;
             this.btnBrowse.Text = "...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -415,7 +417,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 372);
+            this.label5.Location = new System.Drawing.Point(12, 392);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 12;
@@ -425,10 +427,10 @@
             // 
             this.lnkDictionaryHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkDictionaryHelp.AutoSize = true;
-            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 346);
+            this.lnkDictionaryHelp.Location = new System.Drawing.Point(298, 366);
             this.lnkDictionaryHelp.Name = "lnkDictionaryHelp";
             this.lnkDictionaryHelp.Size = new System.Drawing.Size(175, 13);
-            this.lnkDictionaryHelp.TabIndex = 18;
+            this.lnkDictionaryHelp.TabIndex = 22;
             this.lnkDictionaryHelp.TabStop = true;
             this.lnkDictionaryHelp.Text = "How To Make Your Own Dictionary";
             this.lnkDictionaryHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDictionaryHelp_LinkClicked);
@@ -440,7 +442,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 398);
+            this.label6.Location = new System.Drawing.Point(12, 418);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 16;
@@ -449,7 +451,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 287);
+            this.label7.Location = new System.Drawing.Point(12, 307);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 18;
@@ -458,7 +460,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(330, 287);
+            this.label8.Location = new System.Drawing.Point(330, 307);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 20;
@@ -466,10 +468,10 @@
             // 
             // btnDictionarySizeDetail
             // 
-            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 392);
+            this.btnDictionarySizeDetail.Location = new System.Drawing.Point(197, 412);
             this.btnDictionarySizeDetail.Name = "btnDictionarySizeDetail";
             this.btnDictionarySizeDetail.Size = new System.Drawing.Size(24, 23);
-            this.btnDictionarySizeDetail.TabIndex = 22;
+            this.btnDictionarySizeDetail.TabIndex = 26;
             this.btnDictionarySizeDetail.Text = "...";
             this.btnDictionarySizeDetail.UseVisualStyleBackColor = true;
             this.btnDictionarySizeDetail.Click += new System.EventHandler(this.btnDictionarySizeDetail_Click);
@@ -484,7 +486,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 589);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 609);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(485, 22);
             this.statusStrip1.TabIndex = 22;
@@ -509,7 +511,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 313);
+            this.label2.Location = new System.Drawing.Point(330, 333);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 27;
@@ -518,7 +520,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 313);
+            this.label9.Location = new System.Drawing.Point(12, 333);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 26;
@@ -531,7 +533,7 @@
             this.lnkCombinationsHelp.Location = new System.Drawing.Point(344, 146);
             this.lnkCombinationsHelp.Name = "lnkCombinationsHelp";
             this.lnkCombinationsHelp.Size = new System.Drawing.Size(128, 13);
-            this.lnkCombinationsHelp.TabIndex = 17;
+            this.lnkCombinationsHelp.TabIndex = 6;
             this.lnkCombinationsHelp.TabStop = true;
             this.lnkCombinationsHelp.Text = "More About Combinations";
             this.lnkCombinationsHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCombinationsHelp_LinkClicked);
@@ -649,7 +651,7 @@
             0});
             this.nudUpperCount.Name = "nudUpperCount";
             this.nudUpperCount.Size = new System.Drawing.Size(55, 20);
-            this.nudUpperCount.TabIndex = 10;
+            this.nudUpperCount.TabIndex = 11;
             this.nudUpperCount.Value = new decimal(new int[] {
             2,
             0,
@@ -672,7 +674,7 @@
             0});
             this.nudNumberCount.Name = "nudNumberCount";
             this.nudNumberCount.Size = new System.Drawing.Size(55, 20);
-            this.nudNumberCount.TabIndex = 12;
+            this.nudNumberCount.TabIndex = 13;
             this.nudNumberCount.Value = new decimal(new int[] {
             2,
             0,
@@ -708,7 +710,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 84);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(450, 1);
-            this.panel2.TabIndex = 47;
+            this.panel2.TabIndex = 0;
             // 
             // panel3
             // 
@@ -716,7 +718,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(17, 277);
+            this.panel3.Location = new System.Drawing.Point(17, 297);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 1);
             this.panel3.TabIndex = 47;
@@ -737,7 +739,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(17, 339);
+            this.panel5.Location = new System.Drawing.Point(17, 359);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(450, 1);
             this.panel5.TabIndex = 48;
@@ -800,7 +802,7 @@
             this.txtConstantValue.Location = new System.Drawing.Point(382, 245);
             this.txtConstantValue.Name = "txtConstantValue";
             this.txtConstantValue.Size = new System.Drawing.Size(90, 20);
-            this.txtConstantValue.TabIndex = 14;
+            this.txtConstantValue.TabIndex = 15;
             this.txtConstantValue.Text = ".";
             // 
             // lnkKeyBase
@@ -810,7 +812,7 @@
             this.lnkKeyBase.Location = new System.Drawing.Point(384, 18);
             this.lnkKeyBase.Name = "lnkKeyBase";
             this.lnkKeyBase.Size = new System.Drawing.Size(89, 13);
-            this.lnkKeyBase.TabIndex = 53;
+            this.lnkKeyBase.TabIndex = 31;
             this.lnkKeyBase.TabStop = true;
             this.lnkKeyBase.Text = "KeyBase Contact";
             this.lnkKeyBase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkKeyBase_LinkClicked);
@@ -827,13 +829,37 @@
             this.cboCountBy.Size = new System.Drawing.Size(93, 21);
             this.cboCountBy.TabIndex = 2;
             // 
+            // chkExcludeFake
+            // 
+            this.chkExcludeFake.AutoSize = true;
+            this.chkExcludeFake.Location = new System.Drawing.Point(104, 271);
+            this.chkExcludeFake.Name = "chkExcludeFake";
+            this.chkExcludeFake.Size = new System.Drawing.Size(84, 17);
+            this.chkExcludeFake.TabIndex = 16;
+            this.chkExcludeFake.Text = "Fake Words";
+            this.toolTip1.SetToolTip(this.chkExcludeFake, "If ticked, you select your own dictionary.\r\nIf unticked, an internal dictionary i" +
+        "s used.");
+            this.chkExcludeFake.UseVisualStyleBackColor = true;
+            this.chkExcludeFake.CheckedChanged += new System.EventHandler(this.chkExcludeFake_CheckedChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(14, 272);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(48, 13);
+            this.label22.TabIndex = 55;
+            this.label22.Text = "Exclude:";
+            // 
             // ConfigRoot
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(485, 611);
+            this.ClientSize = new System.Drawing.Size(485, 631);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.chkExcludeFake);
             this.Controls.Add(this.cboCountBy);
             this.Controls.Add(this.lnkKeyBase);
             this.Controls.Add(this.txtConstantValue);
@@ -977,5 +1003,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtConstantValue;
         private System.Windows.Forms.ComboBox cboCountBy;
+        private System.Windows.Forms.CheckBox chkExcludeFake;
+        private System.Windows.Forms.Label label22;
     }
 }

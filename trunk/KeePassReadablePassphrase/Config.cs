@@ -54,6 +54,8 @@ namespace KeePassReadablePassphrase
         public ConstantStyles ConstantStyle { get; set; }
         public string ConstantValue { get; set; }
 
+        public bool ExcludeFakeWords { get; set; }
+
         public string ActualSeparator
         {
             get
@@ -88,6 +90,7 @@ namespace KeePassReadablePassphrase
             this.ConstantStyle = ConstantMutator.Basic.When;
             this.ConstantValue = ConstantMutator.Basic.ValueToAdd;
             this.PathOfCustomDictionary = "";
+            this.ExcludeFakeWords = false;
         }
         public Config(string configFromKeePass)
             : this()
@@ -146,6 +149,8 @@ namespace KeePassReadablePassphrase
                     this.ConstantStyle = (ConstantStyles)Enum.Parse(typeof(ConstantStyles), reader.GetAttribute("value").Replace(" ", ""));
                 else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "constantvalue")
                     this.ConstantValue = reader.GetAttribute("value");
+                else if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "excludefakewords")
+                    this.ExcludeFakeWords = reader.GetAttribute("value").ToLower() == "true";
             }
 
             if (this.PhraseStrength != PhraseStrength.Custom)
@@ -209,6 +214,7 @@ namespace KeePassReadablePassphrase
             sb.AppendFormat("<NumericCount value=\"{0}\"/>\n", this.NumericCount);
             sb.AppendFormat("<ConstantStyle value=\"{0}\"/>\n", this.ConstantStyle);
             sb.AppendFormat("<ConstantValue value=\"{0}\"/>\n", EncodeForXml(this.ConstantValue));
+            sb.AppendFormat("<ExcludeFakeWords value=\"{0}\"/>\n", this.ExcludeFakeWords);
             sb.AppendLine("</ReadablePassphraseConfig>");
             return sb.ToString();
         }

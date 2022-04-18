@@ -106,7 +106,11 @@ namespace KeePassReadablePassphrase
         {
             this.UpdateCustomSeparatorEnabledStatus();
         }
-
+        private void chkExcludeFake_CheckedChanged(object sender, EventArgs e)
+        {
+            var newConf = this.FormToConfigObject();
+            this.UpdateCombinations(newConf);
+        }
 
 
         private void lnkWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -204,6 +208,7 @@ namespace KeePassReadablePassphrase
                 this.nudMinLength.Value = Math.Max(config.MinLength, (int)this.nudMinLength.Minimum);
                 this.nudMaxLength.Value = Math.Min(config.MaxLength, (int)this.nudMaxLength.Maximum);
                 this.cboCountBy.Text = config.CountBy.ToString();
+                this.chkExcludeFake.Checked = config.ExcludeFakeWords;
 
                 this.radMutatorNone.Checked = config.Mutator == MutatorOption.None;
                 this.radMutatorStandard.Checked = config.Mutator == MutatorOption.Standard;
@@ -241,13 +246,14 @@ namespace KeePassReadablePassphrase
         private void UpdateCombinations(Config config)
         {
             // TODO: this should take into account the mutators as well.
+            var excludeTagsArray = config.ExcludeFakeWords ? new[] { MurrayGrant.ReadablePassphrase.Words.Tags.Fake } : new string[0];
             PhraseCombinations combinations;
             if (config == null)
                 combinations = PhraseCombinations.Zero;
             else if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
-                combinations = this._Generator.CalculateCombinations(config.PhraseStrength);
+                combinations = this._Generator.CalculateCombinations(config.PhraseStrength, mustExcludeTheseTags: excludeTagsArray);
             else
-                combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
+                combinations = this._Generator.CalculateCombinations(config.PhraseDescription, mustExcludeTheseTags: excludeTagsArray);
             if (combinations.Shortest >= 0)
             {
                 this.txtCombinationRange.Text = combinations.Shortest.ToString("E3") + " ‐ " + combinations.Longest.ToString("E3");
@@ -347,6 +353,7 @@ namespace KeePassReadablePassphrase
             result.NumericCount = (int)this.nudNumberCount.Value;
             result.ConstantStyle = (ConstantStyles)Enum.Parse(typeof(ConstantStyles), this.cboConstantStyle.Text);
             result.ConstantValue = this.txtConstantValue.Text;
+            result.ExcludeFakeWords = this.chkExcludeFake.Checked;
             return result;
 
         }
