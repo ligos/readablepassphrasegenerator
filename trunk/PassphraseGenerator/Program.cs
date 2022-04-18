@@ -99,8 +99,6 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
             if (!quiet && (maxLength < Int32.MaxValue || minLength > 1))
                 Console.WriteLine("Must be between {0:N0} and {1} {2}.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N0"), countByDescription);
-            if (!quiet && noFake)
-                Console.WriteLine("Excluding fake words.");
 
             var generator = new ReadablePassphraseGenerator();
 
@@ -120,17 +118,21 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             }
             dictSw.Stop();
 
+            // Tag array for fakes.
+            var excludeTags = noFake ? new[] { Tags.Fake } : new string[0];
+            var fakeDescription = noFake ? "non-fake " : "";
+
             // Summarise actions and combinations / entropy.
             if (!quiet)
             {
-                Console.WriteLine("Dictionary contains {0:N0} words (loaded in {1:N2}ms)", generator.Dictionary.Count, dictSw.Elapsed.TotalMilliseconds);
+                Console.WriteLine("Dictionary contains {0:N0} {1}words (loaded in {2:N2}ms)", generator.Dictionary.CountAll(w => Template.ExcludeTags(w, excludeTags)), fakeDescription, dictSw.Elapsed.TotalMilliseconds);
                 PhraseCombinations combinations;
                 if (anyLength > 0)
-                    combinations = generator.CalculateCombinations(NonGrammaticalClause(anyLength));
+                    combinations = generator.CalculateCombinations(NonGrammaticalClause(anyLength), mustExcludeTheseTags: excludeTags);
                 else if (strength != PhraseStrength.Custom)
-                    combinations = generator.CalculateCombinations(strength);
+                    combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
                 else
-                    combinations = generator.CalculateCombinations(phraseDescription);
+                    combinations = generator.CalculateCombinations(phraseDescription, mustExcludeTheseTags: excludeTags);
                 Console.WriteLine("Average combinations ~{0:E3} (~{1:N2} bits)", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
                 Console.WriteLine("Total combinations {0:E3} - {1:E3} ({2:N2} - {3:N2} bits)", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 
@@ -168,7 +170,6 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             int generated = 0;
             int attempts = 0;
             int maxAttempts = count * MaxAttemptsPerCount;
-            var excludeTags = noFake ? new[] { Tags.Fake } : new string[0];
             var mutators = applyStandardMutators ? new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic } 
                          : applyAlternativeMutators ? new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic }
                          : Enumerable.Empty<IMutator>();

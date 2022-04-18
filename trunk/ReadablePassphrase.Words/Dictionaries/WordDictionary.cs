@@ -68,6 +68,9 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 return (T)this.OfType<T>().ElementAt(idx);
         }
 
+        public int CountAll(Func<Word, bool> predicate)
+            => this.Count(predicate);
+
         public int CountOf<T>()
         {
             if (WordsByType != null)
