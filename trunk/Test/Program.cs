@@ -48,6 +48,11 @@ namespace Test
             DictionaryCheck(generator);
             CombinationCount(generator);
 
+            // Exclude fake words
+            var fakeTagArray = new[] { Tags.Fake };
+            GenerateSamples(PhraseStrength.Random, generator, excludeTags: fakeTagArray);
+            CombinationCount(generator, excludeTags: fakeTagArray);
+
             // Short benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
             //BenchmarkSecureGeneration(generator, PhraseStrength.Normal, 1000);
@@ -75,7 +80,6 @@ namespace Test
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
             //TestGithubIssue3(generator);
-            //GenerateSamples(PhraseStrength.Random, generator, excludeTags: new[] { Tags.Fake });
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -116,15 +120,17 @@ namespace Test
 
         private static void DictionaryCheck(ReadablePassphraseGenerator generator)
         {
-            var regularWords = generator.Dictionary.Where(w => w.Tags.Count == 0);
-            var fakeWords = generator.Dictionary.Where(w => w.Tags.Contains(Tags.Fake));
+            bool regularWordPredicate(Word w) => w.Tags.Count == 0;
+            bool fakeWordPredicate(Word w) => w.Tags.Contains(Tags.Fake);
+            var regularWords = generator.Dictionary.Where(regularWordPredicate);
+            var fakeWords = generator.Dictionary.Where(fakeWordPredicate);
 
             Console.WriteLine();
             Console.WriteLine("Name: {0}", generator.Dictionary.Name);
             Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
             Console.WriteLine("                 TOTAL  Regular   Fake", generator.Dictionary.Count);
             Console.WriteLine("TOTAL:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.Count, regularWords.Count(), fakeWords.Count());
-            Console.WriteLine("TOTAL forms:     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.CountOfAllDistinctForms(), regularWords.SelectMany(w => w.AllForms()).Distinct(StringComparer.CurrentCultureIgnoreCase).Count(), fakeWords.SelectMany(w => w.AllForms()).Distinct(StringComparer.CurrentCultureIgnoreCase).Count());
+            Console.WriteLine("TOTAL forms:     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.CountOfAllDistinctForms(), generator.Dictionary.CountOfAllDistinctForms(regularWordPredicate), generator.Dictionary.CountOfAllDistinctForms(fakeWordPredicate));
             Console.WriteLine("Nouns:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Noun>().Count(), regularWords.OfType<Noun>().Count(), fakeWords.OfType<Noun>().Count());
             Console.WriteLine("Proper Nouns:    {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<ProperNoun>().Count(), regularWords.OfType<ProperNoun>().Count(), fakeWords.OfType<ProperNoun>().Count());
             Console.WriteLine("Verbs (all):     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(), regularWords.OfType<Verb>().Count(), fakeWords.OfType<Verb>().Count());
@@ -191,14 +197,18 @@ namespace Test
                 Console.WriteLine(generator.Generate(strength, wordDelimiter: delimiter));
         }
 
-        private static void CombinationCount(ReadablePassphraseGenerator generator)
+        private static void CombinationCount(ReadablePassphraseGenerator generator, IReadOnlyList<string> excludeTags = null)
         {
+            var excludeTagsDescription =
+                   excludeTags == null || excludeTags.Count == 0
+                   ? "any word"
+                   : "not " + String.Join(",", excludeTags);
             Console.WriteLine();
-            Console.WriteLine("Combination count:");
+            Console.WriteLine("Combination count ({0}):", excludeTagsDescription);
 
             foreach (var strength in RandomStrengths)
             {
-                var combinations = generator.CalculateCombinations(strength);
+                var combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
             }
             Console.WriteLine();
@@ -212,7 +222,7 @@ namespace Test
             for (int i = 0; i < predefined.Length; i++)
             {
                 var strength = predefined[i];
-                var combinations = generator.CalculateCombinations(strength);
+                var combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
                 if ((i + 1) % 9 == 0)
                     Console.WriteLine();

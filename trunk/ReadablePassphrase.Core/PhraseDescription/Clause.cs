@@ -140,11 +140,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         /// <summary>
         /// Counts the total unique combinations possible for this clause based on dictionary word counts and the clause's configuration.
         /// </summary>
-        public abstract PhraseCombinations CountCombinations(WordDictionary dictionary);
+        public abstract PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate);
 
-        protected PhraseCombinations CountSingleFactor<T>(WordDictionary dictionary, int factor, int optionalFactor) where T : Words.Word
+        protected PhraseCombinations CountSingleFactor<T>(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate, int factor, int optionalFactor) where T : Words.Word
         {
-            var count = dictionary.CountOf<T>();
+            var count = dictionary.CountOf<T>(wordPredicate);
             return this.CountSingleFactor(factor, optionalFactor, count);
         }
         protected PhraseCombinations CountSingleFactor(int factor, int optionalFactor, int count)

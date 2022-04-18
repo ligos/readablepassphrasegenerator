@@ -197,17 +197,19 @@ namespace MurrayGrant.ReadablePassphrase
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase strength.
         /// </summary>
-        public PhraseCombinations CalculateCombinations(PhraseStrength strength)
+        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
+        public PhraseCombinations CalculateCombinations(PhraseStrength strength, IReadOnlyList<string>? mustExcludeTheseTags = null)
         {
             if (Clause.RandomMappings.ContainsKey(strength))
-                return this.CalculateCombinations(Clause.RandomMappings[strength]);
+                return this.CalculateCombinations(Clause.RandomMappings[strength], mustExcludeTheseTags: mustExcludeTheseTags);
             else
-                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength, this.Randomness));
+                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength, this.Randomness), mustExcludeTheseTags: mustExcludeTheseTags);
         }
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and randomly choosing between the given phrase strengths.
         /// </summary>
-        public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths)
+        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
+        public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths, IReadOnlyList<string>? mustExcludeTheseTags = null)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
@@ -219,7 +221,7 @@ namespace MurrayGrant.ReadablePassphrase
             double min = Double.MaxValue, max = 0.0, acc = 0.0;
             foreach (var s in strengths)
             {
-                var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s, this.Randomness));
+                var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s, this.Randomness), mustExcludeTheseTags: mustExcludeTheseTags);
                 min = Math.Min(min, comb.Shortest);
                 max += comb.Longest;
                 acc += comb.OptionalAverageAsEntropyBits;       // Max adds because of variations between phrases.
@@ -230,7 +232,8 @@ namespace MurrayGrant.ReadablePassphrase
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase description.
         /// </summary>
-        public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription)
+        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
+        public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription, IReadOnlyList<string>? mustExcludeTheseTags = null)
         {
             _ = phraseDescription ?? throw new ArgumentNullException(nameof(phraseDescription));
 
@@ -238,7 +241,7 @@ namespace MurrayGrant.ReadablePassphrase
             if (phraseDescription == null || !phraseDescription.Any())
                 return PhraseCombinations.Zero;
             return phraseDescription
-                    .Select(x => x.CountCombinations(this.Dictionary))
+                    .Select(x => x.CountCombinations(this.Dictionary, (w) => Template.ExcludeTags(w, mustExcludeTheseTags)))
                     .Aggregate((accumulator, next) => accumulator * next);
         }
         #endregion
@@ -248,6 +251,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// Generates a single phrase as a <c>SecureString</c> based on <c>PasswordStrength.Random</c>.
         /// This is the slowest and most secure method.
         /// </summary>
+        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
         public SecureString GenerateAsSecure(IReadOnlyList<string>? mustExcludeTheseTags = null)
         {
             return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ", mustExcludeTheseTags: mustExcludeTheseTags);

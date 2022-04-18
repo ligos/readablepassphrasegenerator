@@ -46,12 +46,12 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
 
 
-        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
             // Simply count all word forms.
-            var allFormCount = dictionary.CountOfAllDistinctForms();
+            var allFormCount = dictionary.CountOfAllDistinctForms(wordPredicate);
             return new PhraseCombinations(allFormCount, allFormCount, allFormCount);
         }
     }

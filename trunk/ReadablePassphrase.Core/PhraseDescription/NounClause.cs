@@ -197,30 +197,30 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             }
         }
 
-        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
-            var baseCombinations = this.CountBase(dictionary);
+            var baseCombinations = this.CountBase(dictionary, wordPredicate);
             PhraseCombinations resultCommon = PhraseCombinations.One, resultProper = PhraseCombinations.One, resultAdjective = PhraseCombinations.One, resultCommonAndAdjective = PhraseCombinations.One;
 
             // Count for just common nouns.
             if (CommonNounFactor > 0)
-                resultCommon = baseCombinations * this.CountSingleFactor<Words.Noun>(dictionary, CommonNounFactor, 0)
+                resultCommon = baseCombinations * this.CountSingleFactor<Words.Noun>(dictionary, wordPredicate, CommonNounFactor, 0)
                                                     // Numbers are usually only applied to plurals, so they reduced in number.
-                                                    * this.CountSingleFactor<Words.Number>(dictionary, NumberFactor / 2, NoNumberFactor);       
+                                                    * this.CountSingleFactor<Words.Number>(dictionary, wordPredicate, NumberFactor / 2, NoNumberFactor);       
 
             // Count for proper nouns (very simple).
             if (ProperNounFactor > 0)
-                resultProper = this.CountSingleFactor<Words.ProperNoun>(dictionary, ProperNounFactor, 0);
+                resultProper = this.CountSingleFactor<Words.ProperNoun>(dictionary, wordPredicate, ProperNounFactor, 0);
 
             // Count for adjective nouns.
             if (NounFromAdjectiveFactor > 0)
-                resultAdjective = baseCombinations * this.CountSingleFactor<Words.Adjective>(dictionary, NounFromAdjectiveFactor, 0);
+                resultAdjective = baseCombinations * this.CountSingleFactor<Words.Adjective>(dictionary, wordPredicate, NounFromAdjectiveFactor, 0);
 
             // Count combining common and adjective nouns.
-            var nounAndAdjectiveCount = (this.CommonNounFactor <= 0 ? 0 : dictionary.CountOf<Words.Noun>())
-                                      + (this.NounFromAdjectiveFactor <= 0 ? 0 : dictionary.CountOf<Words.Adjective>());
+            var nounAndAdjectiveCount = (this.CommonNounFactor <= 0 ? 0 : dictionary.CountOf<Words.Noun>(wordPredicate))
+                                      + (this.NounFromAdjectiveFactor <= 0 ? 0 : dictionary.CountOf<Words.Adjective>(wordPredicate));
             if (NounFromAdjectiveFactor > 0 && CommonNounFactor > 0)
                 resultCommonAndAdjective = baseCombinations * new PhraseCombinations(nounAndAdjectiveCount, nounAndAdjectiveCount, nounAndAdjectiveCount);
 
@@ -247,17 +247,17 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             return new PhraseCombinations(min, max, avg);
         }
 
-        private PhraseCombinations CountBase(WordDictionary dictionary)
+        private PhraseCombinations CountBase(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
         {
             // Base factors common to most different noun forms (common nouns and adjective nouns).
 
             var result = PhraseCombinations.One;
 
             // Prepositions.
-            result *= this.CountSingleFactor<Words.Preposition>(dictionary, this.PrepositionFactor, this.NoPrepositionFactor);
+            result *= this.CountSingleFactor<Words.Preposition>(dictionary, wordPredicate, this.PrepositionFactor, this.NoPrepositionFactor);
 
             // Adjectives.
-            result *= this.CountSingleFactor<Words.Adjective>(dictionary, this.AdjectiveFactor, this.NoAdjectiveFactor);
+            result *= this.CountSingleFactor<Words.Adjective>(dictionary, wordPredicate, this.AdjectiveFactor, this.NoAdjectiveFactor);
 
             // Plural / Singular.
             double factor = 0;

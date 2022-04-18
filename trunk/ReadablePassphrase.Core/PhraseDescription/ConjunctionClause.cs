@@ -60,7 +60,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
 
 
-        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
@@ -69,14 +69,14 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             if (JoiningNounFactor <= 0 && JoiningPhraseFactor <= 0)
                 throw new Exception("Conjunctions may join noun clauses or entire phrases. Set one of JoinsNoun and JoinsPhrase to greater than 0.");
 
-            var countSeparatingNouns = dictionary.CountOf<Words.Conjunction>(w => w.SeparatesNouns);
-            var countSeparatingPhrases = dictionary.CountOf<Words.Conjunction>(w => w.SeparatesPhrases);
+            var countSeparatingNouns = dictionary.CountOf<Words.Conjunction>(w => wordPredicate(w) && w.SeparatesNouns);
+            var countSeparatingPhrases = dictionary.CountOf<Words.Conjunction>(w => wordPredicate(w) && w.SeparatesPhrases);
             if (JoiningNounFactor > 0)
                 return new PhraseCombinations(countSeparatingNouns, countSeparatingNouns, countSeparatingNouns);
             if (JoiningPhraseFactor > 0)
                 return new PhraseCombinations(countSeparatingPhrases, countSeparatingPhrases, countSeparatingPhrases);
 
-            // Sould never get here.
+            // Should never get here.
             throw new Exception("Unexpected state in ConjunctionClause.");
         }
     }
