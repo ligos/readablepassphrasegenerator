@@ -49,6 +49,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
         static int minLength = 1;
         static int anyLength = 0;       // Used to indicate a non-gramatic, totally random selection of word forms.
         static CountBy countBy = CountBy.Char;
+        static bool noFake = false;
 
         static readonly int MaxAttemptsPerCount = 1000;
 
@@ -98,6 +99,8 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine("Generating {0:N0} phrase(s) based on phrase description in '{1}'...", count, System.IO.Path.GetFileName(customPhrasePath));
             if (!quiet && (maxLength < Int32.MaxValue || minLength > 1))
                 Console.WriteLine("Must be between {0:N0} and {1} {2}.", minLength, maxLength == Int32.MaxValue ? "∞" : maxLength.ToString("N0"), countByDescription);
+            if (!quiet && noFake)
+                Console.WriteLine("Excluding fake words.");
 
             var generator = new ReadablePassphraseGenerator();
 
@@ -165,6 +168,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             int generated = 0;
             int attempts = 0;
             int maxAttempts = count * MaxAttemptsPerCount;
+            var excludeTags = noFake ? new[] { Tags.Fake } : new string[0];
             var mutators = applyStandardMutators ? new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic } 
                          : applyAlternativeMutators ? new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic }
                          : Enumerable.Empty<IMutator>();
@@ -185,11 +189,11 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 string phrase;
                 attempts++;
                 if (anyLength > 0)
-                    phrase = generator.Generate(NonGrammaticalClause(anyLength), " ", mutators);
+                    phrase = generator.Generate(NonGrammaticalClause(anyLength), " ", mutators, mustExcludeTheseTags: excludeTags);
                 else if (strength == PhraseStrength.Custom)
-                    phrase = generator.Generate(phraseDescription, " ", mutators);
+                    phrase = generator.Generate(phraseDescription, " ", mutators, mustExcludeTheseTags: excludeTags);
                 else
-                    phrase = generator.Generate(strength, " ", mutators);
+                    phrase = generator.Generate(strength, " ", mutators, mustExcludeTheseTags: excludeTags);
 
                 // After mutators are applied, it's safe to remove white space.
                 if (wordSeparator != " ")
@@ -462,6 +466,10 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                     constantValue = args[i + 1];
                     i++;
                 }
+                else if (arg == "nofake")
+                {
+                    noFake = true;
+                }
                 else if (arg == "q" || arg == "quiet")
                 {
                     quiet = true;
@@ -493,6 +501,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  --countBy xxx         Min & max by [char|word] (def: {0})", countBy);
             Console.WriteLine("  --spaces true|false   Includes spaces between words (default: true)");
             Console.WriteLine("  --separator x         Character(s) to separate words (default: {0})", wordSeparator);
+            Console.WriteLine("  --noFake              Exclude fake words from passphrases (default: {0})", noFake);
             Console.WriteLine("  -n --nongrammar nn    Creates non-grammatical passphrases of length nn");
             Console.WriteLine();
             Console.WriteLine("  -m --stdMutators      Adds 2 numbers and 2 capitals to the passphrase");
