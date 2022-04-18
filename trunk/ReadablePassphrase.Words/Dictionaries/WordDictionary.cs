@@ -81,7 +81,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public int CountOf<T>(Func<T, bool> predicate)
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
-            return this.OfType<T>().Count(predicate);
+            if (WordsByType != null)
+                return WordsByType[typeof(T)].OfType<T>().Count(predicate);
+            else
+                return this.OfType<T>().Count(predicate);
         }
         public int CountOfTransitiveVerbs()
         {
