@@ -44,9 +44,9 @@ namespace Test
             Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
 
             // Basic statistics / samples.
-            //GenerateSamples(PhraseStrength.Random, generator);
-            //DictionaryCheck(generator);
-            //CombinationCount(generator);
+            GenerateSamples(PhraseStrength.Random, generator);
+            DictionaryCheck(generator);
+            CombinationCount(generator);
 
             // Short benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
@@ -115,19 +115,23 @@ namespace Test
 
         private static void DictionaryCheck(ReadablePassphraseGenerator generator)
         {
+            var regularWords = generator.Dictionary.Where(w => w.Tags.Count == 0);
+            var fakeWords = generator.Dictionary.Where(w => w.Tags.Contains(Tags.Fake));
+
             Console.WriteLine();
             Console.WriteLine("Name: {0}", generator.Dictionary.Name);
             Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
-            Console.WriteLine("TOTAL:           {0:N0}", generator.Dictionary.Count);
-            Console.WriteLine("TOTAL forms:     {0:N0}", generator.Dictionary.CountOfAllDistinctForms());
-            Console.WriteLine("Nouns:           {0:N0}", generator.Dictionary.OfType<Noun>().Count());
-            Console.WriteLine("Proper Nouns:    {0:N0}", generator.Dictionary.OfType<ProperNoun>().Count());
-            Console.WriteLine("Verbs (all):     {0:N0}", generator.Dictionary.OfType<Verb>().Count());
-            Console.WriteLine("Verbs (trans):   {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => w.IsTransitive));
-            Console.WriteLine("Verbs (intrans): {0:N0}", generator.Dictionary.OfType<Verb>().Count(w => !w.IsTransitive));
-            Console.WriteLine("Prepositions:    {0:N0}", generator.Dictionary.OfType<Preposition>().Count());
-            Console.WriteLine("Adverbs:         {0:N0}", generator.Dictionary.OfType<Adverb>().Count());
-            Console.WriteLine("Adjectives:      {0:N0}", generator.Dictionary.OfType<Adjective>().Count());
+            Console.WriteLine("                 TOTAL  Regular   Fake", generator.Dictionary.Count);
+            Console.WriteLine("TOTAL:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.Count, regularWords.Count(), fakeWords.Count());
+            Console.WriteLine("TOTAL forms:     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.CountOfAllDistinctForms(), regularWords.SelectMany(w => w.AllForms()).Distinct(StringComparer.CurrentCultureIgnoreCase).Count(), fakeWords.SelectMany(w => w.AllForms()).Distinct(StringComparer.CurrentCultureIgnoreCase).Count());
+            Console.WriteLine("Nouns:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Noun>().Count(), regularWords.OfType<Noun>().Count(), fakeWords.OfType<Noun>().Count());
+            Console.WriteLine("Proper Nouns:    {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<ProperNoun>().Count(), regularWords.OfType<ProperNoun>().Count(), fakeWords.OfType<ProperNoun>().Count());
+            Console.WriteLine("Verbs (all):     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(), regularWords.OfType<Verb>().Count(), fakeWords.OfType<Verb>().Count());
+            Console.WriteLine("Verbs (trans):   {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(w => w.IsTransitive), regularWords.OfType<Verb>().Count(w => w.IsTransitive), fakeWords.OfType<Verb>().Count(w => w.IsTransitive));
+            Console.WriteLine("Verbs (intrans): {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(w => !w.IsTransitive), regularWords.OfType<Verb>().Count(w => !w.IsTransitive), fakeWords.OfType<Verb>().Count(w => !w.IsTransitive));
+            Console.WriteLine("Prepositions:    {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Preposition>().Count(), regularWords.OfType<Preposition>().Count(), fakeWords.OfType<Preposition>().Count());
+            Console.WriteLine("Adverbs:         {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Adverb>().Count(), regularWords.OfType<Adverb>().Count(), fakeWords.OfType<Adverb>().Count());
+            Console.WriteLine("Adjectives:      {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Adjective>().Count(), regularWords.OfType<Adjective>().Count(), fakeWords.OfType<Adjective>().Count());
 
             // Check for duplicates.
             foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t) && t != typeof(Word)))
