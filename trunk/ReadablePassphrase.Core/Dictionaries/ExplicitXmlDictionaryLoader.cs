@@ -299,23 +299,24 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             _ = reader ?? throw new ArgumentNullException(nameof(reader));
 
+            var excludeTags = excludeWordsWithTags ?? new string[0];
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element)
-                    this.ParseElement(reader, excludeWordsWithTags ?? new string[0]);
+                    this.ParseElement(reader, excludeTags);
             }
             _Dict!.InitWordsByTypeLookup();
             return _Dict;
         }
 
-        private void ParseElement(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseElement(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var node = reader.Name.ToLower();
             if (!_NodeLookup.TryGetValue(node, out var action))
                 throw new DictionaryParseException(String.Format("Unknown element named '{0}' found in dictionary.", node));
-            action(reader, excludeWordsWithTags);
+            action(reader, excludeTags);
         }
-        private void ParseDictionaryRoot(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseDictionaryRoot(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 6)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
@@ -324,91 +325,91 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             _Dict = new ExplicitXmlWordDictionary(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
             _Dict.ExpandCapacityTo((int)(_StreamSize / 100L));         // Based on the 0.10.0 version, there are about 100 bytes per word.
         }
-        private void ParseArticle(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseArticle(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             // This and all subsequent accesses of _Dict should not be null, as ParseDictionaryRoot() sets it.
             _Dict!.Add(new MaterialisedArticle(reader.GetAttribute("definite"), reader.GetAttribute("indefinite"), reader.GetAttribute("indefiniteBeforeVowel"), tags));
         }
-        private void ParseDemonstrative(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseDemonstrative(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedDemonstrative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseAdverb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseAdverb(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedAdverb(reader.GetAttribute("value"), tags));
         }
-        private void ParsePersonalPronoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParsePersonalPronoun(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseIndefinitePronoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseIndefinitePronoun(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal")), tags));
         }
-        private void ParseNoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseNoun(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseProperNoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseProperNoun(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedProperNoun(reader.GetAttribute("value"), tags));
         }
-        private void ParsePreposition(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParsePreposition(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedPreposition(reader.GetAttribute("value"), tags));
         }
-        private void ParseAdjective(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseAdjective(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedAdjective(reader.GetAttribute("value"), tags));
         }
-        private void ParseSpeechVerb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseSpeechVerb(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past"), tags));
         }
-        private void ParseConjunction(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseConjunction(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             var separates = reader.GetAttribute("separates");
             var separatesNouns = separates.IndexOf("noun", StringComparison.OrdinalIgnoreCase) != -1;
             var separatesPhrases = separates.IndexOf("phrase", StringComparison.OrdinalIgnoreCase) != -1;
             _Dict!.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases, tags));
         }
-        private void ParseVerb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseVerb(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedVerb(
                         reader.GetAttribute("presentSingular"), 
@@ -433,17 +434,17 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                         )
                      );
         }
-        private void ParseInterrogative(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseInterrogative(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             _Dict!.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseNumberRange(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
+        private void ParseNumberRange(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
             var tags = ReadTags(reader);
-            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
 
             var start = Int32.Parse(reader.GetAttribute("start"));
             var end = Int32.Parse(reader.GetAttribute("end"));
@@ -460,9 +461,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
 
         static bool ShouldExcludeByTag(IReadOnlyList<string> tagsForWord, IReadOnlyList<string> tagsToExclude)
-            => tagsToExclude == null
-            || tagsToExclude.Count == 0
-            || !tagsForWord.Any(x => tagsToExclude.Contains(x));
+            => tagsToExclude.Count > 0
+            && tagsForWord.Any(x => tagsToExclude.Contains(x));
 
         #region Dispose
         private bool _IsDisposed = false;

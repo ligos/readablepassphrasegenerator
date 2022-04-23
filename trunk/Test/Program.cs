@@ -35,23 +35,20 @@ namespace Test
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            var sw = System.Diagnostics.Stopwatch.StartNew();
-            var generator = new ReadablePassphraseGenerator(GetRandomness());
-            var loader = new ExplicitXmlDictionaryLoader();
-            var dict = loader.LoadFrom(new DirectoryInfo(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)));
-            generator.SetDictionary(dict);
-            sw.Stop();
-            Console.WriteLine("Loaded dictionary of type '{0}' with {1:N0} words in {2:N2}ms ({3:N3} words / sec)", loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
+            var generator = CreateGenerator(new string[0]);
+            var exceptFakeGenerator = CreateGenerator(new[] { Tags.Fake });
+
+            DictionaryCheck(generator.Dictionary);
 
             // Basic statistics / samples.
+            Console.WriteLine("***ALL WORDS***");
             GenerateSamples(PhraseStrength.Random, generator);
-            DictionaryCheck(generator);
             CombinationCount(generator);
 
             // Exclude fake words
-            var fakeTagArray = new[] { Tags.Fake };
-            GenerateSamples(PhraseStrength.Random, generator, excludeTags: fakeTagArray);
-            CombinationCount(generator, excludeTags: fakeTagArray);
+            Console.WriteLine("***EXCEPT FAKE WORDS***");
+            GenerateSamples(PhraseStrength.Random, exceptFakeGenerator);
+            CombinationCount(exceptFakeGenerator);
 
             // Short benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 1000);
@@ -118,35 +115,53 @@ namespace Test
             //Console.WriteLine("Loaded generator from Generator.Create() with default dictionary of {0:N0} words.", easyCreatedGenerator.Dictionary.Count);
         }
 
-        private static void DictionaryCheck(ReadablePassphraseGenerator generator)
+        private static ReadablePassphraseGenerator CreateGenerator(IReadOnlyList<string> excludeTags)
+        {
+            var excludeTagsDescription =
+                excludeTags == null || excludeTags.Count == 0
+                ? "any word"
+                : "not " + String.Join(",", excludeTags);
+
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            var generator = new ReadablePassphraseGenerator(GetRandomness());
+            var loader = new ExplicitXmlDictionaryLoader();
+            var dictionary = loader.LoadFrom(new DirectoryInfo(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)), excludeWordsWithTags: excludeTags);
+            generator.SetDictionary(dictionary);
+            sw.Stop();
+            Console.WriteLine("Loaded dictionary with {0} of type '{1}' with {2:N0} words in {3:N2}ms ({4:N3} words / sec)", excludeTagsDescription, loader.GetType().Name, generator.Dictionary.Count, sw.Elapsed.TotalMilliseconds, generator.Dictionary.Count / sw.Elapsed.TotalSeconds);
+
+            return generator;
+        }
+
+        private static void DictionaryCheck(WordDictionary dictionary)
         {
             bool regularWordPredicate(Word w) => w.Tags.Count == 0;
             bool fakeWordPredicate(Word w) => w.Tags.Contains(Tags.Fake);
-            var regularWords = generator.Dictionary.Where(regularWordPredicate);
-            var fakeWords = generator.Dictionary.Where(fakeWordPredicate);
+            var regularWords = dictionary.Where(regularWordPredicate);
+            var fakeWords = dictionary.Where(fakeWordPredicate);
 
             Console.WriteLine();
-            Console.WriteLine("Name: {0}", generator.Dictionary.Name);
-            Console.WriteLine("Langauge: {0}", generator.Dictionary.LanguageCode);
-            Console.WriteLine("                 TOTAL  Regular   Fake", generator.Dictionary.Count);
-            Console.WriteLine("TOTAL:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.Count, regularWords.Count(), fakeWords.Count());
-            Console.WriteLine("TOTAL forms:     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.CountOfAllDistinctForms(), generator.Dictionary.CountOfAllDistinctForms(regularWordPredicate), generator.Dictionary.CountOfAllDistinctForms(fakeWordPredicate));
-            Console.WriteLine("Nouns:           {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Noun>().Count(), regularWords.OfType<Noun>().Count(), fakeWords.OfType<Noun>().Count());
-            Console.WriteLine("Proper Nouns:    {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<ProperNoun>().Count(), regularWords.OfType<ProperNoun>().Count(), fakeWords.OfType<ProperNoun>().Count());
-            Console.WriteLine("Verbs (all):     {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(), regularWords.OfType<Verb>().Count(), fakeWords.OfType<Verb>().Count());
-            Console.WriteLine("Verbs (trans):   {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(w => w.IsTransitive), regularWords.OfType<Verb>().Count(w => w.IsTransitive), fakeWords.OfType<Verb>().Count(w => w.IsTransitive));
-            Console.WriteLine("Verbs (intrans): {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Verb>().Count(w => !w.IsTransitive), regularWords.OfType<Verb>().Count(w => !w.IsTransitive), fakeWords.OfType<Verb>().Count(w => !w.IsTransitive));
-            Console.WriteLine("Prepositions:    {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Preposition>().Count(), regularWords.OfType<Preposition>().Count(), fakeWords.OfType<Preposition>().Count());
-            Console.WriteLine("Adverbs:         {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Adverb>().Count(), regularWords.OfType<Adverb>().Count(), fakeWords.OfType<Adverb>().Count());
-            Console.WriteLine("Adjectives:      {0,6:N0} {1,7:N0} {2,6:N0}", generator.Dictionary.OfType<Adjective>().Count(), regularWords.OfType<Adjective>().Count(), fakeWords.OfType<Adjective>().Count());
+            Console.WriteLine("Name: {0}", dictionary.Name);
+            Console.WriteLine("Langauge: {0}", dictionary.LanguageCode);
+            Console.WriteLine("                 TOTAL  Regular   Fake");
+            Console.WriteLine("TOTAL:           {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.Count, regularWords.Count(), fakeWords.Count());
+            Console.WriteLine("TOTAL forms:     {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.CountOfAllDistinctForms(), dictionary.CountOfAllDistinctForms(regularWordPredicate), dictionary.CountOfAllDistinctForms(fakeWordPredicate));
+            Console.WriteLine("Nouns:           {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Noun>().Count(), regularWords.OfType<Noun>().Count(), fakeWords.OfType<Noun>().Count());
+            Console.WriteLine("Proper Nouns:    {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<ProperNoun>().Count(), regularWords.OfType<ProperNoun>().Count(), fakeWords.OfType<ProperNoun>().Count());
+            Console.WriteLine("Verbs (all):     {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Verb>().Count(), regularWords.OfType<Verb>().Count(), fakeWords.OfType<Verb>().Count());
+            Console.WriteLine("Verbs (trans):   {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Verb>().Count(w => w.IsTransitive), regularWords.OfType<Verb>().Count(w => w.IsTransitive), fakeWords.OfType<Verb>().Count(w => w.IsTransitive));
+            Console.WriteLine("Verbs (intrans): {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Verb>().Count(w => !w.IsTransitive), regularWords.OfType<Verb>().Count(w => !w.IsTransitive), fakeWords.OfType<Verb>().Count(w => !w.IsTransitive));
+            Console.WriteLine("Prepositions:    {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Preposition>().Count(), regularWords.OfType<Preposition>().Count(), fakeWords.OfType<Preposition>().Count());
+            Console.WriteLine("Adverbs:         {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Adverb>().Count(), regularWords.OfType<Adverb>().Count(), fakeWords.OfType<Adverb>().Count());
+            Console.WriteLine("Adjectives:      {0,6:N0} {1,7:N0} {2,6:N0}", dictionary.OfType<Adjective>().Count(), regularWords.OfType<Adjective>().Count(), fakeWords.OfType<Adjective>().Count());
 
             // Check for duplicates.
             foreach (var t in typeof(Word).Assembly.GetTypes().Where(t => typeof(Word).IsAssignableFrom(t) && t != typeof(Word)))
             {
-                var duplicates = generator.Dictionary
-                                        .Where(w => t.IsAssignableFrom(w.GetType()))
-                                        .GroupBy(w => w.DictionaryEntry, StringComparer.OrdinalIgnoreCase)
-                                        .Where(g => g.Count() > 1);
+                var duplicates = dictionary
+                                .Where(w => t.IsAssignableFrom(w.GetType()))
+                                .GroupBy(w => w.DictionaryEntry, StringComparer.OrdinalIgnoreCase)
+                                .Where(g => g.Count() > 1);
                 if (duplicates.Any())
                 {
                     Console.WriteLine("DUPLICATES for {0}:", t.Name);
@@ -154,18 +169,15 @@ namespace Test
                         Console.WriteLine("    - " + g.Key);
                 }
             }
+            Console.WriteLine();
         }
 
-        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count = 20, IReadOnlyList<string> excludeTags = null)
+        private static void GenerateSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count = 20)
         {
-            var excludeTagsDescription = 
-                excludeTags == null || excludeTags.Count == 0 
-                ? "any word" 
-                : "not " + String.Join(",", excludeTags);
             Console.WriteLine();
-            Console.WriteLine("Samples ({0}, {1}):", strength, excludeTagsDescription);
+            Console.WriteLine("Samples ({0}):", strength);
             for (int i = 0; i < count; i++)
-                Console.WriteLine(generator.Generate(strength, mustExcludeTheseTags: excludeTags));
+                Console.WriteLine(generator.Generate(strength));
         }
         private static void GenerateMutatedSamples(PhraseStrength strength, ReadablePassphraseGenerator generator, int count, IEnumerable<IMutator> mutators)
         {
@@ -197,18 +209,14 @@ namespace Test
                 Console.WriteLine(generator.Generate(strength, wordDelimiter: delimiter));
         }
 
-        private static void CombinationCount(ReadablePassphraseGenerator generator, IReadOnlyList<string> excludeTags = null)
+        private static void CombinationCount(ReadablePassphraseGenerator generator)
         {
-            var excludeTagsDescription =
-                   excludeTags == null || excludeTags.Count == 0
-                   ? "any word"
-                   : "not " + String.Join(",", excludeTags);
             Console.WriteLine();
-            Console.WriteLine("Combination count ({0}):", excludeTagsDescription);
+            Console.WriteLine("Combination count:");
 
             foreach (var strength in RandomStrengths)
             {
-                var combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
+                var combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
             }
             Console.WriteLine();
@@ -222,7 +230,7 @@ namespace Test
             for (int i = 0; i < predefined.Length; i++)
             {
                 var strength = predefined[i];
-                var combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
+                var combinations = generator.CalculateCombinations(strength);
                 Console.WriteLine("  {0}: {1:E3} ({2:N2} bits)", strength, combinations.ToString(), combinations.EntropyBitsToString());
                 if ((i + 1) % 9 == 0)
                     Console.WriteLine();
