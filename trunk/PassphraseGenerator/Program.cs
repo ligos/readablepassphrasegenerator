@@ -107,7 +107,10 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             var loaderT = GetDictionaryLoaderType();
             // If the internal dictionary loader is being used and no other arguments are specified, tell it to use the default dictionary.
             if (loaderT == typeof(ExplicitXmlDictionaryLoader) && String.IsNullOrEmpty(loaderArguments.Trim()))
-                loaderArguments = "useDefaultDictionary=true";
+            {
+                var tagsToExclude = noFake ? Tags.Fake : "";
+                loaderArguments = "useDefaultDictionary=true;excludeWordsWithTags=" + tagsToExclude;
+            }
 
             // And load our dictionary!
             using (var loader = Activator.CreateInstance(loaderT) as IDictionaryLoader) 
@@ -119,20 +122,19 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             dictSw.Stop();
 
             // Tag array for fakes.
-            var excludeTags = noFake ? new[] { Tags.Fake } : new string[0];
             var fakeDescription = noFake ? "non-fake " : "";
 
             // Summarise actions and combinations / entropy.
             if (!quiet)
             {
-                Console.WriteLine("Dictionary contains {0:N0} {1}words (loaded in {2:N2}ms)", generator.Dictionary.CountAll(w => Template.ExcludeTags(w, excludeTags)), fakeDescription, dictSw.Elapsed.TotalMilliseconds);
+                Console.WriteLine("Dictionary contains {0:N0} {1}words (loaded in {2:N2}ms)", generator.Dictionary.Count, fakeDescription, dictSw.Elapsed.TotalMilliseconds);
                 PhraseCombinations combinations;
                 if (anyLength > 0)
-                    combinations = generator.CalculateCombinations(NonGrammaticalClause(anyLength), mustExcludeTheseTags: excludeTags);
+                    combinations = generator.CalculateCombinations(NonGrammaticalClause(anyLength));
                 else if (strength != PhraseStrength.Custom)
-                    combinations = generator.CalculateCombinations(strength, mustExcludeTheseTags: excludeTags);
+                    combinations = generator.CalculateCombinations(strength);
                 else
-                    combinations = generator.CalculateCombinations(phraseDescription, mustExcludeTheseTags: excludeTags);
+                    combinations = generator.CalculateCombinations(phraseDescription);
                 Console.WriteLine("Average combinations ~{0:E3} (~{1:N2} bits)", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
                 Console.WriteLine("Total combinations {0:E3} - {1:E3} ({2:N2} - {3:N2} bits)", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 
@@ -190,11 +192,11 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 string phrase;
                 attempts++;
                 if (anyLength > 0)
-                    phrase = generator.Generate(NonGrammaticalClause(anyLength), " ", mutators, mustExcludeTheseTags: excludeTags);
+                    phrase = generator.Generate(NonGrammaticalClause(anyLength), " ", mutators);
                 else if (strength == PhraseStrength.Custom)
-                    phrase = generator.Generate(phraseDescription, " ", mutators, mustExcludeTheseTags: excludeTags);
+                    phrase = generator.Generate(phraseDescription, " ", mutators);
                 else
-                    phrase = generator.Generate(strength, " ", mutators, mustExcludeTheseTags: excludeTags);
+                    phrase = generator.Generate(strength, " ", mutators);
 
                 // After mutators are applied, it's safe to remove white space.
                 if (wordSeparator != " ")
