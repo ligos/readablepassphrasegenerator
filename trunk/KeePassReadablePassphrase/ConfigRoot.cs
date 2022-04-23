@@ -58,9 +58,8 @@ namespace KeePassReadablePassphrase
                 config = new Config();
             }
 
-            // Load the dictionary so we can display the number of words in the config window.
-            var dict = PassphraseGenerator.LoadDictionary(config);
-            this._Generator.SetDictionary(dict);
+            // Dictionary needs to be loaded or data binding will fail.
+            this.UpdateDictionary(config);
 
             // "Data Bind"
             this.ConfigObjectToForm(config);
@@ -109,6 +108,7 @@ namespace KeePassReadablePassphrase
         private void chkExcludeFake_CheckedChanged(object sender, EventArgs e)
         {
             var newConf = this.FormToConfigObject();
+            this.UpdateDictionary(newConf);
             this.UpdateCombinations(newConf);
             this.UpdateDictionarySize(newConf);
         }
@@ -152,8 +152,7 @@ namespace KeePassReadablePassphrase
             if (conf != null)
             {
                 // TODO: error handling.
-                var dict = PassphraseGenerator.LoadDictionary(conf);
-                this._Generator.SetDictionary(dict);
+                this.UpdateDictionary(conf);
                 this.UpdateCombinations(conf);
                 this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
             }
@@ -171,8 +170,7 @@ namespace KeePassReadablePassphrase
                 if (conf != null)
                 {
                     // TODO: error handling.
-                    var dict = PassphraseGenerator.LoadDictionary(conf);
-                    this._Generator.SetDictionary(dict);
+                    this.UpdateDictionary(conf);
                     this.UpdateCombinations(conf);
                     this.lblStatus.Text = String.Format("Successfully loaded dictionary '{0}'.", System.IO.Path.GetFileName(this.ofdCustomDictionary.FileName));
                 }
@@ -224,7 +222,7 @@ namespace KeePassReadablePassphrase
                 this.cboConstantStyle.Text = config.ConstantStyle.ToString();
                 this.txtConstantValue.Text = config.ConstantValue;
 
-
+                this.UpdateDictionary(config);
                 this.UpdateDescription(config);
                 this.UpdateCombinations(config);
                 this.UpdateDictionarySize(config);
@@ -237,6 +235,12 @@ namespace KeePassReadablePassphrase
                 _IsLoading = false;
             }
         }
+
+        private void UpdateDictionary(Config config)
+        {
+            var dict = PassphraseGenerator.LoadDictionary(config);
+            this._Generator.SetDictionary(dict);
+        }
         private void UpdateDescription(Config config)
         {
             if (config == null || MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
@@ -247,14 +251,13 @@ namespace KeePassReadablePassphrase
         private void UpdateCombinations(Config config)
         {
             // TODO: this should take into account the mutators as well.
-            var excludeTagsArray = config.ExcludeFakeWords ? new[] { MurrayGrant.ReadablePassphrase.Words.Tags.Fake } : new string[0];
             PhraseCombinations combinations;
             if (config == null)
                 combinations = PhraseCombinations.Zero;
             else if (MurrayGrant.ReadablePassphrase.PhraseDescription.Clause.RandomMappings.ContainsKey(config.PhraseStrength))
-                combinations = this._Generator.CalculateCombinations(config.PhraseStrength, mustExcludeTheseTags: excludeTagsArray);
+                combinations = this._Generator.CalculateCombinations(config.PhraseStrength);
             else
-                combinations = this._Generator.CalculateCombinations(config.PhraseDescription, mustExcludeTheseTags: excludeTagsArray);
+                combinations = this._Generator.CalculateCombinations(config.PhraseDescription);
             if (combinations.Shortest >= 0)
             {
                 this.txtCombinationRange.Text = combinations.Shortest.ToString("E3") + " ‐ " + combinations.Longest.ToString("E3");
@@ -272,12 +275,7 @@ namespace KeePassReadablePassphrase
         }
         private void UpdateDictionarySize(Config config)
         {
-            var total = 0;
-            if (config.ExcludeFakeWords)
-                total = this._Generator.Dictionary.CountAll(w => !w.Tags.Contains(MurrayGrant.ReadablePassphrase.Words.Tags.Fake));
-            else
-                total = this._Generator.Dictionary.Count;
-            this.txtDictionarySize.Text = total.ToString("N0");
+            this.txtDictionarySize.Text = this._Generator.Dictionary.Count.ToString("N0");
         }
         private void UpdateCustomStrengthVisibility(bool isCustomSelected)
         {

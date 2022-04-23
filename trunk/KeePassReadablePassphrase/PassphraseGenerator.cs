@@ -246,21 +246,23 @@ namespace KeePassReadablePassphrase
             if (cacheConf == null || thisConf == null)
                 return false;
             return cacheConf.UseCustomDictionary == thisConf.UseCustomDictionary
-                && cacheConf.PathOfCustomDictionary == thisConf.PathOfCustomDictionary;
+                && cacheConf.PathOfCustomDictionary == thisConf.PathOfCustomDictionary
+                && cacheConf.ExcludeFakeWords == thisConf.ExcludeFakeWords;
         }
         public static WordDictionary LoadDictionary(Config conf)
         {
             var loader = new ExplicitXmlDictionaryLoader();
+            var excludeTagsArray = conf.ExcludeFakeWords ? new[] { MurrayGrant.ReadablePassphrase.Words.Tags.Fake } : new string[0];
             WordDictionary result;
             if (conf.UseCustomDictionary && !String.IsNullOrEmpty(conf.PathOfCustomDictionary) && System.IO.File.Exists(conf.PathOfCustomDictionary))
             {
-                result = loader.LoadFrom(conf.PathOfCustomDictionary);
+                result = loader.LoadFrom(conf.PathOfCustomDictionary, excludeWordsWithTags: excludeTagsArray);
             }
             else
             {
                 using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(DictionaryResourceName))
                 {
-                    result = loader.LoadFrom(s);
+                    result = loader.LoadFrom(s, excludeWordsWithTags: excludeTagsArray);
                 }
             }
             return result;
