@@ -29,6 +29,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public override string Name { get { return "Empty Dictionary"; } }
         public override int Version { get { return 0; } }
 
+        public override IReadOnlyCollection<string> ExcludedTags => new string[0];
+
         public EmptyDictionary() : base() { }
     }
 }

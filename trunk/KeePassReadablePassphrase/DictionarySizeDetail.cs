@@ -37,6 +37,7 @@ namespace KeePassReadablePassphrase
         private void DictionarySizeDetail_Load(object sender, EventArgs e)
         {
             cboFilter.Text = "ALL";
+            lblTagWarning.Visible = _Dictionary.ExcludedTags.Any();
         }
 
         private void btnOK_Click(object sender, EventArgs e)

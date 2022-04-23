@@ -28,10 +28,12 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private readonly string _LanguageCode;
         private readonly string _Name;
         private readonly int _Version;
+        private IReadOnlyCollection<string>? _ExcludedTags;
 
         public override string LanguageCode { get { return _LanguageCode; } }
         public override string Name { get { return _Name; } }
         public override int Version { get { return _Version; } }
+        public override IReadOnlyCollection<string> ExcludedTags => _ExcludedTags ?? new string[0];
 
         public ExplicitXmlWordDictionary() : this("EMPTY", "en", 1) { }
         public ExplicitXmlWordDictionary(string name, string languageCode) : this(name, languageCode, 1) { }
@@ -46,6 +48,11 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         {
             if (this.Items is List<Word> asList && count > 100 && asList.Capacity < count)
                 asList.Capacity = count;
+        }
+
+        internal void SetExcludedTags(IReadOnlyCollection<string>? value)
+        {
+            _ExcludedTags = value;
         }
     }
 }

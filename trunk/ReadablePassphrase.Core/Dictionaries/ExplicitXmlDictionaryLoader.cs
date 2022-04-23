@@ -324,6 +324,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             // Root element must be parsed first.
             _Dict = new ExplicitXmlWordDictionary(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
             _Dict.ExpandCapacityTo((int)(_StreamSize / 100L));         // Based on the 0.10.0 version, there are about 100 bytes per word.
+            _Dict.SetExcludedTags(excludeTags);
         }
         private void ParseArticle(XmlReader reader, IReadOnlyList<string> excludeTags)
         {

@@ -32,6 +32,8 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         public abstract string Name { get; }
         public abstract int Version { get; }
 
+        public abstract IReadOnlyCollection<string> ExcludedTags { get; }
+
         public virtual Article TheArticle { get { return this.GetWordAtIndex<Article>(0); } }
 
         protected Dictionary<Type, List<Word>> WordsByType { get; private set; } = new Dictionary<Type, List<Word>>();
