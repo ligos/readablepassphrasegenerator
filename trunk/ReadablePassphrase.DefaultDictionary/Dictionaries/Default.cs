@@ -31,12 +31,13 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// <summary>
         /// Load the default dictionary from the embedded resource.
         /// </summary>
-        public static WordDictionary Load()
+        /// <param name="excludeTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
+        public static WordDictionary Load(IReadOnlyList<string>? excludeTags = null)
         {
             var loader = new ExplicitXmlDictionaryLoader();
             using (var s = Stream())
             {
-                WordDictionary result = loader.LoadFrom(s);
+                WordDictionary result = loader.LoadFrom(s, excludeWordsWithTags: excludeTags);
                 return result;
             }
         }

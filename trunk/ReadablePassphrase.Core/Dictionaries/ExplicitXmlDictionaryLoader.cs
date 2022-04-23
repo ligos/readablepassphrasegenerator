@@ -29,28 +29,28 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         private static readonly IReadOnlyList<string> EmptyTags = new string[0];
 
         private ExplicitXmlWordDictionary? _Dict;
-        private readonly Dictionary<string, Action<XmlReader>> _NodeLookup;
+        private readonly Dictionary<string, Action<XmlReader, IReadOnlyList<string>>> _NodeLookup;
         private long _StreamSize;
 
         public ExplicitXmlDictionaryLoader()
         {
             // Lookup table for loading XML nodes.
             _NodeLookup = new [] {
-                new KeyValuePair<string, Action<XmlReader>>("dictionary", ParseDictionaryRoot),
-                new KeyValuePair<string, Action<XmlReader>>("article", ParseArticle),
-                new KeyValuePair<string, Action<XmlReader>>("demonstrative", ParseDemonstrative),
-                new KeyValuePair<string, Action<XmlReader>>("personalpronoun", ParsePersonalPronoun),
-                new KeyValuePair<string, Action<XmlReader>>("noun", ParseNoun),
-                new KeyValuePair<string, Action<XmlReader>>("propernoun", ParseProperNoun),
-                new KeyValuePair<string, Action<XmlReader>>("preposition", ParsePreposition),
-                new KeyValuePair<string, Action<XmlReader>>("adjective", ParseAdjective),
-                new KeyValuePair<string, Action<XmlReader>>("adverb", ParseAdverb),
-                new KeyValuePair<string, Action<XmlReader>>("verb", ParseVerb),
-                new KeyValuePair<string, Action<XmlReader>>("interrogative", ParseInterrogative),
-                new KeyValuePair<string, Action<XmlReader>>("conjunction", ParseConjunction),
-                new KeyValuePair<string, Action<XmlReader>>("speechverb", ParseSpeechVerb),
-                new KeyValuePair<string, Action<XmlReader>>("indefinitepronoun", ParseIndefinitePronoun),
-                new KeyValuePair<string, Action<XmlReader>>("numberrange", ParseNumberRange),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("dictionary", ParseDictionaryRoot),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("article", ParseArticle),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("demonstrative", ParseDemonstrative),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("personalpronoun", ParsePersonalPronoun),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("noun", ParseNoun),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("propernoun", ParseProperNoun),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("preposition", ParsePreposition),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("adjective", ParseAdjective),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("adverb", ParseAdverb),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("verb", ParseVerb),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("interrogative", ParseInterrogative),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("conjunction", ParseConjunction),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("speechverb", ParseSpeechVerb),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("indefinitepronoun", ParseIndefinitePronoun),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("numberrange", ParseNumberRange),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -71,6 +71,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             bool? isCompressed = null;
             bool useDefaultDictionaryTemp;
             bool? useDefaultDictionary = null;
+            var excludeTags = new string[0];
             if (args.ContainsKey("file") && !String.IsNullOrEmpty(args["file"]))
                 fileLocation = new FileInfo(args["file"]);
             else if (args.ContainsKey("dir") && !String.IsNullOrEmpty(args["dir"]))
@@ -81,23 +82,26 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 isCompressed = isCompressedTemp;
             if (args.ContainsKey("useDefaultDictionary") && Boolean.TryParse(args["useDefaultDictionary"], out useDefaultDictionaryTemp))
                 useDefaultDictionary = useDefaultDictionaryTemp;
-    
+            if (args.ContainsKey("excludeWordsWithTags"))
+                excludeTags = (args["excludeWordsWithTags"] ?? "").Split(Word.CommaArray, StringSplitOptions.RemoveEmptyEntries);
+
+
             // Based on what was passed in, call an appropriate LoadFrom() overload.
             if (fileLocation != null)
-                return this.LoadFrom(fileLocation);
+                return this.LoadFrom(fileLocation, excludeWordsWithTags: excludeTags);
             else if (dirLocation != null)
-                return this.LoadFrom(dirLocation);
+                return this.LoadFrom(dirLocation, excludeWordsWithTags: excludeTags);
             else if (urlLocation != null && !isCompressed.HasValue)
                 throw new InvalidDictionaryLoaderArgumentException("If you are loading from a url, you must specify 'isCompressed=true|false'.");
             else if (urlLocation != null)
 #if NETSTANDARD
                 throw new InvalidDictionaryLoaderArgumentException("Loading from a URL is not supported in .NET Core; use System.Net.Http and pass your Stream / XmlReader to a LoadFrom() overload.");
 #else
-                return this.LoadFrom(urlLocation, isCompressed!.Value);
+                return this.LoadFrom(urlLocation, isCompressed!.Value, excludeWordsWithTags: excludeTags);
 #endif
             else if (useDefaultDictionary == true)
 #pragma warning disable CS0618
-                return this.LoadFrom();
+                return this.LoadFrom(excludeWordsWithTags: excludeTags);
 #pragma warning restore
             else
                 throw new InvalidDictionaryLoaderArgumentException("Neither 'url' or 'file' parameters were specified. If you with to look for and load a defult dictionary.xml file in the current directory, specify 'useDefaultDictionary=true'.");
@@ -113,7 +117,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
         [Obsolete("Recommend using LoadFrom(DirectoryInfo) or LoadFrom(FileInfo) for consistancy across platforms.")]
-        public ExplicitXmlWordDictionary LoadFrom()
+        public ExplicitXmlWordDictionary LoadFrom(IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             // Check dictionary.xml, dictionary.xml.gz, dictionary.gz in entrypoint and current working directory.
             var allLocationsToCheck = Enumerable.Empty<string>();
@@ -126,13 +130,13 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             
             foreach (var fileAndPath in allLocationsToCheck)
             {
-                if (TryLoadDictionaryFromPath(fileAndPath, out var result))
+                if (TryLoadDictionaryFromPath(fileAndPath, out var result, excludeWordsWithTags: excludeWordsWithTags))
                     return result!;
             }
 
             throw new UnableToLoadDictionaryException("Unable to load default dictionary. Tried the following locations: " + String.Join(", ", allLocationsToCheck));
         }
-        private bool TryLoadDictionaryFromPath(string fileAndPath, out ExplicitXmlWordDictionary? dict)
+        private bool TryLoadDictionaryFromPath(string fileAndPath, out ExplicitXmlWordDictionary? dict, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (!File.Exists(fileAndPath))
             {
@@ -142,7 +146,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             try
             {
                 using var stream = new FileStream(fileAndPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                dict = this.LoadFrom(stream);
+                dict = this.LoadFrom(stream, excludeWordsWithTags: excludeWordsWithTags);
                 return true;
             }
             catch (Exception)
@@ -159,10 +163,10 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(string pathToExternalFile)
+        public ExplicitXmlWordDictionary LoadFrom(string pathToExternalFile, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (String.IsNullOrEmpty(pathToExternalFile)) throw new ArgumentNullException(nameof(pathToExternalFile));
-            return this.LoadFrom(new FileInfo(pathToExternalFile));
+            return this.LoadFrom(new FileInfo(pathToExternalFile), excludeWordsWithTags: excludeWordsWithTags);
         }
         /// <summary>
         /// Loads a dictionary from the specified file.
@@ -172,11 +176,11 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(FileInfo externalFile)
+        public ExplicitXmlWordDictionary LoadFrom(FileInfo externalFile, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (externalFile == null) throw new ArgumentNullException(nameof(externalFile));
             using var s = externalFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
-            return LoadFrom(s);
+            return LoadFrom(s, excludeWordsWithTags: excludeWordsWithTags);
         }
 
         /// <summary>
@@ -185,14 +189,14 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// <remarks>
         /// This will attempt to load 'dictionary.xml, .xml.gz and .gz' from the specified directory.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(DirectoryInfo searchDirectory)
+        public ExplicitXmlWordDictionary LoadFrom(DirectoryInfo searchDirectory, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (searchDirectory == null) throw new ArgumentNullException(nameof(searchDirectory));
 
             var allLocationsToCheck = _DefaultFilenames.Select(f => Path.Combine(searchDirectory.FullName, f));
             foreach (var fileAndPath in allLocationsToCheck)
             {
-                if (TryLoadDictionaryFromPath(fileAndPath, out var result))
+                if (TryLoadDictionaryFromPath(fileAndPath, out var result, excludeWordsWithTags: excludeWordsWithTags))
                     return result!;
             }
 
@@ -211,9 +215,9 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed)
+        public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
-            return LoadFrom(networkLocation, isCompressed, TimeSpan.Zero);
+            return LoadFrom(networkLocation, isCompressed, TimeSpan.Zero, excludeWordsWithTags: excludeWordsWithTags);
         }
         /// <summary>
         /// Loads a dictionary from the specified url.
@@ -223,7 +227,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed, TimeSpan timeout)
+        public ExplicitXmlWordDictionary LoadFrom(Uri networkLocation, bool isCompressed, TimeSpan timeout, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             _ = networkLocation ?? throw new ArgumentNullException(nameof(networkLocation));
 
@@ -231,7 +235,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             if (timeout > TimeSpan.Zero)
                 request.Timeout = (int)timeout.TotalMilliseconds;
             using var response = request.GetResponse();
-            return LoadFrom(response.GetResponseStream(), isCompressed);
+            return LoadFrom(response.GetResponseStream(), isCompressed, excludeWordsWithTags: excludeWordsWithTags);
         }
 #endif
 
@@ -244,7 +248,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(Stream s)
+        public ExplicitXmlWordDictionary LoadFrom(Stream s, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (s == null)
                 throw new ArgumentNullException("s");
@@ -260,7 +264,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             if (buf[0] == 0x1f && buf[1] == 0x8b)
                 // Found Gzip magic number, decompress before loading.
                 uncompressedStream = new System.IO.Compression.GZipStream(s, System.IO.Compression.CompressionMode.Decompress);
-            return this.LoadFrom(uncompressedStream, false);
+            return this.LoadFrom(uncompressedStream, false, excludeWordsWithTags: excludeWordsWithTags);
         }
 
         /// <summary>
@@ -273,7 +277,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         /// 
         /// For information about the dictionary schema definition see the default xml file or github.
         /// </remarks>
-        public ExplicitXmlWordDictionary LoadFrom(Stream s, bool isCompressed)
+        public ExplicitXmlWordDictionary LoadFrom(Stream s, bool isCompressed, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             if (s == null)
                 throw new ArgumentNullException("s");
@@ -289,29 +293,29 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             }
             catch (NotSupportedException) { }
 
-            return this.LoadFrom(XmlReader.Create(uncompressedStream));            
+            return this.LoadFrom(XmlReader.Create(uncompressedStream), excludeWordsWithTags: excludeWordsWithTags);            
         }
-        public ExplicitXmlWordDictionary LoadFrom(XmlReader reader)
+        public ExplicitXmlWordDictionary LoadFrom(XmlReader reader, IReadOnlyList<string>? excludeWordsWithTags = null)
         {
             _ = reader ?? throw new ArgumentNullException(nameof(reader));
 
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element)
-                    this.ParseElement(reader);
+                    this.ParseElement(reader, excludeWordsWithTags ?? new string[0]);
             }
             _Dict!.InitWordsByTypeLookup();
             return _Dict;
         }
 
-        private void ParseElement(XmlReader reader)
+        private void ParseElement(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
             var node = reader.Name.ToLower();
             if (!_NodeLookup.TryGetValue(node, out var action))
                 throw new DictionaryParseException(String.Format("Unknown element named '{0}' found in dictionary.", node));
-            action(reader);
+            action(reader, excludeWordsWithTags);
         }
-        private void ParseDictionaryRoot(XmlReader reader)
+        private void ParseDictionaryRoot(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
             if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 6)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
@@ -320,56 +324,91 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             _Dict = new ExplicitXmlWordDictionary(reader.GetAttribute("name"), reader.GetAttribute("language"), version);
             _Dict.ExpandCapacityTo((int)(_StreamSize / 100L));         // Based on the 0.10.0 version, there are about 100 bytes per word.
         }
-        private void ParseArticle(XmlReader reader)
+        private void ParseArticle(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
             // This and all subsequent accesses of _Dict should not be null, as ParseDictionaryRoot() sets it.
-            _Dict!.Add(new MaterialisedArticle(reader.GetAttribute("definite"), reader.GetAttribute("indefinite"), reader.GetAttribute("indefiniteBeforeVowel"), ReadTags(reader)));
+            _Dict!.Add(new MaterialisedArticle(reader.GetAttribute("definite"), reader.GetAttribute("indefinite"), reader.GetAttribute("indefiniteBeforeVowel"), tags));
         }
-        private void ParseDemonstrative(XmlReader reader)
+        private void ParseDemonstrative(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedDemonstrative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedDemonstrative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseAdverb(XmlReader reader)
+        private void ParseAdverb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedAdverb(reader.GetAttribute("value"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedAdverb(reader.GetAttribute("value"), tags));
         }
-        private void ParsePersonalPronoun(XmlReader reader)
+        private void ParsePersonalPronoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedPersonalPronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseIndefinitePronoun(XmlReader reader)
+        private void ParseIndefinitePronoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal")), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedIndefinitePronoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), Boolean.Parse(reader.GetAttribute("personal")), tags));
         }
-        private void ParseNoun(XmlReader reader)
+        private void ParseNoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedNoun(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseProperNoun(XmlReader reader)
+        private void ParseProperNoun(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedProperNoun(reader.GetAttribute("value"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedProperNoun(reader.GetAttribute("value"), tags));
         }
-        private void ParsePreposition(XmlReader reader)
+        private void ParsePreposition(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedPreposition(reader.GetAttribute("value"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedPreposition(reader.GetAttribute("value"), tags));
         }
-        private void ParseAdjective(XmlReader reader)
+        private void ParseAdjective(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedAdjective(reader.GetAttribute("value"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedAdjective(reader.GetAttribute("value"), tags));
         }
-        private void ParseSpeechVerb(XmlReader reader)
+        private void ParseSpeechVerb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedSpeechVerb(reader.GetAttribute("past"), tags));
         }
-        private void ParseConjunction(XmlReader reader)
+        private void ParseConjunction(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
             var separates = reader.GetAttribute("separates");
             var separatesNouns = separates.IndexOf("noun", StringComparison.OrdinalIgnoreCase) != -1;
             var separatesPhrases = separates.IndexOf("phrase", StringComparison.OrdinalIgnoreCase) != -1;
-            _Dict!.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases, ReadTags(reader)));
+            _Dict!.Add(new MaterialisedConjunction(reader.GetAttribute("value"), separatesNouns, separatesPhrases, tags));
         }
-        private void ParseVerb(XmlReader reader)
+        private void ParseVerb(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
 
             _Dict!.Add(new MaterialisedVerb(
                         reader.GetAttribute("presentSingular"), 
@@ -390,21 +429,26 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
 
                         // The 'transitive' attribute is new and optional, verbs are assumed to be transitive by default (as most are).
                         String.IsNullOrEmpty(reader.GetAttribute("transitive")) ? true : Boolean.Parse(reader.GetAttribute("transitive")),
-                        
-                        ReadTags(reader)
+                        tags
                         )
                      );
         }
-        private void ParseInterrogative(XmlReader reader)
+        private void ParseInterrogative(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
-            _Dict!.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), ReadTags(reader)));
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
+            _Dict!.Add(new MaterialisedInterrogative(reader.GetAttribute("singular"), reader.GetAttribute("plural"), tags));
         }
-        private void ParseNumberRange(XmlReader reader)
+        private void ParseNumberRange(XmlReader reader, IReadOnlyList<string> excludeWordsWithTags)
         {
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeWordsWithTags)) return;
+
             var start = Int32.Parse(reader.GetAttribute("start"));
             var end = Int32.Parse(reader.GetAttribute("end"));
             for (int i = start; i <= end; i++)
-                _Dict!.Add(new MaterialisedNumber(i, ReadTags(reader)));
+                _Dict!.Add(new MaterialisedNumber(i, tags));
         }
 
         private IReadOnlyList<string> ReadTags(XmlReader reader)
@@ -415,7 +459,12 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             return tagsCsv.Split(Word.CommaArray, StringSplitOptions.RemoveEmptyEntries);
         }
 
-#region Dispose
+        static bool ShouldExcludeByTag(IReadOnlyList<string> tagsForWord, IReadOnlyList<string> tagsToExclude)
+            => tagsToExclude == null
+            || tagsToExclude.Count == 0
+            || !tagsForWord.Any(x => tagsToExclude.Contains(x));
+
+        #region Dispose
         private bool _IsDisposed = false;
         public void Dispose()
         {
