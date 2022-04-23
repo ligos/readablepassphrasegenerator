@@ -30,13 +30,13 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
         {
             SubjectIsPlural = subjectIsPlural;
         }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
             _ = alreadyChosen ?? throw new ArgumentNullException(nameof(alreadyChosen));
 
-            var word = words.ChooseWord<Interrogative>(randomness, alreadyChosen, wordPredicate);
+            var word = words.ChooseWord<Interrogative>(randomness, alreadyChosen, True);
             return new WordAndString(word, SubjectIsPlural ? word.Plural : word.Singular);
         }
     }

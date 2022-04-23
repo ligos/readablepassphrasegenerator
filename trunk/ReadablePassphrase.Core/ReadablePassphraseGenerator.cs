@@ -197,19 +197,17 @@ namespace MurrayGrant.ReadablePassphrase
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase strength.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public PhraseCombinations CalculateCombinations(PhraseStrength strength, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public PhraseCombinations CalculateCombinations(PhraseStrength strength)
         {
             if (Clause.RandomMappings.ContainsKey(strength))
-                return this.CalculateCombinations(Clause.RandomMappings[strength], mustExcludeTheseTags: mustExcludeTheseTags);
+                return this.CalculateCombinations(Clause.RandomMappings[strength]);
             else
-                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength, this.Randomness), mustExcludeTheseTags: mustExcludeTheseTags);
+                return this.CalculateCombinations(Clause.CreatePhraseDescription(strength, this.Randomness));
         }
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and randomly choosing between the given phrase strengths.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public PhraseCombinations CalculateCombinations(IEnumerable<PhraseStrength> strengths)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
@@ -221,7 +219,7 @@ namespace MurrayGrant.ReadablePassphrase
             double min = Double.MaxValue, max = 0.0, acc = 0.0;
             foreach (var s in strengths)
             {
-                var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s, this.Randomness), mustExcludeTheseTags: mustExcludeTheseTags);
+                var comb = this.CalculateCombinations(Clause.CreatePhraseDescription(s, this.Randomness));
                 min = Math.Min(min, comb.Shortest);
                 max += comb.Longest;
                 acc += comb.OptionalAverageAsEntropyBits;       // Max adds because of variations between phrases.
@@ -232,8 +230,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// <summary>
         /// Calculates the number of possible combinations of phrases based on the current dictionary and given phrase description.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public PhraseCombinations CalculateCombinations(IEnumerable<Clause> phraseDescription)
         {
             _ = phraseDescription ?? throw new ArgumentNullException(nameof(phraseDescription));
 
@@ -241,7 +238,7 @@ namespace MurrayGrant.ReadablePassphrase
             if (phraseDescription == null || !phraseDescription.Any())
                 return PhraseCombinations.Zero;
             return phraseDescription
-                    .Select(x => x.CountCombinations(this.Dictionary, (w) => Template.ExcludeTags(w, mustExcludeTheseTags)))
+                    .Select(x => x.CountCombinations(this.Dictionary))
                     .Aggregate((accumulator, next) => accumulator * next);
         }
         #endregion
@@ -251,37 +248,33 @@ namespace MurrayGrant.ReadablePassphrase
         /// Generates a single phrase as a <c>SecureString</c> based on <c>PasswordStrength.Random</c>.
         /// This is the slowest and most secure method.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure()
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
         /// This is the slowest and most secure method.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(PhraseStrength strength, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(PhraseStrength strength)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on a randomly selected phrase strength.
         /// This is the slowest and most secure method.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths)
         {
-            return GenerateAsSecure(strengths, " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(strengths, " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
         /// This is the slowest and most secure method.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription)
         {
-            return GenerateAsSecure(phraseDescription, " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(phraseDescription, " ");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -289,10 +282,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(PhraseStrength strength, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -300,10 +292,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(PhraseStrength strength, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(PhraseStrength strength, string wordDelimiter)
         {
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -311,15 +302,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), includeSpacesBetweenWords, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase strength.
@@ -327,15 +317,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), wordDelimiter, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsSecure(Clause.CreatePhraseDescription(strength, this.Randomness), wordDelimiter);
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -343,10 +332,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
         {
-            return this.GenerateAsSecure(phraseDescription, includeSpacesBetweenWords ? " " : "", mustExcludeTheseTags: mustExcludeTheseTags);
+            return this.GenerateAsSecure(phraseDescription, includeSpacesBetweenWords ? " " : "");
         }
         /// <summary>
         /// Generates a single phrase as a <c>SecureString</c> based on the given phrase description.
@@ -354,15 +342,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public SecureString GenerateAsSecure(IEnumerable<Clause> phraseDescription, string wordDelimiter)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
             wordDelimiter = wordDelimiter ?? "";
 
             var result = new GenerateInSecureString();
-            this.GenerateInternal(phraseDescription, wordDelimiter, mustExcludeTheseTags, result);
+            this.GenerateInternal(phraseDescription, wordDelimiter, result);
             if (wordDelimiter.Length > 0)
                 // When a delimiter is included between words there is always a trailing one. Remove it.
                 result.Target.RemoveAt(result.Target.Length - wordDelimiter.Length);
@@ -379,10 +366,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members (default: Random).</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public String Generate(PhraseStrength strength = PhraseStrength.Random, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public String Generate(PhraseStrength strength = PhraseStrength.Random, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators, mustExcludeTheseTags: mustExcludeTheseTags);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on a randomly chosen phrase strength in a <c>StringBuilder</c>.
@@ -391,15 +377,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public String Generate(IEnumerable<PhraseStrength> strengths, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public String Generate(IEnumerable<PhraseStrength> strengths, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators, mustExcludeTheseTags: mustExcludeTheseTags);
+            return Generate(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mutators);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a <c>StringBuilder</c>.
@@ -408,8 +393,7 @@ namespace MurrayGrant.ReadablePassphrase
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase (default: single space).</param>
         /// <param name="mutators">Applies one or more mutators to the passphrase after it is generated (default: none).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public String Generate(IEnumerable<Clause> phraseDescription, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public String Generate(IEnumerable<Clause> phraseDescription, string wordDelimiter = " ", IEnumerable<IMutator>? mutators = null)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
@@ -418,7 +402,7 @@ namespace MurrayGrant.ReadablePassphrase
 
             // Mutators rely on whitespace to do their work, so we use a space if mutators are specified.
             var anyMutators = (mutators != null && mutators.Any());
-            this.GenerateInternal(phraseDescription, anyMutators ? " " : wordDelimiter, mustExcludeTheseTags, str);
+            this.GenerateInternal(phraseDescription, anyMutators ? " " : wordDelimiter, str);
 
             foreach (var m in mutators ?? Enumerable.Empty<IMutator>())
             {
@@ -443,19 +427,17 @@ namespace MurrayGrant.ReadablePassphrase
         /// Generates a single phrase based on <c>PasswordStrength.Random</c> in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes()
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(PhraseStrength.Random, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -463,10 +445,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, bool includeSpacesBetweenWords)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase strength in a UTF8 <c>byte[]</c>.
@@ -474,20 +455,18 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strength">One of the predefined <c>PhraseStrength</c> enumeration members.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(PhraseStrength strength, string wordDelimiter)
         {
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
         }
         /// <summary>
         /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths)
         {
-            return this.GenerateAsUtf8Bytes(strengths, " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return this.GenerateAsUtf8Bytes(strengths, " ");
         }
         /// <summary>
         /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
@@ -495,15 +474,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, bool includeSpacesBetweenWords)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), includeSpacesBetweenWords);
         }
         /// <summary>
         /// Generates a single phrase based on a randomly selected phrase strength in a UTF8 <c>byte[]</c>.
@@ -511,24 +489,22 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="strengths">A collection of the predefined <c>PhraseStrength</c> enumeration members to choose between at random.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<PhraseStrength> strengths, string wordDelimiter)
         {
             _ = strengths ?? throw new ArgumentNullException(nameof(strengths));
 
             if (strengths.Any(s => Clause.RandomMappings.ContainsKey(s) || s == PhraseStrength.Custom))
                 throw new ArgumentException("Random or Custom phrase strengths must be passed to the singular version.");
             var strength = this.ChooseAtRandom(strengths);
-            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter, mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(Clause.CreatePhraseDescription(strength, Randomness), wordDelimiter);
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
         /// This is slightly slower than <c>Generate()</c> and allows deterministic destruction of the data, but is still unencrypted.
         /// </summary>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription)
         {
-            return GenerateAsUtf8Bytes(phraseDescription, " ", mustExcludeTheseTags: mustExcludeTheseTags);
+            return GenerateAsUtf8Bytes(phraseDescription, " ");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
@@ -536,10 +512,9 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="includeSpacesBetweenWords">Include spaces between words (defaults to true).</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, bool includeSpacesBetweenWords)
         {
-            return this.GenerateAsUtf8Bytes(phraseDescription, includeSpacesBetweenWords ? " " : "", mustExcludeTheseTags: mustExcludeTheseTags);
+            return this.GenerateAsUtf8Bytes(phraseDescription, includeSpacesBetweenWords ? " " : "");
         }
         /// <summary>
         /// Generates a single phrase based on the given phrase description in a UTF8 <c>byte[]</c>.
@@ -547,15 +522,14 @@ namespace MurrayGrant.ReadablePassphrase
         /// </summary>
         /// <param name="phraseDescription">One or more <c>Clause</c> objects defineing the details of the phrase.</param>
         /// <param name="wordDelimiter">The string to place between each word in the passphrase.</param>
-        /// <param name="mustExcludeTheseTags">Zero or more tags to exclude words from the passphrase. Eg: pass <c>"fake"</c> to exclude all fake words.</param>
-        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags = null)
+        public byte[] GenerateAsUtf8Bytes(IEnumerable<Clause> phraseDescription, string wordDelimiter)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
             wordDelimiter = wordDelimiter ?? "";
 
             var result = new GenerateInUtf8ByteArray();
-            this.GenerateInternal(phraseDescription, wordDelimiter, mustExcludeTheseTags, result);
+            this.GenerateInternal(phraseDescription, wordDelimiter, result);
             if (wordDelimiter.Length > 0)
                 // A trailing space is always included when spaces are between words.
                 return result.Target.Take(result.Target.Length - wordDelimiter.Length).ToArray();
@@ -565,7 +539,7 @@ namespace MurrayGrant.ReadablePassphrase
         #endregion
 
         #region Internal Generate Methods
-        private void GenerateInternal(IEnumerable<Clause> phraseDescription, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags, GenerateTarget result)
+        private void GenerateInternal(IEnumerable<Clause> phraseDescription, string wordDelimiter, GenerateTarget result)
         {
             if (phraseDescription == null)
                 throw new ArgumentNullException("phraseDescription");
@@ -578,7 +552,7 @@ namespace MurrayGrant.ReadablePassphrase
             var template = this.PhrasesToTemplate(phraseDescription);
 
             // Build the phrase based on that template.
-            this.TemplateToWords(template, result, wordDelimiter ?? "", mustExcludeTheseTags);
+            this.TemplateToWords(template, result, wordDelimiter ?? "");
         }
         private IEnumerable<Template> PhrasesToTemplate(IEnumerable<Clause> phrases)
         {
@@ -621,7 +595,7 @@ namespace MurrayGrant.ReadablePassphrase
                 clause.AddWordTemplate(Randomness, this.Dictionary, result);
             return result;
         }
-        private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, string wordDelimiter, IReadOnlyList<string>? mustExcludeTheseTags)
+        private void TemplateToWords(IEnumerable<Template> template, GenerateTarget target, string wordDelimiter)
         {
             var chosenWords = new HashSet<Word>();
             ArticleTemplate? previousArticle = null;
@@ -632,7 +606,7 @@ namespace MurrayGrant.ReadablePassphrase
                     previousArticle = (ArticleTemplate)t;
                 else
                 {
-                    var tuple = t.ChooseWord(this.Dictionary, this.Randomness, chosenWords, (w) => Template.ExcludeTags(w, mustExcludeTheseTags));
+                    var tuple = t.ChooseWord(this.Dictionary, this.Randomness, chosenWords);
                     if (t.IncludeInAlreadyUsedList)
                         chosenWords.Add(tuple.Word);
                     

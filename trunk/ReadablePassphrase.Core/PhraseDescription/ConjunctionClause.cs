@@ -60,7 +60,7 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
 
 
-        public override PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
@@ -69,8 +69,8 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
             if (JoiningNounFactor <= 0 && JoiningPhraseFactor <= 0)
                 throw new Exception("Conjunctions may join noun clauses or entire phrases. Set one of JoinsNoun and JoinsPhrase to greater than 0.");
 
-            var countSeparatingNouns = dictionary.CountOf<Words.Conjunction>(w => wordPredicate(w) && w.SeparatesNouns);
-            var countSeparatingPhrases = dictionary.CountOf<Words.Conjunction>(w => wordPredicate(w) && w.SeparatesPhrases);
+            var countSeparatingNouns = dictionary.CountOf<Words.Conjunction>(w => w.SeparatesNouns);
+            var countSeparatingPhrases = dictionary.CountOf<Words.Conjunction>(w => w.SeparatesPhrases);
             if (JoiningNounFactor > 0)
                 return new PhraseCombinations(countSeparatingNouns, countSeparatingNouns, countSeparatingNouns);
             if (JoiningPhraseFactor > 0)

@@ -30,7 +30,7 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
         {
             this._NounIsSingular = nounIsSingular;
         }
-        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen, Func<Word, bool> wordPredicate)
+        public override WordAndString ChooseWord(WordDictionary words, Random.RandomSourceBase randomness, IEnumerable<Word> alreadyChosen)
         {
             _ = words ?? throw new ArgumentNullException(nameof(words));
             _ = randomness ?? throw new ArgumentNullException(nameof(randomness));
@@ -38,12 +38,12 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
             if (this._NounIsSingular)
             {
-                var w = (Number)words.First(x => x is Number n && n.RequiresSingularNoun && wordPredicate(x));
+                var w = (Number)words.First(x => x is Number n && n.RequiresSingularNoun);
                 return new WordAndString(w, w.Value);
             }
             else
             {
-                var word = words.ChooseWord<Number>(randomness, alreadyChosen, w => !w.RequiresSingularNoun && wordPredicate(w));
+                var word = words.ChooseWord<Number>(randomness, alreadyChosen, w => !w.RequiresSingularNoun);
                 return new WordAndString(word, word.Value);
             }
         }

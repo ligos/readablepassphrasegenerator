@@ -72,11 +72,11 @@ namespace MurrayGrant.ReadablePassphrase.PhraseDescription
         }
 
 
-        public override PhraseCombinations CountCombinations(WordDictionary dictionary, Func<Words.Word, bool> wordPredicate)
+        public override PhraseCombinations CountCombinations(WordDictionary dictionary)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
-            var result = this.CountSingleFactor<Words.SpeechVerb>(dictionary, wordPredicate, this.DirectSpeechFactor, this.NoDirectSpeechFactor);
+            var result = this.CountSingleFactor<Words.SpeechVerb>(dictionary, this.DirectSpeechFactor, this.NoDirectSpeechFactor);
             return result;
         }
     }
