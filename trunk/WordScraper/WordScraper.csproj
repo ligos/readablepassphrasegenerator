@@ -10,6 +10,7 @@
     <Description>Scrapes words from websites for inclusion in ReadablePassphrase default dictionary.
 
 Supported websites:
+  - dictionary.com
   - thisworddoesnotexist.com
 </Description>
 
