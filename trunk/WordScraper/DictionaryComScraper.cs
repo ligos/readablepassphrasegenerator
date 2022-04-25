@@ -1,4 +1,6 @@
-﻿using MurrayGrant.ReadablePassphrase.Dictionaries;
+﻿using HtmlAgilityPack;
+using Fizzler.Systems.HtmlAgilityPack;
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -34,10 +36,13 @@ namespace MurrayGrant.WordScraper
             var attemptCounter = 0;
             var uniqueFormsFromThisRun = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
             var (wordLength, startsWith, pageNumber) = ParseResumeArg();
-            
+            var first = true;
+
             var nonceBytes = new byte[5];
             new Random().NextBytes(nonceBytes);
             var nonce = BitConverter.ToString(nonceBytes).Replace("-", "").ToLowerInvariant();
+            
+            ReportMessage($"Scraping {wordLength} letter words, starting with '{startsWith}', from page {pageNumber}...");
 
             // From min to max length of words.
             while (wordLength <= Args.MaxLength)
@@ -48,8 +53,6 @@ namespace MurrayGrant.WordScraper
                     // Load a page of words.
                     while (pageNumber < Int32.MaxValue)
                     {
-                        ReportMessage($"Scraping {wordLength} letter words, starting with '{startsWith}', from page {pageNumber}...");
-
                         CheckCancellationToken();
                         var pageUrl = $"https://www.dictionary.com/e/crb-ajax/cached.php?page={pageNumber}&wordLength={wordLength}&letter={startsWith}&action=get_wf_widget_page&pageType=4&nonce={nonce}";
                         var response = await HttpClient.GetStringAsync(pageUrl);
@@ -82,12 +85,45 @@ namespace MurrayGrant.WordScraper
                             return result;
                         }
 
+                        if (!first)
+                            ReportMessage($"Scraping {wordLength} letter words, starting with '{startsWith}', from page {pageNumber}...");
+
                         // Scrape each word.
                         var pageOfWords = JsonConvert.DeserializeObject<PageDataWithWords>(response) ?? new PageDataWithWords();
                         foreach (var w in pageOfWords.data?.words ?? Enumerable.Empty<string>())
                         {
+                            // Various reasons to exclude this word:
+                            if (uniqueForms.Contains(w))
+                                goto ReportProgressAndNext;
+
                             CheckCancellationToken();
                             ++attemptCounter;
+                            first = false;
+
+                            // Load HTML and scrape word + parts of speech.
+                            var definitionHtml = await HttpClient.GetStringAsync($"https://www.dictionary.com/browse/{w}");
+                            var htmlDoc = new HtmlDocument();
+                            htmlDoc.LoadHtml(definitionHtml);
+                            var rootSection = htmlDoc.DocumentNode.QuerySelector("#top-definitions-section");
+                            var wordRoot = rootSection.QuerySelector("h1[data-first-headword]")?.InnerText ?? "";
+
+                            // Various reasons to exclude this word:
+                            if (uniqueRoots.Contains(w))
+                                goto ReportProgressAndNext;
+
+                            foreach (var posNode in rootSection.ParentNode.QuerySelectorAll("span.luna-pos"))
+                            {
+                                var partsOfSpeech = (posNode.InnerText ?? "").Split(',').Select(x => x.Trim()).Where(x => !String.IsNullOrEmpty(x));
+                                foreach (var pos in partsOfSpeech)
+                                {
+                                    result.Add((w, pos));
+                                }
+                            }
+
+ReportProgressAndNext:
+                            ReportProgress(result.Count, attemptCounter);
+                            if (Args.DelayMs > 0)
+                                await Task.Delay(Args.DelayMs);
                         }
 
                         ++pageNumber;
