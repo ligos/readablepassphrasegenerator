@@ -30,9 +30,9 @@ namespace MurrayGrant.WordScraper
             this.ReportProgress = reportProgress;
         }
 
-        internal async Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
+        internal async Task<IReadOnlyList<(string wordRoot, PartOfSpeech pos)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
         {
-            var result = new List<(string, string)>(Args.WordCount);
+            var result = new List<(string, PartOfSpeech)>(Args.WordCount);
             var rootWordCount = 0;
             var attemptCounter = 0;
             var (wordLength, startsWith, pageNumber) = ParseResumeArg();
@@ -111,18 +111,33 @@ namespace MurrayGrant.WordScraper
                             if (uniqueRoots.Contains(w))
                                 goto ReportProgressAndNext;
 
-                            ++rootWordCount;
+                            bool atLeastOneValidPartOfSpeech = false;
                             foreach (var posNode in rootSection.ParentNode.QuerySelectorAll("span.luna-pos"))
                             {
                                 var partsOfSpeech = (posNode.InnerText ?? "").Split(',').Select(x => x.Trim()).Where(x => !String.IsNullOrEmpty(x));
-                                foreach (var pos in partsOfSpeech)
+                                foreach (var partOfSpeech in partsOfSpeech)
                                 {
-                                    result.Add((w, pos));
+                                    var pos = ParsePartOfSpeech(partOfSpeech);
+                                    if (pos == PartOfSpeech.Unknown)
+                                    {
+                                        ReportMessage($"Warning: Unknown part of speech: '{partOfSpeech}' for '{w}'.");
+                                        continue;
+                                    }
+
+                                    if (pos.IsSupported())
+                                    {
+                                        result.Add((w, pos));
+                                        atLeastOneValidPartOfSpeech = true;
+                                    }
                                 }
                             }
+                            if (atLeastOneValidPartOfSpeech)
+                                ++rootWordCount;
 
 ReportProgressAndNext:
                             ReportProgress(rootWordCount, attemptCounter);
+                            if (rootWordCount >= Args.WordCount)
+                                break;
                             if (Args.DelayMs > 0)
                                 await Task.Delay(Args.DelayMs);
                         }
@@ -179,6 +194,24 @@ ReportProgressAndNext:
             }
             return (wordLength, parts[1].ToLowerInvariant().First(), pageNumber);
         }
+
+        PartOfSpeech ParsePartOfSpeech(string partOfSpeech)
+            => string.Equals(partOfSpeech, "noun",                               StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Noun
+            :  string.Equals(partOfSpeech, "plural noun",                        StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.NounPlural
+            :  string.Equals(partOfSpeech, "verb",                               StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbTransitive
+            :  string.Equals(partOfSpeech, "verb (used without object)",         StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbIntransitive
+            :  string.Equals(partOfSpeech, "verb (used with object)",            StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbTransitive
+            :  string.Equals(partOfSpeech, "verb (used with or without object)", StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbTransitive
+            :  string.Equals(partOfSpeech, "auxiliary verb",                     StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbOther
+            :  string.Equals(partOfSpeech, "verb Phrases",                       StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbOther
+            :  string.Equals(partOfSpeech, "adjective",                          StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Adjective
+            :  string.Equals(partOfSpeech, "adverb",                             StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Adverb
+            :  string.Equals(partOfSpeech, "interjection",                       StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Interjection
+            :  string.Equals(partOfSpeech, "abbreviation",                       StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Abbreviation
+            :  string.Equals(partOfSpeech, "conjunction",                        StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Conjunction
+            :  string.Equals(partOfSpeech, "preposition",                        StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Preposition
+            :  string.Equals(partOfSpeech, "pronoun",                            StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Pronoun
+            :  PartOfSpeech.Unknown;
 
         class PageDataWithWords
         {

@@ -111,13 +111,13 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine("Finished writing to XML.");
         }
 
-        private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
+        private static Task<IReadOnlyList<(string wordRoot, PartOfSpeech pos)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
         {
             var httpClient = CreateHttpClient();
             switch (Args.Source.ToLower())
             {
                 case "thisworddoesnotexist.com":
-                    return new ThisWordDoesNotExistScraper(Args, httpClient, CancellationSource.Token, ReportProgress).ReadWords(uniqueForms);
+                    return new ThisWordDoesNotExistScraper(Args, httpClient, CancellationSource.Token, ReportMessage, ReportProgress).ReadWords(uniqueForms);
                 case "dictionary.com":
                     return new DictionaryComScraper(Args, httpClient, CancellationSource.Token, ReportMessage, ReportProgress).ReadWords(dictionary, uniqueRoots, uniqueForms);
                 default:
@@ -125,7 +125,7 @@ namespace MurrayGrant.WordScraper
             }
         }
 
-        private static void ShowWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words)
+        private static void ShowWords(IReadOnlyList<(string wordRoot, PartOfSpeech pos)> words)
         {
             var random = new Random();
             var randomisedWords = words
@@ -136,60 +136,32 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine("Sample of Scraped Words:");
             foreach (var word in randomisedWords.OrderBy(x => x.wordRoot))
             {
-                Console.WriteLine("  {0} ({1})", word.wordRoot, word.partOfSpeech);
+                Console.WriteLine("  {0} ({1})", word.wordRoot, word.pos);
             }
             Console.WriteLine();
         }
 
-        private static async Task SaveWords(IReadOnlyList<(string wordRoot, string partOfSpeech)> words, CommandLineArguments.SourceDefinition sourceDef)
+        private static async Task SaveWords(IReadOnlyList<(string wordRoot, PartOfSpeech pos)> words, CommandLineArguments.SourceDefinition sourceDef)
         {
-            var wordsByPartOfSpeech = words.ToLookup(x => x.partOfSpeech, x => x.wordRoot);
+            var wordsByPartOfSpeech = words.ToLookup(x => x.pos, x => x.wordRoot);
 
-            CheckForUnsupportedPartsOfSpeech(wordsByPartOfSpeech);
-            CancellationSource.Token.ThrowIfCancellationRequested();
-
-            var nouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "noun") ?? Enumerable.Empty<string>();
-            var pluralNouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "plural noun") ?? Enumerable.Empty<string>();
+            var nouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.Noun) ?? Enumerable.Empty<string>();
+            var pluralNouns = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.NounPlural) ?? Enumerable.Empty<string>();
             await SaveNouns(nouns, pluralNouns, sourceDef);
             CancellationSource.Token.ThrowIfCancellationRequested();
 
-            var adjectives = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adjective") ?? Enumerable.Empty<string>();
+            var adjectives = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.Adjective) ?? Enumerable.Empty<string>();
             await SaveAdjectives(adjectives, sourceDef);
             CancellationSource.Token.ThrowIfCancellationRequested();
 
-            var adverbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "adverb") ?? Enumerable.Empty<string>();
+            var adverbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.Adverb) ?? Enumerable.Empty<string>();
             await SaveAdverbs(adverbs, sourceDef);
             CancellationSource.Token.ThrowIfCancellationRequested();
 
-            var verbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == "verb") ?? Enumerable.Empty<string>();
-            await SaveVerbs(verbs, sourceDef);
+            var transitiveVerbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.VerbTransitive) ?? Enumerable.Empty<string>();
+            var intransitiveVerbs = wordsByPartOfSpeech.FirstOrDefault(g => g.Key == PartOfSpeech.VerbIntransitive) ?? Enumerable.Empty<string>();
+            await SaveVerbs(transitiveVerbs, intransitiveVerbs, sourceDef);
             CancellationSource.Token.ThrowIfCancellationRequested();
-        }
-
-        private static void CheckForUnsupportedPartsOfSpeech(ILookup<string, string> wordsByPartOfSpeech)
-        {
-            var supportedPartsOfSpeech = new[]
-{
-                "verb",
-                "noun",
-                "plural noun",
-                "adjective",
-                "adverb",
-            }; 
-            
-            var unsupportedWords = wordsByPartOfSpeech.Where(x => !supportedPartsOfSpeech.Contains(x.Key));
-            if (unsupportedWords.Any())
-            {
-                Console.WriteLine("WARNING: unsupported parts of speech found in scraped words.");
-                foreach (var g in unsupportedWords)
-                {
-                    Console.WriteLine("  " + g.Key);
-                    foreach (var w in g.OrderBy(w => w))
-                    {
-                        Console.WriteLine("    " + w);
-                    }
-                }
-            }
         }
 
         private static async Task SaveNouns(IEnumerable<string> nouns, IEnumerable<string> pluralNouns, CommandLineArguments.SourceDefinition sourceDef)
@@ -283,9 +255,9 @@ namespace MurrayGrant.WordScraper
             }
         }
 
-        private static async Task SaveVerbs(IEnumerable<string> verbs, CommandLineArguments.SourceDefinition sourceDef)
+        private static async Task SaveVerbs(IEnumerable<string> transitiveVerbs, IEnumerable<string> intransitiveVerbs, CommandLineArguments.SourceDefinition sourceDef)
         {
-            if (!verbs.Any())
+            if (!transitiveVerbs.Any() && !intransitiveVerbs.Any())
             {
                 File.Delete("ScrapedVerbs.xml");
                 return;
@@ -297,25 +269,43 @@ namespace MurrayGrant.WordScraper
             {
                 await writer.WriteLineAsync("<dictionary>");
 
-                foreach (var verb in verbs)
+                foreach (var verb in transitiveVerbs)
                 {
-                    var toES = verb.EndsWith("s") ? $"{verb}es" : $"{verb}s";
-                    toES = verb.EndsWith("x") ? $"{verb}es" : toES;
-                    toES = verb.EndsWith("e") ? $"{verb}s" : toES;
-                    toES = verb.EndsWith("y") ? $"{verb.Substring(0, verb.Length - 1)}ies" : toES;
-                    toES = verb.EndsWith("ch") || verb.EndsWith("sh") ? $"{verb}es" : toES;
-
-                    var toED = verb.EndsWith("e") ? $"{verb}d" : $"{verb}ed";
-                    toED = verb.EndsWith("y") ? $"{verb.Substring(0, verb.Length - 1)}ied" : toED;
-
-                    var toING = verb.EndsWith("e") ? $"{verb.Substring(0, verb.Length - 1)}ing" : $"{verb}ing";
-
-                    var line = $@"  <verb presentSingular=""{toES}"" pastSingular=""{toED}"" pastContinuousSingular=""was {toING}"" futureSingular=""will {verb}"" continuousSingular=""is {toING}"" perfectSingular=""has {toED}"" subjunctiveSingular=""might {verb}""
-        presentPlural = ""{verb}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {verb}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {verb}"" {tags}/>";
+                    var line = BuildXml(verb, true);
                     await writer.WriteLineAsync(line);
                 }
-                
+                foreach (var verb in intransitiveVerbs)
+                {
+                    var line = BuildXml(verb, false);
+                    await writer.WriteLineAsync(line);
+                }
+
                 await writer.WriteLineAsync("</dictionary>");
+            }
+
+            string BuildXml(string root, bool transitive)
+            {
+                var toES = root.EndsWith("s") ? $"{root}es" : $"{root}s";
+                toES = root.EndsWith("x") ? $"{root}es" : toES;
+                toES = root.EndsWith("e") ? $"{root}s" : toES;
+                toES = root.EndsWith("y") ? $"{root.Substring(0, root.Length - 1)}ies" : toES;
+                toES = root.EndsWith("ch") || root.EndsWith("sh") ? $"{root}es" : toES;
+
+                var toED = root.EndsWith("e") ? $"{root}d" : $"{root}ed";
+                toED = root.EndsWith("y") ? $"{root.Substring(0, root.Length - 1)}ied" : toED;
+
+                var toING = root.EndsWith("e") ? $"{root.Substring(0, root.Length - 1)}ing" : $"{root}ing";
+
+                var line = "";
+                if (transitive)
+                    line = $@"  <verb presentSingular=""{toES}"" pastSingular=""{toED}"" pastContinuousSingular=""was {toING}"" futureSingular=""will {root}"" continuousSingular=""is {toING}"" perfectSingular=""has {toED}"" subjunctiveSingular=""might {root}""
+        presentPlural = ""{root}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {root}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {root}"" {tags}/>";
+                else
+                    line = $@"  <verb presentSingular=""{toES}"" pastSingular=""{toED}"" pastContinuousSingular=""was {toING}"" futureSingular=""will {root}"" continuousSingular=""is {toING}"" perfectSingular=""has {toED}"" subjunctiveSingular=""might {root}""
+        presentPlural = ""{root}"" pastPlural = ""{toED}"" pastContinuousPlural = ""were {toING}"" futurePlural = ""will {root}"" continuousPlural = ""are {toING}"" perfectPlural = ""have {toED}"" subjunctivePlural = ""might {root}"" 
+        transitive=""false"" {tags}/>";
+
+                return line;
             }
         }
 

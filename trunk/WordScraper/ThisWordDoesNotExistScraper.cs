@@ -14,18 +14,20 @@ namespace MurrayGrant.WordScraper
         public HttpClient HttpClient { get; }
         public CancellationToken CancellationToken { get; }
         public Action<int, int> ReportProgress { get; }
+        public Action<string> ReportMessage { get; }
 
-        public ThisWordDoesNotExistScraper(CommandLineArguments args, HttpClient httpClient, CancellationToken cancellationToken, Action<int, int> reportProgress)
+        public ThisWordDoesNotExistScraper(CommandLineArguments args, HttpClient httpClient, CancellationToken cancellationToken, Action<string> reportMessage, Action<int, int> reportProgress)
         {
             this.Args = args;
             this.HttpClient = httpClient;
             this.CancellationToken = cancellationToken;
+            this.ReportMessage = reportMessage;
             this.ReportProgress = reportProgress;
         }
 
-        public async Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
+        public async Task<IReadOnlyList<(string wordRoot, PartOfSpeech pos)>> ReadWords(IReadOnlySet<string> uniqueForms)
         {
-            var result = new List<(string, string)>(Args.WordCount);
+            var result = new List<(string, PartOfSpeech)>(Args.WordCount);
             var attemptCounter = 0;
             var uniqueFormsFromThisRun = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
 
@@ -75,6 +77,16 @@ namespace MurrayGrant.WordScraper
                 if (string.IsNullOrWhiteSpace(wordRoot) || string.IsNullOrWhiteSpace(partOfSpeech))
                     goto ReportProgressAndNext;
 
+                var pos = ParsePartOfSpeech(partOfSpeech);
+                if (pos == PartOfSpeech.Unknown)
+                {
+                    ReportMessage($"Warning: Unknown part of speech: '{partOfSpeech}' for '{wordRoot}'.");
+                    goto ReportProgressAndNext;
+                }
+
+                if (!pos.IsSupported())
+                    goto ReportProgressAndNext;
+
                 if (uniqueForms.Contains(wordRoot))
                     goto ReportProgressAndNext;
 
@@ -85,7 +97,7 @@ namespace MurrayGrant.WordScraper
                     goto ReportProgressAndNext;
 
                 // This one is OK!
-                result.Add((wordRoot, partOfSpeech.ToLowerInvariant()));
+                result.Add((wordRoot, pos));
 
 ReportProgressAndNext:
                 ReportProgress(result.Count, attemptCounter);
@@ -95,5 +107,14 @@ ReportProgressAndNext:
 
             return result;
         }
+
+        PartOfSpeech ParsePartOfSpeech(string partOfSpeech)
+            => string.Equals(partOfSpeech, "noun",         StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Noun
+            :  string.Equals(partOfSpeech, "plural noun",  StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.NounPlural
+            :  string.Equals(partOfSpeech, "verb",         StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.VerbTransitive
+            :  string.Equals(partOfSpeech, "adjective",    StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Adjective
+            :  string.Equals(partOfSpeech, "adverb",       StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Adverb
+            :  string.Equals(partOfSpeech, "interjection", StringComparison.OrdinalIgnoreCase) ? PartOfSpeech.Interjection
+            :  PartOfSpeech.Unknown;
     }
 }
