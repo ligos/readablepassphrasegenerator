@@ -119,7 +119,7 @@ namespace MurrayGrant.WordScraper
                 case "thisworddoesnotexist.com":
                     return new ThisWordDoesNotExistScraper(Args, httpClient, CancellationSource.Token, ReportProgress).ReadWords(uniqueForms);
                 case "dictionary.com":
-                    return new DictionaryComScraper(Args, httpClient, CancellationSource.Token, ReportProgress).ReadWords(dictionary, uniqueRoots, uniqueForms);
+                    return new DictionaryComScraper(Args, httpClient, CancellationSource.Token, ReportMessage, ReportProgress).ReadWords(dictionary, uniqueRoots, uniqueForms);
                 default:
                     throw new ApplicationException("Unknown source: " + Args.Source);
             }
@@ -349,6 +349,11 @@ namespace MurrayGrant.WordScraper
 
             Console.WriteLine($"[{attempts:N0} of {Args.Attempts:N0} attempts, {wordCount:N0} words scraped successfully]");
             NextProgressUpdate = DateTime.UtcNow.Add(TimeSpan.FromSeconds(2).Add(TimeSpan.FromMilliseconds(Args.DelayMs)));
+        }
+
+        static void ReportMessage(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

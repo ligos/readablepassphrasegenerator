@@ -23,6 +23,10 @@ Supported websites:
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ReadablePassphrase.Core\ReadablePassphrase.Core.csproj" />
     <ProjectReference Include="..\ReadablePassphrase.Words\ReadablePassphrase.Words.csproj" />
     <ProjectReference Include="..\ReadablePassphrase.DefaultDictionary\ReadablePassphrase.DefaultDictionary.csproj" />

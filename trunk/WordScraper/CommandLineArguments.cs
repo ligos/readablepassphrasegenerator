@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MurrayGrant.WordScraper
 {
@@ -15,6 +13,7 @@ namespace MurrayGrant.WordScraper
         public string Source { get; private set; } = "";
         public int DelayMs { get; private set; } = 250;
         public int ShowCount { get; private set; } = 10;
+        public string ResumeFrom { get; private set; } = "";
 
         public static readonly IReadOnlyDictionary<string, SourceDefinition> SupportedSources = new[]
         {
@@ -120,6 +119,11 @@ namespace MurrayGrant.WordScraper
                     result.ShowCount = showCount;
                     i++;
                 }
+                else if (arg == "resume")
+                {
+                    result.ResumeFrom = args[i + 1].Trim();
+                    i++;
+                }
                 else if (arg == "h" || arg == "help")
                 {
                     return (null, 0);
@@ -150,6 +154,8 @@ namespace MurrayGrant.WordScraper
             {
                 Console.WriteLine("    " + source);
             }
+            Console.WriteLine();
+            Console.WriteLine("  --resume xxx          Source specific data to resume scraping", defaultArgs.ShowCount);
             Console.WriteLine();
             Console.WriteLine("  -h --help             Displays this message ");
             Console.WriteLine("See {0} for more information", ReadablePassphrase.ReadablePassphraseGenerator.GitHubHomepage);
