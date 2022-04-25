@@ -33,8 +33,8 @@ namespace MurrayGrant.WordScraper
         internal async Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
         {
             var result = new List<(string, string)>(Args.WordCount);
+            var rootWordCount = 0;
             var attemptCounter = 0;
-            var uniqueFormsFromThisRun = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
             var (wordLength, startsWith, pageNumber) = ParseResumeArg();
             var first = true;
 
@@ -45,13 +45,13 @@ namespace MurrayGrant.WordScraper
             ReportMessage($"Scraping {wordLength} letter words, starting with '{startsWith}', from page {pageNumber}...");
 
             // From min to max length of words.
-            while (wordLength <= Args.MaxLength)
+            while (wordLength <= Args.MaxLength && rootWordCount < Args.WordCount)
             {
                 // Words starting from a..z
-                while (startsWith <= 'z')
+                while (startsWith <= 'z' && rootWordCount < Args.WordCount)
                 {
                     // Load a page of words.
-                    while (pageNumber < Int32.MaxValue)
+                    while (pageNumber < Int32.MaxValue && rootWordCount < Args.WordCount)
                     {
                         CheckCancellationToken();
                         var pageUrl = $"https://www.dictionary.com/e/crb-ajax/cached.php?page={pageNumber}&wordLength={wordLength}&letter={startsWith}&action=get_wf_widget_page&pageType=4&nonce={nonce}";
@@ -111,6 +111,7 @@ namespace MurrayGrant.WordScraper
                             if (uniqueRoots.Contains(w))
                                 goto ReportProgressAndNext;
 
+                            ++rootWordCount;
                             foreach (var posNode in rootSection.ParentNode.QuerySelectorAll("span.luna-pos"))
                             {
                                 var partsOfSpeech = (posNode.InnerText ?? "").Split(',').Select(x => x.Trim()).Where(x => !String.IsNullOrEmpty(x));
@@ -121,7 +122,7 @@ namespace MurrayGrant.WordScraper
                             }
 
 ReportProgressAndNext:
-                            ReportProgress(result.Count, attemptCounter);
+                            ReportProgress(rootWordCount, attemptCounter);
                             if (Args.DelayMs > 0)
                                 await Task.Delay(Args.DelayMs);
                         }
