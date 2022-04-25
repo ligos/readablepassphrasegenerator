@@ -15,6 +15,7 @@
 // Based on following pull request
 // https://github.com/ligos/readablepassphrasegenerator/pull/9
 
+using MurrayGrant.ReadablePassphrase.Dictionaries;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,7 +46,11 @@ namespace MurrayGrant.WordScraper
             { 
                 Name = "ThisWordDoesNotExist.com",
                 Tags = "fake",
-            } 
+            },
+            new SourceDefinition()
+            {
+                Name = "Dictionary.com",
+            }
         }.ToDictionary(x => x.Name!, x => x, StringComparer.CurrentCultureIgnoreCase);
 
         public class SourceDefinition
@@ -109,14 +114,15 @@ namespace MurrayGrant.WordScraper
             // Load current dictionary, so we can avoid duplicates.
             var defaultDictionary = ReadablePassphrase.Dictionaries.Default.Load();
             var allUniqueForms = defaultDictionary.SelectMany(w => w.AllForms()).ToHashSet(StringComparer.CurrentCultureIgnoreCase);
-            Console.WriteLine($"Default dictionary contains {defaultDictionary.Count:N0} words and {allUniqueForms.Count:N0} unique forms.");
+            var allUniqueRoots = defaultDictionary.Select(w => w.DictionaryEntry).ToHashSet(StringComparer.CurrentCultureIgnoreCase);
+            Console.WriteLine($"Default dictionary contains {defaultDictionary.Count:N0} words, {allUniqueRoots.Count:N0} unique roots and {allUniqueForms.Count:N0} unique forms.");
             CancellationSource.Token.ThrowIfCancellationRequested();
 
             // Let the scraping begin!
             Console.WriteLine("Starting scraping...");
             NextProgressUpdate = DateTime.UtcNow.AddSeconds(1);
             var sw = Stopwatch.StartNew();
-            var scrapedWords = await ReadWords(allUniqueForms);
+            var scrapedWords = await ReadWords(defaultDictionary, allUniqueRoots, allUniqueForms);
             sw.Stop();
             Console.WriteLine($"Scraping complete. {scrapedWords.Count} words found in {sw.Elapsed.TotalSeconds:N1} seconds");
 
@@ -130,12 +136,14 @@ namespace MurrayGrant.WordScraper
             Console.WriteLine("Finished writing to XML.");
         }
 
-        private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(IReadOnlySet<string> uniqueForms)
+        private static Task<IReadOnlyList<(string wordRoot, string partOfSpeech)>> ReadWords(WordDictionary dictionary, IReadOnlySet<string> uniqueRoots, IReadOnlySet<string> uniqueForms)
         {
             switch (Source.ToLower())
             {
                 case "thisworddoesnotexist.com":
                     return ReadWordsFromThisWordDoesNotExist(uniqueForms);
+                case "dictionary.com":
+                    return new DictionaryComScraper().ReadWords(dictionary, uniqueRoots, uniqueForms);
                 default:
                     throw new ApplicationException("Unknown source: " + Source);
             }

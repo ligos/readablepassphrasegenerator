@@ -13,7 +13,7 @@ Supported websites:
   - thisworddoesnotexist.com
 </Description>
 
-    <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
+    <RootNamespace>MurrayGrant.WordScraper</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1591</NoWarn>
