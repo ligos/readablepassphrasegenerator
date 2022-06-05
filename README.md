@@ -50,6 +50,14 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.3.0
+	* 17,548 words in the default dictionary (~2,200 more than 1.2.0)
+	* 1,455 fake words (from [ThisWordDoesNotExist.com](https://www.thisworddoesnotexist.com/)) with option to exclude fake words
+	* Add option to count length by words and letters.
+	* Support .NET Framework 4.5.2, .NET Core 3.1, .NET 6.0.
+* Version 1.2.1
+    * Fix possible IndexOutOfRangeException with combination of Numeric and Custom mutators ([GitHub issue 3](https://github.com/ligos/readablepassphrasegenerator/issues/3))
+    * Fix Numeric and Constant mutators not applied if Upper mutator is disabled ([GitHub issue 2](https://github.com/ligos/readablepassphrasegenerator/issues/2))
 * Version 1.2.0
     * Add constant mutator to improve chances of meeting password requirements.
 	* Fix issue with some custom phrase definitions ([BitBucket issue 15](https://bitbucket.org/ligos/readablepassphrasegenerator/issues/15/custom-phrase-description-unhanded-error))
@@ -57,27 +65,6 @@ If you like the Readable Passphrase Generator you can donate to support developm
 	* Add support for .NET Core 3.1.
 	* Migration from BitBucket to GitHub.
 	* Add support for C# 8 [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) (for developers).
-* Version 1.1.2
-    * Add support for .NET Core.
-	* Add NuGet package.
-* Version 1.1.1
-    * Change update site to [makemeapassword.ligos.net](https://makemeapassword.ligos.net).
-	* Add KeyBase site as contact info.
-	* Enforce requirement for KeePass 2.36 or newer.
-* Version 1.1.0
-    * Update to target .NET 4.0.
-	* Fix bug where [KeePass plugin crashes when using `&` as a word separator](https://bitbucket.org/ligos/readablepassphrasegenerator/issues/11/crash-when-entering-multiple-characters-in).
-* Version 1.0.0
-	* Fix bug where None word separator can still include some spaces.
-	* Fix bug where Space and None word separators were swapped.
-	* Add .NET 4.0 SKU as supported runtime (to fix Mono warning).
-	* Migrated all links to BitBucket from Codeplex.
-	* 15,020 words in the default dictionary (~900 more than 0.17 release).
-* Version 0.17
-	* Fix serious [non-random password bug](https://github.com/ligos/readablepassphrasegenerator/wiki/0.17.0-Fix-for-Non-Random-Passphrases). 
-	* All users should upgrade to this version as soon as possible
-	* **It is highly recommended to reset any passphrases generated in the last 4 years**
-	* Versions of the plugin affected by this bug will crash KeePass 2.36+, you must upgrade to 0.17 or newer.
 
 	
 ## License
