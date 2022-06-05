@@ -19,7 +19,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1591</NoWarn>
     <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
-    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
     <PackageTags>password security passphrase readable generator random</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
