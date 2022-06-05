@@ -38,7 +38,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
     <PackageReference Include="ReadablePassphrase.Core" Version="1.3.0" />
-    <PackageReference Include="ReadablePassphrase.Words" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase.Words" Version="2.0.0" />
     <PackageReference Include="ReadablePassphrase.DefaultDictionary" Version="1.3.0" />
   </ItemGroup>
 
