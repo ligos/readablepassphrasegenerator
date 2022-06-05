@@ -53,6 +53,7 @@ If you like the Readable Passphrase Generator you can donate to support developm
 * Version 1.3.0
 	* 17,548 words in the default dictionary (~2,200 more than 1.2.0)
 	* 1,455 fake words (from [ThisWordDoesNotExist.com](https://www.thisworddoesnotexist.com/)) with option to exclude fake words
+	* Backend word scraper supporting [ThisWordDoesNotExist.com](https://www.thisworddoesnotexist.com/) and [Dictionary.com](https://dictionary.com). Thanks to [drventure](https://github.com/ligos/readablepassphrasegenerator/pull/9).
 	* Add option to count length by words and letters.
 	* Support .NET Framework 4.5.2, .NET Core 3.1, .NET 6.0.
 * Version 1.2.1
