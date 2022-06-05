@@ -1,5 +1,5 @@
 Readable Passphrase Generator
-Copyright 2011-2019 Murray Grant
+Copyright 2011-2022 Murray Grant
 https://github.com/ligos/readablepassphrasegenerator
 https://bitbucket.org/ligos/readablepassphrasegenerator
 http://readablepassphrase.codeplex.com
@@ -17,3 +17,11 @@ http://www.microsoft.com/net
 
 Dictionary Based on SCOWL Word List by by Kevin Atkinson
 http://wordlist.sourceforge.net/
+
+Dictionary Based on words generated from ThisWordDoesNotExist.com
+https://ThisWordDoesNotExist.com
+
+Dictionary Based on words scraped from dictionary.com
+https://www.dictionary.com/
+
+WordScraper contributions from drventure (https://github.com/drventure) 2020
