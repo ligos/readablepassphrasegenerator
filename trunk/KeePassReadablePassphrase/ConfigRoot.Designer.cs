@@ -49,6 +49,7 @@
             this.cboNumericStyle = new System.Windows.Forms.ComboBox();
             this.cboConstantStyle = new System.Windows.Forms.ComboBox();
             this.cboWordSeparator = new System.Windows.Forms.ComboBox();
+            this.chkExcludeFake = new System.Windows.Forms.CheckBox();
             this.lblPhraseDetail = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -96,7 +97,6 @@
             this.txtConstantValue = new System.Windows.Forms.TextBox();
             this.lnkKeyBase = new System.Windows.Forms.LinkLabel();
             this.cboCountBy = new System.Windows.Forms.ComboBox();
-            this.chkExcludeFake = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinLength)).BeginInit();
@@ -326,6 +326,19 @@
         "words and grammatical options.\r\nFor example, adding prepositions, adjectives and" +
         " additional verb tenses.");
             this.cboWordSeparator.SelectedIndexChanged += new System.EventHandler(this.cboWordSeparator_SelectedIndexChanged);
+            // 
+            // chkExcludeFake
+            // 
+            this.chkExcludeFake.AutoSize = true;
+            this.chkExcludeFake.Location = new System.Drawing.Point(104, 271);
+            this.chkExcludeFake.Name = "chkExcludeFake";
+            this.chkExcludeFake.Size = new System.Drawing.Size(84, 17);
+            this.chkExcludeFake.TabIndex = 16;
+            this.chkExcludeFake.Text = "Fake Words";
+            this.toolTip1.SetToolTip(this.chkExcludeFake, "If ticked, fake words are included in the passphrase. When unticked, only real di" +
+        "ctionary words are used.");
+            this.chkExcludeFake.UseVisualStyleBackColor = true;
+            this.chkExcludeFake.CheckedChanged += new System.EventHandler(this.chkExcludeFake_CheckedChanged);
             // 
             // lblPhraseDetail
             // 
@@ -828,19 +841,6 @@
             this.cboCountBy.Name = "cboCountBy";
             this.cboCountBy.Size = new System.Drawing.Size(93, 21);
             this.cboCountBy.TabIndex = 2;
-            // 
-            // chkExcludeFake
-            // 
-            this.chkExcludeFake.AutoSize = true;
-            this.chkExcludeFake.Location = new System.Drawing.Point(104, 271);
-            this.chkExcludeFake.Name = "chkExcludeFake";
-            this.chkExcludeFake.Size = new System.Drawing.Size(84, 17);
-            this.chkExcludeFake.TabIndex = 16;
-            this.chkExcludeFake.Text = "Fake Words";
-            this.toolTip1.SetToolTip(this.chkExcludeFake, "If ticked, you select your own dictionary.\r\nIf unticked, an internal dictionary i" +
-        "s used.");
-            this.chkExcludeFake.UseVisualStyleBackColor = true;
-            this.chkExcludeFake.CheckedChanged += new System.EventHandler(this.chkExcludeFake_CheckedChanged);
             // 
             // label22
             // 
