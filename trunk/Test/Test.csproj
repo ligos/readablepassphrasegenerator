@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net60;netcoreapp3.1;net452</TargetFrameworks>
+    <TargetFrameworks>net80;net60;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase.Test</Product>
-    <Copyright>Copyright © Murray Grant 2011-2022</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2023</Copyright>
     <Authors>Murray Grant</Authors>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
     <RootNamespace>Test</RootNamespace>
@@ -47,7 +47,7 @@
 
    <ItemGroup>
      <Reference Include="KeePass">
-       <HintPath>..\..\..\..\..\..\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
+       <HintPath>C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
      </Reference>
      <Reference Include="System.Windows.Forms" Condition="'$(TargetFramework)'=='net452'" />
    </ItemGroup>

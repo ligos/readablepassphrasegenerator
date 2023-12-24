@@ -50,7 +50,7 @@ Plugin for KeePass.</Description>
 
   <ItemGroup>
     <Reference Include="KeePass">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
+      <HintPath>C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
