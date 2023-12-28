@@ -104,15 +104,15 @@ namespace MurrayGrant.WordScraper
                             var definitionHtml = await HttpClient.GetStringAsync($"https://www.dictionary.com/browse/{w}");
                             var htmlDoc = new HtmlDocument();
                             htmlDoc.LoadHtml(definitionHtml);
-                            var rootSection = htmlDoc.DocumentNode.QuerySelector("#top-definitions-section");
-                            var wordRoot = rootSection.QuerySelector("h1[data-first-headword]")?.InnerText ?? "";
+                            var definitionSection = htmlDoc.DocumentNode.QuerySelector("section[data-type='word-definition-card']");
+                            var wordRoot = definitionSection.QuerySelector("header h1")?.InnerText ?? "";
 
                             // Various reasons to exclude this word:
-                            if (uniqueRoots.Contains(w))
+                            if (uniqueForms.Contains(w))
                                 goto ReportProgressAndNext;
 
                             bool atLeastOneValidPartOfSpeech = false;
-                            foreach (var posNode in rootSection.ParentNode.QuerySelectorAll("span.luna-pos"))
+                            foreach (var posNode in definitionSection.QuerySelectorAll("div[data-type='word-definitions'] span.luna-pos"))
                             {
                                 var partsOfSpeech = (posNode.InnerText ?? "").Split(',').Select(x => x.Trim()).Where(x => !String.IsNullOrEmpty(x));
                                 foreach (var partOfSpeech in partsOfSpeech)
