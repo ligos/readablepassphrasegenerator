@@ -105,6 +105,8 @@ namespace MurrayGrant.WordScraper
                             var htmlDoc = new HtmlDocument();
                             htmlDoc.LoadHtml(definitionHtml);
                             var definitionSection = htmlDoc.DocumentNode.QuerySelector("section[data-type='word-definition-card']");
+                            if (definitionSection == null)
+                                goto ReportProgressAndNext;
                             var wordRoot = definitionSection.QuerySelector("header h1")?.InnerText ?? "";
 
                             // Various reasons to exclude this word:
