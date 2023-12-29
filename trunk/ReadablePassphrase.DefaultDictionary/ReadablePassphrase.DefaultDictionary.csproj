@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <PackageId>ReadablePassphrase.DefaultDictionary</PackageId>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Murray Grant</Authors>
     <Product>ReadablePassphrase</Product>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
@@ -14,7 +14,7 @@ For normal use, reference the "ReadablePassphrase" package.
 This is just the default dictionary as an embedded resource.
 
 See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
-    <Copyright>Copyright © Murray Grant 2011-2023</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2024</Copyright>
     <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ligos/readablepassphrasegenerator</PackageProjectUrl>
@@ -49,7 +49,7 @@ See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase
   
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Core" Version="1.3.0" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.4.0" />
   </ItemGroup>
 
   <!-- Use project references -->

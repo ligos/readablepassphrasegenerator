@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Company>Murray Grant &amp; drventure</Company>
     <Product>ReadablePassphrase</Product>
-    <Copyright>Copyright © Murray Grant &amp; drventure 2022-2023</Copyright>
+    <Copyright>Copyright © Murray Grant &amp; drventure 2022-2024</Copyright>
     <Version>1.0.0</Version>
     <Description>Scrapes words from websites for inclusion in ReadablePassphrase default dictionary.
 
