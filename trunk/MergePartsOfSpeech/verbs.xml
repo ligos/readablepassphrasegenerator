@@ -6299,4 +6299,375 @@ limitations under the License.
   <verb presentSingular="yelps" pastSingular="yelped" pastContinuousSingular="was yelping" futureSingular="will yelp" continuousSingular="is yelping" perfectSingular="has yelped" subjunctiveSingular="might yelp"
         presentPlural = "yelp" pastPlural = "yelped" pastContinuousPlural = "were yelping" futurePlural = "will yelp" continuousPlural = "are yelping" perfectPlural = "have yelped" subjunctivePlural = "might yelp" 
         transitive="false" />
+  <verb presentSingular="abides" pastSingular="abided" pastContinuousSingular="was abiding" futureSingular="will abide" continuousSingular="is abiding" perfectSingular="has abided" subjunctiveSingular="might abide"
+        presentPlural = "abide" pastPlural = "abided" pastContinuousPlural = "were abiding" futurePlural = "will abide" continuousPlural = "are abiding" perfectPlural = "have abided" subjunctivePlural = "might abide"
+        transitive="false" />
+  <verb presentSingular="abuses" pastSingular="abused" pastContinuousSingular="was abusing" futureSingular="will abuse" continuousSingular="is abusing" perfectSingular="has abused" subjunctiveSingular="might abuse"
+        presentPlural = "abuse" pastPlural = "abused" pastContinuousPlural = "were abusing" futurePlural = "will abuse" continuousPlural = "are abusing" perfectPlural = "have abused" subjunctivePlural = "might abuse" 
+        />
+  <verb presentSingular="alibis" pastSingular="alibied" pastContinuousSingular="was alibing" futureSingular="will alibi" continuousSingular="is alibing" perfectSingular="has alibied" subjunctiveSingular="might alibi"
+        presentPlural = "alibi" pastPlural = "alibied" pastContinuousPlural = "were alibing" futurePlural = "will alibi" continuousPlural = "are alibing" perfectPlural = "have alibied" subjunctivePlural = "might alibi" 
+        />
+  <verb presentSingular="amasses" pastSingular="amassed" pastContinuousSingular="was amassing" futureSingular="will amass" continuousSingular="is amassing" perfectSingular="has amassed" subjunctiveSingular="might amass"
+        presentPlural = "amass" pastPlural = "amassed" pastContinuousPlural = "were amassing" futurePlural = "will amass" continuousPlural = "are amassing" perfectPlural = "have amassed" subjunctivePlural = "might amass" 
+        />
+  <verb presentSingular="annoies" pastSingular="annoied" pastContinuousSingular="was annoying" futureSingular="will annoy" continuousSingular="is annoying" perfectSingular="has annoied" subjunctiveSingular="might annoy"
+        presentPlural = "annoy" pastPlural = "annoied" pastContinuousPlural = "were annoying" futurePlural = "will annoy" continuousPlural = "are annoying" perfectPlural = "have annoied" subjunctivePlural = "might annoy" 
+        />
+  <verb presentSingular="avails" pastSingular="availed" pastContinuousSingular="was availing" futureSingular="will avail" continuousSingular="is availing" perfectSingular="has availed" subjunctiveSingular="might avail"
+        presentPlural = "avail" pastPlural = "availed" pastContinuousPlural = "were availing" futurePlural = "will avail" continuousPlural = "are availing" perfectPlural = "have availed" subjunctivePlural = "might avail" 
+        />
+  <verb presentSingular="bevels" pastSingular="bevelled" pastContinuousSingular="was bevelling" futureSingular="will bevel" continuousSingular="is beveling" perfectSingular="has bevelled" subjunctiveSingular="might bevel"
+        presentPlural = "bevel" pastPlural = "bevelled" pastContinuousPlural = "were bevelling" futurePlural = "will bevel" continuousPlural = "are beveling" perfectPlural = "have bevelled" subjunctivePlural = "might bevel" 
+        />
+  <verb presentSingular="blesses" pastSingular="blessed" pastContinuousSingular="was blessing" futureSingular="will bless" continuousSingular="is blessing" perfectSingular="has blessed" subjunctiveSingular="might bless"
+        presentPlural = "bless" pastPlural = "blessed" pastContinuousPlural = "were blessing" futurePlural = "will bless" continuousPlural = "are blessing" perfectPlural = "have blessed" subjunctivePlural = "might bless" 
+        />
+  <verb presentSingular="blinks" pastSingular="blinked" pastContinuousSingular="was blinking" futureSingular="will blink" continuousSingular="is blinking" perfectSingular="has blinked" subjunctiveSingular="might blink"
+        presentPlural = "blink" pastPlural = "blinked" pastContinuousPlural = "were blinking" futurePlural = "will blink" continuousPlural = "are blinking" perfectPlural = "have blinked" subjunctivePlural = "might blink"
+        transitive="false" />
+  <verb presentSingular="blooms" pastSingular="bloomed" pastContinuousSingular="was blooming" futureSingular="will bloom" continuousSingular="is blooming" perfectSingular="has bloomed" subjunctiveSingular="might bloom"
+        presentPlural = "bloom" pastPlural = "bloomed" pastContinuousPlural = "were blooming" futurePlural = "will bloom" continuousPlural = "are blooming" perfectPlural = "have bloomed" subjunctivePlural = "might bloom" 
+        transitive="false" />
+  <verb presentSingular="breeds" pastSingular="bread" pastContinuousSingular="was breeding" futureSingular="will breed" continuousSingular="is breeding" perfectSingular="has breeded" subjunctiveSingular="might breed"
+        presentPlural = "breed" pastPlural = "bread" pastContinuousPlural = "were breeding" futurePlural = "will breed" continuousPlural = "are breeding" perfectPlural = "have breeded" subjunctivePlural = "might breed" 
+        />
+  <verb presentSingular="broods" pastSingular="brooded" pastContinuousSingular="was brooding" futureSingular="will brood" continuousSingular="is brooding" perfectSingular="has brooded" subjunctiveSingular="might brood"
+        presentPlural = "brood" pastPlural = "brooded" pastContinuousPlural = "were brooding" futurePlural = "will brood" continuousPlural = "are brooding" perfectPlural = "have brooded" subjunctivePlural = "might brood"
+        transitive="false" />
+  <verb presentSingular="bursts" pastSingular="burst" pastContinuousSingular="was bursting" futureSingular="will burst" continuousSingular="is bursting" perfectSingular="has bursted" subjunctiveSingular="might burst"
+        presentPlural = "burst" pastPlural = "burst" pastContinuousPlural = "were bursting" futurePlural = "will burst" continuousPlural = "are bursting" perfectPlural = "have bursted" subjunctivePlural = "might burst"
+        transitive="false" />
+  <verb presentSingular="catches" pastSingular="caught" pastContinuousSingular="was catching" futureSingular="will catch" continuousSingular="is catching" perfectSingular="has catched" subjunctiveSingular="might catch"
+        presentPlural = "catch" pastPlural = "caught" pastContinuousPlural = "were catching" futurePlural = "will catch" continuousPlural = "are catching" perfectPlural = "have catched" subjunctivePlural = "might catch" 
+        />
+  <verb presentSingular="caters" pastSingular="catered" pastContinuousSingular="was catering" futureSingular="will cater" continuousSingular="is catering" perfectSingular="has catered" subjunctiveSingular="might cater"
+        presentPlural = "cater" pastPlural = "catered" pastContinuousPlural = "were catering" futurePlural = "will cater" continuousPlural = "are catering" perfectPlural = "have catered" subjunctivePlural = "might cater" 
+        />
+  <verb presentSingular="chills" pastSingular="chilled" pastContinuousSingular="was chilling" futureSingular="will chill" continuousSingular="is chilling" perfectSingular="has chilled" subjunctiveSingular="might chill"
+        presentPlural = "chill" pastPlural = "chilled" pastContinuousPlural = "were chilling" futurePlural = "will chill" continuousPlural = "are chilling" perfectPlural = "have chilled" subjunctivePlural = "might chill" 
+        />
+  <verb presentSingular="abides" pastSingular="abided" pastContinuousSingular="was abiding" futureSingular="will abide" continuousSingular="is abiding" perfectSingular="has abided" subjunctiveSingular="might abide"
+        presentPlural = "abide" pastPlural = "abided" pastContinuousPlural = "were abiding" futurePlural = "will abide" continuousPlural = "are abiding" perfectPlural = "have abided" subjunctivePlural = "might abide" 
+        transitive="false" />
+  <verb presentSingular="annoys" pastSingular="annoyed" pastContinuousSingular="was annoying" futureSingular="will annoy" continuousSingular="is annoying" perfectSingular="has annoyed" subjunctiveSingular="might annoy"
+        presentPlural = "annoy" pastPlural = "annoyed" pastContinuousPlural = "were annoying" futurePlural = "will annoy" continuousPlural = "are annoying" perfectPlural = "have annoyed" subjunctivePlural = "might annoy" 
+        />
+  <verb presentSingular="blazes" pastSingular="blazed" pastContinuousSingular="was blazing" futureSingular="will blaze" continuousSingular="is blazing" perfectSingular="has blazed" subjunctiveSingular="might blaze"
+        presentPlural = "blaze" pastPlural = "blazed" pastContinuousPlural = "were blazing" futurePlural = "will blaze" continuousPlural = "are blazing" perfectPlural = "have blazed" subjunctivePlural = "might blaze" 
+        transitive="false" />
+  <verb presentSingular="blinks" pastSingular="blinked" pastContinuousSingular="was blinking" futureSingular="will blink" continuousSingular="is blinking" perfectSingular="has blinked" subjunctiveSingular="might blink"
+        presentPlural = "blink" pastPlural = "blinked" pastContinuousPlural = "were blinking" futurePlural = "will blink" continuousPlural = "are blinking" perfectPlural = "have blinked" subjunctivePlural = "might blink" 
+        transitive="false" />
+  <verb presentSingular="bursts" pastSingular="burst" pastContinuousSingular="was bursting" futureSingular="will burst" continuousSingular="is bursting" perfectSingular="has bursted" subjunctiveSingular="might burst"
+        presentPlural = "burst" pastPlural = "burst" pastContinuousPlural = "were bursting" futurePlural = "will burst" continuousPlural = "are bursting" perfectPlural = "have bursted" subjunctivePlural = "might burst" 
+        />
+  <verb presentSingular="busks" pastSingular="busked" pastContinuousSingular="was busking" futureSingular="will busk" continuousSingular="is busking" perfectSingular="has busksed" subjunctiveSingular="might busk"
+        presentPlural = "busk" pastPlural = "busked" pastContinuousPlural = "were busking" futurePlural = "will busk" continuousPlural = "are busking" perfectPlural = "have busksed" subjunctivePlural = "might busk" 
+        transitive="false" 
+        />
+  <verb presentSingular="charms" pastSingular="charmed" pastContinuousSingular="was charming" futureSingular="will charm" continuousSingular="is charming" perfectSingular="has charmed" subjunctiveSingular="might charm"
+        presentPlural = "charm" pastPlural = "charmed" pastContinuousPlural = "were charming" futurePlural = "will charm" continuousPlural = "are charming" perfectPlural = "have charmed" subjunctivePlural = "might charm" 
+        transitive="false" 
+        />
+  <verb presentSingular="clacks" pastSingular="clacked" pastContinuousSingular="was clacking" futureSingular="will clack" continuousSingular="is clacking" perfectSingular="has clacked" subjunctiveSingular="might clack"
+        presentPlural = "clack" pastPlural = "clacked" pastContinuousPlural = "were clacking" futurePlural = "will clack" continuousPlural = "are clacking" perfectPlural = "have clacked" subjunctivePlural = "might clack"
+        transitive="false" />
+  <verb presentSingular="clangs" pastSingular="clanged" pastContinuousSingular="was clanging" futureSingular="will clang" continuousSingular="is clanging" perfectSingular="has clanged" subjunctiveSingular="might clang"
+        presentPlural = "clang" pastPlural = "clanged" pastContinuousPlural = "were clanging" futurePlural = "will clang" continuousPlural = "are clanging" perfectPlural = "have clanged" subjunctivePlural = "might clang"
+        transitive="false" />
+  <verb presentSingular="clinks" pastSingular="clinked" pastContinuousSingular="was clinking" futureSingular="will clink" continuousSingular="is clinking" perfectSingular="has clinked" subjunctiveSingular="might clink"
+        presentPlural = "clink" pastPlural = "clinked" pastContinuousPlural = "were clinking" futurePlural = "will clink" continuousPlural = "are clinking" perfectPlural = "have clinked" subjunctivePlural = "might clink"
+        transitive="false"/>
+  <verb presentSingular="clones" pastSingular="cloned" pastContinuousSingular="was cloning" futureSingular="will clone" continuousSingular="is cloning" perfectSingular="has cloned" subjunctiveSingular="might clone"
+        presentPlural = "clone" pastPlural = "cloned" pastContinuousPlural = "were cloning" futurePlural = "will clone" continuousPlural = "are cloning" perfectPlural = "have cloned" subjunctivePlural = "might clone" 
+        />
+  <verb presentSingular="clonks" pastSingular="clonked" pastContinuousSingular="was clonking" futureSingular="will clonk" continuousSingular="is clonking" perfectSingular="has clonked" subjunctiveSingular="might clonk"
+        presentPlural = "clonk" pastPlural = "clonked" pastContinuousPlural = "were clonking" futurePlural = "will clonk" continuousPlural = "are clonking" perfectPlural = "have clonked" subjunctivePlural = "might clonk"
+        transitive="false" />
+  <verb presentSingular="clouds" pastSingular="clouded" pastContinuousSingular="was clouding" futureSingular="will cloud" continuousSingular="is clouding" perfectSingular="has clouded" subjunctiveSingular="might cloud"
+        presentPlural = "cloud" pastPlural = "clouded" pastContinuousPlural = "were clouding" futurePlural = "will cloud" continuousPlural = "are clouding" perfectPlural = "have clouded" subjunctivePlural = "might cloud" 
+        />
+  <verb presentSingular="clunks" pastSingular="clunked" pastContinuousSingular="was clunking" futureSingular="will clunk" continuousSingular="is clunking" perfectSingular="has clunked" subjunctiveSingular="might clunk"
+        presentPlural = "clunk" pastPlural = "clunked" pastContinuousPlural = "were clunking" futurePlural = "will clunk" continuousPlural = "are clunking" perfectPlural = "have clunked" subjunctivePlural = "might clunk" 
+        transitive="false" />
+  <verb presentSingular="coaches" pastSingular="coached" pastContinuousSingular="was coaching" futureSingular="will coach" continuousSingular="is coaching" perfectSingular="has coached" subjunctiveSingular="might coach"
+        presentPlural = "coach" pastPlural = "coached" pastContinuousPlural = "were coaching" futurePlural = "will coach" continuousPlural = "are coaching" perfectPlural = "have coached" subjunctivePlural = "might coach" 
+        />
+  <verb presentSingular="coughs" pastSingular="coughed" pastContinuousSingular="was coughing" futureSingular="will cough" continuousSingular="is coughing" perfectSingular="has coughed" subjunctiveSingular="might cough"
+        presentPlural = "cough" pastPlural = "coughed" pastContinuousPlural = "were coughing" futurePlural = "will cough" continuousPlural = "are coughing" perfectPlural = "have coughed" subjunctivePlural = "might cough"
+        transitive="false" />
+  <verb presentSingular="covers" pastSingular="covered" pastContinuousSingular="was covering" futureSingular="will cover" continuousSingular="is covering" perfectSingular="has covered" subjunctiveSingular="might cover"
+        presentPlural = "cover" pastPlural = "covered" pastContinuousPlural = "were covering" futurePlural = "will cover" continuousPlural = "are covering" perfectPlural = "have covered" subjunctivePlural = "might cover" 
+        />
+  <verb presentSingular="cramps" pastSingular="cramped" pastContinuousSingular="was cramping" futureSingular="will cramp" continuousSingular="is cramping" perfectSingular="has cramped" subjunctiveSingular="might cramp"
+        presentPlural = "cramp" pastPlural = "cramped" pastContinuousPlural = "were cramping" futurePlural = "will cramp" continuousPlural = "are cramping" perfectPlural = "have cramped" subjunctivePlural = "might cramp"
+        transitive="false" />
+  <verb presentSingular="creeps" pastSingular="crept" pastContinuousSingular="was creeping" futureSingular="will creep" continuousSingular="is creeping" perfectSingular="has creeped" subjunctiveSingular="might creep"
+        presentPlural = "creep" pastPlural = "crept" pastContinuousPlural = "were creeping" futurePlural = "will creep" continuousPlural = "are creeping" perfectPlural = "have creeped" subjunctivePlural = "might creep"
+        transitive="false" />
+  <verb presentSingular="crowns" pastSingular="crowned" pastContinuousSingular="was crowning" futureSingular="will crown" continuousSingular="is crowning" perfectSingular="has crowned" subjunctiveSingular="might crown"
+        presentPlural = "crown" pastPlural = "crowned" pastContinuousPlural = "were crowning" futurePlural = "will crown" continuousPlural = "are crowning" perfectPlural = "have crowned" subjunctivePlural = "might crown" 
+        />
+  <verb presentSingular="crushes" pastSingular="crushed" pastContinuousSingular="was crushing" futureSingular="will crush" continuousSingular="is crushing" perfectSingular="has crushed" subjunctiveSingular="might crush"
+        presentPlural = "crush" pastPlural = "crushed" pastContinuousPlural = "were crushing" futurePlural = "will crush" continuousPlural = "are crushing" perfectPlural = "have crushed" subjunctivePlural = "might crush" 
+        />
+  <verb presentSingular="curses" pastSingular="cursed" pastContinuousSingular="was cursing" futureSingular="will curse" continuousSingular="is cursing" perfectSingular="has cursed" subjunctiveSingular="might curse"
+        presentPlural = "curse" pastPlural = "cursed" pastContinuousPlural = "were cursing" futurePlural = "will curse" continuousPlural = "are cursing" perfectPlural = "have cursed" subjunctivePlural = "might curse" 
+        />
+  <verb presentSingular="defogs" pastSingular="defoged" pastContinuousSingular="was defoging" futureSingular="will defog" continuousSingular="is defoging" perfectSingular="has defoged" subjunctiveSingular="might defog"
+        presentPlural = "defog" pastPlural = "defoged" pastContinuousPlural = "were defoging" futurePlural = "will defog" continuousPlural = "are defoging" perfectPlural = "have defoged" subjunctivePlural = "might defog" 
+        />
+  <verb presentSingular="degases" pastSingular="degased" pastContinuousSingular="was degasing" futureSingular="will degas" continuousSingular="is degasing" perfectSingular="has degased" subjunctiveSingular="might degas"
+        presentPlural = "degas" pastPlural = "degased" pastContinuousPlural = "were degasing" futurePlural = "will degas" continuousPlural = "are degasing" perfectPlural = "have degased" subjunctivePlural = "might degas" 
+        />
+  <verb presentSingular="delays" pastSingular="delayed" pastContinuousSingular="was delaying" futureSingular="will delay" continuousSingular="is delaying" perfectSingular="has delaied" subjunctiveSingular="might delay"
+        presentPlural = "delay" pastPlural = "delayed" pastContinuousPlural = "were delaying" futurePlural = "will delay" continuousPlural = "are delaying" perfectPlural = "have delaied" subjunctivePlural = "might delay" 
+        />
+  <verb presentSingular="demobs" pastSingular="demobed" pastContinuousSingular="was demobing" futureSingular="will demob" continuousSingular="is demobing" perfectSingular="has demobed" subjunctiveSingular="might demob"
+        presentPlural = "demob" pastPlural = "demobed" pastContinuousPlural = "were demobing" futurePlural = "will demob" continuousPlural = "are demobing" perfectPlural = "have demobed" subjunctivePlural = "might demob" 
+        />
+  <verb presentSingular="desexes" pastSingular="desexed" pastContinuousSingular="was desexing" futureSingular="will desex" continuousSingular="is desexing" perfectSingular="has desexed" subjunctiveSingular="might desex"
+        presentPlural = "desex" pastPlural = "desexed" pastContinuousPlural = "were desexing" futurePlural = "will desex" continuousPlural = "are desexing" perfectPlural = "have desexed" subjunctivePlural = "might desex" 
+        />
+  <verb presentSingular="deters" pastSingular="detered" pastContinuousSingular="was detering" futureSingular="will deter" continuousSingular="is detering" perfectSingular="has detered" subjunctiveSingular="might deter"
+        presentPlural = "deter" pastPlural = "detered" pastContinuousPlural = "were detering" futurePlural = "will deter" continuousPlural = "are detering" perfectPlural = "have detered" subjunctivePlural = "might deter" 
+        />
+  <verb presentSingular="ditches" pastSingular="ditched" pastContinuousSingular="was ditching" futureSingular="will ditch" continuousSingular="is ditching" perfectSingular="has ditched" subjunctiveSingular="might ditch"
+        presentPlural = "ditch" pastPlural = "ditched" pastContinuousPlural = "were ditching" futurePlural = "will ditch" continuousPlural = "are ditching" perfectPlural = "have ditched" subjunctivePlural = "might ditch" 
+        />
+  <verb presentSingular="drapes" pastSingular="draped" pastContinuousSingular="was draping" futureSingular="will drape" continuousSingular="is draping" perfectSingular="has draped" subjunctiveSingular="might drape"
+        presentPlural = "drape" pastPlural = "draped" pastContinuousPlural = "were draping" futurePlural = "will drape" continuousPlural = "are draping" perfectPlural = "have draped" subjunctivePlural = "might drape" 
+        />
+  <verb presentSingular="drives" pastSingular="drove" pastContinuousSingular="was driving" futureSingular="will drive" continuousSingular="is driving" perfectSingular="has drived" subjunctiveSingular="might drive"
+        presentPlural = "drive" pastPlural = "drove" pastContinuousPlural = "were driving" futurePlural = "will drive" continuousPlural = "are driving" perfectPlural = "have drived" subjunctivePlural = "might drive" 
+        />
+  <verb presentSingular="emails" pastSingular="emailed" pastContinuousSingular="was emailing" futureSingular="will email" continuousSingular="is emailing" perfectSingular="has emailed" subjunctiveSingular="might email"
+        presentPlural = "email" pastPlural = "emailed" pastContinuousPlural = "were emailing" futurePlural = "will email" continuousPlural = "are emailing" perfectPlural = "have emailed" subjunctivePlural = "might email" 
+        />
+  <verb presentSingular="embeds" pastSingular="embeded" pastContinuousSingular="was embeding" futureSingular="will embed" continuousSingular="is embeding" perfectSingular="has embeded" subjunctiveSingular="might embed"
+        presentPlural = "embed" pastPlural = "embeded" pastContinuousPlural = "were embeding" futurePlural = "will embed" continuousPlural = "are embeding" perfectPlural = "have embeded" subjunctivePlural = "might embed" 
+        />
+  <verb presentSingular="enrols" pastSingular="enroled" pastContinuousSingular="was enroling" futureSingular="will enrol" continuousSingular="is enroling" perfectSingular="has enroled" subjunctiveSingular="might enrol"
+        presentPlural = "enrol" pastPlural = "enroled" pastContinuousPlural = "were enroling" futurePlural = "will enrol" continuousPlural = "are enroling" perfectPlural = "have enroled" subjunctivePlural = "might enrol" 
+        />
+  <verb presentSingular="flames" pastSingular="flamed" pastContinuousSingular="was flaming" futureSingular="will flame" continuousSingular="is flaming" perfectSingular="has flamed" subjunctiveSingular="might flame"
+        presentPlural = "flame" pastPlural = "flamed" pastContinuousPlural = "were flaming" futurePlural = "will flame" continuousPlural = "are flaming" perfectPlural = "have flamed" subjunctivePlural = "might flame"
+        transitive="false" />
+  <verb presentSingular="flares" pastSingular="flared" pastContinuousSingular="was flaring" futureSingular="will flare" continuousSingular="is flaring" perfectSingular="has flared" subjunctiveSingular="might flare"
+        presentPlural = "flare" pastPlural = "flared" pastContinuousPlural = "were flaring" futurePlural = "will flare" continuousPlural = "are flaring" perfectPlural = "have flared" subjunctivePlural = "might flare" 
+        />
+  <verb presentSingular="flashes" pastSingular="flashed" pastContinuousSingular="was flashing" futureSingular="will flash" continuousSingular="is flashing" perfectSingular="has flashed" subjunctiveSingular="might flash"
+        presentPlural = "flash" pastPlural = "flashed" pastContinuousPlural = "were flashing" futurePlural = "will flash" continuousPlural = "are flashing" perfectPlural = "have flashed" subjunctivePlural = "might flash" 
+        />
+  <verb presentSingular="flings" pastSingular="flung" pastContinuousSingular="was flinging" futureSingular="will fling" continuousSingular="is flinging" perfectSingular="has flung" subjunctiveSingular="might fling"
+        presentPlural = "fling" pastPlural = "flung" pastContinuousPlural = "were flinging" futurePlural = "will fling" continuousPlural = "are flinging" perfectPlural = "have flung" subjunctivePlural = "might fling" 
+        />
+  <verb presentSingular="flosses" pastSingular="flossed" pastContinuousSingular="was flossing" futureSingular="will floss" continuousSingular="is flossing" perfectSingular="has flossed" subjunctiveSingular="might floss"
+        presentPlural = "floss" pastPlural = "flossed" pastContinuousPlural = "were flossing" futurePlural = "will floss" continuousPlural = "are flossing" perfectPlural = "have flossed" subjunctivePlural = "might floss" 
+        />
+  <verb presentSingular="flouts" pastSingular="flouted" pastContinuousSingular="was flouting" futureSingular="will flout" continuousSingular="is flouting" perfectSingular="has flouted" subjunctiveSingular="might flout"
+        presentPlural = "flout" pastPlural = "flouted" pastContinuousPlural = "were flouting" futurePlural = "will flout" continuousPlural = "are flouting" perfectPlural = "have flouted" subjunctivePlural = "might flout" 
+        />
+  <verb presentSingular="foists" pastSingular="foisted" pastContinuousSingular="was foisting" futureSingular="will foist" continuousSingular="is foisting" perfectSingular="has foisted" subjunctiveSingular="might foist"
+        presentPlural = "foist" pastPlural = "foisted" pastContinuousPlural = "were foisting" futurePlural = "will foist" continuousPlural = "are foisting" perfectPlural = "have foisted" subjunctivePlural = "might foist" 
+        />
+  <verb presentSingular="glares" pastSingular="glared" pastContinuousSingular="was glaring" futureSingular="will glare" continuousSingular="is glaring" perfectSingular="has glared" subjunctiveSingular="might glare"
+        presentPlural = "glare" pastPlural = "glared" pastContinuousPlural = "were glaring" futurePlural = "will glare" continuousPlural = "are glaring" perfectPlural = "have glared" subjunctivePlural = "might glare"
+        transitive="false" />
+  <verb presentSingular="glazes" pastSingular="glazed" pastContinuousSingular="was glazing" futureSingular="will glaze" continuousSingular="is glazing" perfectSingular="has glazed" subjunctiveSingular="might glaze"
+        presentPlural = "glaze" pastPlural = "glazed" pastContinuousPlural = "were glazing" futurePlural = "will glaze" continuousPlural = "are glazing" perfectPlural = "have glazed" subjunctivePlural = "might glaze" 
+        />
+  <verb presentSingular="gnashes" pastSingular="gnashed" pastContinuousSingular="was gnashing" futureSingular="will gnash" continuousSingular="is gnashing" perfectSingular="has gnashed" subjunctiveSingular="might gnash"
+        presentPlural = "gnash" pastPlural = "gnashed" pastContinuousPlural = "were gnashing" futurePlural = "will gnash" continuousPlural = "are gnashing" perfectPlural = "have gnashed" subjunctivePlural = "might gnash" 
+        />
+  <verb presentSingular="grasps" pastSingular="grasped" pastContinuousSingular="was grasping" futureSingular="will grasp" continuousSingular="is grasping" perfectSingular="has grasped" subjunctiveSingular="might grasp"
+        presentPlural = "grasp" pastPlural = "grasped" pastContinuousPlural = "were grasping" futurePlural = "will grasp" continuousPlural = "are grasping" perfectPlural = "have grasped" subjunctivePlural = "might grasp" 
+        />
+  <verb presentSingular="greets" pastSingular="greeted" pastContinuousSingular="was greeting" futureSingular="will greet" continuousSingular="is greeting" perfectSingular="has greeted" subjunctiveSingular="might greet"
+        presentPlural = "greet" pastPlural = "greeted" pastContinuousPlural = "were greeting" futurePlural = "will greet" continuousPlural = "are greeting" perfectPlural = "have greeted" subjunctivePlural = "might greet" 
+        />
+  <verb presentSingular="griefs" pastSingular="griefed" pastContinuousSingular="was griefing" futureSingular="will grief" continuousSingular="is griefing" perfectSingular="has griefed" subjunctiveSingular="might grief"
+        presentPlural = "grief" pastPlural = "griefed" pastContinuousPlural = "were griefing" futurePlural = "will grief" continuousPlural = "are griefing" perfectPlural = "have griefed" subjunctivePlural = "might grief" 
+        />
+  <verb presentSingular="heaves" pastSingular="heaved" pastContinuousSingular="was heaving" futureSingular="will heave" continuousSingular="is heaving" perfectSingular="has heaved" subjunctiveSingular="might heave"
+        presentPlural = "heave" pastPlural = "heaved" pastContinuousPlural = "were heaving" futurePlural = "will heave" continuousPlural = "are heaving" perfectPlural = "have heaved" subjunctivePlural = "might heave" 
+        />
+  <verb presentSingular="hitches" pastSingular="hitched" pastContinuousSingular="was hitching" futureSingular="will hitch" continuousSingular="is hitching" perfectSingular="has hitched" subjunctiveSingular="might hitch"
+        presentPlural = "hitch" pastPlural = "hitched" pastContinuousPlural = "were hitching" futurePlural = "will hitch" continuousPlural = "are hitching" perfectPlural = "have hitched" subjunctivePlural = "might hitch" 
+        />
+  <verb presentSingular="hoists" pastSingular="hoisted" pastContinuousSingular="was hoisting" futureSingular="will hoist" continuousSingular="is hoisting" perfectSingular="has hoisted" subjunctiveSingular="might hoist"
+        presentPlural = "hoist" pastPlural = "hoisted" pastContinuousPlural = "were hoisting" futurePlural = "will hoist" continuousPlural = "are hoisting" perfectPlural = "have hoisted" subjunctivePlural = "might hoist" 
+        />
+  <verb presentSingular="imbeds" pastSingular="imbeded" pastContinuousSingular="was imbeding" futureSingular="will imbed" continuousSingular="is imbeding" perfectSingular="has imbeded" subjunctiveSingular="might imbed"
+        presentPlural = "imbed" pastPlural = "imbeded" pastContinuousPlural = "were imbeding" futurePlural = "will imbed" continuousPlural = "are imbeding" perfectPlural = "have imbeded" subjunctivePlural = "might imbed" 
+        />
+  <verb presentSingular="imbues" pastSingular="imbued" pastContinuousSingular="was imbuing" futureSingular="will imbue" continuousSingular="is imbuing" perfectSingular="has imbued" subjunctiveSingular="might imbue"
+        presentPlural = "imbue" pastPlural = "imbued" pastContinuousPlural = "were imbuing" futurePlural = "will imbue" continuousPlural = "are imbuing" perfectPlural = "have imbued" subjunctivePlural = "might imbue" 
+        />
+  <verb presentSingular="impels" pastSingular="impeled" pastContinuousSingular="was impeling" futureSingular="will impel" continuousSingular="is impeling" perfectSingular="has impeled" subjunctiveSingular="might impel"
+        presentPlural = "impel" pastPlural = "impeled" pastContinuousPlural = "were impeling" futurePlural = "will impel" continuousPlural = "are impeling" perfectPlural = "have impeled" subjunctivePlural = "might impel" 
+        />
+  <verb presentSingular="inputs" pastSingular="input" pastContinuousSingular="was inputing" futureSingular="will input" continuousSingular="is inputing" perfectSingular="has input" subjunctiveSingular="might input"
+        presentPlural = "input" pastPlural = "input" pastContinuousPlural = "were inputing" futurePlural = "will input" continuousPlural = "are inputing" perfectPlural = "have input" subjunctivePlural = "might input" 
+        />
+  <verb presentSingular="kneeds" pastSingular="kneeded" pastContinuousSingular="was kneeding" futureSingular="will kneed" continuousSingular="is kneeding" perfectSingular="has kneeded" subjunctiveSingular="might kneed"
+        presentPlural = "kneed" pastPlural = "kneeded" pastContinuousPlural = "were kneeding" futurePlural = "will kneed" continuousPlural = "are kneeding" perfectPlural = "have kneeded" subjunctivePlural = "might kneed" 
+        />
+  <verb presentSingular="levers" pastSingular="levered" pastContinuousSingular="was levering" futureSingular="will lever" continuousSingular="is levering" perfectSingular="has levered" subjunctiveSingular="might lever"
+        presentPlural = "lever" pastPlural = "levered" pastContinuousPlural = "were levering" futurePlural = "will lever" continuousPlural = "are levering" perfectPlural = "have levered" subjunctivePlural = "might lever" 
+        />
+  <verb presentSingular="limits" pastSingular="limited" pastContinuousSingular="was limiting" futureSingular="will limit" continuousSingular="is limiting" perfectSingular="has limited" subjunctiveSingular="might limit"
+        presentPlural = "limit" pastPlural = "limited" pastContinuousPlural = "were limiting" futurePlural = "will limit" continuousPlural = "are limiting" perfectPlural = "have limited" subjunctivePlural = "might limit" 
+        />
+  <verb presentSingular="morphs" pastSingular="morphed" pastContinuousSingular="was morphing" futureSingular="will morph" continuousSingular="is morphing" perfectSingular="has morphed" subjunctiveSingular="might morph"
+        presentPlural = "morph" pastPlural = "morphed" pastContinuousPlural = "were morphing" futurePlural = "will morph" continuousPlural = "are morphing" perfectPlural = "have morphed" subjunctivePlural = "might morph" 
+        />
+  <verb presentSingular="mourns" pastSingular="mourned" pastContinuousSingular="was mourning" futureSingular="will mourn" continuousSingular="is mourning" perfectSingular="has mourned" subjunctiveSingular="might mourn"
+        presentPlural = "mourn" pastPlural = "mourned" pastContinuousPlural = "were mourning" futurePlural = "will mourn" continuousPlural = "are mourning" perfectPlural = "have mourned" subjunctivePlural = "might mourn" 
+        />
+  <verb presentSingular="nudges" pastSingular="nudged" pastContinuousSingular="was nudging" futureSingular="will nudge" continuousSingular="is nudging" perfectSingular="has nudged" subjunctiveSingular="might nudge"
+        presentPlural = "nudge" pastPlural = "nudged" pastContinuousPlural = "were nudging" futurePlural = "will nudge" continuousPlural = "are nudging" perfectPlural = "have nudged" subjunctivePlural = "might nudge" 
+        />
+  <verb presentSingular="oozes" pastSingular="oozed" pastContinuousSingular="was oozing" futureSingular="will ooze" continuousSingular="is oozing" perfectSingular="has oozed" subjunctiveSingular="might ooze"
+        presentPlural = "ooze" pastPlural = "oozed" pastContinuousPlural = "were oozing" futurePlural = "will ooze" continuousPlural = "are oozing" perfectPlural = "have oozed" subjunctivePlural = "might ooze"
+        transitive="false" />
+  <verb presentSingular="paints" pastSingular="painted" pastContinuousSingular="was painting" futureSingular="will paint" continuousSingular="is painting" perfectSingular="has painted" subjunctiveSingular="might paint"
+        presentPlural = "paint" pastPlural = "painted" pastContinuousPlural = "were painting" futurePlural = "will paint" continuousPlural = "are painting" perfectPlural = "have painted" subjunctivePlural = "might paint" 
+        />
+  <verb presentSingular="panics" pastSingular="paniced" pastContinuousSingular="was panicing" futureSingular="will panic" continuousSingular="is panicing" perfectSingular="has paniced" subjunctiveSingular="might panic"
+        presentPlural = "panic" pastPlural = "paniced" pastContinuousPlural = "were panicing" futurePlural = "will panic" continuousPlural = "are panicing" perfectPlural = "have paniced" subjunctivePlural = "might panic"
+        transitive="false" />
+  <verb presentSingular="plinks" pastSingular="plinked" pastContinuousSingular="was plinking" futureSingular="will plink" continuousSingular="is plinking" perfectSingular="has plinked" subjunctiveSingular="might plink"
+        presentPlural = "plink" pastPlural = "plinked" pastContinuousPlural = "were plinking" futurePlural = "will plink" continuousPlural = "are plinking" perfectPlural = "have plinked" subjunctivePlural = "might plink"
+        transitive="false" />
+  <verb presentSingular="plunks" pastSingular="plunked" pastContinuousSingular="was plunking" futureSingular="will plunk" continuousSingular="is plunking" perfectSingular="has plunked" subjunctiveSingular="might plunk"
+        presentPlural = "plunk" pastPlural = "plunked" pastContinuousPlural = "were plunking" futurePlural = "will plunk" continuousPlural = "are plunking" perfectPlural = "have plunked" subjunctivePlural = "might plunk"
+        transitive="false" />
+  <verb presentSingular="purees" pastSingular="pureed" pastContinuousSingular="was pureing" futureSingular="will puree" continuousSingular="is pureing" perfectSingular="has pureed" subjunctiveSingular="might puree"
+        presentPlural = "puree" pastPlural = "pureed" pastContinuousPlural = "were pureing" futurePlural = "will puree" continuousPlural = "are pureing" perfectPlural = "have pureed" subjunctivePlural = "might puree" 
+        />
+  <verb presentSingular="pwneds" pastSingular="pwned" pastContinuousSingular="was pwning" futureSingular="will pwned" continuousSingular="is pwning" perfectSingular="has pwned" subjunctiveSingular="might pwn"
+        presentPlural = "pwnes" pastPlural = "pwned" pastContinuousPlural = "were pwning" futurePlural = "will pwned" continuousPlural = "are pwning" perfectPlural = "have pwned" subjunctivePlural = "might pwn" 
+        />
+  <verb presentSingular="quaffs" pastSingular="quaffed" pastContinuousSingular="was quaffing" futureSingular="will quaff" continuousSingular="is quaffing" perfectSingular="has quaffed" subjunctiveSingular="might quaff"
+        presentPlural = "quaff" pastPlural = "quaffed" pastContinuousPlural = "were quaffing" futurePlural = "will quaff" continuousPlural = "are quaffing" perfectPlural = "have quaffed" subjunctivePlural = "might quaff" 
+        />
+  <verb presentSingular="reaches" pastSingular="reached" pastContinuousSingular="was reaching" futureSingular="will reach" continuousSingular="is reaching" perfectSingular="has reached" subjunctiveSingular="might reach"
+        presentPlural = "reach" pastPlural = "reached" pastContinuousPlural = "were reaching" futurePlural = "will reach" continuousPlural = "are reaching" perfectPlural = "have reached" subjunctivePlural = "might reach" 
+        />
+  <verb presentSingular="recaps" pastSingular="recaped" pastContinuousSingular="was recaping" futureSingular="will recap" continuousSingular="is recaping" perfectSingular="has recaped" subjunctiveSingular="might recap"
+        presentPlural = "recap" pastPlural = "recaped" pastContinuousPlural = "were recaping" futurePlural = "will recap" continuousPlural = "are recaping" perfectPlural = "have recaped" subjunctivePlural = "might recap" 
+        />
+  <verb presentSingular="remixes" pastSingular="remixed" pastContinuousSingular="was remixing" futureSingular="will remix" continuousSingular="is remixing" perfectSingular="has remixed" subjunctiveSingular="might remix"
+        presentPlural = "remix" pastPlural = "remixed" pastContinuousPlural = "were remixing" futurePlural = "will remix" continuousPlural = "are remixing" perfectPlural = "have remixed" subjunctivePlural = "might remix" 
+        />
+  <verb presentSingular="repots" pastSingular="repoted" pastContinuousSingular="was repoting" futureSingular="will repot" continuousSingular="is repoting" perfectSingular="has repoted" subjunctiveSingular="might repot"
+        presentPlural = "repot" pastPlural = "repoted" pastContinuousPlural = "were repoting" futurePlural = "will repot" continuousPlural = "are repoting" perfectPlural = "have repoted" subjunctivePlural = "might repot" 
+        />
+  <verb presentSingular="rinses" pastSingular="rinsed" pastContinuousSingular="was rinsing" futureSingular="will rinse" continuousSingular="is rinsing" perfectSingular="has rinsed" subjunctiveSingular="might rinse"
+        presentPlural = "rinse" pastPlural = "rinsed" pastContinuousPlural = "were rinsing" futurePlural = "will rinse" continuousPlural = "are rinsing" perfectPlural = "have rinsed" subjunctivePlural = "might rinse" 
+        />
+  <verb presentSingular="savors" pastSingular="savored" pastContinuousSingular="was savoring" futureSingular="will savor" continuousSingular="is savoring" perfectSingular="has savored" subjunctiveSingular="might savor"
+        presentPlural = "savor" pastPlural = "savored" pastContinuousPlural = "were savoring" futurePlural = "will savor" continuousPlural = "are savoring" perfectPlural = "have savored" subjunctivePlural = "might savor" 
+        />
+  <verb presentSingular="scalds" pastSingular="scalded" pastContinuousSingular="was scalding" futureSingular="will scald" continuousSingular="is scalding" perfectSingular="has scalded" subjunctiveSingular="might scald"
+        presentPlural = "scald" pastPlural = "scalded" pastContinuousPlural = "were scalding" futurePlural = "will scald" continuousPlural = "are scalding" perfectPlural = "have scalded" subjunctivePlural = "might scald" 
+        />
+  <verb presentSingular="scoots" pastSingular="scooted" pastContinuousSingular="was scooting" futureSingular="will scoot" continuousSingular="is scooting" perfectSingular="has scooted" subjunctiveSingular="might scoot"
+        presentPlural = "scoot" pastPlural = "scooted" pastContinuousPlural = "were scooting" futurePlural = "will scoot" continuousPlural = "are scooting" perfectPlural = "have scooted" subjunctivePlural = "might scoot" 
+        transitive="false" />
+  <verb presentSingular="scopes" pastSingular="scoped" pastContinuousSingular="was scoping" futureSingular="will scope" continuousSingular="is scoping" perfectSingular="has scoped" subjunctiveSingular="might scope"
+        presentPlural = "scope" pastPlural = "scoped" pastContinuousPlural = "were scoping" futurePlural = "will scope" continuousPlural = "are scoping" perfectPlural = "have scoped" subjunctivePlural = "might scope" 
+        />
+  <verb presentSingular="scours" pastSingular="scoured" pastContinuousSingular="was scouring" futureSingular="will scour" continuousSingular="is scouring" perfectSingular="has scoured" subjunctiveSingular="might scour"
+        presentPlural = "scour" pastPlural = "scoured" pastContinuousPlural = "were scouring" futurePlural = "will scour" continuousPlural = "are scouring" perfectPlural = "have scoured" subjunctivePlural = "might scour"
+        />
+  <verb presentSingular="scowls" pastSingular="scowled" pastContinuousSingular="was scowling" futureSingular="will scowl" continuousSingular="is scowling" perfectSingular="has scowled" subjunctiveSingular="might scowl"
+        presentPlural = "scowl" pastPlural = "scowled" pastContinuousPlural = "were scowling" futurePlural = "will scowl" continuousPlural = "are scowling" perfectPlural = "have scowled" subjunctivePlural = "might scowl"
+        transitive="false" />
+  <verb presentSingular="shapes" pastSingular="shaped" pastContinuousSingular="was shaping" futureSingular="will shape" continuousSingular="is shaping" perfectSingular="has shaped" subjunctiveSingular="might shape"
+        presentPlural = "shape" pastPlural = "shaped" pastContinuousPlural = "were shaping" futurePlural = "will shape" continuousPlural = "are shaping" perfectPlural = "have shaped" subjunctivePlural = "might shape" 
+        />
+  <verb presentSingular="shifts" pastSingular="shifted" pastContinuousSingular="was shifting" futureSingular="will shift" continuousSingular="is shifting" perfectSingular="has shifted" subjunctiveSingular="might shift"
+        presentPlural = "shift" pastPlural = "shifted" pastContinuousPlural = "were shifting" futurePlural = "will shift" continuousPlural = "are shifting" perfectPlural = "have shifted" subjunctivePlural = "might shift" 
+        />
+  <verb presentSingular="shirks" pastSingular="shirked" pastContinuousSingular="was shirking" futureSingular="will shirk" continuousSingular="is shirking" perfectSingular="has shirked" subjunctiveSingular="might shirk"
+        presentPlural = "shirk" pastPlural = "shirked" pastContinuousPlural = "were shirking" futurePlural = "will shirk" continuousPlural = "are shirking" perfectPlural = "have shirked" subjunctivePlural = "might shirk" 
+        />
+  <verb presentSingular="shrugs" pastSingular="shruged" pastContinuousSingular="was shruging" futureSingular="will shrug" continuousSingular="is shruging" perfectSingular="has shruged" subjunctiveSingular="might shrug"
+        presentPlural = "shrug" pastPlural = "shruged" pastContinuousPlural = "were shruging" futurePlural = "will shrug" continuousPlural = "are shruging" perfectPlural = "have shruged" subjunctivePlural = "might shrug"
+        transitive="false" />
+  <verb presentSingular="sights" pastSingular="sighted" pastContinuousSingular="was sighting" futureSingular="will sight" continuousSingular="is sighting" perfectSingular="has sighted" subjunctiveSingular="might sight"
+        presentPlural = "sight" pastPlural = "sighted" pastContinuousPlural = "were sighting" futurePlural = "will sight" continuousPlural = "are sighting" perfectPlural = "have sighted" subjunctivePlural = "might sight" 
+        />
+  <verb presentSingular="smashes" pastSingular="smashed" pastContinuousSingular="was smashing" futureSingular="will smash" continuousSingular="is smashing" perfectSingular="has smashed" subjunctiveSingular="might smash"
+        presentPlural = "smash" pastPlural = "smashed" pastContinuousPlural = "were smashing" futurePlural = "will smash" continuousPlural = "are smashing" perfectPlural = "have smashed" subjunctivePlural = "might smash" 
+        />
+  <verb presentSingular="smiles" pastSingular="smiled" pastContinuousSingular="was smiling" futureSingular="will smile" continuousSingular="is smiling" perfectSingular="has smiled" subjunctiveSingular="might smile"
+        presentPlural = "smile" pastPlural = "smiled" pastContinuousPlural = "were smiling" futurePlural = "will smile" continuousPlural = "are smiling" perfectPlural = "have smiled" subjunctivePlural = "might smile"
+        transitive="false" />
+  <verb presentSingular="snores" pastSingular="snored" pastContinuousSingular="was snoring" futureSingular="will snore" continuousSingular="is snoring" perfectSingular="has snored" subjunctiveSingular="might snore"
+        presentPlural = "snore" pastPlural = "snored" pastContinuousPlural = "were snoring" futurePlural = "will snore" continuousPlural = "are snoring" perfectPlural = "have snored" subjunctivePlural = "might snore"
+        transitive="false"/>
+  <verb presentSingular="spawns" pastSingular="spawned" pastContinuousSingular="was spawning" futureSingular="will spawn" continuousSingular="is spawning" perfectSingular="has spawned" subjunctiveSingular="might spawn"
+        presentPlural = "spawn" pastPlural = "spawned" pastContinuousPlural = "were spawning" futurePlural = "will spawn" continuousPlural = "are spawning" perfectPlural = "have spawned" subjunctivePlural = "might spawn" 
+        />
+  <verb presentSingular="spoils" pastSingular="spoiled" pastContinuousSingular="was spoiling" futureSingular="will spoil" continuousSingular="is spoiling" perfectSingular="has spoiled" subjunctiveSingular="might spoil"
+        presentPlural = "spoil" pastPlural = "spoiled" pastContinuousPlural = "were spoiling" futurePlural = "will spoil" continuousPlural = "are spoiling" perfectPlural = "have spoiled" subjunctivePlural = "might spoil" 
+        />
+  <verb presentSingular="spurns" pastSingular="spurned" pastContinuousSingular="was spurning" futureSingular="will spurn" continuousSingular="is spurning" perfectSingular="has spurned" subjunctiveSingular="might spurn"
+        presentPlural = "spurn" pastPlural = "spurned" pastContinuousPlural = "were spurning" futurePlural = "will spurn" continuousPlural = "are spurning" perfectPlural = "have spurned" subjunctivePlural = "might spurn" 
+        />
+  <verb presentSingular="stains" pastSingular="stained" pastContinuousSingular="was staining" futureSingular="will stain" continuousSingular="is staining" perfectSingular="has stained" subjunctiveSingular="might stain"
+        presentPlural = "stain" pastPlural = "stained" pastContinuousPlural = "were staining" futurePlural = "will stain" continuousPlural = "are staining" perfectPlural = "have stained" subjunctivePlural = "might stain" 
+        />
+  <verb presentSingular="stamps" pastSingular="stamped" pastContinuousSingular="was stamping" futureSingular="will stamp" continuousSingular="is stamping" perfectSingular="has stamped" subjunctiveSingular="might stamp"
+        presentPlural = "stamp" pastPlural = "stamped" pastContinuousPlural = "were stamping" futurePlural = "will stamp" continuousPlural = "are stamping" perfectPlural = "have stamped" subjunctivePlural = "might stamp" 
+        />
+  <verb presentSingular="stings" pastSingular="stung" pastContinuousSingular="was stinging" futureSingular="will sting" continuousSingular="is stinging" perfectSingular="has stung" subjunctiveSingular="might sting"
+        presentPlural = "sting" pastPlural = "stung" pastContinuousPlural = "were stinging" futurePlural = "will sting" continuousPlural = "are stinging" perfectPlural = "have stung" subjunctivePlural = "might sting" 
+        />
+  <verb presentSingular="stores" pastSingular="stored" pastContinuousSingular="was storing" futureSingular="will store" continuousSingular="is storing" perfectSingular="has stored" subjunctiveSingular="might store"
+        presentPlural = "store" pastPlural = "stored" pastContinuousPlural = "were storing" futurePlural = "will store" continuousPlural = "are storing" perfectPlural = "have stored" subjunctivePlural = "might store" 
+        />
+  <verb presentSingular="swills" pastSingular="swilled" pastContinuousSingular="was swilling" futureSingular="will swill" continuousSingular="is swilling" perfectSingular="has swilled" subjunctiveSingular="might swill"
+        presentPlural = "swill" pastPlural = "swilled" pastContinuousPlural = "were swilling" futurePlural = "will swill" continuousPlural = "are swilling" perfectPlural = "have swilled" subjunctivePlural = "might swill" 
+        />
+  <verb presentSingular="swipes" pastSingular="swiped" pastContinuousSingular="was swiping" futureSingular="will swipe" continuousSingular="is swiping" perfectSingular="has swiped" subjunctiveSingular="might swipe"
+        presentPlural = "swipe" pastPlural = "swiped" pastContinuousPlural = "were swiping" futurePlural = "will swipe" continuousPlural = "are swiping" perfectPlural = "have swiped" subjunctivePlural = "might swipe" 
+        />
+  <verb presentSingular="thrums" pastSingular="thrumed" pastContinuousSingular="was thruming" futureSingular="will thrum" continuousSingular="is thruming" perfectSingular="has thrumed" subjunctiveSingular="might thrum"
+        presentPlural = "thrum" pastPlural = "thrumed" pastContinuousPlural = "were thruming" futurePlural = "will thrum" continuousPlural = "are thruming" perfectPlural = "have thrumed" subjunctivePlural = "might thrum" 
+        />
+  <verb presentSingular="trawls" pastSingular="trawled" pastContinuousSingular="was trawling" futureSingular="will trawl" continuousSingular="is trawling" perfectSingular="has trawled" subjunctiveSingular="might trawl"
+        presentPlural = "trawl" pastPlural = "trawled" pastContinuousPlural = "were trawling" futurePlural = "will trawl" continuousPlural = "are trawling" perfectPlural = "have trawled" subjunctivePlural = "might trawl" 
+        />
+  <verb presentSingular="trolls" pastSingular="trolled" pastContinuousSingular="was trolling" futureSingular="will troll" continuousSingular="is trolling" perfectSingular="has trolled" subjunctiveSingular="might troll"
+        presentPlural = "troll" pastPlural = "trolled" pastContinuousPlural = "were trolling" futurePlural = "will troll" continuousPlural = "are trolling" perfectPlural = "have trolled" subjunctivePlural = "might troll" 
+        />
+  <verb presentSingular="twangs" pastSingular="twanged" pastContinuousSingular="was twanging" futureSingular="will twang" continuousSingular="is twanging" perfectSingular="has twanged" subjunctiveSingular="might twang"
+        presentPlural = "twang" pastPlural = "twanged" pastContinuousPlural = "were twanging" futurePlural = "will twang" continuousPlural = "are twanging" perfectPlural = "have twanged" subjunctivePlural = "might twang" 
+        />
+  <verb presentSingular="twerks" pastSingular="twerked" pastContinuousSingular="was twerking" futureSingular="will twerk" continuousSingular="is twerking" perfectSingular="has twerked" subjunctiveSingular="might twerk"
+        presentPlural = "twerk" pastPlural = "twerked" pastContinuousPlural = "were twerking" futurePlural = "will twerk" continuousPlural = "are twerking" perfectPlural = "have twerked" subjunctivePlural = "might twerk" 
+        />
+  <verb presentSingular="unboxes" pastSingular="unboxed" pastContinuousSingular="was unboxing" futureSingular="will unbox" continuousSingular="is unboxing" perfectSingular="has unboxed" subjunctiveSingular="might unbox"
+        presentPlural = "unbox" pastPlural = "unboxed" pastContinuousPlural = "were unboxing" futurePlural = "will unbox" continuousPlural = "are unboxing" perfectPlural = "have unboxed" subjunctivePlural = "might unbox" 
+        />
+  <verb presentSingular="whirls" pastSingular="whirled" pastContinuousSingular="was whirling" futureSingular="will whirl" continuousSingular="is whirling" perfectSingular="has whirled" subjunctiveSingular="might whirl"
+        presentPlural = "whirl" pastPlural = "whirled" pastContinuousPlural = "were whirling" futurePlural = "will whirl" continuousPlural = "are whirling" perfectPlural = "have whirled" subjunctivePlural = "might whirl"
+        transitive="false" />
+  <verb presentSingular="whumps" pastSingular="whumped" pastContinuousSingular="was whumping" futureSingular="will whump" continuousSingular="is whumping" perfectSingular="has whumped" subjunctiveSingular="might whump"
+        presentPlural = "whump" pastPlural = "whumped" pastContinuousPlural = "were whumping" futurePlural = "will whump" continuousPlural = "are whumping" perfectPlural = "have whumped" subjunctivePlural = "might whump" 
+        />
+  <verb presentSingular="wields" pastSingular="wielded" pastContinuousSingular="was wielding" futureSingular="will wield" continuousSingular="is wielding" perfectSingular="has wielded" subjunctiveSingular="might wield"
+        presentPlural = "wield" pastPlural = "wielded" pastContinuousPlural = "were wielding" futurePlural = "will wield" continuousPlural = "are wielding" perfectPlural = "have wielded" subjunctivePlural = "might wield" 
+        />
+  <verb presentSingular="wreaks" pastSingular="wreaked" pastContinuousSingular="was wreaking" futureSingular="will wreak" continuousSingular="is wreaking" perfectSingular="has wreaked" subjunctiveSingular="might wreak"
+        presentPlural = "wreak" pastPlural = "wreaked" pastContinuousPlural = "were wreaking" futurePlural = "will wreak" continuousPlural = "are wreaking" perfectPlural = "have wreaked" subjunctivePlural = "might wreak" 
+        />
+  <verb presentSingular="wrongs" pastSingular="wronged" pastContinuousSingular="was wronging" futureSingular="will wrong" continuousSingular="is wronging" perfectSingular="has wronged" subjunctiveSingular="might wrong"
+        presentPlural = "wrong" pastPlural = "wronged" pastContinuousPlural = "were wronging" futurePlural = "will wrong" continuousPlural = "are wronging" perfectPlural = "have wronged" subjunctivePlural = "might wrong" 
+        />
 </dictionary>
