@@ -6347,21 +6347,9 @@ limitations under the License.
   <verb presentSingular="chills" pastSingular="chilled" pastContinuousSingular="was chilling" futureSingular="will chill" continuousSingular="is chilling" perfectSingular="has chilled" subjunctiveSingular="might chill"
         presentPlural = "chill" pastPlural = "chilled" pastContinuousPlural = "were chilling" futurePlural = "will chill" continuousPlural = "are chilling" perfectPlural = "have chilled" subjunctivePlural = "might chill" 
         />
-  <verb presentSingular="abides" pastSingular="abided" pastContinuousSingular="was abiding" futureSingular="will abide" continuousSingular="is abiding" perfectSingular="has abided" subjunctiveSingular="might abide"
-        presentPlural = "abide" pastPlural = "abided" pastContinuousPlural = "were abiding" futurePlural = "will abide" continuousPlural = "are abiding" perfectPlural = "have abided" subjunctivePlural = "might abide" 
-        transitive="false" />
-  <verb presentSingular="annoys" pastSingular="annoyed" pastContinuousSingular="was annoying" futureSingular="will annoy" continuousSingular="is annoying" perfectSingular="has annoyed" subjunctiveSingular="might annoy"
-        presentPlural = "annoy" pastPlural = "annoyed" pastContinuousPlural = "were annoying" futurePlural = "will annoy" continuousPlural = "are annoying" perfectPlural = "have annoyed" subjunctivePlural = "might annoy" 
-        />
   <verb presentSingular="blazes" pastSingular="blazed" pastContinuousSingular="was blazing" futureSingular="will blaze" continuousSingular="is blazing" perfectSingular="has blazed" subjunctiveSingular="might blaze"
         presentPlural = "blaze" pastPlural = "blazed" pastContinuousPlural = "were blazing" futurePlural = "will blaze" continuousPlural = "are blazing" perfectPlural = "have blazed" subjunctivePlural = "might blaze" 
         transitive="false" />
-  <verb presentSingular="blinks" pastSingular="blinked" pastContinuousSingular="was blinking" futureSingular="will blink" continuousSingular="is blinking" perfectSingular="has blinked" subjunctiveSingular="might blink"
-        presentPlural = "blink" pastPlural = "blinked" pastContinuousPlural = "were blinking" futurePlural = "will blink" continuousPlural = "are blinking" perfectPlural = "have blinked" subjunctivePlural = "might blink" 
-        transitive="false" />
-  <verb presentSingular="bursts" pastSingular="burst" pastContinuousSingular="was bursting" futureSingular="will burst" continuousSingular="is bursting" perfectSingular="has bursted" subjunctiveSingular="might burst"
-        presentPlural = "burst" pastPlural = "burst" pastContinuousPlural = "were bursting" futurePlural = "will burst" continuousPlural = "are bursting" perfectPlural = "have bursted" subjunctivePlural = "might burst" 
-        />
   <verb presentSingular="busks" pastSingular="busked" pastContinuousSingular="was busking" futureSingular="will busk" continuousSingular="is busking" perfectSingular="has busksed" subjunctiveSingular="might busk"
         presentPlural = "busk" pastPlural = "busked" pastContinuousPlural = "were busking" futurePlural = "will busk" continuousPlural = "are busking" perfectPlural = "have busksed" subjunctivePlural = "might busk" 
         transitive="false" 
