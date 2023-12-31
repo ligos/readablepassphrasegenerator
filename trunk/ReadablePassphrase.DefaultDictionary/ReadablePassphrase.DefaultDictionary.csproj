@@ -13,7 +13,7 @@ For normal use, reference the "ReadablePassphrase" package.
 
 This is just the default dictionary as an embedded resource.
 
-See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
+See https://id.ligos.net/murray/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <Copyright>Copyright © Murray Grant 2011-2024</Copyright>
     <RepositoryUrl>https://github.com/ligos/readablepassphrasegenerator</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

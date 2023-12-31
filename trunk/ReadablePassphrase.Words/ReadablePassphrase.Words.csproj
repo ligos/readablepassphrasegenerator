@@ -13,7 +13,7 @@ For normal use, reference the "ReadablePassphrase" package.
 
 This is the Words assembly containing base interfaces and Dictionary classes only. Unless you are making your own Dictionary Loader, you shouldn't directly use this package.
 
-See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
+See https://id.ligos.net/murray/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>

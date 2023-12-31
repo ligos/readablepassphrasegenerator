@@ -11,7 +11,7 @@
 
 This is the Core assembly. For normal use, reference the "ReadablePassphrase" package.
 
-See https://keybase.pub/ligos/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
+See https://id.ligos.net/murray/ReadablePassphraseGenerator/ for PGP &amp; Keybase signatures of nuget packages.</Description>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
