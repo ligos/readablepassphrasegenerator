@@ -50,6 +50,9 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.4.1
+	* Mini update for NuGet packages only; no changes to binaries.
+	* PGP keys and signatures now published on [id.ligos.net](https://id.ligos.net/murray/ReadablePassphraseGenerator/).
 * Version 1.4.0
 	* 18,505 words in the default dictionary (~1,000 more than 1.3.0)
 	* Support .NET Framework 4.5.2, .NET 6.0, .NET 8.0.
