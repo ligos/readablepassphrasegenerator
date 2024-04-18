@@ -42,7 +42,11 @@ choco upgrade keepass-plugin-readablepassphrasegen
 
 If you like the Readable Passphrase Generator you can donate to support development, or just say thanks.
 
-[![Donate $5](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7J8NPZ7MEN9N8)
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+	<input type="hidden" name="hosted_button_id" value="7J8NPZ7MEN9N8" />
+	<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+	<img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+</form>
 
 
 ## Getting Started ##
