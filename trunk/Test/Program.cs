@@ -522,6 +522,9 @@ namespace Test
         {
             Console.WriteLine("AnyWordClause");
             var clauseForAnyWords = Enumerable.Repeat(new AnyWordClause(), 4);
+            var combinations = generator.CalculateCombinations(clauseForAnyWords);
+            Console.WriteLine("Combinations: {0:E3} ({1:N2} bits)", combinations.ToString(), combinations.EntropyBitsToString());
+
             for (int i = 0; i < 10; i++)
             {
                 var phrase = generator.Generate(clauseForAnyWords);
