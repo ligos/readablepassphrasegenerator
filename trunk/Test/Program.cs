@@ -77,6 +77,7 @@ namespace Test
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
             //TestGithubIssue3(generator);
+            TestAnyWordClause(generator);
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -515,6 +516,17 @@ namespace Test
             numericMutator.Mutate(sb, GetRandomness());
             constantMutator.Mutate(sb, GetRandomness());
             Console.WriteLine(sb.ToString());
+        }
+
+        private static void TestAnyWordClause(ReadablePassphraseGenerator generator)
+        {
+            Console.WriteLine("AnyWordClause");
+            var clauseForAnyWords = Enumerable.Repeat(new AnyWordClause(), 4);
+            for (int i = 0; i < 10; i++)
+            {
+                var phrase = generator.Generate(clauseForAnyWords);
+                Console.WriteLine("  " + phrase);
+            }
         }
 
 #if NETFRAMEWORK        // No WinForms in NetCore
