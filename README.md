@@ -49,6 +49,8 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.4.3
+	* Version bump for KeePass plugin, to get everything in sync.
 * Version 1.4.2
 	* Fix console app `--nongrammar` option throws exception ([issue 24](https://github.com/ligos/readablepassphrasegenerator/issues/24))
 	* NuGet and KeePass plugins updated for consistency.
