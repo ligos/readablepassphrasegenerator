@@ -77,7 +77,7 @@ namespace Test
             //TestBitbucketIssue15(generator);
             //TestBitbucketIssue16(generator);
             //TestGithubIssue3(generator);
-            TestAnyWordClause(generator);
+            //TestAnyWordClause(generator);
 
             // Longer benchmarks.
             //BenchmarkGeneration(generator, PhraseStrength.Normal, 10000);
@@ -98,7 +98,7 @@ namespace Test
 
             // Test the config form.
 #if NETFRAMEWORK        // No WinForms in NetCore
-            //TestConfigForm(generator);
+            TestConfigForm(generator);
 #endif
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });

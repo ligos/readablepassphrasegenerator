@@ -335,8 +335,8 @@
             this.chkExcludeFake.Size = new System.Drawing.Size(84, 17);
             this.chkExcludeFake.TabIndex = 16;
             this.chkExcludeFake.Text = "Fake Words";
-            this.toolTip1.SetToolTip(this.chkExcludeFake, "If ticked, fake words are included in the passphrase. When unticked, only real di" +
-        "ctionary words are used.");
+            this.toolTip1.SetToolTip(this.chkExcludeFake, "If ticked, fake words are excluded from the passphrase; real words remain include" +
+        "d. When unticked, real and fake words are included.");
             this.chkExcludeFake.UseVisualStyleBackColor = true;
             this.chkExcludeFake.CheckedChanged += new System.EventHandler(this.chkExcludeFake_CheckedChanged);
             // 
