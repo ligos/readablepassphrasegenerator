@@ -4,9 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase</Product>
-    <Copyright>Copyright © Murray Grant 2011-2024</Copyright>
+    <Copyright>Copyright © Murray Grant 2011-2025</Copyright>
     <Authors>Murray Grant</Authors>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.</Description>
     <RootNamespace>MergePartsOfSpeech</RootNamespace>
     <LangVersion>latest</LangVersion>
