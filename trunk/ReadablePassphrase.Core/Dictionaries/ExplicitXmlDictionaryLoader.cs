@@ -51,6 +51,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
                 new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("speechverb", ParseSpeechVerb),
                 new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("indefinitepronoun", ParseIndefinitePronoun),
                 new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("numberrange", ParseNumberRange),
+                new KeyValuePair<string, Action<XmlReader, IReadOnlyList<string>>>("number", ParseNumber),
             }.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -318,7 +319,7 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
         }
         private void ParseDictionaryRoot(XmlReader reader, IReadOnlyList<string> excludeTags)
         {
-            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 6)
+            if (!Int32.TryParse(reader.GetAttribute("schemaVersion"), out var version) || version > 7)
                 throw new DictionaryParseException(String.Format("Unknown schemaVersion '{0}'.", reader.GetAttribute("schemaVersion")));
 
             // Root element must be parsed first.
@@ -451,6 +452,15 @@ namespace MurrayGrant.ReadablePassphrase.Dictionaries
             var end = Int32.Parse(reader.GetAttribute("end"));
             for (int i = start; i <= end; i++)
                 _Dict!.Add(new MaterialisedNumber(i, tags));
+        }
+
+        private void ParseNumber(XmlReader reader, IReadOnlyList<string> excludeTags)
+        {
+            var tags = ReadTags(reader);
+            if (ShouldExcludeByTag(tags, excludeTags)) return;
+
+            var isOne = String.Equals(reader.GetAttribute("isOne"), "true", StringComparison.OrdinalIgnoreCase);
+            _Dict!.Add(new MaterialisedNumber(reader.GetAttribute("value"), isOne, tags));
         }
 
         private IReadOnlyList<string> ReadTags(XmlReader reader)

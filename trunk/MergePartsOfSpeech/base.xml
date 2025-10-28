@@ -29,8 +29,10 @@ Schema version 5 adds:
 - The 'numberRange' element.
 Schema version 6 adds:
 - The 'tags' attribute to all elements.
+Schema version 7 adds:
+- The 'number' element.
 -->
-<dictionary schemaVersion="6" language="en-au" name="Default">
+<dictionary schemaVersion="7" language="en-au" name="Default">
   <article definite="the" indefinite="a" indefiniteBeforeVowel="an" />
   <demonstrative singular="this" plural="these" />
   <demonstrative singular="that" plural="those" />
@@ -116,5 +118,25 @@ Schema version 6 adds:
   <speechVerb past="boasted"/>
   <indefinitePronoun singular="one" plural="ones" personal="true"/>
   <indefinitePronoun singular="thing" plural="things" personal="false"/>
+  <number value="one" isOne="true" />
+  <number value="two" />
+  <number value="three" />
+  <number value="four" />
+  <number value="five" />
+  <number value="six" />
+  <number value="seven" />
+  <number value="eight" />
+  <number value="nine" />
+  <number value="ten" />
+  <number value="eleven" />
+  <number value="twelve" />
+  <number value="thirteen" />
+  <number value="fourteen" />
+  <number value="fifteen" />
+  <number value="sixteen" />
+  <number value="seventeen" />
+  <number value="eighteen" />
+  <number value="nineteen" />
+  <number value="twenty" />
   <numberRange start="1" end="999"/>
 </dictionary>

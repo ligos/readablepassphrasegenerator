@@ -38,8 +38,9 @@ namespace MurrayGrant.ReadablePassphrase.WordTemplate
 
             if (this._NounIsSingular)
             {
-                var w = (Number)words.First(x => x is Number n && n.RequiresSingularNoun);
-                return new WordAndString(w, w.Value);
+                // There are only a few instances of "one" in the dictionary, so we allow them to repeat
+                var word = words.ChooseWord<Number>(randomness, Enumerable.Empty<Word>(), w => w.RequiresSingularNoun);
+                return new WordAndString(word, word.Value);
             }
             else
             {
