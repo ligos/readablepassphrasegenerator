@@ -52,7 +52,12 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             // Make a list of positions which can have numbers inserted.
             var possibleInsertIndexes = new List<int>();
 
-            if (this.When == NumericStyles.EndOfPhrase)
+            if (this.When == NumericStyles.StartOfPhrase)
+            {
+                // Start of passphrase is a special case with only one option.
+                possibleInsertIndexes.AddRange(Enumerable.Repeat(0, this.NumberOfNumbersToAdd));
+            }
+            else if (this.When == NumericStyles.EndOfPhrase)
             {
                 // End of passphrase is a special case with only one option.
                 // Although there is usually some whitespace at the end, so we still need a short loop.
@@ -119,10 +124,11 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
     public enum NumericStyles
     {
         Never = 0,
-        StartOfWord = 1,
-        EndOfWord = 2,
+        StartOfPhrase = 1 << 0,
+        StartOfWord = 1 << 1,
+        EndOfWord = 1 << 2,
         StartOrEndOfWord = StartOfWord | EndOfWord,
-        Anywhere = 4,
-        EndOfPhrase = 5,
+        Anywhere = 1 << 3,
+        EndOfPhrase = 1 << 4,
     }
 }

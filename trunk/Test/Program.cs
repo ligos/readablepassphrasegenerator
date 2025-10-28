@@ -103,6 +103,8 @@ namespace Test
             // Test mutators.
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new UppercaseRunMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() { NumberOfNumbersToAdd = 2, When = NumericStyles.StartOfPhrase } });
+            //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new NumericMutator() { NumberOfNumbersToAdd = 2, When = NumericStyles.EndOfPhrase } });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 10, new IMutator[] { new ConstantMutator() });
             //GenerateMutatedSamples(PhraseStrength.Random, generator, 100, new IMutator[] { new UppercaseRunMutator(), new NumericMutator(), new ConstantMutator() });
 

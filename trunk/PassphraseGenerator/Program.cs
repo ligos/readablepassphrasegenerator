@@ -511,10 +511,10 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -m2 --altMutators     Adds 2 numbers and capitalises a single word");
             Console.WriteLine("  --mutUpper xxx        Uppercase mutator style (default: {0})", upperStyle);
             Console.WriteLine("       xxx =      [startofword|anywhere|runofwords|wholeword]");
-            Console.WriteLine("  --mutUpperCount nn    Number of capitals to add (default: {0}", upperCount);
+            Console.WriteLine("  --mutUpperCount nn    Number of capitals to add (default: {0})", upperCount);
             Console.WriteLine("  --mutNumeric xxx      Numeric mutator style (default: {0})", numericStyle);
-            Console.WriteLine("       xxx =      [startofword|endofword|startorendofword|endofphrase|anywhere]");
-            Console.WriteLine("  --mutNumericCount nn  Number of numbers to add (default: {0}", numericCount);
+            Console.WriteLine("       xxx =      [startofphrase|startofword|endofword|startorendofword|endofphrase|anywhere]");
+            Console.WriteLine("  --mutNumericCount nn  Number of numbers to add (default: {0})", numericCount);
             Console.WriteLine("  --mutConstant xxx     Constant mutator style (default: {0})", constantStyle);
             Console.WriteLine("       xxx =      [startofphrase|endofphrase|middleofphrase|anywhere]");
             Console.WriteLine("  --mutConstantValue x  String to use as constant (default: {0})", constantValue);
