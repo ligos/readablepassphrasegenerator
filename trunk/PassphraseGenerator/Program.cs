@@ -138,8 +138,13 @@ namespace MurrayGrant.ReadablePassphrase.Generator
                 Console.WriteLine("Average combinations ~{0:E3} (~{1:N2} bits)", combinations.OptionalAverage, combinations.OptionalAverageAsEntropyBits);
                 Console.WriteLine("Total combinations {0:E3} - {1:E3} ({2:N2} - {3:N2} bits)", combinations.Shortest, combinations.Longest, combinations.ShortestAsEntropyBits, combinations.LongestAsEntropyBits);
                 
-                var upperTypeText = upperStyle == AllUppercaseStyles.RunOfLetters ? " run"
+                var upperTypeText = upperStyle == AllUppercaseStyles.StartOfPhrase ? " letter"
+                                  : upperStyle == AllUppercaseStyles.StartOfWord ? " letter"
+                                  : upperStyle == AllUppercaseStyles.RunOfLetters ? " run"
                                   : upperStyle == AllUppercaseStyles.WholeWord ? " word"
+                                  : upperStyle == AllUppercaseStyles.Anywhere ? " letter"
+                                  : upperStyle == AllUppercaseStyles.EndOfWord ? " letter"
+                                  : upperStyle == AllUppercaseStyles.EndOfPhrase ? " letter"
                                   : "";
                 var upperTypeText2 = upperStyle == AllUppercaseStyles.RunOfLetters ? "run"
                                    : upperStyle == AllUppercaseStyles.WholeWord ? "word"
@@ -172,19 +177,20 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             int generated = 0;
             int attempts = 0;
             int maxAttempts = count * MaxAttemptsPerCount;
-            var mutators = applyStandardMutators ? new IMutator[] { UppercaseMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic } 
-                         : applyAlternativeMutators ? new IMutator[] { UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic }
+            var mutators = applyStandardMutators ? [UppercaseMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic] 
+                         : applyAlternativeMutators ? [UppercaseWordMutator.Basic, NumericMutator.Basic, ConstantMutator.Basic]
                          : Enumerable.Empty<IMutator>();
-            if (upperStyle > 0 && upperStyle <= AllUppercaseStyles.Anywhere)
-                mutators = mutators.Concat(new IMutator[] { new UppercaseMutator() { When = (UppercaseStyles)upperStyle, NumberOfCharactersToCapitalise = upperCount } });
+            if ((upperStyle > 0 && upperStyle <= AllUppercaseStyles.Anywhere)
+                || upperStyle >= AllUppercaseStyles.EndOfWord)
+                mutators = mutators.Concat([new UppercaseMutator() { When = (UppercaseStyles)upperStyle, NumberOfCharactersToCapitalise = upperCount }]);
             if (upperStyle == AllUppercaseStyles.RunOfLetters)
-                mutators = mutators.Concat(new IMutator[] { new UppercaseRunMutator() { NumberOfRuns = upperCount } });
+                mutators = mutators.Concat([new UppercaseRunMutator() { NumberOfRuns = upperCount }]);
             if (upperStyle == AllUppercaseStyles.WholeWord)
-                mutators = mutators.Concat(new IMutator[] { new UppercaseWordMutator() { NumberOfWordsToCapitalise = upperCount } });
+                mutators = mutators.Concat([new UppercaseWordMutator() { NumberOfWordsToCapitalise = upperCount }]);
             if (numericStyle != 0)
-                mutators = mutators.Concat(new IMutator[] { new NumericMutator() { When = numericStyle, NumberOfNumbersToAdd = numericCount } });
+                mutators = mutators.Concat([new NumericMutator() { When = numericStyle, NumberOfNumbersToAdd = numericCount }]);
             if (constantStyle != 0)
-                mutators = mutators.Concat(new IMutator[] { new ConstantMutator() { When = constantStyle, ValueToAdd = constantValue } });
+                mutators = mutators.Concat([new ConstantMutator() { When = constantStyle, ValueToAdd = constantValue }]);
             while (generated < count)
             {
                 // Generate phrase.
@@ -510,7 +516,7 @@ namespace MurrayGrant.ReadablePassphrase.Generator
             Console.WriteLine("  -m --stdMutators      Adds 2 numbers and 2 capitals to the passphrase");
             Console.WriteLine("  -m2 --altMutators     Adds 2 numbers and capitalises a single word");
             Console.WriteLine("  --mutUpper xxx        Uppercase mutator style (default: {0})", upperStyle);
-            Console.WriteLine("       xxx =      [startofword|anywhere|runofwords|wholeword]");
+            Console.WriteLine("       xxx =      [startofphrase|startofword|anywhere|runofletters|wholeword|endofword|endofphrase]");
             Console.WriteLine("  --mutUpperCount nn    Number of capitals to add (default: {0})", upperCount);
             Console.WriteLine("  --mutNumeric xxx      Numeric mutator style (default: {0})", numericStyle);
             Console.WriteLine("       xxx =      [startofphrase|startofword|endofword|startorendofword|endofphrase|anywhere]");

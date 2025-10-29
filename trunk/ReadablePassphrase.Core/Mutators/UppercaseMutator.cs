@@ -50,9 +50,13 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             var possibleCharactersToCapitalise = new List<int>();
             for (int i = 0; i < passphrase.Length; i++)
             {
-                if ((i == 0 && Char.IsLetter(passphrase[i])) 
-                    || (this.When == UppercaseStyles.StartOfWord && i > 0 && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetter(passphrase[i]))
-                    || (this.When == UppercaseStyles.Anywhere && Char.IsLetter(passphrase[i]))
+                if (false
+                    || (this.When == UppercaseStyles.StartOfPhrase && i == 0                                                         && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.StartOfWord   && i > 0                    && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.EndOfWord     && i < passphrase.Length-1  && Char.IsWhiteSpace(passphrase[i+1]) && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.EndOfWord     && i == passphrase.Length-1                                       && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.EndOfPhrase   && i == passphrase.Length-2                                       && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.Anywhere                                                                        && Char.IsLetter(passphrase[i]))
                     )
                 possibleCharactersToCapitalise.Add(i);
             }
@@ -81,25 +85,32 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
         }
     }
 
+    // A sub-set of AllUppercaseStyles which is only used in UppercaseMutator
     public enum UppercaseStyles
     {
-        Never = 0,
-        StartOfWord = 1,
-        Anywhere = 2,
+        Never         = AllUppercaseStyles.Never,
+        StartOfPhrase = AllUppercaseStyles.StartOfPhrase,
+        StartOfWord   = AllUppercaseStyles.StartOfWord,
+        Anywhere      = AllUppercaseStyles.Anywhere,
+        EndOfWord     = AllUppercaseStyles.EndOfWord,
+        EndOfPhrase   = AllUppercaseStyles.EndOfPhrase,
     }
 
     public enum AllUppercaseStyles
     {
         Never = 0,
-        StartOfWord = 1,
-        Anywhere = 2,
+        StartOfPhrase = 1,
+        StartOfWord = 2,
+        Anywhere = 3,
         /// <summary>
         /// The UppercaseRunMutator
         /// </summary>
-        RunOfLetters = 3,
+        RunOfLetters = 4,
         /// <summary>
         /// The UppercaseWordMutator
         /// </summary>
-        WholeWord = 4,
+        WholeWord = 5,
+        EndOfWord = 6,
+        EndOfPhrase = 7,
     }
 }
