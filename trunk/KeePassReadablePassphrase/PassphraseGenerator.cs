@@ -210,7 +210,11 @@ namespace KeePassReadablePassphrase
             }
             else if (conf.Mutator == MutatorOption.Custom)
             {
-                if (conf.UpperStyle == AllUppercaseStyles.Anywhere || conf.UpperStyle == AllUppercaseStyles.StartOfWord)
+                if (conf.UpperStyle == AllUppercaseStyles.StartOfPhrase
+                    || conf.UpperStyle == AllUppercaseStyles.StartOfWord
+                    || conf.UpperStyle == AllUppercaseStyles.Anywhere 
+                    || conf.UpperStyle == AllUppercaseStyles.EndOfWord
+                    || conf.UpperStyle == AllUppercaseStyles.EndOfPhrase)
                     yield return new UppercaseMutator() { When = (UppercaseStyles)conf.UpperStyle, NumberOfCharactersToCapitalise = conf.UpperCount };
                 else if (conf.UpperStyle == AllUppercaseStyles.RunOfLetters)
                     yield return new UppercaseRunMutator() { NumberOfRuns = conf.UpperCount };
