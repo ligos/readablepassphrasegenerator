@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net60;net452</TargetFrameworks>
+    <TargetFrameworks>net10.0;net8.0;net452</TargetFrameworks>
     <Company>Murray Grant</Company>
     <Product>ReadablePassphrase</Product>
     <Copyright>Copyright © Murray Grant 2011-2025</Copyright>
