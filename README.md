@@ -49,6 +49,12 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.5.0
+	* 18,525 words in the default dictionary (20 more than 1.4.0).
+	* Implement `<Number>` in dictionary, allowing a dictionary with just the number one (issue #22). Dictionary schema is now version 7.
+	* Allow Uppercase Mutator to add at `StartOfPhrase`, `EndOfWord`, and `EndOfPhrase` (issue #18).
+	* Fix misleading label when enabling fake words (issue #20).
+	* Support .NET Framework 4.5.2, .NET 8.0, .NET 10.0.
 * Version 1.4.3
 	* Version bump for KeePass plugin, to get everything in sync.
 * Version 1.4.2
