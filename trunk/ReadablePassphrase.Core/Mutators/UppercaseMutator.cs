@@ -52,6 +52,7 @@ namespace MurrayGrant.ReadablePassphrase.Mutators
             {
                 if (false
                     || (this.When == UppercaseStyles.StartOfPhrase && i == 0                                                         && Char.IsLetter(passphrase[i]))
+                    || (this.When == UppercaseStyles.StartOfWord   && i == 0                                                         && Char.IsLetter(passphrase[i]))
                     || (this.When == UppercaseStyles.StartOfWord   && i > 0                    && Char.IsWhiteSpace(passphrase[i-1]) && Char.IsLetter(passphrase[i]))
                     || (this.When == UppercaseStyles.EndOfWord     && i < passphrase.Length-1  && Char.IsWhiteSpace(passphrase[i+1]) && Char.IsLetter(passphrase[i]))
                     || (this.When == UppercaseStyles.EndOfWord     && i == passphrase.Length-1                                       && Char.IsLetter(passphrase[i]))
