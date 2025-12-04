@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
     <RootNamespace>MurrayGrant.ReadablePassphrase</RootNamespace>
     <PackageId>ReadablePassphrase.DefaultDictionary</PackageId>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <Authors>Murray Grant</Authors>
     <Product>ReadablePassphrase</Product>
     <Description>Generates gramatically correct passphrases that are easy for human to remember and hard for computers to guess.
@@ -49,7 +49,7 @@ See https://id.ligos.net/murray/ReadablePassphraseGenerator/ for PGP &amp; Keyba
   
   <!-- Use Nuget packages -->
   <ItemGroup Condition="'$(RefNugets)'=='True'">
-    <PackageReference Include="ReadablePassphrase.Core" Version="1.5.0" />
+    <PackageReference Include="ReadablePassphrase.Core" Version="1.5.1" />
   </ItemGroup>
 
   <!-- Use project references -->
