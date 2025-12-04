@@ -49,6 +49,8 @@ If you like the Readable Passphrase Generator you can donate to support developm
 [Please read the Wiki Homepage for details of using or contributing to the Readable Passphrase Generator](https://github.com/ligos/readablepassphrasegenerator/wiki).
 
 ## Recent Changes ##
+* Version 1.5.1
+    * Fix uppercase mutator does not work for first letter of phassphrase. (issue #28)
 * Version 1.5.0
 	* 18,525 words in the default dictionary (20 more than 1.4.0).
 	* Implement `<Number>` in dictionary, allowing a dictionary with just the number one (issue #22). Dictionary schema is now version 7.
